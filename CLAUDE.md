@@ -15,8 +15,13 @@ Repo: github.com/wazzac/bible
 - **Extra-biblical history/dates** (Roman emperors, governors, Josephus-derived events like James the Just's martyrdom, the fall of Jerusalem in AD 70): general historical consensus. Cite the source inline in `desc` when it's not Scripture (e.g. "recorded by Josephus").
 - **Church tradition beyond the biblical text** (Joachim and Anne as Mary's parents, Luke/Mark's authorship, Peter and Paul's martyrdoms in Rome, John's exile date per Irenaeus): explicitly labelled "traditional" in the data (`dates`, `desc`, or `notconfused` fields). Never present tradition as if it were Scripture — the existing data is careful about this and new entries must be too.
 - **Dates in general** are scholarly estimates and frequently disputed (the Exodus, the crucifixion year, several lifespans). Say so rather than asserting false precision.
+- **Thematic/historical framing** (e.g. sanity-checking how a figure's role or a book's overview is commonly explained): [BibleProject](https://bibleproject.com) is an acceptable secondary source for orientation, not for scripture text itself — verse text/references still come from bible.com's NIV as above.
 
 If a new fact, date, or reference is added and its source doesn't fall into one of the above, ask the user rather than guessing.
+
+## Attribution
+
+The site credits both sources in the UI itself — a small "Data drawn from Scripture and tradition · sources: Bible.com · BibleProject.com" line under the interaction hint (bottom-left of the graph, `.credits` in `index.html`), linking to https://www.bible.com and https://bibleproject.com. Keep this in place; if the on-page wording changes, update it here too.
 
 ## Architecture
 

@@ -136,11 +136,21 @@
   }
   .halo{fill:none;stroke:var(--gold);opacity:.55}
 
+  .footer-info{
+    position:absolute;left:16px;bottom:14px;display:flex;flex-direction:column;gap:2px;
+    pointer-events:none;max-width:min(640px,72vw);
+  }
   .hint{
-    position:absolute;left:16px;bottom:14px;font-family:var(--mono);font-size:10.5px;
-    letter-spacing:.05em;color:var(--muted-2);pointer-events:none;line-height:1.7;
+    font-family:var(--mono);font-size:10.5px;
+    letter-spacing:.05em;color:var(--muted-2);line-height:1.7;
   }
   .hint b{color:var(--muted)}
+  .credits{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.03em;color:var(--muted-2);
+    opacity:.75;pointer-events:auto;
+  }
+  .credits a{color:var(--muted-2);text-decoration:underline;text-decoration-color:rgba(154,161,178,.35);text-underline-offset:2px}
+  .credits a:hover{color:var(--gold);text-decoration-color:var(--gold)}
 
   .legend{
     position:absolute;right:14px;bottom:14px;background:rgba(19,24,34,.86);border:1px solid var(--edge);
@@ -325,8 +335,13 @@
       <div class="clash-grid" id="clashGrid"></div>
     </div>
 
-    <div class="hint" id="hint">
-      <b>Click</b> a figure for their story · <b>hover</b> to trace ties · <b>drag</b> to pin in place · <b>double-click</b> to release · scroll to zoom
+    <div class="footer-info">
+      <div class="hint" id="hint">
+        <b>Click</b> a figure for their story · <b>hover</b> to trace ties · <b>drag</b> to pin in place · <b>double-click</b> to release · scroll to zoom
+      </div>
+      <div class="credits" id="credits">
+        Data drawn from Scripture and tradition · sources: <a href="https://www.bible.com" target="_blank" rel="noopener noreferrer">Bible.com</a> · <a href="https://bibleproject.com" target="_blank" rel="noopener noreferrer">BibleProject.com</a>
+      </div>
     </div>
 
     <div class="legend" id="legend">
