@@ -1,12 +1,76 @@
-# bible
+# People of the Bible — a relationship map
 
-People of the Bible — a relationship map.
+A single-page, interactive map of the people of the Bible and how they connect to
+one another — family, disciples, rivals, rulers, and the early church. Pick Old
+Testament or New Testament, then explore the network: click anyone for their
+story, hover to trace their ties, drag figures around, or switch to a timeline
+view to see who overlapped with whom.
 
-Static single-page site (HTML/CSS/JS, D3.js via CDN). No build step required.
+Live site: **https://bible.wazzac.dev**
 
-Deployed via Cloudflare Pages at https://bible.wazzac.dev
+## What's inside
+
+- **Network view** — a force-directed graph (D3.js) clustering people by role
+  (family, the Twelve, prophets, kings, rulers, and so on). Click a figure to
+  open a detail panel with their story, scripture references, and how they
+  connect to everyone else on the map.
+- **Timeline view** — the same people laid out by estimated lifespan, so you can
+  see who was alive at the same time.
+- **"Name lens"** — many biblical figures share a name (multiple Marys, Jameses,
+  Simons, Johns...). This lens highlights everyone with a given name side by
+  side so they're easy to tell apart.
+- **Search and filters** — find a person by name, or filter the graph down to
+  specific groups.
+
+It's a static site — plain HTML, CSS, and JavaScript, with D3.js pulled in from
+a CDN. No build step, no framework, no dependencies to install.
+
+## Sources
+
+- **Scripture text and verse references** are drawn from the NIV translation via
+  [Bible.com](https://www.bible.com) (YouVersion). Every "Where to read" citation
+  in the detail panel links straight to the relevant chapter/verse on Bible.com.
+- **Historical and thematic framing** — background used to sanity-check how a
+  person, book, or event is commonly understood — draws on
+  [BibleProject](https://bibleproject.com).
+- Extra-biblical history (Roman emperors, governors, dates recorded by
+  historians like Josephus) follows general historical consensus, and is noted
+  as such in the data.
+- Details that come from church tradition rather than the biblical text itself
+  (for example, Mary's parents Joachim and Anne, or the traditional authorship
+  of some books) are explicitly labelled "traditional" rather than presented as
+  Scripture.
+
+Both sources are also credited directly on the site, in the small line under
+the on-screen controls hint.
+
+## Local development
+
+There's nothing to install or build — just open `index.html` in a browser, or
+serve the folder with any static file server, e.g.:
+
+```
+npx serve .
+```
+
+A small Node script checks the underlying data for consistency (duplicate IDs,
+dangling relationship links, etc.):
+
+```
+node scripts/validate-data.mjs
+```
+
+## Deployment
+
+Hosted on Cloudflare Pages, deploying automatically on push to the connected
+branch.
 
 **Cloudflare Pages build settings:**
 - Framework preset: `None`
 - Build command: *(leave empty)*
 - Build output directory: `/`
+
+## Contributing
+
+See [`CLAUDE.md`](./CLAUDE.md) for the data schema, sourcing rules, and
+conventions to follow when adding or editing people and relationships.
