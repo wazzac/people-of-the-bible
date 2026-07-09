@@ -115,6 +115,13 @@
   .chip[aria-pressed="true"]{color:var(--vellum);border-color:var(--c,var(--gold));background:color-mix(in srgb, var(--c,var(--gold)) 16%, var(--panel))}
   .chip.clash[aria-pressed="true"]{background:color-mix(in srgb, var(--gold) 20%, var(--panel));border-color:var(--gold);color:var(--vellum)}
   .divider{width:1px;height:22px;background:var(--edge)}
+  .filters-toggle{
+    display:none;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    align-items:center;gap:6px;background:var(--panel);color:var(--muted);border:1px solid var(--edge);
+    border-radius:999px;padding:7px 13px;cursor:pointer;
+  }
+  .filters-toggle[aria-expanded="true"]{color:var(--vellum);border-color:var(--gold-dim);background:color-mix(in srgb, var(--gold) 14%, var(--panel))}
+  .filter-drawer{display:contents}
 
   /* ---------- Stage ---------- */
   .stage{position:relative;flex:1;overflow:hidden}
@@ -231,10 +238,27 @@
   ::-webkit-scrollbar-thumb:hover{background:var(--muted-2);background-clip:content-box}
 
   @media (max-width:760px){
-    header{padding:12px 14px 8px;gap:12px}
-    .controls{padding:9px 14px;gap:12px 16px}
+    header{padding:9px 14px 7px;gap:8px 12px}
+    .brand{gap:0;min-width:0;flex:1 1 auto}
+    .kicker{font-size:9px;letter-spacing:.24em}
+    h1{font-size:16px}
+    .subtitle{display:none}
     .viewtoggle{margin-left:0}
-    .toggles{margin-left:0;flex-direction:row;flex-wrap:wrap;align-items:flex-start}
+    .viewtoggle button{padding:6px 11px;font-size:10px}
+    .toggles{margin-left:0;flex-direction:row;flex-wrap:wrap;align-items:flex-start;gap:6px}
+    .controls{position:relative;padding:8px 14px;gap:8px 10px;flex-wrap:nowrap}
+    .controls .ctl-group{flex:1 1 auto;min-width:0}
+    .search{min-width:0;width:100%}
+    .filters-toggle{display:inline-flex;flex:none}
+    .filter-drawer{
+      display:none;position:absolute;top:100%;left:0;right:0;z-index:35;
+      flex-direction:column;align-items:flex-start;gap:10px;
+      background:rgba(15,19,28,.98);border-bottom:1px solid var(--edge);
+      padding:12px 14px 16px;max-height:min(60vh,420px);overflow-y:auto;box-shadow:var(--shadow);
+    }
+    .filter-drawer.open{display:flex}
+    .filter-drawer .divider{display:none}
+    .filter-drawer .ctl-group{width:100%}
     aside{width:100%;top:auto;bottom:0;height:74vh;border-left:0;border-top:1px solid var(--edge);transform:translateY(102%)}
     aside.open{transform:translateY(0)}
     .legend{display:none}
@@ -264,20 +288,26 @@
     </div>
   </header>
 
-  <div class="controls">
+  <div class="controls" id="controlsBar">
     <div class="ctl-group">
       <label class="search" for="searchBox">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
         <input id="searchBox" type="text" placeholder="Find a person…" autocomplete="off" spellcheck="false" aria-label="Search people">
       </label>
     </div>
-    <div class="divider" aria-hidden="true"></div>
-    <div class="ctl-group" id="catFilters" aria-label="Filter by group">
-      <span class="ctl-label">Groups</span>
-    </div>
-    <div class="divider" aria-hidden="true"></div>
-    <div class="ctl-group" id="clashFilters" aria-label="Highlight shared names">
-      <span class="ctl-label">Name lens</span>
+    <button type="button" class="filters-toggle" id="filtersToggle" aria-expanded="false" aria-controls="filterDrawer">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M8 12h8M11 18h2"/></svg>
+      Filters
+    </button>
+    <div class="filter-drawer" id="filterDrawer">
+      <div class="divider" aria-hidden="true"></div>
+      <div class="ctl-group" id="catFilters" aria-label="Filter by group">
+        <span class="ctl-label">Groups</span>
+      </div>
+      <div class="divider" aria-hidden="true"></div>
+      <div class="ctl-group" id="clashFilters" aria-label="Highlight shared names">
+        <span class="ctl-label">Name lens</span>
+      </div>
     </div>
   </div>
 
@@ -2297,7 +2327,15 @@ window.addEventListener("resize",()=>{
 });
 
 // keyboard: Escape closes
-document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ if(clashActive) clearClash(); else closePanel(); } });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ if(clashActive) clearClash(); else if(filterDrawer.classList.contains("open")) closeFilterDrawer(); else closePanel(); } });
+
+/* ---------- mobile filter drawer ---------- */
+const filtersToggle=document.getElementById("filtersToggle");
+const filterDrawer=document.getElementById("filterDrawer");
+function closeFilterDrawer(){ filterDrawer.classList.remove("open"); filtersToggle.setAttribute("aria-expanded","false"); }
+function openFilterDrawer(){ filterDrawer.classList.add("open"); filtersToggle.setAttribute("aria-expanded","true"); }
+filtersToggle.onclick=()=>{ filterDrawer.classList.contains("open") ? closeFilterDrawer() : openFilterDrawer(); };
+svg.on("click.drawer",()=>{ if(filterDrawer.classList.contains("open")) closeFilterDrawer(); });
 
 /* ---------- testament switching ---------- */
 function applyMeta(){
