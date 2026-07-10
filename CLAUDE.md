@@ -25,12 +25,10 @@ The site credits both sources in the UI itself — a small "Data drawn from Scri
 
 ## Architecture
 
-Everything lives in one file: `index.html`. No build step, no framework, no package.json. D3.js and two Google Fonts are pulled from CDN via `<script>`/`<link>` tags.
-
-Structure inside `index.html`:
-1. `<style>` — all CSS, using custom properties in `:root` for the color palette (one CSS var per relationship category, e.g. `--fam`, `--twelve`, `--patri`).
-2. `<body>` — header (testament toggle, network/timeline view toggle), controls bar (search, category filter chips, "name lens" clash filter), the SVG stage, detail panel (`<aside>`), clash-comparison panel, timeline SVG.
-3. `<script>` — all data and all logic, in this order:
+Still no framework, no runtime dependencies — just three plain files, plus a minify-only build step for deployment:
+- `index.html` — markup only: header, controls bar, SVG stage, detail panel, timeline SVG. Links `main.css` and loads `main.js`. D3.js and two Google Fonts are still pulled from CDN via `<script>`/`<link>` tags.
+- `main.css` — all CSS, using custom properties in `:root` for the color palette (one CSS var per relationship category, e.g. `--fam`, `--twelve`, `--patri`).
+- `main.js` — all data and all logic, in this order:
    - `NT_CAT` / `OT_CAT` — category definitions (`label`, `color` referencing a CSS var).
    - `NT_PEOPLE` / `OT_PEOPLE` — array of person objects (the nodes). Schema below.
    - `NT_LINKS` / `OT_LINKS` — array of relationship edges via the `lk()` helper.
@@ -40,7 +38,9 @@ Structure inside `index.html`:
    - `DATASETS` — registry mapping `nt`/`ot` to the above five pieces; `TESTAMENT` selects the active one.
    - D3 force simulation, rendering, search, filters, timeline drawing, pan/zoom, tooltip and detail-panel logic.
 
-There is no separate data file — the dataset **is** JavaScript source inside `index.html`. Edit it directly; don't invent a JSON/YAML layer without discussing it with the user first, since that would be a real architecture change.
+There is no separate data file — the dataset **is** JavaScript source inside `main.js`. Edit it directly; don't invent a JSON/YAML layer without discussing it with the user first, since that would be a real architecture change.
+
+`npm run build` (see `scripts/build.mjs`) uses esbuild to minify `main.css`/`main.js` and emit a `dist/` folder with a rewritten `index.html` pointing at `main.min.css`/`main.min.js`. This is a minifier only — no bundling, no transpilation, no framework. For local development, just open `index.html` directly; it loads the unminified `main.css`/`main.js` and needs no build step.
 
 ## Data schema
 
@@ -87,22 +87,24 @@ There is no separate data file — the dataset **is** JavaScript source inside `
 
 ## Verification
 
-No build step — open `index.html` directly in a browser (or serve the folder) to check changes visually. There's also a referential-integrity validator:
+Open `index.html` directly in a browser (or serve the folder) to check changes visually — no build step needed for local viewing. There's also a referential-integrity validator:
 
 ```
 node scripts/validate-data.mjs
 ```
 
-It checks for duplicate ids, dangling link references, `LIVES` entries with no matching person, and unknown categories. Run it after editing data and before committing.
+It checks for duplicate ids, dangling link references, `LIVES` entries with no matching person, and unknown categories. It reads its data block from `main.js`. Run it after editing data and before committing.
+
+To sanity-check the production build locally: `npm install` (once), then `npm run build`, then serve the `dist/` folder as its own web root — `dist/index.html` references `main.min.css`/`main.min.js` as siblings, so it must be served from `dist/`, not from the repo root.
 
 See `.claude/skills/bible-data-entry/SKILL.md` for the step-by-step workflow for adding a new person or relationship, and `.claude/skills/bible-data-qa/SKILL.md` for the QA pass.
 
 ## Deployment
 
-Cloudflare Pages, framework preset `None`, no build command, output directory `/`. Pushing to the connected branch on `github.com/wazzac/bible` deploys automatically — there is nothing to run locally to "build" the site.
+Cloudflare Pages. Build command: `npm run build`. Build output directory: `dist`. Pushing to the connected branch on `github.com/wazzac/bible` deploys automatically — Cloudflare runs the esbuild minify step itself; there is nothing to build or commit locally.
 
 ## Non-goals / things not to do without asking
 
-- Don't introduce a JS framework, bundler, or build step — the project is deliberately a zero-dependency static file.
+- Don't introduce a JS framework, bundler, transpiler, or any build step beyond the existing esbuild minify pass (`scripts/build.mjs`) — this project is deliberately dependency-light, and the minify step exists only to shrink `main.css`/`main.js` for production, not to compile or bundle anything.
 - Don't switch translations away from NIV for quotes/references.
 - Don't assert disputed dates or traditions as settled fact.

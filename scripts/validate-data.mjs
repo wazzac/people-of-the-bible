@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * Referential-integrity check for the Bible dataset embedded in index.html.
+ * Referential-integrity check for the Bible dataset embedded in main.js.
  *
  * The dataset is plain JS (NT_CAT, NT_PEOPLE, NT_LINKS, NT_EVENTS, NT_LIVES, NT_META
- * and the OT_ equivalents) living inside a <script> tag — there's no separate data
+ * and the OT_ equivalents) living at the top of main.js — there's no separate data
  * file to validate against a schema library, so this extracts that block of source
  * and evaluates it in an isolated VM context, then checks the resulting arrays.
  *
@@ -16,17 +16,17 @@ import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const indexPath = path.join(__dirname, "..", "index.html");
-const html = fs.readFileSync(indexPath, "utf8");
+const mainJsPath = path.join(__dirname, "..", "main.js");
+const js = fs.readFileSync(mainJsPath, "utf8");
 
 const startMarker = "const NT_CAT = {";
 const endMarker = "let TESTAMENT=";
-const start = html.indexOf(startMarker);
-const end = html.indexOf(endMarker, start);
+const start = js.indexOf(startMarker);
+const end = js.indexOf(endMarker, start);
 
 if (start === -1 || end === -1) {
   console.error(
-    "Could not locate the data block in index.html (looked for markers " +
+    "Could not locate the data block in main.js (looked for markers " +
       JSON.stringify(startMarker) + " ... " + JSON.stringify(endMarker) + "). " +
       "If the data section was restructured, update these markers in validate-data.mjs."
   );
@@ -36,7 +36,7 @@ if (start === -1 || end === -1) {
 // vm contexts only expose top-level var/function declarations as properties
 // of the sandbox object -- const/let bindings stay purely lexical and would
 // otherwise be invisible to the code below, so normalize to var first.
-const code = html
+const code = js
   .slice(start, end)
   .replace(/\bconst\s/g, "var ")
   .replace(/\blet\s/g, "var ");
@@ -44,9 +44,9 @@ const sandbox = {};
 vm.createContext(sandbox);
 
 try {
-  vm.runInContext(code, sandbox, { filename: "index.html (data block)" });
+  vm.runInContext(code, sandbox, { filename: "main.js (data block)" });
 } catch (err) {
-  console.error("Failed to evaluate the data block extracted from index.html:");
+  console.error("Failed to evaluate the data block extracted from main.js:");
   console.error(err.message);
   process.exit(2);
 }

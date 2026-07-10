@@ -1,0 +1,14 @@
+{
+  "name": "people-of-the-bible",
+  "private": true,
+  "version": "1.0.0",
+  "description": "An interactive relationship map of biblical figures (D3.js).",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "validate": "node scripts/validate-data.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.1"
+  }
+}

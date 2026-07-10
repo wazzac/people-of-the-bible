@@ -22,8 +22,10 @@ Live site: **https://bible.wazzac.dev**
 - **Search and filters** — find a person by name, or filter the graph down to
   specific groups.
 
-It's a static site — plain HTML, CSS, and JavaScript, with D3.js pulled in from
-a CDN. No build step, no framework, no dependencies to install.
+It's a static site — plain HTML, CSS, and JavaScript (`index.html`, `main.css`,
+`main.js`), with D3.js pulled in from a CDN. No framework. The only build step
+is an optional minify pass (esbuild) used for deployment; nothing to install
+just to view or edit the site locally.
 
 ## Sources
 
@@ -46,8 +48,9 @@ the on-screen controls hint.
 
 ## Local development
 
-There's nothing to install or build — just open `index.html` in a browser, or
-serve the folder with any static file server, e.g.:
+There's nothing to install or build to view or edit the site — just open
+`index.html` in a browser (it loads `main.css` and `main.js` as plain
+siblings), or serve the folder with any static file server, e.g.:
 
 ```
 npx serve .
@@ -60,6 +63,21 @@ dangling relationship links, etc.):
 node scripts/validate-data.mjs
 ```
 
+### Production build (minification)
+
+Deployment runs a minify-only build step so the site ships smaller CSS/JS. To
+run it locally:
+
+```
+npm install
+npm run build
+```
+
+This produces a `dist/` folder containing a minified `main.min.css`,
+`main.min.js`, and an `index.html` rewritten to reference them. `dist/` must
+be served as its own web root (its `index.html` references the minified files
+as siblings), e.g. `npx serve dist`.
+
 ## Deployment
 
 Hosted on Cloudflare Pages, deploying automatically on push to the connected
@@ -67,10 +85,11 @@ branch.
 
 **Cloudflare Pages build settings:**
 - Framework preset: `None`
-- Build command: *(leave empty)*
-- Build output directory: `/`
+- Build command: `npm run build`
+- Build output directory: `dist`
 
 ## Contributing
 
-See [`CLAUDE.md`](./CLAUDE.md) for the data schema, sourcing rules, and
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for how to propose changes, and
+[`CLAUDE.md`](./CLAUDE.md) for the data schema, sourcing rules, and
 conventions to follow when adding or editing people and relationships.
