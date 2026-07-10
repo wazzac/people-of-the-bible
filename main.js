@@ -1971,6 +1971,7 @@ const posterModal=document.getElementById("posterModal");
 const posterGallery=document.getElementById("posterGallery");
 const posterView=document.getElementById("posterView");
 const posterImg=document.getElementById("posterImg");
+const posterFullscreen=document.getElementById("posterFullscreen");
 document.getElementById("postersBtn").onclick=()=>openPosterGallery();
 document.getElementById("posterModalClose").onclick=()=>closePosterModal();
 document.getElementById("posterBack").onclick=()=>{ posterView.hidden=true; posterGallery.hidden=false; posterImg.removeAttribute("src"); };
@@ -1996,6 +1997,7 @@ function openPosterGallery(){
 function openPosterView(url,label){
   posterImg.src=url;
   posterImg.alt=label||"BibleProject poster";
+  posterFullscreen.href=url;
   posterGallery.hidden=true;
   posterView.hidden=false;
   posterModal.classList.add("show");

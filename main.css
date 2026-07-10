@@ -246,6 +246,11 @@
     cursor:pointer;font-size:22px;line-height:1;
   }
   .postermodal-x:hover{color:var(--vellum)}
+  .poster-fullscreen{
+    position:absolute;top:18px;right:48px;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;
+    color:var(--muted);text-decoration:none;
+  }
+  .poster-fullscreen:hover{color:var(--gold)}
   #posterGalleryTitle{font-family:var(--display);font-size:19px;font-weight:600;margin:0 28px 14px 0;color:var(--gold)}
   .poster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
   .poster-tile{
