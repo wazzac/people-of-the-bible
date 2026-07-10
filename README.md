@@ -21,6 +21,9 @@ Live site: **https://bible.wazzac.dev**
   side so they're easy to tell apart.
 - **Search and filters** — find a person by name, or filter the graph down to
   specific groups.
+- **Book posters** — a "Posters" button opens a gallery of BibleProject's
+  book-overview poster images for the active testament, and each person's
+  detail panel links to the poster(s) for the book(s) they're referenced in.
 
 It's a static site — plain HTML, CSS, and JavaScript (`index.html`, `main.css`,
 `main.js`), with D3.js pulled in from a CDN. No framework. The only build step
@@ -35,6 +38,11 @@ just to view or edit the site locally.
 - **Historical and thematic framing** — background used to sanity-check how a
   person, book, or event is commonly understood — draws on
   [BibleProject](https://bibleproject.com).
+- **Book-overview poster images** are hotlinked directly from BibleProject's
+  own CDN under their Posters permission (non-commercial digital display,
+  no modification) — see [`CLAUDE.md`](./CLAUDE.md) for the full terms this
+  relies on and how to remove the feature if that permission is ever
+  withdrawn.
 - Extra-biblical history (Roman emperors, governors, dates recorded by
   historians like Josephus) follows general historical consensus, and is noted
   as such in the data.

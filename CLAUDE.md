@@ -16,12 +16,15 @@ Repo: github.com/wazzac/bible
 - **Church tradition beyond the biblical text** (Joachim and Anne as Mary's parents, Luke/Mark's authorship, Peter and Paul's martyrdoms in Rome, John's exile date per Irenaeus): explicitly labelled "traditional" in the data (`dates`, `desc`, or `notconfused` fields). Never present tradition as if it were Scripture — the existing data is careful about this and new entries must be too.
 - **Dates in general** are scholarly estimates and frequently disputed (the Exodus, the crucifixion year, several lifespans). Say so rather than asserting false precision.
 - **Thematic/historical framing** (e.g. sanity-checking how a figure's role or a book's overview is commonly explained): [BibleProject](https://bibleproject.com) is an acceptable secondary source for orientation, not for scripture text itself — verse text/references still come from bible.com's NIV as above.
+- **Book-overview poster images** (the "Posters" feature — a header gallery button plus per-person "Poster: ..." buttons in the detail panel): BibleProject's downloadable book/testament-overview posters, **hotlinked directly from BibleProject's own CDN** (`d1bsmz3sdihplr.cloudfront.net`) — never downloaded, self-hosted, resized, recompressed, cropped, or reformatted, only CSS display-scaled. This is a separate sourced-content type from the thematic-framing bullet above: that one governs prose framing in `desc`/etc.; this one governs the `POSTERS`/`POSTER_BY_BOOK` table and `#posterModal` UI. Per BibleProject's Terms of Use (bibleproject.com/terms/), Posters have their own permission grant ("download, reproduce and display... digitally... unless and until we withdraw this permission") separate from their stricter Video/Audio rules — non-commercial use only, no modification of the image files, and the permission is **revocable at any time**. The feature is intentionally isolated to one data table (`POSTERS`/`POSTER_BY_BOOK` in `main.js`, defined right after `BOOK_CODES`/`bibleUrl()`) and one component (`#posterModal` in `index.html`, its CSS block in `main.css`) so it can be removed in a small diff if BibleProject ever withdraws permission. There is currently no poster for Hebrews in BibleProject's catalog — this is a known gap, not a bug.
 
 If a new fact, date, or reference is added and its source doesn't fall into one of the above, ask the user rather than guessing.
 
 ## Attribution
 
 The site credits both sources in the UI itself — a small "Data drawn from Scripture and tradition · sources: Bible.com · BibleProject.com" line under the interaction hint (bottom-left of the graph, `.credits` in `index.html`), linking to https://www.bible.com and https://bibleproject.com. Keep this in place; if the on-page wording changes, update it here too.
+
+Poster images require their **own** per-display attribution beyond that footer line — BibleProject's terms require a notice "in close proximity to any digital displays" of a Poster. Every place a poster image is actually shown (`#posterView` inside `#posterModal`) renders a fixed "Poster © BibleProject" caption with a link, defined once in the `#posterView` markup in `index.html` so it can't be missed at a new call site. Gallery/detail-panel tiles that only show a text label (no image) don't need this caption, since no poster image is displayed there until opened.
 
 ## Architecture
 
@@ -37,6 +40,7 @@ Still no framework, no runtime dependencies — just three plain files, plus a m
    - `NT_META` / `OT_META` — UI metadata: titles, force-layout centroids per category, "name clash" groupings, timeline domain/ticks.
    - `DATASETS` — registry mapping `nt`/`ot` to the above five pieces; `TESTAMENT` selects the active one.
    - D3 force simulation, rendering, search, filters, timeline drawing, pan/zoom, tooltip and detail-panel logic.
+   - `POSTERS` / `POSTER_BY_BOOK` — BibleProject book-overview poster lookup table, defined near `BOOK_CODES`/`bibleUrl()` since both share the same book-name parsing (`refBookName()`). Testament-agnostic (one flat table, not `NT_`/`OT_` split) since book names are already globally unique.
 
 There is no separate data file — the dataset **is** JavaScript source inside `main.js`. Edit it directly; don't invent a JSON/YAML layer without discussing it with the user first, since that would be a real architecture change.
 

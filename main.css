@@ -109,6 +109,12 @@
   }
   .filters-toggle[aria-expanded="true"]{color:var(--vellum);border-color:var(--gold-dim);background:color-mix(in srgb, var(--gold) 14%, var(--panel))}
   .filter-drawer{display:contents}
+  .posters-btn{
+    display:inline-flex;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    align-items:center;gap:6px;background:var(--panel);color:var(--muted);border:1px solid var(--edge);
+    border-radius:999px;padding:7px 13px;cursor:pointer;
+  }
+  .posters-btn:hover{color:var(--vellum);border-color:var(--gold-dim);background:color-mix(in srgb, var(--gold) 14%, var(--panel))}
 
   /* ---------- Stage ---------- */
   .stage{position:relative;flex:1;overflow:hidden}
@@ -138,6 +144,8 @@
   }
   .credits a{color:var(--muted-2);text-decoration:underline;text-decoration-color:rgba(154,161,178,.35);text-underline-offset:2px}
   .credits a:hover{color:var(--gold);text-decoration-color:var(--gold)}
+  .credits a.give{opacity:.7;text-decoration-style:dotted}
+  .credits a.give:hover{opacity:1}
 
   .legend{
     position:absolute;right:14px;bottom:14px;background:rgba(19,24,34,.86);border:1px solid var(--edge);
@@ -195,6 +203,12 @@
   .p-refs span,.p-refs a{display:inline-block;padding:2px 8px;margin:0 5px 5px 0;border:1px solid var(--edge);border-radius:6px;background:var(--panel-2)}
   .p-refs a{color:var(--gold);text-decoration:none;transition:.15s}
   .p-refs a:hover{border-color:var(--gold-dim);background:color-mix(in srgb, var(--gold) 14%, var(--panel-2));color:var(--vellum)}
+  .p-posters{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.02em;line-height:1.9;margin-top:6px}
+  .p-poster-btn{
+    display:inline-block;padding:2px 8px;margin:0 5px 5px 0;border:1px solid var(--edge);border-radius:6px;
+    background:var(--panel-2);color:var(--gold);font:inherit;cursor:pointer;transition:.15s;
+  }
+  .p-poster-btn:hover{border-color:var(--gold-dim);background:color-mix(in srgb, var(--gold) 14%, var(--panel-2));color:var(--vellum)}
 
   /* ---------- Clash comparison panel ---------- */
   .clashwrap{
@@ -215,6 +229,40 @@
   .clash-card .cc-name{font-family:var(--display);font-size:16px;font-weight:600;color:var(--vellum)}
   .clash-card .cc-dates{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:.02em;margin:3px 0 6px}
   .clash-card .cc-tag{font-size:13.5px;color:var(--muted);line-height:1.45}
+
+  /* ---------- BibleProject poster modal ---------- */
+  .postermodal{
+    display:none;position:fixed;inset:0;z-index:60;align-items:center;justify-content:center;
+    background:rgba(10,13,20,.86);backdrop-filter:blur(4px);padding:24px;
+  }
+  .postermodal.show{display:flex}
+  .postermodal-inner{
+    position:relative;width:min(1000px,94vw);max-height:92vh;overflow-y:auto;
+    background:linear-gradient(180deg, var(--panel-2), var(--panel));border:1px solid var(--gold-dim);
+    border-radius:14px;padding:22px 22px 18px;box-shadow:var(--shadow);
+  }
+  .postermodal-x{
+    position:absolute;top:12px;right:14px;background:transparent;border:0;color:var(--muted);
+    cursor:pointer;font-size:22px;line-height:1;
+  }
+  .postermodal-x:hover{color:var(--vellum)}
+  #posterGalleryTitle{font-family:var(--display);font-size:19px;font-weight:600;margin:0 28px 14px 0;color:var(--gold)}
+  .poster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .poster-tile{
+    background:var(--panel-2);border:1px solid var(--edge);border-radius:10px;padding:12px 13px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.02em;color:var(--muted);text-align:left;
+    cursor:pointer;transition:.15s;line-height:1.4;
+  }
+  .poster-tile:hover{border-color:var(--gold-dim);color:var(--vellum);background:color-mix(in srgb, var(--gold) 10%, var(--panel-2))}
+  .poster-back{
+    background:transparent;border:0;color:var(--muted);font-family:var(--mono);font-size:11.5px;
+    letter-spacing:.05em;cursor:pointer;padding:0 0 14px;
+  }
+  .poster-back:hover{color:var(--gold)}
+  .poster-view img#posterImg{max-width:100%;max-height:70vh;border-radius:8px;display:block;margin:0 auto;background:var(--panel-2)}
+  .poster-attrib{font-size:11.5px;color:var(--muted-2);margin:10px 0 0;text-align:center}
+  .poster-attrib a{color:var(--muted-2);text-decoration:underline;text-decoration-color:rgba(154,161,178,.35);text-underline-offset:2px}
+  .poster-attrib a:hover{color:var(--gold);text-decoration-color:var(--gold)}
 
   /* ---------- Timeline ---------- */
   .timeline{position:absolute;inset:0;overflow:auto;display:none;padding:8px 0 0}
@@ -249,6 +297,10 @@
     .controls .ctl-group{flex:1 1 auto;min-width:0}
     .search{min-width:0;width:100%}
     .filters-toggle{display:inline-flex;flex:none}
+    .posters-btn{flex:none;padding:6px 11px;font-size:10px}
+    .postermodal{padding:12px}
+    .postermodal-inner{padding:18px 16px 14px}
+    .poster-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
     .filter-drawer{
       display:none;position:absolute;top:100%;left:0;right:0;z-index:35;
       flex-direction:column;align-items:flex-start;gap:10px;

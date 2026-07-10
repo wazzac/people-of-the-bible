@@ -1731,16 +1731,101 @@ const BOOK_CODES = {
   "jude":"JUD","revelation":"REV"
 };
 const ONE_CHAPTER_BOOKS = new Set(["obadiah","philemon","2 john","3 john","jude"]);
-function bibleUrl(ref){
+function refBookName(ref){
   const m = ref.match(/^((?:[1-3]\s)?[A-Za-z][A-Za-z ]*?)\s+(\d+)(?::(\d+))?/);
-  if(!m) return null;
-  const book = m[1].trim().toLowerCase();
-  const code = BOOK_CODES[book];
+  return m ? m[1].trim().toLowerCase() : null;
+}
+function bibleUrl(ref){
+  const book = refBookName(ref);
+  const code = book && BOOK_CODES[book];
   if(!code) return null;
   if(ONE_CHAPTER_BOOKS.has(book)) return `https://www.bible.com/bible/111/${code}.1.NIV`;
+  const m = ref.match(/^((?:[1-3]\s)?[A-Za-z][A-Za-z ]*?)\s+(\d+)(?::(\d+))?/);
   const chapter = m[2], verse = m[3];
   return `https://www.bible.com/bible/111/${code}.${chapter}${verse?"."+verse:""}.NIV`;
 }
+
+/* ---------- BibleProject book-overview posters ----------
+   Hotlinked directly from BibleProject's own CDN (never downloaded/resized/
+   reformatted -- see CLAUDE.md "Source of truth" for the licensing basis).
+   One row per poster IMAGE (not per book), so combined-book posters (e.g.
+   1-2 Samuel) are a single entry. Verified against the real catalog at
+   https://bibleproject.com/downloads/ on 2026-07-10; there is currently no
+   poster for Hebrews. */
+const POSTER_CDN = "https://d1bsmz3sdihplr.cloudfront.net/media/Posters%20Download/";
+const POSTER_OT_OVERVIEW = POSTER_CDN + "TaNaKOTovw_FNL.jpg";
+const POSTER_NT_OVERVIEW = POSTER_CDN + "NT%20Overview.jpg";
+const POSTERS = [
+  { books:["genesis"], testament:"ot", url:POSTER_CDN+"01-02%20Genesis_FNL.jpg" },
+  { books:["exodus"], testament:"ot", url:POSTER_CDN+"03-04_Exodus_art_FNL.jpg" },
+  { books:["leviticus"], testament:"ot", url:POSTER_CDN+"05-Leviticus-FNL-1.jpg" },
+  { books:["numbers"], testament:"ot", url:POSTER_CDN+"06-Numbers-FNL-1.jpg" },
+  { books:["deuteronomy"], testament:"ot", url:POSTER_CDN+"07-Deuteronomy-FNL.jpg" },
+  { books:["joshua"], testament:"ot", url:POSTER_CDN+"08-Joshua-FNL.jpg" },
+  { books:["judges"], testament:"ot", url:POSTER_CDN+"09-Judges_FNL.jpg" },
+  { books:["ruth"], testament:"ot", url:POSTER_CDN+"10%20Ruth%20FNL.jpg" },
+  { books:["1 samuel","2 samuel"], testament:"ot", url:POSTER_CDN+"11-12-Samuel-FNL.jpg" },
+  { books:["1 kings","2 kings"], testament:"ot", url:POSTER_CDN+"13-14-Kings-FNL.jpg" },
+  { books:["ezra","nehemiah"], testament:"ot", url:POSTER_CDN+"15-Ezra-Nehemiah-FNL.jpg" },
+  { books:["esther"], testament:"ot", url:POSTER_CDN+"16-Esther-FNL.jpg" },
+  { books:["job"], testament:"ot", url:POSTER_CDN+"17-Job-FNL.jpg" },
+  { books:["psalm","psalms"], testament:"ot", url:POSTER_CDN+"18-Psalms-FNL.jpg" },
+  { books:["proverbs"], testament:"ot", url:POSTER_CDN+"19-Proverbs-FNL.jpg" },
+  { books:["ecclesiastes"], testament:"ot", url:POSTER_CDN+"20_Ecclesiastes.jpg" },
+  { books:["song of solomon","song of songs"], testament:"ot", url:POSTER_CDN+"21-Song-of-Songs-FNL.jpg" },
+  { books:["isaiah"], testament:"ot", url:POSTER_CDN+"22-23-Isaiah-FNL.jpg" },
+  { books:["jeremiah"], testament:"ot", url:POSTER_CDN+"24_Jeremiah_hq.jpg" },
+  { books:["lamentations"], testament:"ot", url:POSTER_CDN+"25-Lamentations-FNL.jpg" },
+  { books:["ezekiel"], testament:"ot", url:POSTER_CDN+"26-27-Ezekiel-FNL.jpg" },
+  { books:["daniel"], testament:"ot", url:POSTER_CDN+"28-Daniel-FNL.jpg" },
+  { books:["hosea"], testament:"ot", url:POSTER_CDN+"29-Hosea_FNL.jpg" },
+  { books:["joel"], testament:"ot", url:POSTER_CDN+"30-Joel-FNL.jpg" },
+  { books:["amos"], testament:"ot", url:POSTER_CDN+"31-Amos-FNL.jpg" },
+  { books:["obadiah"], testament:"ot", url:POSTER_CDN+"32-Obadiah-FNL.jpg" },
+  { books:["jonah"], testament:"ot", url:POSTER_CDN+"33-Jonah-FNL.jpg" },
+  { books:["micah"], testament:"ot", url:POSTER_CDN+"34-Micah-FNL.jpg" },
+  { books:["nahum"], testament:"ot", url:POSTER_CDN+"35-Nahum-FNL.jpg" },
+  { books:["habakkuk"], testament:"ot", url:POSTER_CDN+"36-Habakkuk-FNL.jpg" },
+  { books:["zephaniah"], testament:"ot", url:POSTER_CDN+"37-Zephaniah-FNL.jpg" },
+  { books:["haggai"], testament:"ot", url:POSTER_CDN+"38-Haggai-FNL.jpg" },
+  { books:["zechariah"], testament:"ot", url:POSTER_CDN+"39-Zechariah-FNL.jpg" },
+  { books:["malachi"], testament:"ot", url:POSTER_CDN+"40-Malachi-FNL.jpg" },
+  // filename says "41-Chronicles" (single number) but the poster itself
+  // covers both 1st and 2nd Chronicles side by side -- verified visually.
+  { books:["1 chronicles","2 chronicles"], testament:"ot", url:POSTER_CDN+"41-Chronicles-FNL.jpg" },
+  { books:["matthew"], testament:"nt", url:POSTER_CDN+"42-Matthew-FNL-1.jpg" },
+  { books:["mark"], testament:"nt", url:POSTER_CDN+"44-Mark-FNL.jpg" },
+  // "45-46" reflects a two-part video for the single Gospel of John, not two books.
+  { books:["john"], testament:"nt", url:POSTER_CDN+"45-46-john-1.jpg" },
+  { books:["luke"], testament:"nt", url:POSTER_CDN+"47-48-Luke-FNL.jpg" },
+  { books:["acts"], testament:"nt", url:POSTER_CDN+"49-Acts-FNL.jpg" },
+  { books:["romans"], testament:"nt", url:POSTER_CDN+"50_Romans.jpg" },
+  // Despite the "52-53" filename, this poster is 1 Corinthians only -- verified
+  // visually; 2 Corinthians is the separate file below, not a duplicate.
+  { books:["1 corinthians"], testament:"nt", url:POSTER_CDN+"52-53-Corinthians.jpg" },
+  { books:["2 corinthians"], testament:"nt", url:POSTER_CDN+"53-2-Corinthians-FNL2.jpg" },
+  { books:["galatians"], testament:"nt", url:POSTER_CDN+"54-Galatians-FNL.jpg" },
+  { books:["ephesians"], testament:"nt", url:POSTER_CDN+"55-Ephesians-FNL.jpg" },
+  { books:["philippians"], testament:"nt", url:POSTER_CDN+"56-Philippians-FNL.jpg" },
+  { books:["colossians"], testament:"nt", url:POSTER_CDN+"57%20Colossians%20PRF.jpg" },
+  { books:["philemon"], testament:"nt", url:POSTER_CDN+"58-Philemon-FNL-1.jpg" },
+  { books:["1 thessalonians"], testament:"nt", url:POSTER_CDN+"59a-1-Thessalonians-FNL.jpg" },
+  { books:["2 thessalonians"], testament:"nt", url:POSTER_CDN+"59b-2-Thessalonians-FNL.jpg" },
+  { books:["1 timothy"], testament:"nt", url:POSTER_CDN+"60-1-Timothy-FNL.jpg" },
+  { books:["2 timothy"], testament:"nt", url:POSTER_CDN+"61-2-Timothy-FNL.jpg" },
+  { books:["titus"], testament:"nt", url:POSTER_CDN+"62%20Titus%20FNL.jpg" },
+  // no poster currently exists for Hebrews -- intentional gap, not an omission.
+  { books:["james"], testament:"nt", url:POSTER_CDN+"64-James_FNL.jpg" },
+  { books:["1 peter"], testament:"nt", url:POSTER_CDN+"65-1-Peter-FNL.jpg" },
+  { books:["2 peter"], testament:"nt", url:POSTER_CDN+"66-2-Peter-FNL.jpg" },
+  { books:["1 john","2 john","3 john"], testament:"nt", url:POSTER_CDN+"67-123-John.jpg" },
+  { books:["jude"], testament:"nt", url:POSTER_CDN+"68-Jude-FNL.jpg" },
+  // "69-70" is Revelation split across a two-part video, not a Jude+Revelation
+  // combo -- verified visually.
+  { books:["revelation"], testament:"nt", url:POSTER_CDN+"69-70-Revelation-FNL.jpg" }
+];
+const POSTER_BY_BOOK = {};
+POSTERS.forEach(row=>row.books.forEach(b=>POSTER_BY_BOOK[b]=row));
 
 function selectPerson(id){
   selectedId=id;
@@ -1754,6 +1839,7 @@ function selectPerson(id){
       `<span><span class="rel-name">${o.short}</span>`+
       (r.note?` <span class="rel-note">— ${r.note}</span>`:"")+`</span></div>`;
   }).join("");
+  const posterRows = d.refs ? dedupePosters(d.refs.map(refBookName).map(b=>POSTER_BY_BOOK[b]).filter(Boolean)) : [];
 
   panelScroll.innerHTML =
     `<div class="p-cat" style="--c:${catColorVar(d.cat)}"><span class="dot"></span>${CAT[d.cat].label}</div>`+
@@ -1766,13 +1852,28 @@ function selectPerson(id){
     (d.refs?`<div class="p-section-h">Where to read</div><div class="p-refs">${d.refs.map(r=>{
       const url=bibleUrl(r);
       return url?`<a href="${url}" target="_blank" rel="noopener noreferrer">${r}</a>`:`<span>${r}</span>`;
-    }).join("")}</div>`:"");
+    }).join("")}</div>`:"")+
+    (posterRows.length?`<div class="p-posters">${posterRows.map(row=>
+      `<button class="p-poster-btn" type="button" data-poster="${row.url}">${posterLabel(row)}</button>`
+    ).join("")}</div>`:"");
 
   panelScroll.querySelectorAll(".rel").forEach(el=>{
     el.onclick=()=>{ selectPerson(el.dataset.goto); centerOn(el.dataset.goto); };
   });
+  panelScroll.querySelectorAll(".p-poster-btn").forEach(el=>{
+    el.onclick=()=>openPosterView(el.dataset.poster, el.textContent);
+  });
   panel.classList.add("open");
   hideTip();
+}
+function dedupePosters(rows){
+  const seen=new Set(), out=[];
+  rows.forEach(r=>{ if(!seen.has(r.url)){ seen.add(r.url); out.push(r); } });
+  return out;
+}
+function posterLabel(row){
+  const cap = s => s.replace(/\b\w/g,c=>c.toUpperCase());
+  return "Poster: " + row.books.map(cap).join(" & ");
 }
 function closePanel(){ selectedId=null; panel.classList.remove("open"); focusNode(null,false); }
 function centerOn(id){
@@ -1860,6 +1961,48 @@ function clearClash(){
   clashPanel.classList.remove("show");
   if(window.matchMedia("(min-width:761px)").matches) document.getElementById("legend").style.display="";
   focusNode(selectedId,false);
+}
+
+/* ---------- poster gallery / viewer ----------
+   Images are only ever requested at the moment a user opens one -- gallery
+   tiles and per-person buttons are text-only, and openPosterView() is the
+   single place in the codebase that ever sets #posterImg's src. */
+const posterModal=document.getElementById("posterModal");
+const posterGallery=document.getElementById("posterGallery");
+const posterView=document.getElementById("posterView");
+const posterImg=document.getElementById("posterImg");
+document.getElementById("postersBtn").onclick=()=>openPosterGallery();
+document.getElementById("posterModalClose").onclick=()=>closePosterModal();
+document.getElementById("posterBack").onclick=()=>{ posterView.hidden=true; posterGallery.hidden=false; posterImg.removeAttribute("src"); };
+posterModal.addEventListener("click",e=>{ if(e.target===posterModal) closePosterModal(); });
+
+function openPosterGallery(){
+  const overview = TESTAMENT==="ot" ? POSTER_OT_OVERVIEW : POSTER_NT_OVERVIEW;
+  const overviewLabel = TESTAMENT==="ot" ? "Old Testament Overview" : "New Testament Overview";
+  const rows = POSTERS.filter(p=>p.testament===TESTAMENT);
+  document.getElementById("posterGalleryTitle").textContent =
+    (TESTAMENT==="ot"?"Old Testament":"New Testament")+" book posters";
+  const grid=document.getElementById("posterGrid");
+  grid.innerHTML =
+    `<button class="poster-tile" type="button" data-poster="${overview}">${overviewLabel}</button>`+
+    rows.map(row=>`<button class="poster-tile" type="button" data-poster="${row.url}">${posterLabel(row)}</button>`).join("");
+  grid.querySelectorAll(".poster-tile").forEach(el=>{
+    el.onclick=()=>openPosterView(el.dataset.poster, el.textContent);
+  });
+  posterView.hidden=true;
+  posterGallery.hidden=false;
+  posterModal.classList.add("show");
+}
+function openPosterView(url,label){
+  posterImg.src=url;
+  posterImg.alt=label||"BibleProject poster";
+  posterGallery.hidden=true;
+  posterView.hidden=false;
+  posterModal.classList.add("show");
+}
+function closePosterModal(){
+  posterModal.classList.remove("show");
+  posterImg.removeAttribute("src");
 }
 
 /* ---------- search ---------- */
@@ -2008,7 +2151,7 @@ window.addEventListener("resize",()=>{
 });
 
 // keyboard: Escape closes
-document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ if(clashActive) clearClash(); else if(filterDrawer.classList.contains("open")) closeFilterDrawer(); else closePanel(); } });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ if(posterModal.classList.contains("show")) closePosterModal(); else if(clashActive) clearClash(); else if(filterDrawer.classList.contains("open")) closeFilterDrawer(); else closePanel(); } });
 
 /* ---------- mobile filter drawer ---------- */
 const filtersToggle=document.getElementById("filtersToggle");
@@ -2035,6 +2178,7 @@ function loadTestament(key){
   // reset UI state
   clashActive=null; clashPanel.classList.remove("show");
   panel.classList.remove("open");
+  closePosterModal();
   document.getElementById("searchBox").value="";
   svg.call(zoom.transform, d3.zoomIdentity);
   applyMeta();

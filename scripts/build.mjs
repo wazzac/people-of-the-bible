@@ -32,8 +32,8 @@ html = html
   .replace('src="main.js"', 'src="main.min.js"');
 writeFileSync(`${dist}/index.html`, html, "utf8");
 
-if (existsSync(`${root}/favicon.ico`)) {
-  cpSync(`${root}/favicon.ico`, `${dist}/favicon.ico`);
+if (existsSync(`${root}/favicon.svg`)) {
+  cpSync(`${root}/favicon.svg`, `${dist}/favicon.svg`);
 }
 
 console.log("Built to dist/");
