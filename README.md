@@ -6,7 +6,7 @@ Testament or New Testament, then explore the network: click anyone for their
 story, hover to trace their ties, drag figures around, or switch to a timeline
 view to see who overlapped with whom.
 
-Live site: **https://bible.wazzac.dev**
+Live site: **https://bible-people.wazzac.dev**
 
 ## What's inside
 
