@@ -6,13 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project intends to follow [Semantic Versioning](https://semver.org/)
 once tagged releases begin.
 
-## [Unreleased]
+## [1.0.0-beta] - 2026-07-13
 
 ### Added
 - `LICENSE` (MIT), `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, `SECURITY.md`,
   and this `CHANGELOG.md`, in preparation for accepting outside contributions.
 - `npm run build` script (`scripts/build.mjs`, esbuild) that minifies
   `main.css`/`main.js` into a `dist/` folder for deployment.
+- `.github/workflows/ci.yml` — runs `npm run validate` (dataset referential
+  integrity) and `npm run build` on every push/PR to `main`, so a broken data
+  edit or build can't merge silently now that the repo is public.
+- `.github/pull_request_template.md` and `.github/ISSUE_TEMPLATE/` (data
+  correction and bug report templates) to guide outside contributors.
 
 ### Changed
 - Split the previously monolithic `index.html` into `index.html` (markup),
