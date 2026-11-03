@@ -17,13 +17,27 @@
     --conflict:#C05F66;
     --rome:#8B98AC;     /* Roman Empire        */
     /* Old Testament category hues */
-    --patri:#C79A4C;    /* Primeval & Patriarchs */
+    --prim:#CDBB5E;     /* Creation & Flood      */
+    --line:#8F8A80;     /* Genealogies           */
+    --patri:#C79A4C;    /* Patriarchs & Matriarchs */
+    --tribe:#5FAE7E;    /* House of Jacob        */
+    --kin:#4F9CC9;      /* Wider Family & Kin    */
     --exod:#CC6B4A;     /* Exodus & Wilderness   */
+    --priest:#E3D6B4;   /* Priests & Levites     */
+    --lead:#A7B8E0;     /* Tribal Leaders        */
     --judg:#7FA05B;     /* Conquest & Judges     */
     --king:#9A6DC0;     /* Kings                 */
     --proph:#46A6A2;    /* Prophets              */
     --exile:#5E79C4;    /* Exile & Return        */
     --natn:#B85C7A;     /* Foreign Nations       */
+    /* link "kind of tie" colors — kept separate from node colors, and
+       chosen to stay distinct from one another (incl. common color-blindness) */
+    --tie-fam:#F28E2B;  /* bloodline & marriage — orange   */
+    --tie-disc:#4EA8F5; /* discipleship / mentor — sky blue */
+    --tie-min:#3CC48A;  /* ministry / alliance — green      */
+    --tie-conf:#F2545B; /* conflict — red                   */
+    --tie-spec:#F5E04A; /* calling & succession — yellow (dashed) */
+    --tie-rule:#B48CF5; /* ruling / foreign power — violet  */
     --special:#E6B84C;
     --neutral:rgba(235,227,209,.22);
     --shadow:0 18px 50px -18px rgba(0,0,0,.7);
@@ -155,6 +169,7 @@
   .legend .row{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--muted);margin:3px 0}
   .legend .swatch{width:22px;height:0;border-top:3px solid var(--c);border-radius:2px;flex:none}
   .legend .swatch.dash{border-top-style:dashed}
+  .legend .swatch.dot{border-top-style:dotted}
 
   /* ---------- Tooltip ---------- */
   .tooltip{
