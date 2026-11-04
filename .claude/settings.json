@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "ClaudeInChromeDomain(127.0.0.1:8765)",
-      "mcp__claude-in-chrome__tabs_context_mcp"
+      "mcp__claude-in-chrome__tabs_context_mcp",
+      "ClaudeInChromeDomain(localhost:8765)"
     ]
   }
 }
