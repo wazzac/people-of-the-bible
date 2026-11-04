@@ -628,6 +628,8 @@ const NT_META = {
   subtitle:"Family, the Twelve, followers, and the church that carried the ministry on — and who is who among the many Johns, Jameses, and Marys.",
   graphLabel:"Relationship network of New Testament figures",
   hub:"jesus",
+  // groups shown on first load; the rest are switched on from the Groups chips
+  defaultCats:["family","twelve","follow","church","rulers"],
   centroids:{ family:[.24,.36], twelve:[.52,.34], follow:[.36,.72], church:[.76,.48], rulers:[.55,.87], rome:[.87,.80] },
   legend:[["--tie-fam","Bloodline & marriage"],["--tie-disc","Discipleship"],["--tie-min","Ministry & fellowship"],["--tie-conf","Conflict & betrayal"],["--tie-spec","Calling & succession","dash"],["--tie-rule","Roman authority"],["--muted","Possible / traditional","dot"]],
   clashNames:["John","James","Mary","Simon","Judas","Titus"],
@@ -659,6 +661,7 @@ const OT_CAT = {
   king:  {label:"Kings of Israel & Judah",color:"var(--king)"},
   proph: {label:"The Prophets",          color:"var(--proph)"},
   exile: {label:"Exile & Return",        color:"var(--exile)"},
+  wis:   {label:"Wisdom & Poetry",       color:"var(--wis)"},
   natn:  {label:"Foreign Nations",       color:"var(--natn)"},
 };
 
@@ -862,7 +865,7 @@ const OT_PEOPLE = [
   aliases:"Abram · father of many nations",
   dates:"c. 2000 BC (traditional) · lived 175 years (Genesis 25:7)",
   desc:`Son of Terah, brought by the LORD "out of Ur of the Chaldeans" and told to go "to the land I will show you," with the promise: "I will make you into a great nation … and all peoples on earth will be blessed through you." He "believed the LORD, and he credited it to him as righteousness." Renamed Abraham at the covenant of circumcision, he fathers Ishmael by Hagar and, at a hundred, Isaac by Sarah — then is tested when God tells him to sacrifice Isaac in the region of Moriah. He is buried with Sarah in the cave of Machpelah.`,
-  refs:["Genesis 11:26–32","Genesis 12","Genesis 15","Genesis 17","Genesis 22","Genesis 25:1–11"]},
+  refs:["Genesis 11:26–32","Genesis 12","Genesis 15","Genesis 17","Genesis 22","Genesis 25:1–11","Psalm 105:9"]},
 
  {id:"sarah", name:"Sarah", short:"Sarah", cat:"patri", w:12,
   aliases:"Sarai",
@@ -873,7 +876,7 @@ const OT_PEOPLE = [
  {id:"isaac", name:"Isaac", short:"Isaac", cat:"patri", w:13,
   dates:"c. 1900 – 1720 BC (traditional) · lived 180 years (Genesis 35:28)",
   desc:`The son born to Abraham at a hundred and to Sarah in her old age. Bound on the altar in the region of Moriah, he is spared when God provides a ram. At forty he marries Rebekah, and at sixty becomes father of the twins Esau and Jacob. Like his father he calls his wife his sister at Gerar and makes a treaty with Abimelek; in old age, his eyes weak, he is deceived into blessing Jacob instead of Esau. His sons Esau and Jacob bury him.`,
-  refs:["Genesis 21:1–8","Genesis 22","Genesis 24","Genesis 25:19–28","Genesis 26","Genesis 27","Genesis 35:27–29"]},
+  refs:["Genesis 21:1–8","Genesis 22","Genesis 24","Genesis 25:19–28","Genesis 26","Genesis 27","Genesis 35:27–29","Psalm 105:9"]},
 
  {id:"rebekah", name:"Rebekah", short:"Rebekah", cat:"patri", w:11,
   dates:"c. 1900 BC (traditional)",
@@ -899,9 +902,9 @@ const OT_PEOPLE = [
  {id:"joseph_ot", name:"Joseph", short:"Joseph", cat:"patri", w:14, halo:1,
   aliases:"Zaphenath-Paneah · \"that dreamer\"",
   dates:"c. 1750 – 1640 BC (traditional) · lived 110 years (Genesis 50:26)",
-  desc:`Rachel's firstborn and Jacob's favorite, given an ornate robe. His dreams of his family bowing to him stir his brothers' hatred, and they sell him to traders bound for Egypt. There he serves Potiphar, is falsely accused by Potiphar's wife and imprisoned, and interprets the dreams of Pharaoh's cupbearer and baker — then Pharaoh's own. Put in charge of the whole land of Egypt, he stores grain for the famine, tests and finally reveals himself to his brothers, and settles Jacob's family in Goshen: "You intended to harm me, but God intended it for good."`,
+  desc:`Rachel's firstborn and Jacob's favorite, given an ornate robe. His dreams of his family bowing to him stir his brothers' hatred, and they sell him to traders bound for Egypt. There he serves Potiphar, is falsely accused by Potiphar's wife and imprisoned, and interprets the dreams of Pharaoh's cupbearer and baker — then Pharaoh's own. Put in charge of the whole land of Egypt, he stores grain for the famine, tests and finally reveals himself to his brothers, and settles Jacob's family in Goshen: "You intended to harm me, but God intended it for good." Psalm 105: "Joseph, sold as a slave. They bruised his feet with shackles, his neck was put in irons, till what he foretold came to pass."`,
   notconfused:`Joseph the husband of Mary, the father-figure of Jesus in the New Testament — a different man, over a thousand years later.`,
-  refs:["Genesis 30:22–24","Genesis 37","Genesis 39–45","Genesis 47–48","Genesis 50","Exodus 13:19","Joshua 24:32"]},
+  refs:["Genesis 30:22–24","Genesis 37","Genesis 39–45","Genesis 47–48","Genesis 50","Exodus 13:19","Joshua 24:32","Psalm 105:16–22"]},
 
  // ---------------- HOUSE OF JACOB ----------------
  {id:"reuben", name:"Reuben", short:"Reuben", cat:"tribe", w:9,
@@ -1010,6 +1013,7 @@ const OT_PEOPLE = [
   refs:["Genesis 38:27–30","Genesis 46:12","Ruth 4:18–22"]},
 
  {id:"zerah_j", name:"Zerah son of Judah", short:"Zerah", cat:"tribe", w:5,
+  clash:"Zerah", clashtag:"Son of Judah and Tamar, twin brother of Perez.",
   dates:"c. 18th c. BC (traditional)",
   desc:`Perez's twin, who first put out his hand and had a scarlet thread tied on his wrist by the midwife, but was born second.`,
   notconfused:`Zerah son of Reuel, a grandson of Esau (Genesis 36:13), and Zerah of Bozrah, father of the Edomite king Jobab (36:33).`,
@@ -1130,11 +1134,11 @@ const OT_PEOPLE = [
   refs:["Genesis 15:2–4"]},
 
  // ---------------- PATRIARCHAL ERA (outside Genesis) ----------------
- {id:"job", name:"Job", short:"Job", cat:"patri", w:9,
-  aliases:"the man from Uz",
-  dates:"patriarchal era (undated)",
-  desc:`A blameless man of Uz who loses everything and wrestles, with his friends, over why the righteous suffer — the central figure of the Bible's great Wisdom poem.`,
-  refs:["Job 1–2","Job 38–42"]},
+ {id:"job", name:"Job", short:"Job", cat:"wis", w:12,
+  aliases:"the man from Uz · \"my servant Job\"",
+  dates:"undated — the book gives no date",
+  desc:`"In the land of Uz there lived a man whose name was Job," "blameless and upright," with seven sons, three daughters and great flocks — "the greatest man among all the people of the East." When the LORD points to "my servant Job," Satan answers, "Does Job fear God for nothing?" and is allowed to strike everything he has — his herds and servants are lost to Sabeans, Chaldeans and fire, and his children die when a wind brings the house down — and then his body, with painful sores. Job worships: "The LORD gave and the LORD has taken away; may the name of the LORD be praised." His wife says, "Curse God and die!"; he answers, "Shall we accept good from God, and not trouble?" After seven silent days with his three friends he curses the day of his birth, and through long cycles of debate he maintains his innocence against them — "Though he slay me, yet will I hope in him"; "I know that my redeemer lives." The LORD answers him "out of the storm" — "Where were you when I laid the earth's foundation?" — and Job replies, "My ears had heard of you but now my eyes have seen you." The LORD tells the friends, "you have not spoken the truth about me, as my servant Job has," accepts Job's prayer for them, and gives him twice as much as before; he again has seven sons and three daughters and lives another 140 years.`,
+  refs:["Job 1–2","Job 3","Job 13:15","Job 19:25–27","Job 38–42"]},
 
  // ================= EXODUS =================
  // Sourced chapter-by-chapter from the NIV on bible.com (Exodus 1–40).
@@ -1143,9 +1147,9 @@ const OT_PEOPLE = [
  {id:"moses", name:"Moses", short:"Moses", cat:"exod", w:16, halo:1,
   aliases:"\"Moses the servant of the LORD\" · \"Moses the man of God\"",
   dates:"c. 1526 – 1406 BC (early-date tradition) · died at 120 (Deuteronomy 34:7)",
-  desc:`Born to Levite parents, Amram and Jochebed, when Pharaoh had ordered every Hebrew boy thrown into the Nile; hidden, set in a papyrus basket, and raised as the son of Pharaoh's daughter, who named him: "I drew him out of the water." After killing an Egyptian he flees to Midian and marries Zipporah. At the burning bush God sends him to Pharaoh — "I am who I am." He leads Israel out through the plagues, the Passover and the sea, receives the Ten Commandments at Sinai, pleads for the people after the golden calf, ordains Aaron and builds the tabernacle; "The LORD would speak to Moses face to face, as one speaks to a friend." In the wilderness — "a very humble man, more humble than anyone else on the face of the earth" — he bears the people's complaints, the spies' bad report and Korah's revolt. At Meribah, told to speak to the rock, he strikes it twice, and because he and Aaron "did not trust in me enough to honor me as holy," he may not enter the land. On the plains of Moab he sets the law before Israel again (Deuteronomy), commissions Joshua, teaches the people his song and blesses the tribes, then dies on Mount Nebo at 120, "yet his eyes were not weak nor his strength gone."`,
+  desc:`Born to Levite parents, Amram and Jochebed, when Pharaoh had ordered every Hebrew boy thrown into the Nile; hidden, set in a papyrus basket, and raised as the son of Pharaoh's daughter, who named him: "I drew him out of the water." After killing an Egyptian he flees to Midian and marries Zipporah. At the burning bush God sends him to Pharaoh — "I am who I am." He leads Israel out through the plagues, the Passover and the sea, receives the Ten Commandments at Sinai, pleads for the people after the golden calf, ordains Aaron and builds the tabernacle; "The LORD would speak to Moses face to face, as one speaks to a friend." In the wilderness — "a very humble man, more humble than anyone else on the face of the earth" — he bears the people's complaints, the spies' bad report and Korah's revolt. At Meribah, told to speak to the rock, he strikes it twice, and because he and Aaron "did not trust in me enough to honor me as holy," he may not enter the land. On the plains of Moab he sets the law before Israel again (Deuteronomy), commissions Joshua, teaches the people his song and blesses the tribes, then dies on Mount Nebo at 120, "yet his eyes were not weak nor his strength gone." Psalm 90 is "A prayer of Moses the man of God": "Teach us to number our days, that we may gain a heart of wisdom." Psalm 106 recalls that Moses "stood in the breach" to keep God's wrath from destroying the people, and that at Meribah "rash words came from Moses' lips."`,
   notconfused:`Deuteronomy 18:15 promises "a prophet like me"; Deuteronomy 34:10 adds that "no prophet has risen in Israel like Moses, whom the LORD knew face to face."`,
-  refs:["Exodus 2–4","Exodus 14","Exodus 19–20","Exodus 32–34","Leviticus 8","Numbers 12","Numbers 20:1–13","Numbers 27:12–23","Deuteronomy 31–34"]},
+  refs:["Exodus 2–4","Exodus 14","Exodus 19–20","Exodus 32–34","Leviticus 8","Numbers 12","Numbers 20:1–13","Numbers 27:12–23","Deuteronomy 31–34","Psalm 90","Psalm 106:23","Psalm 106:32–33"]},
 
  {id:"miriam", name:"Miriam", short:"Miriam", cat:"exod", w:9,
   aliases:"Miriam the prophet",
@@ -1191,13 +1195,13 @@ const OT_PEOPLE = [
  {id:"hur", name:"Hur", short:"Hur", cat:"exod", w:6,
   dates:"c. 15th c. BC (traditional)",
   desc:`With Aaron, he holds up Moses' hands on the hilltop "one on one side, one on the other" until sunset, while Joshua defeats the Amalekites. When Moses goes up Sinai he tells the elders, "Aaron and Hur are with you, and anyone involved in a dispute can go to them."`,
-  notconfused:`Hur the grandfather of Bezalel, of the tribe of Judah (Exodus 31:2) — Exodus does not say whether he is the same man — and Hur, one of the five kings of Midian killed in Numbers 31:8.`,
+  notconfused:`Hur the grandfather of Bezalel, of the tribe of Judah (Exodus 31:2) — 1 Chronicles 2:19–20 makes that Hur the son of Caleb son of Hezron by Ephrath — whom neither book identifies with this Hur; and Hur, one of the five kings of Midian killed in Numbers 31:8.`,
   refs:["Exodus 17:10–12","Exodus 24:14"]},
 
  {id:"bezalel", name:"Bezalel", short:"Bezalel", cat:"exod", w:8,
   dates:"c. 15th c. BC (traditional)",
-  desc:`"Bezalel son of Uri, the son of Hur, of the tribe of Judah," chosen by the LORD and filled "with the Spirit of God, with wisdom, with understanding, with knowledge and with all kinds of skills" to make the tabernacle and its furnishings. With Oholiab he is given "the ability to teach others"; he makes the ark, the table, the lampstand and the altars.`,
-  refs:["Exodus 31:1–11","Exodus 35:30–36:2","Exodus 37–38"]},
+  desc:`"Bezalel son of Uri, the son of Hur, of the tribe of Judah," chosen by the LORD and filled "with the Spirit of God, with wisdom, with understanding, with knowledge and with all kinds of skills" to make the tabernacle and its furnishings. With Oholiab he is given "the ability to teach others"; he makes the ark, the table, the lampstand and the altars. 1 Chronicles traces his line through Hur, son of Caleb son of Hezron and Ephrath; Solomon inquires of the LORD at "the bronze altar that Bezalel son of Uri, the son of Hur, had made."`,
+  refs:["Exodus 31:1–11","Exodus 35:30–36:2","Exodus 37–38","1 Chronicles 2:18–20","2 Chronicles 1:5"]},
 
  {id:"oholiab", name:"Oholiab", short:"Oholiab", cat:"exod", w:6,
   dates:"c. 15th c. BC (traditional)",
@@ -1217,16 +1221,16 @@ const OT_PEOPLE = [
 
  {id:"korah", name:"Korah", short:"Korah", cat:"exod", w:8,
   dates:"c. 15th c. BC (traditional)",
-  desc:`"Korah son of Izhar, the son of Kohath, the son of Levi," who with the Reubenites Dathan, Abiram and On and 250 council leaders rises against Moses and Aaron: "The whole community is holy … Why then do you set yourselves above the LORD's assembly?" Moses answers, "now you are trying to get the priesthood too." The earth opens and swallows the rebels' households, fire consumes the 250 offering incense, and their bronze censers are hammered into a covering for the altar. Yet "the line of Korah, however, did not die out"; his sons were Assir, Elkanah and Abiasaph.`,
+  desc:`"Korah son of Izhar, the son of Kohath, the son of Levi," who with the Reubenites Dathan, Abiram and On and 250 council leaders rises against Moses and Aaron: "The whole community is holy … Why then do you set yourselves above the LORD's assembly?" Moses answers, "now you are trying to get the priesthood too." The earth opens and swallows the rebels' households, fire consumes the 250 offering incense, and their bronze censers are hammered into a covering for the altar. Yet "the line of Korah, however, did not die out"; his sons were Assir, Elkanah and Abiasaph. Eleven psalms are headed "of the Sons of Korah" (42, 44–49, 84–85, 87–88).`,
   notconfused:`Korah son of Esau, an Edomite chief (Genesis 36:5).`,
-  refs:["Exodus 6:21","Exodus 6:24","Numbers 16","Numbers 26:9–11"]},
+  refs:["Exodus 6:21","Exodus 6:24","Numbers 16","Numbers 26:9–11","Psalm 42","Psalms 44–49","Psalms 84–85","Psalms 87–88"]},
 
  // ---------------- PRIESTS & LEVITES ----------------
  {id:"aaron", name:"Aaron", short:"Aaron", cat:"priest", w:13, halo:1,
   aliases:"\"Aaron the Levite\" · the first priest of Israel",
   dates:"c. 1529 – 1406 BC (traditional) · died at 123 (Numbers 33:39)",
-  desc:`Moses' elder brother, son of Amram and Jochebed, made his spokesman — "it will be as if he were your mouth." He stretches out his staff for the first plagues, holds up Moses' hands against the Amalekites, and sees the God of Israel on Sinai; left in charge below, he makes the golden calf — "out came this calf!" Ordained by Moses in the sacred garments, he offers the first sacrifices and blesses the people, and fire from the LORD consumes the offering; when Nadab and Abihu die for their unauthorized fire, "Aaron remained silent." He alone may enter the Most Holy Place, once a year on the Day of Atonement. In Numbers he joins Miriam in speaking against Moses; his staff alone "sprouted … budded, blossomed and produced almonds"; and with incense he "stood between the living and the dead, and the plague stopped." Barred from the land after Meribah, he dies on Mount Hor in the fortieth year, aged 123, and his garments are put on Eleazar; Deuteronomy 10:6 records his death at Moserah.`,
-  refs:["Exodus 4:14–16","Exodus 28–29","Exodus 32","Leviticus 8–10","Leviticus 16","Numbers 12","Numbers 16:46–50","Numbers 17","Numbers 20:22–29","Numbers 33:38–39","Deuteronomy 10:6"]},
+  desc:`Moses' elder brother, son of Amram and Jochebed, made his spokesman — "it will be as if he were your mouth." He stretches out his staff for the first plagues, holds up Moses' hands against the Amalekites, and sees the God of Israel on Sinai; left in charge below, he makes the golden calf — "out came this calf!" Ordained by Moses in the sacred garments, he offers the first sacrifices and blesses the people, and fire from the LORD consumes the offering; when Nadab and Abihu die for their unauthorized fire, "Aaron remained silent." He alone may enter the Most Holy Place, once a year on the Day of Atonement. In Numbers he joins Miriam in speaking against Moses; his staff alone "sprouted … budded, blossomed and produced almonds"; and with incense he "stood between the living and the dead, and the plague stopped." Barred from the land after Meribah, he dies on Mount Hor in the fortieth year, aged 123, and his garments are put on Eleazar; Deuteronomy 10:6 records his death at Moserah. The Psalms remember him beside Moses — "You led your people like a flock by the hand of Moses and Aaron" — and picture unity as precious oil "running down on Aaron's beard."`,
+  refs:["Exodus 4:14–16","Exodus 28–29","Exodus 32","Leviticus 8–10","Leviticus 16","Numbers 12","Numbers 16:46–50","Numbers 17","Numbers 20:22–29","Numbers 33:38–39","Deuteronomy 10:6","Psalm 77:20","Psalm 99:6","Psalm 105:26","Psalm 133:2"]},
 
  {id:"elisheba", name:"Elisheba", short:"Elisheba", cat:"priest", w:6,
   dates:"c. 15th c. BC (traditional)",
@@ -1259,9 +1263,9 @@ const OT_PEOPLE = [
  {id:"phinehas", name:"Phinehas son of Eleazar", short:"Phinehas", cat:"priest", w:8,
   clash:"Phinehas", clashtag:"Eleazar's son, Aaron's grandson, given 'a covenant of a lasting priesthood' for his zeal at Peor.",
   dates:"c. 15th – 14th c. BC (traditional)",
-  desc:`Son of Eleazar and grandson of Aaron. At Peor, when Zimri brings the Midianite woman Kozbi into the camp, Phinehas kills them both with a spear and the plague stops; the LORD gives him "my covenant of peace" — "a covenant of a lasting priesthood." He goes with the army against Midian. In Joshua he leads the delegation to Reuben, Gad and half Manasseh over their altar by the Jordan, and on hearing their answer declares, "Today we know that the LORD is with us." Gibeah in the hill country of Ephraim was allotted to him. In the war against Benjamin he is still "ministering before" the ark at Bethel.`,
+  desc:`Son of Eleazar and grandson of Aaron. At Peor, when Zimri brings the Midianite woman Kozbi into the camp, Phinehas kills them both with a spear and the plague stops; the LORD gives him "my covenant of peace" — "a covenant of a lasting priesthood." He goes with the army against Midian. In Joshua he leads the delegation to Reuben, Gad and half Manasseh over their altar by the Jordan, and on hearing their answer declares, "Today we know that the LORD is with us." Gibeah in the hill country of Ephraim was allotted to him. In the war against Benjamin he is still "ministering before" the ark at Bethel. 1 Chronicles 6 runs the line of high priests through him down to Zadok, and recalls that he "was the official in charge of the gatekeepers, and the LORD was with him." Psalm 106: "Phinehas stood up and intervened, and the plague was checked. This was credited to him as righteousness for endless generations to come."`,
   notconfused:`Phinehas son of Eli, the priest at Shiloh, centuries later (1 Samuel 1–4).`,
-  refs:["Exodus 6:25","Numbers 25:7–13","Numbers 31:6","Joshua 22:10–34","Joshua 24:33","Judges 20:27–28"]},
+  refs:["Exodus 6:25","Numbers 25:7–13","Numbers 31:6","Joshua 22:10–34","Joshua 24:33","Judges 20:27–28","1 Chronicles 6:4–8","1 Chronicles 9:20","Psalm 106:30–31"]},
 
  // ---------------- GENEALOGIES (Exodus 6) ----------------
  {id:"gershon", name:"Gershon son of Levi", short:"Gershon", cat:"line", w:4,
@@ -1305,13 +1309,13 @@ const OT_PEOPLE = [
  // ----- Leviticus · Numbers · Deuteronomy (wilderness figures) -----
  {id:"dathan", name:"Dathan", short:"Dathan", cat:"exod", w:6,
   dates:"c. 15th c. BC (traditional)",
-  desc:`A Reubenite, son of Eliab, who with his brother Abiram joins Korah's revolt. Summoned by Moses he refuses: "We will not come! … you have brought us up out of a land flowing with milk and honey to kill us in the wilderness." The earth opens and swallows them with their households; Deuteronomy 11:6 recalls it.`,
-  refs:["Numbers 16","Numbers 26:8–10","Deuteronomy 11:6"]},
+  desc:`A Reubenite, son of Eliab, who with his brother Abiram joins Korah's revolt. Summoned by Moses he refuses: "We will not come! … you have brought us up out of a land flowing with milk and honey to kill us in the wilderness." The earth opens and swallows them with their households; Deuteronomy 11:6 recalls it. Psalm 106: "The earth opened up and swallowed Dathan; it buried the company of Abiram."`,
+  refs:["Numbers 16","Numbers 26:8–10","Deuteronomy 11:6","Psalm 106:17"]},
 
  {id:"abiram", name:"Abiram", short:"Abiram", cat:"exod", w:6,
   dates:"c. 15th c. BC (traditional)",
   desc:`Dathan's brother, a son of Eliab the Reubenite and one of "the community officials who rebelled against Moses and Aaron." He refuses Moses' summons and is swallowed by the earth with his household.`,
-  refs:["Numbers 16","Numbers 26:8–10","Deuteronomy 11:6"]},
+  refs:["Numbers 16","Numbers 26:8–10","Deuteronomy 11:6","Psalm 106:17"]},
 
  {id:"on_p", name:"On son of Peleth", short:"On", cat:"exod", w:4,
   dates:"c. 15th c. BC (traditional)",
@@ -1479,8 +1483,8 @@ const OT_PEOPLE = [
 
  {id:"elishama", name:"Elishama son of Ammihud", short:"Elishama", cat:"lead", w:4,
   dates:"c. 15th c. BC (traditional)",
-  desc:`"From Ephraim, Elishama son of Ammihud" — the leader of the tribe of Ephraim chosen to help Moses and Aaron take the census. He commanded Ephraim's camp on the west, and on the seventh day of the altar's dedication he brought Ephraim's offering.`,
-  refs:["Numbers 1:10","Numbers 2","Numbers 7","Numbers 10:14–27"]},
+  desc:`"From Ephraim, Elishama son of Ammihud" — the leader of the tribe of Ephraim chosen to help Moses and Aaron take the census. He commanded Ephraim's camp on the west, and on the seventh day of the altar's dedication he brought Ephraim's offering. 1 Chronicles 7:26–27 places him in Ephraim's line as Joshua's grandfather: "Ammihud his son, Elishama his son, Nun his son and Joshua his son."`,
+  refs:["Numbers 1:10","Numbers 2","Numbers 7","Numbers 10:14–27","1 Chronicles 7:26–27"]},
 
  {id:"gamaliel", name:"Gamaliel son of Pedahzur", short:"Gamaliel", cat:"lead", w:4,
   dates:"c. 15th c. BC (traditional)",
@@ -1616,22 +1620,25 @@ const OT_PEOPLE = [
   aliases:"Hoshea · Moses' aide · \"the servant of the LORD\"",
   clash:"Joshua", clashtag:"Moses' successor who led Israel across the Jordan and conquered Canaan.",
   dates:"c. 1500 – 1390 BC (traditional) · died at 110 (Joshua 24:29)",
-  desc:`An Ephraimite, "Hoshea son of Nun," renamed by Moses; he defeats the Amalekites, serves as Moses' aide on Sinai and at the tent of meeting, and with Caleb is one of only two spies who trust the LORD. Commissioned by Moses, he hears: "Be strong and courageous… I will never leave you nor forsake you." He sends spies to Rahab in Jericho, leads Israel across the Jordan on dry ground and sets up twelve stones at Gilgal, and meets "the commander of the army of the LORD." Jericho's walls collapse; after Achan's sin is exposed Ai falls; he renews the covenant at Mount Ebal, is tricked into a treaty with the Gibeonites, and at Gibeon prays "Sun, stand still." In southern and northern campaigns thirty-one kings are defeated. With Eleazar he allots the land by lot at Shiloh and receives Timnath Serah. In his farewell at Shechem he charges Israel: "choose for yourselves this day whom you will serve … But as for me and my household, we will serve the LORD." He dies at 110 and is buried at Timnath Serah (called Timnath Heres in Judges 2:9).`,
+  desc:`An Ephraimite, "Hoshea son of Nun," renamed by Moses; he defeats the Amalekites, serves as Moses' aide on Sinai and at the tent of meeting, and with Caleb is one of only two spies who trust the LORD. Commissioned by Moses, he hears: "Be strong and courageous… I will never leave you nor forsake you." He sends spies to Rahab in Jericho, leads Israel across the Jordan on dry ground and sets up twelve stones at Gilgal, and meets "the commander of the army of the LORD." Jericho's walls collapse; after Achan's sin is exposed Ai falls; he renews the covenant at Mount Ebal, is tricked into a treaty with the Gibeonites, and at Gibeon prays "Sun, stand still." In southern and northern campaigns thirty-one kings are defeated. With Eleazar he allots the land by lot at Shiloh and receives Timnath Serah. In his farewell at Shechem he charges Israel: "choose for yourselves this day whom you will serve … But as for me and my household, we will serve the LORD." He dies at 110 and is buried at Timnath Serah (called Timnath Heres in Judges 2:9). 1 Chronicles traces his descent from Ephraim through Elishama son of Ammihud and Nun.`,
   notconfused:`Jeshua (Joshua) the high priest, who rebuilt the temple a thousand years later after the exile.`,
-  refs:["Exodus 17:8–14","Numbers 13–14","Numbers 27:18–23","Deuteronomy 34:9","Joshua 1","Joshua 3–4","Joshua 6","Joshua 10","Joshua 24","Judges 2:6–9"]},
+  refs:["Exodus 17:8–14","Numbers 13–14","Numbers 27:18–23","Deuteronomy 34:9","Joshua 1","Joshua 3–4","Joshua 6","Joshua 10","Joshua 24","Judges 2:6–9","1 Chronicles 7:20–27"]},
 
  {id:"caleb", name:"Caleb son of Jephunneh", short:"Caleb", cat:"judg", w:10,
+  clash:"Caleb", clashtag:"Son of Jephunneh, the faithful spy who took Hebron.",
   aliases:"the Kenizzite",
   dates:"c. 1485 – after 1400 BC (traditional) · 85 when he claimed Hebron (Joshua 14:10)",
   desc:`"Caleb son of Jephunneh the Kenizzite," the spy from the tribe of Judah, who told the frightened people, "We should go up and take possession of the land, for we can certainly do it." The LORD says, "my servant Caleb has a different spirit and follows me wholeheartedly," and he and Joshua alone of the counted generation enter the land. At 85 — "I am still as strong today as the day Moses sent me out" — he asks Joshua for the hill country promised him, receives Hebron, drives out the three sons of Anak, and offers his daughter Aksah to whoever captures Kiriath Sepher; Othniel takes it.`,
-  refs:["Numbers 13:6","Numbers 13:30","Numbers 14:24","Numbers 34:19","Deuteronomy 1:36","Joshua 14:6–15","Joshua 15:13–19","Joshua 21:12","Judges 1:12–20"]},
+  notconfused:`Caleb son of Hezron in Judah's genealogy (1 Chronicles 2:18–50), whose daughter was also called Aksah; 1 Chronicles 4:15 lists "the sons of Caleb son of Jephunneh" separately.`,
+  refs:["Numbers 13:6","Numbers 13:30","Numbers 14:24","Numbers 34:19","Deuteronomy 1:36","Joshua 14:6–15","Joshua 15:13–19","Joshua 21:12","Judges 1:12–20","1 Chronicles 4:15","1 Chronicles 6:56"]},
 
  // ================= JOSHUA =================
  // Sourced chapter-by-chapter from the NIV on bible.com (Joshua 1–24).
  {id:"achan", name:"Achan son of Karmi", short:"Achan", cat:"judg", w:7,
+  aliases:"Achar (1 Chronicles 2:7)",
   dates:"c. 1400 BC (early-date tradition; disputed)",
-  desc:`"Achan son of Karmi, the son of Zimri, the son of Zerah, of the tribe of Judah," who takes some of the devoted things from Jericho. Israel is routed at Ai until the lot falls on him; he confesses, "I coveted them and took them" — "a beautiful robe from Babylonia, two hundred shekels of silver and a bar of gold weighing fifty shekels," hidden in his tent. All Israel stones him in the Valley of Achor and raises a pile of rocks over him. Joshua 22:20 recalls that "He was not the only one who died for his sin."`,
-  refs:["Joshua 7","Joshua 22:20"]},
+  desc:`"Achan son of Karmi, the son of Zimri, the son of Zerah, of the tribe of Judah," who takes some of the devoted things from Jericho. Israel is routed at Ai until the lot falls on him; he confesses, "I coveted them and took them" — "a beautiful robe from Babylonia, two hundred shekels of silver and a bar of gold weighing fifty shekels," hidden in his tent. All Israel stones him in the Valley of Achor and raises a pile of rocks over him. Joshua 22:20 recalls that "He was not the only one who died for his sin." 1 Chronicles 2:7 calls him Achar, "who brought trouble on Israel by violating the ban on taking devoted things."`,
+  refs:["Joshua 7","Joshua 22:20","1 Chronicles 2:7"]},
 
  {id:"othniel", name:"Othniel son of Kenaz", short:"Othniel", cat:"judg", w:8,
   dates:"c. 14th c. BC (traditional; disputed)",
@@ -1935,21 +1942,21 @@ const OT_PEOPLE = [
  {id:"samuel", name:"Samuel", short:"Samuel", cat:"judg", w:13, halo:1,
   aliases:"the seer · prophet of the LORD",
   dates:"c. 1100 – 1010 BC (traditional)",
-  desc:`Son of Elkanah and Hannah, given to the LORD and raised by Eli at Shiloh. Called by name in the night — "Speak, for your servant is listening" — he is "attested as a prophet of the LORD" from Dan to Beersheba. He leads Israel to put away their idols, intercedes at Mizpah as the LORD routs the Philistines, and sets up the stone Ebenezer: "Thus far the LORD has helped us." He judges Israel on a circuit from Ramah. When the people demand a king he warns them, then anoints Saul; when Saul disobeys he declares, "To obey is better than sacrifice," and anoints David in Bethlehem. He dies and is buried at Ramah, and is called up by the medium at Endor to pronounce Saul's end.`,
-  refs:["1 Samuel 1–3","1 Samuel 7–10","1 Samuel 12","1 Samuel 15–16","1 Samuel 25:1","1 Samuel 28:11–19"]},
+  desc:`Son of Elkanah and Hannah, given to the LORD and raised by Eli at Shiloh. Called by name in the night — "Speak, for your servant is listening" — he is "attested as a prophet of the LORD" from Dan to Beersheba. He leads Israel to put away their idols, intercedes at Mizpah as the LORD routs the Philistines, and sets up the stone Ebenezer: "Thus far the LORD has helped us." He judges Israel on a circuit from Ramah. When the people demand a king he warns them, then anoints Saul; when Saul disobeys he declares, "To obey is better than sacrifice," and anoints David in Bethlehem. He dies and is buried at Ramah, and is called up by the medium at Endor to pronounce Saul's end. 1 Chronicles 6 lists him in the Levite line of Kohath through Korah, calls him "Samuel the seer," and names his grandson Heman the musician. Psalm 99: "Samuel was among those who called on his name; they called on the LORD and he answered them."`,
+  refs:["1 Samuel 1–3","1 Samuel 7–10","1 Samuel 12","1 Samuel 15–16","1 Samuel 25:1","1 Samuel 28:11–19","1 Chronicles 6:26–28","1 Chronicles 6:33–34","1 Chronicles 9:22","1 Chronicles 29:29","Psalm 99:6"]},
 
  // ---------------- KINGS OF ISRAEL & JUDAH ----------------
  {id:"jesse", name:"Jesse", short:"Jesse", cat:"king", w:8,
   dates:"c. 11th c. BC (traditional)",
-  desc:`Son of Obed and grandson of Boaz and Ruth — "Obed the father of Jesse, and Jesse the father of David."`,
-  refs:["Ruth 4:17–22","Matthew 1:5–6"]},
+  desc:`Son of Obed and grandson of Boaz and Ruth — "Obed the father of Jesse, and Jesse the father of David." 1 Chronicles lists his sons in order — Eliab, Abinadab, Shimea, Nethanel, Raddai, Ozem and "the seventh David" — though 1 Samuel 17:12 says "Jesse had eight sons." His daughters were Zeruiah and Abigail.`,
+  refs:["Ruth 4:17–22","Matthew 1:5–6","1 Chronicles 2:12–17","1 Samuel 16:1–13","1 Samuel 17:12","Psalm 72:20"]},
 
  // ================= 1 SAMUEL =================
  // Sourced chapter-by-chapter from the NIV on bible.com (1 Samuel 1–31).
  {id:"elkanah", name:"Elkanah son of Jeroham", short:"Elkanah", cat:"judg", w:6,
   dates:"c. 11th c. BC (traditional)",
-  desc:`"A Zuphite from the hill country of Ephraim," of Ramathaim, with two wives, Hannah and Peninnah. He goes up yearly to sacrifice at Shiloh and gives Hannah a double portion "because he loved her": "Don't I mean more to you than ten sons?" Father of Samuel.`,
-  refs:["1 Samuel 1–2"]},
+  desc:`"A Zuphite from the hill country of Ephraim," of Ramathaim, with two wives, Hannah and Peninnah. He goes up yearly to sacrifice at Shiloh and gives Hannah a double portion "because he loved her": "Don't I mean more to you than ten sons?" Father of Samuel. 1 Chronicles 6 lists him in the Levite line of Kohath, through Korah.`,
+  refs:["1 Samuel 1–2","1 Chronicles 6:22–28","1 Chronicles 6:33–38"]},
 
  {id:"peninnah", name:"Peninnah", short:"Peninnah", cat:"judg", w:5,
   dates:"c. 11th c. BC (traditional)",
@@ -1976,6 +1983,7 @@ const OT_PEOPLE = [
  {id:"ahitub", name:"Ahitub son of Phinehas", short:"Ahitub", cat:"line", w:4,
   dates:"c. 11th c. BC (traditional)",
   desc:`"Ichabod's brother Ahitub son of Phinehas, the son of Eli"; father of the priests Ahijah (1 Samuel 14:3) and Ahimelek (22:9, 11).`,
+  notconfused:`Ahitub the father of Zadok, whom 1 Chronicles 6:7–8 places in Eleazar's priestly line.`,
   refs:["1 Samuel 14:3","1 Samuel 22:9–12"]},
 
  {id:"ahijah_p", name:"Ahijah son of Ahitub", short:"Ahijah (priest)", cat:"priest", w:5,
@@ -1988,12 +1996,12 @@ const OT_PEOPLE = [
   clash:"Ahimelek", clashtag:"The priest at Nob who gave David the consecrated bread and Goliath's sword, and was killed on Saul's orders.",
   dates:"c. 11th c. BC (traditional)",
   desc:`The priest at Nob who trembles when David arrives alone, gives him the consecrated bread and "the sword of Goliath the Philistine." Accused by Doeg, he tells Saul, "Who of all your servants is as loyal as David?" — and Saul has Doeg kill him with eighty-five priests. Only his son Abiathar escapes.`,
-  refs:["1 Samuel 21:1–9","1 Samuel 22:9–20"]},
+  refs:["1 Samuel 21:1–9","1 Samuel 22:9–20","Psalm 52"]},
 
  {id:"abiathar", name:"Abiathar son of Ahimelek", short:"Abiathar", cat:"priest", w:8,
   dates:"c. 11th–10th c. BC (traditional)",
-  desc:`The only son of Ahimelek to escape the massacre at Nob; he flees to David, who says, "I am responsible for the death of your whole family. Stay with me." He brings the ephod, through which David inquires of the LORD at Keilah and after the raid on Ziklag.`,
-  refs:["1 Samuel 22:20–23","1 Samuel 23:6–12","1 Samuel 30:7–8"]},
+  desc:`The only son of Ahimelek to escape the massacre at Nob; he flees to David, who says, "I am responsible for the death of your whole family. Stay with me." He brings the ephod, through which David inquires of the LORD at Keilah and after the raid on Ziklag. Solomon removes him from the priesthood and sends him to Anathoth, fulfilling the word spoken about Eli's house. Chronicles names him with Zadok when the ark is brought up and as a counselor after Ahithophel; it also lists "Ahimelek son of Abiathar" as priest under David.`,
+  refs:["1 Samuel 22:20–23","1 Samuel 23:6–12","1 Samuel 30:7–8","1 Kings 2:26–27","1 Chronicles 15:11","1 Chronicles 27:34"]},
 
  {id:"abinadab_k", name:"Abinadab of Kiriath Jearim", short:"Abinadab (ark keeper)", cat:"judg", w:4,
   clash:"Abinadab", clashtag:"The man of Kiriath Jearim in whose house on the hill the ark stayed for twenty years.",
@@ -2010,9 +2018,9 @@ const OT_PEOPLE = [
 
  {id:"joel_s", name:"Joel son of Samuel", short:"Joel (Samuel's son)", cat:"judg", w:4,
   dates:"c. 11th c. BC (traditional)",
-  desc:`Samuel's firstborn, appointed with his brother Abijah as a leader at Beersheba; they "turned aside after dishonest gain and accepted bribes and perverted justice," and the elders asked for a king.`,
+  desc:`Samuel's firstborn, appointed with his brother Abijah as a leader at Beersheba; they "turned aside after dishonest gain and accepted bribes and perverted justice," and the elders asked for a king. 1 Chronicles 6:33 makes him the father of Heman the musician.`,
   notconfused:`Joel the prophet (Joel 1).`,
-  refs:["1 Samuel 8:1–5"]},
+  refs:["1 Samuel 8:1–5","1 Chronicles 6:28","1 Chronicles 6:33"]},
 
  {id:"abijah_s", name:"Abijah son of Samuel", short:"Abijah (Samuel's son)", cat:"judg", w:4,
   clash:"Abijah", clashtag:"Samuel's second son, who took bribes at Beersheba.",
@@ -2023,8 +2031,8 @@ const OT_PEOPLE = [
  // Saul's house
  {id:"kish", name:"Kish son of Abiel", short:"Kish", cat:"king", w:6,
   dates:"c. 11th c. BC (traditional)",
-  desc:`"A Benjamite, a man of standing," father of Saul. Saul is out looking for his father's lost donkeys when Samuel anoints him; "What is this that has happened to the son of Kish?"`,
-  refs:["1 Samuel 9:1–3","1 Samuel 10:11","1 Samuel 14:51"]},
+  desc:`"A Benjamite, a man of standing," father of Saul. Saul is out looking for his father's lost donkeys when Samuel anoints him; "What is this that has happened to the son of Kish?" 1 Chronicles 8:33 calls him the son of Ner, where 1 Samuel 9:1 has "Kish son of Abiel."`,
+  refs:["1 Samuel 9:1–3","1 Samuel 10:11","1 Samuel 14:51","1 Chronicles 8:33","1 Chronicles 9:39"]},
 
  {id:"abiel", name:"Abiel", short:"Abiel", cat:"line", w:4,
   dates:"c. 11th c. BC (traditional)",
@@ -2033,8 +2041,8 @@ const OT_PEOPLE = [
 
  {id:"ner", name:"Ner son of Abiel", short:"Ner", cat:"line", w:4,
   dates:"c. 11th c. BC (traditional)",
-  desc:`"Ner was Saul's uncle," and father of Abner, the commander of Saul's army.`,
-  refs:["1 Samuel 14:50–51"]},
+  desc:`"Ner was Saul's uncle," and father of Abner, the commander of Saul's army. 1 Chronicles 8:33 and 9:39 instead say "Ner was the father of Kish, Kish the father of Saul," and list a Ner among the sons of Jeiel the father of Gibeon; the text does not reconcile the two accounts.`,
+  refs:["1 Samuel 14:50–51","1 Chronicles 8:29–33","1 Chronicles 9:35–39"]},
 
  {id:"abner", name:"Abner son of Ner", short:"Abner", cat:"king", w:9,
   dates:"c. 11th c. BC (traditional)",
@@ -2104,12 +2112,14 @@ const OT_PEOPLE = [
   refs:["1 Samuel 16:8","1 Samuel 17:13"]},
 
  {id:"shammah_j", name:"Shammah son of Jesse", short:"Shammah (David's brother)", cat:"king", w:4,
+  aliases:"Shimea (1 Chronicles 2:13)",
   clash:"Shammah", clashtag:"Jesse's third son, David's brother.",
   dates:"c. 11th c. BC (traditional)",
-  desc:`Jesse's third son, passed over by Samuel and in Saul's army when David faced Goliath.`,
-  refs:["1 Samuel 16:9","1 Samuel 17:13"]},
+  desc:`Jesse's third son, passed over by Samuel and in Saul's army when David faced Goliath. 1 Chronicles calls him Shimea; his son Jonathan killed a six-fingered giant at Gath.`,
+  refs:["1 Samuel 16:9","1 Samuel 17:13","1 Chronicles 2:13","1 Chronicles 20:7"]},
 
  {id:"abigail", name:"Abigail", short:"Abigail", cat:"king", w:8,
+  clash:"Abigail", clashtag:"Nabal's widow from Carmel, who became David's wife.",
   aliases:"Abigail of Carmel",
   dates:"c. 11th–10th c. BC (traditional)",
   desc:`"An intelligent and beautiful woman," wife of the surly Nabal. When Nabal insults David's men she rides out with food and turns David from bloodshed: "the life of my lord will be bound securely in the bundle of the living." After the LORD strikes Nabal she becomes David's wife; she is captured at Ziklag and rescued.`,
@@ -2135,17 +2145,17 @@ const OT_PEOPLE = [
  {id:"gad_p", name:"Gad the prophet", short:"Gad (prophet)", cat:"proph", w:7,
   clash:"Gad", clashtag:"'David's seer,' who advised him in the wilderness and gave the LORD's word after the census.",
   dates:"c. 11th–10th c. BC (traditional)",
-  desc:`"The prophet Gad," who tells the fugitive David, "Go into the land of Judah." Called "David's seer," after the census he brings David the LORD's three options — famine, flight or plague — and then tells him to build an altar on the threshing floor of Araunah.`,
+  desc:`"The prophet Gad," who tells the fugitive David, "Go into the land of Judah." Called "David's seer," after the census he brings David the LORD's three options — famine, flight or plague — and then tells him to build an altar on the threshing floor of Araunah. Chronicles cites "the records of Gad the seer" for David's reign; the temple music was arranged "in the way prescribed by David and Gad the king's seer and Nathan the prophet."`,
   notconfused:`Gad son of Jacob and Zilpah, ancestor of the tribe of Gad (Genesis 30:11).`,
-  refs:["1 Samuel 22:5","2 Samuel 24:11–19"]},
+  refs:["1 Samuel 22:5","2 Samuel 24:11–19","1 Chronicles 21:9–19","1 Chronicles 29:29","2 Chronicles 29:25"]},
 
 
  {id:"saul", name:"Saul son of Kish", short:"Saul", cat:"king", w:13,
   aliases:"first king of Israel",
   dates:"reigned c. 1050 – 1010 BC (1 Samuel 13:1's figures are uncertain in the text)",
-  desc:`A Benjamite, "as handsome a young man as could be found anywhere in Israel, and he was a head taller than anyone else." Out looking for his father's donkeys, he is anointed by Samuel, prophesies — "Is Saul also among the prophets?" — and is chosen by lot at Mizpah, hiding among the supplies. He rescues Jabesh Gilead from Nahash, but offers the burnt offering at Gilgal without Samuel and spares Agag and the best of the plunder, and the LORD rejects him as king. Tormented by an evil spirit and jealous of David — "Saul has slain his thousands, and David his tens of thousands" — he hurls his spear at him, hunts him through the wilderness, and has the priests of Nob killed. Twice spared by David, he admits, "You are more righteous than I." Facing the Philistines at Gilboa he consults the medium at Endor, and the next day, critically wounded, he falls on his own sword; the men of Jabesh Gilead bury him.`,
+  desc:`A Benjamite, "as handsome a young man as could be found anywhere in Israel, and he was a head taller than anyone else." Out looking for his father's donkeys, he is anointed by Samuel, prophesies — "Is Saul also among the prophets?" — and is chosen by lot at Mizpah, hiding among the supplies. He rescues Jabesh Gilead from Nahash, but offers the burnt offering at Gilgal without Samuel and spares Agag and the best of the plunder, and the LORD rejects him as king. Tormented by an evil spirit and jealous of David — "Saul has slain his thousands, and David his tens of thousands" — he hurls his spear at him, hunts him through the wilderness, and has the priests of Nob killed. Twice spared by David, he admits, "You are more righteous than I." Facing the Philistines at Gilboa he consults the medium at Endor, and the next day, critically wounded, he falls on his own sword; the men of Jabesh Gilead bury him. Psalm titles recall David's escapes from him (Psalms 18, 52, 54, 57, 59).`,
   notconfused:`Saul of Tarsus (the apostle Paul), named after this king — a different man in the New Testament.`,
-  refs:["1 Samuel 9–11","1 Samuel 13–15","1 Samuel 18–19","1 Samuel 24","1 Samuel 26","1 Samuel 28","1 Samuel 31"]},
+  refs:["1 Samuel 9–11","1 Samuel 13–15","1 Samuel 18–19","1 Samuel 24","1 Samuel 26","1 Samuel 28","1 Samuel 31","Psalm 18","Psalm 57","Psalm 59"]},
 
  {id:"jonathan", name:"Jonathan son of Saul", short:"Jonathan", cat:"king", w:10,
   clash:"Jonathan", clashtag:"Saul's son, David's close friend, killed with Saul at Gilboa.",
@@ -2156,18 +2166,18 @@ const OT_PEOPLE = [
  {id:"david", name:"David son of Jesse", short:"David", cat:"king", w:16, halo:1,
   aliases:"\"a man after his own heart\" (1 Samuel 13:14) · \"the hero of Israel's songs\"",
   dates:"reigned c. 1010 – 970 BC · 30 when he became king; reigned 40 years (2 Samuel 5:4)",
-  desc:`The youngest son of Jesse of Bethlehem, a shepherd anointed by Samuel — "the LORD looks at the heart." He plays the lyre for Saul, kills Goliath "in the name of the LORD Almighty," and is loved by Jonathan; hunted by Saul, he twice spares "the LORD's anointed." Made king over Judah at Hebron and then over all Israel, he takes Jerusalem, brings up the ark dancing "with all his might," and receives the LORD's promise through Nathan: "your throne will be established forever." He takes Bathsheba and has Uriah killed; confronted — "You are the man!" — he confesses, "I have sinned against the LORD." The sword does not depart from his house: Amnon rapes Tamar, Absalom kills Amnon and rebels, and David weeps, "O my son Absalom!" He sings of the LORD as "my rock, my fortress and my deliverer," and after the census buys Araunah's threshing floor to stop the plague.`,
-  refs:["1 Samuel 16–17","1 Samuel 24","1 Samuel 26","2 Samuel 2:4","2 Samuel 5–7","2 Samuel 11–12","2 Samuel 15–19","2 Samuel 22–24","Psalms"]},
+  desc:`The youngest son of Jesse of Bethlehem, a shepherd anointed by Samuel — "the LORD looks at the heart." He plays the lyre for Saul, kills Goliath "in the name of the LORD Almighty," and is loved by Jonathan; hunted by Saul, he twice spares "the LORD's anointed." Made king over Judah at Hebron and then over all Israel, he takes Jerusalem, brings up the ark dancing "with all his might," and receives the LORD's promise through Nathan: "your throne will be established forever." He takes Bathsheba and has Uriah killed; confronted — "You are the man!" — he confesses, "I have sinned against the LORD." The sword does not depart from his house: Amnon rapes Tamar, Absalom kills Amnon and rebels, and David weeps, "O my son Absalom!" He sings of the LORD as "my rock, my fortress and my deliverer," and after the census buys Araunah's threshing floor to stop the plague. Chronicles adds his organizing of the priests, Levites, musicians and gatekeepers and his preparations for the temple, which he was not to build "because you are a warrior and have shed blood"; he charges Solomon, "Be strong and courageous, and do the work." Chronicles says "Satan rose up against Israel and incited David" to take the census (2 Samuel 24:1 says the LORD's anger "incited David"). The titles of seventy-three psalms are "of David," several tied to moments in his life — fleeing Absalom (Psalm 3), delivered from Saul (18, 57, 59), pretending to be insane "before Abimelek" (34), Nathan's rebuke after Bathsheba (51: "Create in me a pure heart, O God"), Doeg (52), the Ziphites (54), Gath (56), Joab's victory over Edom (60) and the cave (142). Psalm 72 closes, "This concludes the prayers of David son of Jesse," and Psalm 78 says God "chose David his servant and took him from the sheep pens."`,
+  refs:["1 Samuel 16–17","1 Samuel 24","1 Samuel 26","2 Samuel 2:4","2 Samuel 5–7","2 Samuel 11–12","2 Samuel 15–19","2 Samuel 22–24","Psalms","1 Chronicles 11–29","Psalm 3","Psalm 23","Psalm 51","Psalm 72:20","Psalm 78:70–72","Psalm 89:3–4"]},
 
  {id:"bathsheba", name:"Bathsheba", short:"Bathsheba", cat:"king", w:9,
   dates:"c. 10th c. BC (traditional)",
-  desc:`"The daughter of Eliam and the wife of Uriah the Hittite," whom David sees bathing, sends for and sleeps with; when she is pregnant David arranges Uriah's death and marries her. Their first son dies; she then bears Solomon, whom the LORD loved and named Jedidiah through Nathan.`,
-  refs:["2 Samuel 11–12","1 Kings 1–2"]},
+  desc:`"The daughter of Eliam and the wife of Uriah the Hittite," whom David sees bathing, sends for and sleeps with; when she is pregnant David arranges Uriah's death and marries her. Their first son dies; she then bears Solomon, whom the LORD loved and named Jedidiah through Nathan. 1 Chronicles 3:5 calls her "Bathsheba daughter of Ammiel" and names her four sons: Shammua, Shobab, Nathan and Solomon.`,
+  refs:["2 Samuel 11–12","1 Kings 1–2","1 Chronicles 3:5","Psalm 51"]},
 
  {id:"absalom", name:"Absalom son of David", short:"Absalom", cat:"king", w:10,
   dates:"c. 10th c. BC (traditional)",
-  desc:`David's third son, by Maakah daughter of Talmai king of Geshur; "in all Israel there was not a man so highly praised for his handsome appearance." After Amnon rapes his sister Tamar he has Amnon killed and flees to Geshur; brought back by Joab's scheme, he "stole the hearts of the people of Israel," proclaims himself king in Hebron, takes Jerusalem and sleeps with his father's concubines. Following Hushai's advice over Ahithophel's, he is defeated in the forest of Ephraim; his hair catches in an oak, and Joab kills him against David's order. He had set up "Absalom's Monument" because "I have no son to carry on the memory of my name."`,
-  refs:["2 Samuel 3:3","2 Samuel 13–18"]},
+  desc:`David's third son, by Maakah daughter of Talmai king of Geshur; "in all Israel there was not a man so highly praised for his handsome appearance." After Amnon rapes his sister Tamar he has Amnon killed and flees to Geshur; brought back by Joab's scheme, he "stole the hearts of the people of Israel," proclaims himself king in Hebron, takes Jerusalem and sleeps with his father's concubines. Following Hushai's advice over Ahithophel's, he is defeated in the forest of Ephraim; his hair catches in an oak, and Joab kills him against David's order. He had set up "Absalom's Monument" because "I have no son to carry on the memory of my name." Psalm 3 is headed, "A psalm of David. When he fled from his son Absalom."`,
+  refs:["2 Samuel 3:3","2 Samuel 13–18","Psalm 3"]},
 
  // ================= 2 SAMUEL =================
  // Sourced chapter-by-chapter from the NIV on bible.com (2 Samuel 1–24).
@@ -2178,8 +2188,8 @@ const OT_PEOPLE = [
 
  {id:"joab", name:"Joab son of Zeruiah", short:"Joab", cat:"king", w:11,
   dates:"c. 11th–10th c. BC (traditional)",
-  desc:`Commander of David's army, the eldest of "the three sons of Zeruiah." He murders Abner to avenge his brother Asahel; takes Rabbah; carries David's letter that sends Uriah to his death; brings Absalom home through the wise woman of Tekoa — and later drives three javelins into Absalom's heart against David's order. He stabs Amasa, ends Sheba's revolt at Abel Beth Maakah, and objects to David's census. David laments, "these sons of Zeruiah are too strong for me."`,
-  refs:["2 Samuel 2:13–32","2 Samuel 3:22–39","2 Samuel 11–12","2 Samuel 14","2 Samuel 18–20","2 Samuel 24:1–9"]},
+  desc:`Commander of David's army, the eldest of "the three sons of Zeruiah." He murders Abner to avenge his brother Asahel; takes Rabbah; carries David's letter that sends Uriah to his death; brings Absalom home through the wise woman of Tekoa — and later drives three javelins into Absalom's heart against David's order. He stabs Amasa, ends Sheba's revolt at Abel Beth Maakah, and objects to David's census. David laments, "these sons of Zeruiah are too strong for me." Psalm 60's title recalls "when Joab returned and struck down twelve thousand Edomites in the Valley of Salt."`,
+  refs:["2 Samuel 2:13–32","2 Samuel 3:22–39","2 Samuel 11–12","2 Samuel 14","2 Samuel 18–20","2 Samuel 24:1–9","Psalm 60"]},
 
  {id:"abishai", name:"Abishai son of Zeruiah", short:"Abishai", cat:"king", w:8,
   dates:"c. 11th–10th c. BC (traditional)",
@@ -2193,8 +2203,8 @@ const OT_PEOPLE = [
 
  {id:"zeruiah", name:"Zeruiah", short:"Zeruiah", cat:"king", w:5,
   dates:"c. 11th c. BC (traditional)",
-  desc:`Mother of Joab, Abishai and Asahel — "the three sons of Zeruiah." 2 Samuel 17:25 calls Amasa's mother Abigail "sister of Zeruiah the mother of Joab."`,
-  refs:["2 Samuel 2:18","2 Samuel 17:25"]},
+  desc:`Mother of Joab, Abishai and Asahel — "the three sons of Zeruiah." 2 Samuel 17:25 calls Amasa's mother Abigail "sister of Zeruiah the mother of Joab." 1 Chronicles 2:16 names Zeruiah and Abigail as the sisters of Jesse's sons.`,
+  refs:["2 Samuel 2:18","2 Samuel 17:25","1 Chronicles 2:16"]},
 
  {id:"amnon", name:"Amnon son of David", short:"Amnon", cat:"king", w:7,
   dates:"c. 10th c. BC (traditional)",
@@ -2202,9 +2212,10 @@ const OT_PEOPLE = [
   refs:["2 Samuel 3:2","2 Samuel 13"]},
 
  {id:"kileab", name:"Kileab son of David", short:"Kileab", cat:"king", w:4,
+  aliases:"Daniel (1 Chronicles 3:1)",
   dates:"c. 10th c. BC (traditional)",
-  desc:`David's second son, born in Hebron to Abigail, the widow of Nabal.`,
-  refs:["2 Samuel 3:3"]},
+  desc:`David's second son, born in Hebron to Abigail, the widow of Nabal. 1 Chronicles 3:1 names this son "Daniel the son of Abigail of Carmel."`,
+  refs:["2 Samuel 3:3","1 Chronicles 3:1"]},
 
  {id:"maakah_g", name:"Maakah daughter of Talmai", short:"Maakah (Absalom's mother)", cat:"king", w:5,
   clash:"Maakah", clashtag:"Daughter of Talmai king of Geshur, David's wife and Absalom's mother.",
@@ -2274,8 +2285,9 @@ const OT_PEOPLE = [
 
  {id:"zadok", name:"Zadok son of Ahitub", short:"Zadok", cat:"priest", w:8,
   dates:"c. 10th c. BC (traditional)",
-  desc:`A priest with Abiathar under David. When David flees Absalom he sends Zadok back with the ark — "If I find favor in the LORD's eyes, he will bring me back" — and Zadok's son Ahimaaz carries Hushai's warnings to David.`,
-  refs:["2 Samuel 8:17","2 Samuel 15:24–36","2 Samuel 17:15","2 Samuel 19:11","2 Samuel 20:25"]},
+  desc:`A priest with Abiathar under David. When David flees Absalom he sends Zadok back with the ark — "If I find favor in the LORD's eyes, he will bring me back" — and Zadok's son Ahimaaz carries Hushai's warnings to David. He anoints Solomon at Gihon and replaces Abiathar. 1 Chronicles traces his line from Aaron's son Eleazar through Phinehas to Ahitub, stations him "before the tabernacle of the LORD at the high place in Gibeon," and records him anointed "to be priest" when Solomon is acknowledged king.`,
+  notconfused:`Ahitub son of Phinehas, of Eli's house, is a different Ahitub: 1 Chronicles 6:7–8 places Zadok's father in Eleazar's line.`,
+  refs:["2 Samuel 8:17","2 Samuel 15:24–36","2 Samuel 17:15","2 Samuel 19:11","2 Samuel 20:25","1 Kings 1:32–45","1 Kings 2:35","1 Chronicles 6:3–8","1 Chronicles 16:39","1 Chronicles 24:3","1 Chronicles 29:22"]},
 
  {id:"ahimaaz_z", name:"Ahimaaz son of Zadok", short:"Ahimaaz", cat:"priest", w:6,
   dates:"c. 10th c. BC (traditional)",
@@ -2301,8 +2313,8 @@ const OT_PEOPLE = [
 
  {id:"obededom", name:"Obed-Edom the Gittite", short:"Obed-Edom", cat:"king", w:5,
   dates:"c. 10th c. BC (traditional)",
-  desc:`In whose house David leaves the ark for three months after Uzzah's death; "the LORD blessed him and his entire household," and David then brings the ark up to the City of David.`,
-  refs:["2 Samuel 6:10–12"]},
+  desc:`In whose house David leaves the ark for three months after Uzzah's death; "the LORD blessed him and his entire household," and David then brings the ark up to the City of David. Chronicles also lists an Obed-Edom among the Levite musicians and gatekeepers — "Obed-Edom son of Jeduthun" — whose sons were many, "for God had blessed Obed-Edom"; it does not say outright whether he is the Gittite.`,
+  refs:["2 Samuel 6:10–12","1 Chronicles 13:13–14","1 Chronicles 15:18–25","1 Chronicles 16:38","1 Chronicles 26:4–8"]},
 
  {id:"ittai", name:"Ittai the Gittite", short:"Ittai", cat:"king", w:6,
   dates:"c. 10th c. BC (traditional)",
@@ -2326,8 +2338,8 @@ const OT_PEOPLE = [
 
  {id:"amasa", name:"Amasa son of Jether", short:"Amasa", cat:"king", w:6,
   dates:"c. 10th c. BC (traditional)",
-  desc:`Absalom's commander "in place of Joab," son of Jether, an Ishmaelite, and of "Abigail, the daughter of Nahash and sister of Zeruiah." David later promises him command of his army, but when he is slow to summon Judah against Sheba, Joab greets him — "How are you, my brother?" — and stabs him.`,
-  refs:["2 Samuel 17:25","2 Samuel 19:13","2 Samuel 20:4–12"]},
+  desc:`Absalom's commander "in place of Joab," son of Jether, an Ishmaelite, and of "Abigail, the daughter of Nahash and sister of Zeruiah." David later promises him command of his army, but when he is slow to summon Judah against Sheba, Joab greets him — "How are you, my brother?" — and stabs him. 1 Chronicles 2:17 names his parents as Abigail, David's sister, and "Jether the Ishmaelite."`,
+  refs:["2 Samuel 17:25","2 Samuel 19:13","2 Samuel 20:4–12","1 Chronicles 2:16–17"]},
 
  {id:"barzillai", name:"Barzillai the Gileadite", short:"Barzillai", cat:"king", w:6,
   dates:"c. 10th c. BC (traditional)",
@@ -2351,8 +2363,8 @@ const OT_PEOPLE = [
 
  {id:"benaiah", name:"Benaiah son of Jehoiada", short:"Benaiah", cat:"king", w:8,
   dates:"c. 10th c. BC (traditional)",
-  desc:`"A valiant fighter from Kabzeel," over David's Kerethites and Pelethites and in charge of his bodyguard. He struck down Moab's two mightiest warriors, "went down into a pit on a snowy day and killed a lion," and killed a huge Egyptian with his own spear.`,
-  refs:["2 Samuel 8:18","2 Samuel 20:23","2 Samuel 23:20–23"]},
+  desc:`"A valiant fighter from Kabzeel," over David's Kerethites and Pelethites and in charge of his bodyguard. He struck down Moab's two mightiest warriors, "went down into a pit on a snowy day and killed a lion," and killed a huge Egyptian with his own spear. He executes Adonijah, Joab and Shimei for Solomon and replaces Joab over the army. 1 Chronicles 27:5 calls him "son of Jehoiada the priest," commander for the third month.`,
+  refs:["2 Samuel 8:18","2 Samuel 20:23","2 Samuel 23:20–23","1 Kings 2:25–46","1 Chronicles 11:22–25","1 Chronicles 27:5–6"]},
 
  {id:"jehoshaphat_r", name:"Jehoshaphat son of Ahilud", short:"Jehoshaphat (recorder)", cat:"king", w:4,
   clash:"Jehoshaphat", clashtag:"David's (and Solomon's) recorder.",
@@ -2367,9 +2379,10 @@ const OT_PEOPLE = [
   refs:["2 Samuel 11","2 Samuel 12:9–10","2 Samuel 23:39"]},
 
  {id:"josheb", name:"Josheb-Basshebeth", short:"Josheb-Basshebeth", cat:"king", w:5,
+  aliases:"Jashobeam (1 Chronicles 11:11)",
   dates:"c. 10th c. BC (traditional)",
-  desc:`"A Tahkemonite," chief of the Three among David's mighty warriors, who "raised his spear against eight hundred men, whom he killed in one encounter."`,
-  refs:["2 Samuel 23:8"]},
+  desc:`"A Tahkemonite," chief of the Three among David's mighty warriors, who "raised his spear against eight hundred men, whom he killed in one encounter." The parallel list in 1 Chronicles 11:11 names the chief "Jashobeam, a Hakmonite," who "raised his spear against three hundred men."`,
+  refs:["2 Samuel 23:8","1 Chronicles 11:11"]},
 
  {id:"eleazar_d", name:"Eleazar son of Dodai", short:"Eleazar (mighty man)", cat:"king", w:5,
   clash:"Eleazar", clashtag:"One of David's Three, who fought until his hand froze to his sword.",
@@ -2393,8 +2406,9 @@ const OT_PEOPLE = [
  {id:"solomon", name:"Solomon son of David", short:"Solomon", cat:"king", w:14, halo:1,
   aliases:"Jedidiah",
   dates:"reigned 40 years, c. 970 – 931 BC (1 Kings 11:42)",
-  desc:`Son of David and Bathsheba, named Jedidiah because "the LORD loved him." Anointed at Gihon by Zadok and Nathan when Adonijah claims the throne, he secures his rule by executing Adonijah, Joab and Shimei and banishing Abiathar. At Gibeon he asks for "a discerning heart to govern your people," and God adds wealth and honor; his ruling between two mothers shows "wisdom from God to administer justice." He speaks three thousand proverbs and 1,005 songs, builds the temple in seven years — begun "in the four hundred and eightieth year after the Israelites came out of Egypt" — and prays at its dedication, "will God really dwell on earth?" The queen of Sheba finds that "not even half was told me." But his many foreign wives "turned his heart after other gods," and the LORD tears ten tribes from his son, raising up Hadad, Rezon and Jeroboam against him.`,
-  refs:["2 Samuel 12:24–25","1 Kings 1–11"]},
+  desc:`Son of David and Bathsheba, named Jedidiah because "the LORD loved him." Anointed at Gihon by Zadok and Nathan when Adonijah claims the throne, he secures his rule by executing Adonijah, Joab and Shimei and banishing Abiathar. At Gibeon he asks for "a discerning heart to govern your people," and God adds wealth and honor; his ruling between two mothers shows "wisdom from God to administer justice." He speaks three thousand proverbs and 1,005 songs, builds the temple in seven years — begun "in the four hundred and eightieth year after the Israelites came out of Egypt" — and prays at its dedication, "will God really dwell on earth?" The queen of Sheba finds that "not even half was told me." But his many foreign wives "turned his heart after other gods," and the LORD tears ten tribes from his son, raising up Hadad, Rezon and Jeroboam against him. 2 Chronicles places the temple "on Mount Moriah… on the threshing floor of Araunah"; at its dedication "fire came down from heaven," and the LORD answers, "if my people, who are called by my name, will humble themselves and pray… then I will hear from heaven." Psalms 72 and 127 are headed "Of Solomon." Proverbs opens, "The proverbs of Solomon son of David, king of Israel," and adds "more proverbs of Solomon, compiled by the men of Hezekiah king of Judah." The Song of Songs is titled "Solomon's Song of Songs" and pictures "King Solomon wearing a crown, the crown with which his mother crowned him on the day of his wedding."`,
+  notconfused:`The "Teacher, son of David, king in Jerusalem" of Ecclesiastes, traditionally identified with him; the book itself does not name Solomon.`,
+  refs:["2 Samuel 12:24–25","1 Kings 1–11","1 Chronicles 22","1 Chronicles 28–29","2 Chronicles 1–9","Psalm 72","Psalm 127","Proverbs 1:1","Proverbs 10:1","Proverbs 25:1","Song of Songs 1:1","Song of Songs 3:6–11"]},
 
  {id:"rehoboam", name:"Rehoboam son of Solomon", short:"Rehoboam", cat:"king", w:8,
   dates:"reigned 17 years, c. 931 – 913 BC (Judah)",
@@ -2428,9 +2442,11 @@ const OT_PEOPLE = [
   refs:["1 Kings 11:29–39","1 Kings 12:15","1 Kings 14:1–18","1 Kings 15:29"]},
 
  {id:"shemaiah", name:"Shemaiah the man of God", short:"Shemaiah", cat:"proph", w:5,
+  clash:"Shemaiah", clashtag:"The man of God who stopped Rehoboam's war and warned him about Shishak.",
   dates:"c. 10th c. BC",
-  desc:`"The man of God" who tells Rehoboam and the army of Judah and Benjamin, "Do not go up to fight against your brothers, the Israelites… this is my doing" — and they go home.`,
-  refs:["1 Kings 12:21–24"]},
+  desc:`"The man of God" who tells Rehoboam and the army of Judah and Benjamin, "Do not go up to fight against your brothers, the Israelites… this is my doing" — and they go home. In 2 Chronicles he also tells Rehoboam, "You have abandoned me; therefore, I now abandon you to Shishak," and when they humble themselves, that Jerusalem will not be destroyed. His records cover Rehoboam's reign.`,
+  notconfused:`Shemaiah son of Delaiah, the prophet hired to frighten Nehemiah (Nehemiah 6:10).`,
+  refs:["1 Kings 12:21–24","2 Chronicles 11:2–4","2 Chronicles 12:5–8","2 Chronicles 12:15"]},
 
  {id:"manofgod_judah", name:"The man of God from Judah", short:"Man of God from Judah", cat:"proph", w:6,
   dates:"c. 10th c. BC",
@@ -2458,26 +2474,26 @@ const OT_PEOPLE = [
  {id:"abijah_k", name:"Abijah king of Judah", short:"Abijah (king)", cat:"king", w:6,
   clash:"Abijah", clashtag:"Rehoboam's son and successor, king of Judah for three years.",
   dates:"reigned 3 years, c. 913 – 910 BC (Judah)",
-  desc:`Son of Rehoboam, king of Judah three years; "he committed all the sins his father had done." Yet "for David's sake the LORD his God gave him a lamp in Jerusalem." There was war between him and Jeroboam.`,
-  refs:["1 Kings 14:31","1 Kings 15:1–8"]},
+  desc:`Son of Rehoboam, king of Judah three years; "he committed all the sins his father had done." Yet "for David's sake the LORD his God gave him a lamp in Jerusalem." There was war between him and Jeroboam. 2 Chronicles gives his speech on Mount Zemaraim — "God is with us; he is our leader" — and Judah's victory over Jeroboam, who "did not regain power during the time of Abijah." He married fourteen wives.`,
+  refs:["1 Kings 14:31","1 Kings 15:1–8","2 Chronicles 13"]},
 
  {id:"maakah_ab", name:"Maakah daughter of Abishalom", short:"Maakah (queen mother)", cat:"king", w:5,
   clash:"Maakah", clashtag:"Mother of King Abijah and grandmother of Asa, deposed as queen mother for an Asherah image.",
   dates:"c. 10th c. BC",
-  desc:`Mother of Abijah and "grandmother" of Asa, who "deposed his grandmother Maakah from her position as queen mother, because she had made a repulsive image for the worship of Asherah."`,
-  refs:["1 Kings 15:2","1 Kings 15:10–13"]},
+  desc:`Mother of Abijah and "grandmother" of Asa, who "deposed his grandmother Maakah from her position as queen mother, because she had made a repulsive image for the worship of Asherah." 2 Chronicles calls her "Maakah daughter of Absalom," the wife Rehoboam "loved… more than any of his other wives," and also "Maakah, a daughter of Uriel of Gibeah"; the text does not reconcile the two.`,
+  refs:["1 Kings 15:2","1 Kings 15:10–13","2 Chronicles 11:20–22","2 Chronicles 13:2","2 Chronicles 15:16"]},
 
  {id:"asa", name:"Asa king of Judah", short:"Asa", cat:"king", w:8,
   dates:"reigned 41 years, c. 910 – 869 BC (Judah)",
-  desc:`Abijah's son, who "did what was right in the eyes of the LORD, as his father David had done": he expels the shrine prostitutes, removes the idols and deposes Maakah. At war with Baasha, he sends the temple treasure to Ben-Hadad of Aram to break his treaty with Israel. "In his old age, however, his feet became diseased."`,
-  refs:["1 Kings 15:8–24"]},
+  desc:`Abijah's son, who "did what was right in the eyes of the LORD, as his father David had done": he expels the shrine prostitutes, removes the idols and deposes Maakah. At war with Baasha, he sends the temple treasure to Ben-Hadad of Aram to break his treaty with Israel. "In his old age, however, his feet became diseased." 2 Chronicles adds his defeat of Zerah the Cushite after the prayer "Help us, LORD our God, for we rely on you," and a covenant to seek the LORD after Azariah son of Oded's prophecy. When he later relies on Aram, Hanani the seer rebukes him and is put in prison; in his foot disease "he did not seek help from the LORD, but only from the physicians."`,
+  refs:["1 Kings 15:8–24","2 Chronicles 14–16"]},
 
  {id:"jehoshaphat_j", name:"Jehoshaphat king of Judah", short:"Jehoshaphat (king)", cat:"king", w:8,
   clash:"Jehoshaphat", clashtag:"Asa's son, a king of Judah who 'did what was right' and allied with Ahab at Ramoth Gilead.",
   dates:"reigned 25 years, c. 872 – 848 BC (Judah)",
-  desc:`Son of Asa and Azubah, who "did what was right in the eyes of the LORD." At peace with Israel, he joins Ahab against Ramoth Gilead but insists, "First seek the counsel of the LORD," and asks for a true prophet, Micaiah. His trading fleet is wrecked at Ezion Geber.`,
+  desc:`Son of Asa and Azubah, who "did what was right in the eyes of the LORD." At peace with Israel, he joins Ahab against Ramoth Gilead but insists, "First seek the counsel of the LORD," and asks for a true prophet, Micaiah. His trading fleet is wrecked at Ezion Geber. He marches with Joram of Israel against Moab, and Elisha helps for his sake. 2 Chronicles adds that he sent officials and Levites to teach the Book of the Law, appointed judges — "you are not judging for mere mortals but for the LORD" — and was rebuked by Jehu son of Hanani for helping Ahab. Facing Moab, Ammon and Edom he prayed, "We do not know what to do, but our eyes are on you," and through Jahaziel came the answer, "the battle is not yours, but God's." Eliezer son of Dodavahu foretold the wreck of the fleet he built with Ahaziah of Israel.`,
   notconfused:`Jehoshaphat son of Ahilud, recorder under David and Solomon (2 Samuel 8:16).`,
-  refs:["1 Kings 15:24","1 Kings 22:1–50"]},
+  refs:["1 Kings 15:24","1 Kings 22:1–50","2 Kings 3","2 Chronicles 17–20"]},
 
  {id:"nadab_k", name:"Nadab king of Israel", short:"Nadab (king)", cat:"king", w:5,
   clash:"Nadab", clashtag:"Jeroboam's son, who reigned two years before Baasha killed him.",
@@ -2494,9 +2510,9 @@ const OT_PEOPLE = [
  {id:"jehu_h", name:"Jehu son of Hanani", short:"Jehu (prophet)", cat:"proph", w:5,
   clash:"Jehu", clashtag:"The prophet who announced the end of Baasha's house.",
   dates:"c. 9th c. BC",
-  desc:`The prophet through whom "the word of the LORD came… concerning Baasha": "I lifted you up from the dust… So I am about to wipe out Baasha and his house." Zimri fulfills it.`,
+  desc:`The prophet through whom "the word of the LORD came… concerning Baasha": "I lifted you up from the dust… So I am about to wipe out Baasha and his house." Zimri fulfills it. "Jehu the seer, the son of Hanani" also rebukes Jehoshaphat — "Should you help the wicked?" — and writes the annals of his reign.`,
   notconfused:`Jehu son of Nimshi, the army commander anointed to destroy Ahab's dynasty (2 Kings 9).`,
-  refs:["1 Kings 16:1–7","1 Kings 16:12"]},
+  refs:["1 Kings 16:1–7","1 Kings 16:12","2 Chronicles 19:2–3","2 Chronicles 20:34"]},
 
  {id:"elah", name:"Elah king of Israel", short:"Elah", cat:"king", w:5,
   dates:"reigned 2 years, c. 886 – 885 BC (Israel)",
@@ -2581,9 +2597,9 @@ const OT_PEOPLE = [
   aliases:"Joram of Judah",
   clash:"Joram", clashtag:"King of Judah, son of Jehoshaphat, who 'married a daughter of Ahab.'",
   dates:"reigned 8 years, c. 848 – 841 BC (Judah)",
-  desc:`King of Judah at 32. "He followed the ways of the kings of Israel… for he married a daughter of Ahab," yet for David's sake the LORD will not destroy Judah, having promised "to maintain a lamp for David." In his time Edom rebels and sets up its own king, and Libnah revolts. His son Ahaziah succeeds him; his daughter Jehosheba later saves the infant Joash.`,
+  desc:`King of Judah at 32. "He followed the ways of the kings of Israel… for he married a daughter of Ahab," yet for David's sake the LORD will not destroy Judah, having promised "to maintain a lamp for David." In his time Edom rebels and sets up its own king, and Libnah revolts. His son Ahaziah succeeds him; his daughter Jehosheba later saves the infant Joash. 2 Chronicles adds that he put all his brothers to the sword, built high places, received a letter of judgment from Elijah, lost his wives and all his sons but Ahaziah to Philistine and Arab raiders, and died of a disease of the bowels, "to no one's regret."`,
   notconfused:`Joram (Jehoram) of Israel, son of Ahab, reigning at the same time in the north.`,
-  refs:["1 Kings 22:50","2 Kings 8:16–24","2 Kings 11:2"]},
+  refs:["1 Kings 22:50","2 Kings 8:16–24","2 Kings 11:2","2 Chronicles 21"]},
 
  {id:"joram_israel", name:"Joram son of Ahab", short:"Joram (Israel)", cat:"king", w:7,
   aliases:"Jehoram of Israel",
@@ -2603,9 +2619,9 @@ const OT_PEOPLE = [
  {id:"ahaziah_judah", name:"Ahaziah son of Jehoram", short:"Ahaziah (Judah)", cat:"king", w:6,
   clash:"Ahaziah", clashtag:"King of Judah for one year, son of Jehoram and Athaliah; killed in Jehu's revolt.",
   dates:"reigned 1 year, c. 841 BC (Judah)",
-  desc:`King of Judah at 22; "his mother's name was Athaliah, a granddaughter of Omri," and he "was related by marriage to Ahab's family." He fights beside Joram of Israel against Hazael at Ramoth Gilead and visits the wounded Joram at Jezreel. When Jehu strikes he flees, is wounded near Ibleam and dies at Megiddo, and is buried in the City of David. Jehu later kills forty-two of his relatives at Beth Eked.`,
+  desc:`King of Judah at 22; "his mother's name was Athaliah, a granddaughter of Omri," and he "was related by marriage to Ahab's family." He fights beside Joram of Israel against Hazael at Ramoth Gilead and visits the wounded Joram at Jezreel. When Jehu strikes he flees, is wounded near Ibleam and dies at Megiddo, and is buried in the City of David. Jehu later kills forty-two of his relatives at Beth Eked. 2 Chronicles says his mother "encouraged him to act wickedly," and that he was captured "hiding in Samaria" and brought to Jehu; he was buried because "He was a son of Jehoshaphat."`,
   notconfused:`Ahaziah of Israel, son of Ahab.`,
-  refs:["2 Kings 8:24–29","2 Kings 9:16–29","2 Kings 10:12–14"]},
+  refs:["2 Kings 8:24–29","2 Kings 9:16–29","2 Kings 10:12–14","2 Chronicles 22:1–9"]},
 
  {id:"joash_judah", name:"Joash son of Ahaziah", short:"Joash (Judah)", cat:"king", w:7,
   aliases:"Jehoash of Judah",
@@ -2638,15 +2654,16 @@ const OT_PEOPLE = [
   refs:["2 Kings 14:29","2 Kings 15:8–12"]},
 
  {id:"uzziah", name:"Azariah (Uzziah) son of Amaziah", short:"Uzziah", cat:"king", w:8,
+  clash:"Azariah", clashtag:"King of Judah, called Azariah in most of 2 Kings and Uzziah elsewhere.",
   aliases:"Azariah",
   dates:"reigned 52 years, c. 792 – 740 BC (Judah)",
-  desc:`Called Azariah in most of 2 Kings and Uzziah in 2 Kings 15:13 and 15:30–34. Made king at sixteen by "all the people of Judah" after his father's murder, he rebuilds Elath and does "what was right in the eyes of the LORD," though the high places remain. "The LORD afflicted the king with leprosy until the day he died"; he lives in a separate house while his son Jotham governs. 2 Chronicles explains that "his pride led to his downfall" when he burned incense in the temple. Isaiah's vision is dated "in the year that King Uzziah died."`,
+  desc:`Called Azariah in most of 2 Kings and Uzziah in 2 Kings 15:13 and 15:30–34. Made king at sixteen by "all the people of Judah" after his father's murder, he rebuilds Elath and does "what was right in the eyes of the LORD," though the high places remain. "The LORD afflicted the king with leprosy until the day he died"; he lives in a separate house while his son Jotham governs. 2 Chronicles explains that "his pride led to his downfall" when he burned incense in the temple. Isaiah's vision is dated "in the year that King Uzziah died." He "sought God during the days of Zechariah, who instructed him"; Azariah the chief priest and eighty priests confronted him in the temple.`,
   refs:["2 Kings 14:21–22","2 Kings 15:1–7","2 Chronicles 26","Isaiah 6:1"]},
 
  {id:"hezekiah", name:"Hezekiah son of Ahaz", short:"Hezekiah", cat:"king", w:11,
   dates:"reigned 29 years, c. 715 – 686 BC (Judah) — start date disputed",
-  desc:`He removes the high places and breaks up Moses' bronze snake, Nehushtan, to which Israel had burned incense: "There was no one like him among all the kings of Judah." He rebels against Assyria. When Sennacherib takes Judah's fortified cities he pays tribute, but when the field commander mocks the LORD he spreads the Assyrian letter "before the LORD" and prays. Through Isaiah the LORD promises deliverance, and the angel of the LORD strikes the Assyrian camp. Healed of a deadly illness with fifteen years added, he is given the sign of the shadow going back ten steps — then shows all his treasures to envoys from Babylon, and Isaiah foretells they will be carried there. He made the pool and tunnel that brought water into the city.`,
-  refs:["2 Kings 16:20","2 Kings 18–20","Isaiah 36–39"]},
+  desc:`He removes the high places and breaks up Moses' bronze snake, Nehushtan, to which Israel had burned incense: "There was no one like him among all the kings of Judah." He rebels against Assyria. When Sennacherib takes Judah's fortified cities he pays tribute, but when the field commander mocks the LORD he spreads the Assyrian letter "before the LORD" and prays. Through Isaiah the LORD promises deliverance, and the angel of the LORD strikes the Assyrian camp. Healed of a deadly illness with fifteen years added, he is given the sign of the shadow going back ten steps — then shows all his treasures to envoys from Babylon, and Isaiah foretells they will be carried there. He made the pool and tunnel that brought water into the city. 2 Chronicles adds that in his first month he reopened and purified the temple, invited all Israel to a Passover unlike any "since the days of Solomon," and "blocked the upper outlet of the Gihon spring." After his healing "his heart was proud," but he repented. Proverbs 25:1 records "more proverbs of Solomon, compiled by the men of Hezekiah king of Judah."`,
+  refs:["2 Kings 16:20","2 Kings 18–20","Isaiah 36–39","2 Chronicles 29–32","Proverbs 25:1"]},
 
  {id:"manasseh_k", name:"Manasseh son of Hezekiah", short:"Manasseh (King)", cat:"king", w:7,
   clash:"Manasseh", clashtag:"Judah's longest-reigning king (55 years), whose sins 2 Kings names as the cause of Judah's fall.",
@@ -2657,16 +2674,16 @@ const OT_PEOPLE = [
 
  {id:"josiah", name:"Josiah son of Amon", short:"Josiah", cat:"king", w:10,
   dates:"reigned 31 years, c. 640 – 609 BC (Judah)",
-  desc:`King at eight after his father Amon's assassination. In his eighteenth year Hilkiah the high priest finds "the Book of the Law" in the temple; when Shaphan reads it to him, Josiah tears his robes and sends to the prophet Huldah. He renews the covenant, purges the temple of Baal and Asherah, desecrates Topheth and the high places Solomon built, and tears down Jeroboam's altar at Bethel, as the man of God from Judah had foretold. He keeps a Passover unlike any since "the days of the judges." "Neither before nor after Josiah was there a king like him." He is killed by Pharaoh Necho at Megiddo.`,
+  desc:`King at eight after his father Amon's assassination. In his eighteenth year Hilkiah the high priest finds "the Book of the Law" in the temple; when Shaphan reads it to him, Josiah tears his robes and sends to the prophet Huldah. He renews the covenant, purges the temple of Baal and Asherah, desecrates Topheth and the high places Solomon built, and tears down Jeroboam's altar at Bethel, as the man of God from Judah had foretold. He keeps a Passover unlike any since "the days of the judges." "Neither before nor after Josiah was there a king like him." He is killed by Pharaoh Necho at Megiddo. 2 Chronicles adds that he began to seek God in his eighth year and to purge Judah in his twelfth. Necho warned him, "stop opposing God," but he went out in disguise, was shot by archers at Megiddo, and died in Jerusalem; "Jeremiah composed laments for Josiah."`,
   refs:["1 Kings 13:2","2 Kings 21:24–26","2 Kings 22–23","2 Chronicles 34–35"]},
 
- {id:"zedekiah", name:"Zedekiah (Mattaniah)", short:"Zedekiah", cat:"king", w:8,
+ {id:"zedekiah", name:"Zedekiah son of Josiah", short:"Zedekiah", cat:"king", w:8,
   aliases:"Mattaniah",
   clash:"Zedekiah", clashtag:"The last king of Judah (born Mattaniah), blinded and taken to Babylon.",
   dates:"reigned 11 years, c. 597 – 586 BC (Judah)",
-  desc:`Born Mattaniah, the uncle of Jehoiachin; Nebuchadnezzar makes him king and renames him Zedekiah. His mother is Hamutal of Libnah. He "did evil in the eyes of the LORD" and rebels against Babylon, which besieges Jerusalem from his ninth year to his eleventh. When the wall is breached he flees toward the Arabah, is captured in the plains of Jericho, and at Riblah his sons are killed before his eyes; then "they put out his eyes" and take him in bronze shackles to Babylon.`,
+  desc:`Born Mattaniah, the uncle of Jehoiachin; Nebuchadnezzar makes him king and renames him Zedekiah. His mother is Hamutal of Libnah. He "did evil in the eyes of the LORD" and rebels against Babylon, which besieges Jerusalem from his ninth year to his eleventh. When the wall is breached he flees toward the Arabah, is captured in the plains of Jericho, and at Riblah his sons are killed before his eyes; then "they put out his eyes" and take him in bronze shackles to Babylon. 1 Chronicles 3:15 names him Josiah's third son. 2 Chronicles adds that he "did not humble himself before Jeremiah the prophet" and rebelled against Nebuchadnezzar, "who had made him take an oath in God's name."`,
   notconfused:`Zedekiah son of Kenaanah, the false prophet in Ahab's day. 2 Kings calls him Jehoiachin's uncle and gives his mother as Hamutal, also mother of Jehoahaz son of Josiah.`,
-  refs:["2 Kings 24:17–20","2 Kings 25:1–7","Jeremiah 52"]},
+  refs:["2 Kings 24:17–20","2 Kings 25:1–7","Jeremiah 52","1 Chronicles 3:15","2 Chronicles 36:10–13"]},
 
  // ---------------- THE PROPHETS ----------------
  // ================= 2 KINGS =================
@@ -2706,8 +2723,8 @@ const OT_PEOPLE = [
 
  {id:"jehosheba", name:"Jehosheba daughter of Jehoram", short:"Jehosheba", cat:"king", w:6,
   dates:"c. 841 BC",
-  desc:`"The daughter of King Jehoram and sister of Ahaziah." When Athaliah sets out to destroy the royal family, she steals the infant Joash "away from among the royal princes" and hides him and his nurse, so "he was not killed."`,
-  refs:["2 Kings 11:2–3"]},
+  desc:`"The daughter of King Jehoram and sister of Ahaziah." When Athaliah sets out to destroy the royal family, she steals the infant Joash "away from among the royal princes" and hides him and his nurse, so "he was not killed." 2 Chronicles 22:11 adds that she was "wife of the priest Jehoiada."`,
+  refs:["2 Kings 11:2–3","2 Chronicles 22:11"]},
 
  {id:"zibiah", name:"Zibiah of Beersheba", short:"Zibiah", cat:"king", w:3,
   dates:"c. 9th c. BC",
@@ -2715,14 +2732,15 @@ const OT_PEOPLE = [
   refs:["2 Kings 12:1"]},
 
  {id:"jozabad", name:"Jozabad son of Shimeath", short:"Jozabad", cat:"king", w:4,
+  aliases:"Zabad (2 Chronicles 24:26)",
   dates:"c. 796 BC",
-  desc:`One of the officials who conspired against King Joash and murdered him "at Beth Millo, on the road down to Silla." Amaziah later executed his father's murderers.`,
-  refs:["2 Kings 12:20–21","2 Kings 14:5"]},
+  desc:`One of the officials who conspired against King Joash and murdered him "at Beth Millo, on the road down to Silla." Amaziah later executed his father's murderers. 2 Chronicles calls him "Zabad, son of Shimeath an Ammonite woman," and says the officials killed Joash "for murdering the son of Jehoiada."`,
+  refs:["2 Kings 12:20–21","2 Kings 14:5","2 Chronicles 24:25–26"]},
 
  {id:"jehozabad", name:"Jehozabad son of Shomer", short:"Jehozabad", cat:"king", w:4,
   dates:"c. 796 BC",
-  desc:`With Jozabad son of Shimeath, one of the officials who assassinated King Joash; executed by Amaziah once the kingdom was "firmly in his grasp."`,
-  refs:["2 Kings 12:21","2 Kings 14:5"]},
+  desc:`With Jozabad son of Shimeath, one of the officials who assassinated King Joash; executed by Amaziah once the kingdom was "firmly in his grasp." 2 Chronicles calls him "son of Shimrith a Moabite woman."`,
+  refs:["2 Kings 12:21","2 Kings 14:5","2 Chronicles 24:26"]},
 
  // --- Jehu's dynasty ---
  {id:"jehoahaz_i", name:"Jehoahaz son of Jehu", short:"Jehoahaz (Israel)", cat:"king", w:5,
@@ -2735,8 +2753,8 @@ const OT_PEOPLE = [
  // --- Judah: Amaziah to Ahaz ---
  {id:"amaziah", name:"Amaziah son of Joash", short:"Amaziah", cat:"king", w:7,
   dates:"reigned 29 years, c. 796 – 767 BC (Judah)",
-  desc:`King of Judah at 25, who does right, "but not as his father David had done." He executes his father's assassins but spares their children, following the Law of Moses. He defeats ten thousand Edomites in the Valley of Salt, then challenges Jehoash of Israel, who warns him with the parable of the thistle and the cedar. Routed and captured at Beth Shemesh, he sees Jerusalem's wall broken down. He outlives Jehoash by fifteen years but is killed by conspirators at Lachish.`,
-  refs:["2 Kings 12:21","2 Kings 14:1–22"]},
+  desc:`King of Judah at 25, who does right, "but not as his father David had done." He executes his father's assassins but spares their children, following the Law of Moses. He defeats ten thousand Edomites in the Valley of Salt, then challenges Jehoash of Israel, who warns him with the parable of the thistle and the cedar. Routed and captured at Beth Shemesh, he sees Jerusalem's wall broken down. He outlives Jehoash by fifteen years but is killed by conspirators at Lachish. 2 Chronicles adds that he hired 100,000 Israelite troops but sent them home at a man of God's word, then brought back the gods of Seir and bowed down to them, silencing the prophet who rebuked him.`,
+  refs:["2 Kings 12:21","2 Kings 14:1–22","2 Chronicles 25"]},
 
  {id:"jehoaddan", name:"Jehoaddan of Jerusalem", short:"Jehoaddan", cat:"king", w:3,
   dates:"c. 9th–8th c. BC",
@@ -2751,9 +2769,9 @@ const OT_PEOPLE = [
  {id:"jotham_k", name:"Jotham son of Uzziah", short:"Jotham (king)", cat:"king", w:6,
   clash:"Jotham", clashtag:"King of Judah, son of Uzziah, who governed while his father had leprosy and rebuilt the temple's Upper Gate.",
   dates:"reigned 16 years, c. 750 – 732 BC (Judah) — includes a co-regency; disputed",
-  desc:`While his father has leprosy, "Jotham the king's son had charge of the palace and governed the people of the land." King at 25, he does "what was right in the eyes of the LORD" and rebuilds "the Upper Gate of the temple of the LORD." In his days the LORD begins to send Rezin of Aram and Pekah of Israel against Judah.`,
+  desc:`While his father has leprosy, "Jotham the king's son had charge of the palace and governed the people of the land." King at 25, he does "what was right in the eyes of the LORD" and rebuilds "the Upper Gate of the temple of the LORD." In his days the LORD begins to send Rezin of Aram and Pekah of Israel against Judah. 2 Chronicles adds that "unlike him he did not enter the temple of the LORD," and that he conquered the Ammonites.`,
   notconfused:`Jotham son of Gideon, who told the parable of the trees from Mount Gerizim (Judges 9).`,
-  refs:["2 Kings 15:5–7","2 Kings 15:32–38"]},
+  refs:["2 Kings 15:5–7","2 Kings 15:32–38","2 Chronicles 27"]},
 
  {id:"jerusha", name:"Jerusha daughter of Zadok", short:"Jerusha", cat:"king", w:3,
   dates:"c. 8th c. BC",
@@ -2762,8 +2780,8 @@ const OT_PEOPLE = [
 
  {id:"ahaz", name:"Ahaz son of Jotham", short:"Ahaz", cat:"king", w:8,
   dates:"reigned 16 years, c. 735 – 715 BC (Judah) — dates disputed",
-  desc:`King at twenty who, "unlike David his father," follows "the ways of the kings of Israel" and "even sacrificed his son in the fire." Besieged by Rezin and Pekah, he sends temple silver and gold to Tiglath-Pileser — "I am your servant and vassal." Assyria takes Damascus. Visiting Tiglath-Pileser there, he sends a sketch of an altar to Uriah the priest, sets the new altar in the temple, moves the bronze altar aside and dismantles temple furnishings "in deference to the king of Assyria."`,
-  refs:["2 Kings 15:38","2 Kings 16","2 Kings 20:11"]},
+  desc:`King at twenty who, "unlike David his father," follows "the ways of the kings of Israel" and "even sacrificed his son in the fire." Besieged by Rezin and Pekah, he sends temple silver and gold to Tiglath-Pileser — "I am your servant and vassal." Assyria takes Damascus. Visiting Tiglath-Pileser there, he sends a sketch of an altar to Uriah the priest, sets the new altar in the temple, moves the bronze altar aside and dismantles temple furnishings "in deference to the king of Assyria." 2 Chronicles adds that Aram and Pekah defeated him — 120,000 killed in Judah in one day — and that the prophet Oded persuaded Samaria to free the captives. He shut the doors of the temple and set up altars "at every street corner in Jerusalem"; Tiglath-Pileser "gave him trouble instead of help."`,
+  refs:["2 Kings 15:38","2 Kings 16","2 Kings 20:11","2 Chronicles 28"]},
 
  {id:"uriah_p", name:"Uriah the priest", short:"Uriah (priest)", cat:"priest", w:5,
   clash:"Uriah", clashtag:"The priest who built King Ahaz's altar from a Damascus pattern.",
@@ -2833,8 +2851,8 @@ const OT_PEOPLE = [
 
  {id:"amon", name:"Amon son of Manasseh", short:"Amon", cat:"king", w:5,
   dates:"reigned 2 years, c. 642 – 640 BC (Judah)",
-  desc:`King at 22, who "followed completely the ways of his father," worshiping his father's idols and forsaking the LORD. His officials assassinate him in his palace; "the people of the land" kill the plotters and make his son Josiah king. He is buried in the garden of Uzza.`,
-  refs:["2 Kings 21:18–26"]},
+  desc:`King at 22, who "followed completely the ways of his father," worshiping his father's idols and forsaking the LORD. His officials assassinate him in his palace; "the people of the land" kill the plotters and make his son Josiah king. He is buried in the garden of Uzza. Chronicles adds that "unlike his father Manasseh, he did not humble himself before the LORD."`,
+  refs:["2 Kings 21:18–26","2 Chronicles 33:21–25"]},
 
  {id:"meshullemeth", name:"Meshullemeth daughter of Haruz", short:"Meshullemeth", cat:"king", w:3,
   dates:"c. 7th c. BC",
@@ -2877,9 +2895,9 @@ const OT_PEOPLE = [
  {id:"jehoahaz_j", name:"Jehoahaz son of Josiah", short:"Jehoahaz (Judah)", cat:"king", w:5,
   clash:"Jehoahaz", clashtag:"King of Judah for three months after Josiah; taken to Egypt by Pharaoh Necho.",
   dates:"reigned 3 months, c. 609 BC (Judah)",
-  desc:`After Josiah's death "the people of the land took Jehoahaz son of Josiah and anointed him." King at 23, he does evil and reigns three months before Pharaoh Necho puts him in chains at Riblah, places Judah under a levy, and carries him off to Egypt, "and there he died."`,
+  desc:`After Josiah's death "the people of the land took Jehoahaz son of Josiah and anointed him." King at 23, he does evil and reigns three months before Pharaoh Necho puts him in chains at Riblah, places Judah under a levy, and carries him off to Egypt, "and there he died." 1 Chronicles 3:15 lists Josiah's sons as Johanan, Jehoiakim, Zedekiah and Shallum, without the name Jehoahaz; the text does not explain the difference.`,
   notconfused:`Jehoahaz son of Jehu, king of Israel two centuries earlier.`,
-  refs:["2 Kings 23:30–34"]},
+  refs:["2 Kings 23:30–34","1 Chronicles 3:15","2 Chronicles 36:1–4"]},
 
  {id:"hamutal", name:"Hamutal daughter of Jeremiah", short:"Hamutal", cat:"king", w:4,
   dates:"c. 7th–6th c. BC",
@@ -2890,9 +2908,9 @@ const OT_PEOPLE = [
   clash:"Eliakim", clashtag:"Born Eliakim son of Josiah; renamed Jehoiakim when Pharaoh Necho made him king.",
   aliases:"Eliakim",
   dates:"reigned 11 years, c. 609 – 598 BC (Judah)",
-  desc:`"Pharaoh Necho made Eliakim son of Josiah king in place of his father Josiah and changed Eliakim's name to Jehoiakim." King at 25, he taxes the land to pay Necho and does evil. Nebuchadnezzar invades and Jehoiakim is his vassal three years, then rebels; the LORD sends Babylonian, Aramean, Moabite and Ammonite raiders against Judah "because of the sins of Manasseh." His son Jehoiachin succeeds him.`,
+  desc:`"Pharaoh Necho made Eliakim son of Josiah king in place of his father Josiah and changed Eliakim's name to Jehoiakim." King at 25, he taxes the land to pay Necho and does evil. Nebuchadnezzar invades and Jehoiakim is his vassal three years, then rebels; the LORD sends Babylonian, Aramean, Moabite and Ammonite raiders against Judah "because of the sins of Manasseh." His son Jehoiachin succeeds him. 2 Chronicles 36:6 says Nebuchadnezzar "bound him with bronze shackles to take him to Babylon."`,
   notconfused:`Eliakim son of Hilkiah, Hezekiah's palace administrator.`,
-  refs:["2 Kings 23:34–24:6"]},
+  refs:["2 Kings 23:34–24:6","2 Chronicles 36:4–8"]},
 
  {id:"zebidah", name:"Zebidah daughter of Pedaiah", short:"Zebidah", cat:"king", w:3,
   dates:"c. 7th c. BC",
@@ -2901,8 +2919,8 @@ const OT_PEOPLE = [
 
  {id:"jehoiachin", name:"Jehoiachin son of Jehoiakim", short:"Jehoiachin", cat:"king", w:7,
   dates:"reigned 3 months, c. 598 – 597 BC (Judah); released c. 562 BC",
-  desc:`King at eighteen for three months. When Nebuchadnezzar besieges Jerusalem, he surrenders with his mother, attendants, nobles and officials, and is taken captive to Babylon "in the eighth year" of Nebuchadnezzar, with ten thousand of Jerusalem's people and the temple treasures. His uncle Mattaniah is made king as Zedekiah. In the thirty-seventh year of his exile Awel-Marduk releases him, gives him "a seat of honor," and he eats "at the king's table" for the rest of his life — the last scene of Kings.`,
-  refs:["2 Kings 24:6–17","2 Kings 25:27–30"]},
+  desc:`King at eighteen for three months. When Nebuchadnezzar besieges Jerusalem, he surrenders with his mother, attendants, nobles and officials, and is taken captive to Babylon "in the eighth year" of Nebuchadnezzar, with ten thousand of Jerusalem's people and the temple treasures. His uncle Mattaniah is made king as Zedekiah. In the thirty-seventh year of his exile Awel-Marduk releases him, gives him "a seat of honor," and he eats "at the king's table" for the rest of his life — the last scene of Kings. 2 Chronicles gives his reign as "three months and ten days." 1 Chronicles 3:17–18 lists his sons, among them Shealtiel and Pedaiah.`,
+  refs:["2 Kings 24:6–17","2 Kings 25:27–30","1 Chronicles 3:16–18","2 Chronicles 36:9–10"]},
 
  {id:"nehushta", name:"Nehushta daughter of Elnathan", short:"Nehushta", cat:"king", w:4,
   dates:"c. 6th c. BC",
@@ -2911,10 +2929,11 @@ const OT_PEOPLE = [
 
  // --- priests ---
  {id:"jehoiada", name:"Jehoiada the priest", short:"Jehoiada", cat:"priest", w:8,
+  clash:"Jehoiada", clashtag:"The priest who hid the boy Joash, crowned him, and had Athaliah put to death.",
   dates:"c. 9th c. BC",
-  desc:`Priest at the temple, who hides the boy Joash for six years. In the seventh year he puts the commanders and guards under oath, arms them with King David's spears and shields, crowns Joash and proclaims him king, and orders Athaliah put to death outside the temple. He makes a covenant "that they would be the LORD's people." Joash does right "all the years Jehoiada the priest instructed him"; Jehoiada sets up the collection chest for the temple repairs.`,
-  notconfused:`Jehoiada the father of Benaiah, David's commander (2 Samuel 8:18); the text does not connect the two.`,
-  refs:["2 Kings 11:4–20","2 Kings 12:2–10"]},
+  desc:`Priest at the temple, who hides the boy Joash for six years. In the seventh year he puts the commanders and guards under oath, arms them with King David's spears and shields, crowns Joash and proclaims him king, and orders Athaliah put to death outside the temple. He makes a covenant "that they would be the LORD's people." Joash does right "all the years Jehoiada the priest instructed him"; Jehoiada sets up the collection chest for the temple repairs. 2 Chronicles adds that he chose two wives for Joash and died "at the age of a hundred and thirty," buried with the kings "because of the good he had done in Israel." His wife was Jehosheba; his son Zechariah was stoned on Joash's order.`,
+  notconfused:`Jehoiada the priest, father of Benaiah, in David's day (1 Chronicles 27:5).`,
+  refs:["2 Kings 11:4–20","2 Kings 12:2–10","2 Chronicles 22:11–24:16"]},
 
  {id:"hilkiah", name:"Hilkiah the high priest", short:"Hilkiah", cat:"priest", w:7,
   dates:"c. 622 BC",
@@ -2953,18 +2972,325 @@ const OT_PEOPLE = [
   refs:["2 Kings 25:23"]},
 
 
+ // ================= 1–2 CHRONICLES =================
+ // --- genealogies (1 Chronicles 1–9) ---
+ {id:"caleb_h", name:"Caleb son of Hezron", short:"Caleb (Hezron's son)", cat:"line", w:4,
+  clash:"Caleb", clashtag:"Son of Hezron in Judah's genealogy; through Ephrath, ancestor of Hur and Bezalel.",
+  dates:"genealogy (undated)",
+  desc:`"Caleb son of Hezron," brother of Jerahmeel and Ram. By Azubah he had Jesher, Shobab and Ardon; "when Azubah died, Caleb married Ephrath, who bore him Hur. Hur was the father of Uri, and Uri the father of Bezalel." His concubines Ephah and Maakah also bore him sons, and "Caleb's daughter was Aksah."`,
+  notconfused:`Caleb son of Jephunneh, the faithful spy, whose daughter was also named Aksah (Joshua 15:16). 1 Chronicles 4:15 lists "the sons of Caleb son of Jephunneh" separately; the text does not say how the two relate.`,
+  refs:["1 Chronicles 2:9","1 Chronicles 2:18–20","1 Chronicles 2:42–50"]},
+
+ {id:"jabez", name:"Jabez", short:"Jabez", cat:"line", w:5,
+  dates:"genealogy (undated)",
+  desc:`Named among the clans of Judah: "Jabez was more honorable than his brothers. His mother had named him Jabez, saying, 'I gave birth to him in pain.'" He prayed, "Oh, that you would bless me and enlarge my territory! Let your hand be with me, and keep me from harm so that I will be free from pain." "And God granted his request."`,
+  refs:["1 Chronicles 4:9–10"]},
+
+ {id:"bithiah", name:"Bithiah, Pharaoh's daughter", short:"Bithiah", cat:"line", w:4,
+  dates:"genealogy (undated)",
+  desc:`Listed in Judah's genealogy as "Pharaoh's daughter Bithiah, whom Mered had married," the mother of Miriam, Shammai and Ishbah the father of Eshtemoa.`,
+  notconfused:`The Pharaoh's daughter who drew Moses from the Nile (Exodus 2), and the Pharaoh's daughter whom Solomon married (1 Kings 3:1).`,
+  refs:["1 Chronicles 4:17–18"]},
+
+ {id:"sheerah", name:"Sheerah daughter of Ephraim", short:"Sheerah", cat:"line", w:4,
+  dates:"genealogy (undated)",
+  desc:`A daughter in Ephraim's line, "who built Lower and Upper Beth Horon as well as Uzzen Sheerah."`,
+  refs:["1 Chronicles 7:24"]},
+
+ {id:"abigail_s", name:"Abigail sister of David", short:"Abigail (David's sister)", cat:"king", w:4,
+  clash:"Abigail", clashtag:"Jesse's daughter, David's sister, and mother of Amasa.",
+  dates:"c. 11th c. BC (traditional)",
+  desc:`One of David's two sisters: "Their sisters were Zeruiah and Abigail." She was "the mother of Amasa, whose father was Jether the Ishmaelite." 2 Samuel 17:25 calls her "the daughter of Nahash and sister of Zeruiah."`,
+  notconfused:`Abigail of Carmel, the widow of Nabal, who became David's wife (1 Samuel 25).`,
+  refs:["1 Chronicles 2:16–17","2 Samuel 17:25"]},
+
+ {id:"shealtiel", name:"Shealtiel son of Jehoiachin", short:"Shealtiel", cat:"exile", w:4,
+  dates:"6th c. BC",
+  desc:`First named of "the descendants of Jehoiachin the captive: Shealtiel his son, Malkiram, Pedaiah, Shenazzar, Jekamiah, Hoshama and Nedabiah." Ezra and Nehemiah call Zerubbabel "son of Shealtiel."`,
+  refs:["1 Chronicles 3:17–18","Ezra 3:2","Nehemiah 12:1"]},
+
+ {id:"pedaiah_j", name:"Pedaiah son of Jehoiachin", short:"Pedaiah", cat:"exile", w:3,
+  dates:"6th c. BC",
+  desc:`A son of Jehoiachin; "the sons of Pedaiah: Zerubbabel and Shimei." Elsewhere Zerubbabel is called "son of Shealtiel"; 1 Chronicles does not explain the difference.`,
+  refs:["1 Chronicles 3:18–19"]},
+
+ // --- Levite musicians and priests ---
+ {id:"heman", name:"Heman the musician", short:"Heman", cat:"priest", w:7,
+  clash:"Heman", clashtag:"The Levite musician, grandson of Samuel, whom David set over the temple music.",
+  dates:"c. 10th c. BC",
+  desc:`"Heman, the musician, the son of Joel, the son of Samuel," a Kohathite, one of the three Levites David set over the music "in the house of the LORD." He sounds the bronze cymbals when the ark comes up, and is called "the king's seer"; "God gave Heman fourteen sons and three daughters," whose divisions prophesied with harps, lyres and cymbals.`,
+  notconfused:`Heman son of Zerah in Judah's genealogy (1 Chronicles 2:6), and Heman the Ezrahite of Psalm 88, a wise man to whom Solomon is compared (1 Kings 4:31); Scripture does not say whether any of these are the same man.`,
+  refs:["1 Chronicles 6:33","1 Chronicles 15:17–19","1 Chronicles 16:41–42","1 Chronicles 25:1–6","2 Chronicles 5:12"]},
+
+ {id:"asaph", name:"Asaph son of Berekiah", short:"Asaph", cat:"priest", w:7,
+  dates:"c. 10th c. BC",
+  desc:`A Gershonite Levite, "Heman's associate… who served at his right hand." When the ark is set in its tent, "Asaph was the chief" of those appointed "to extol, thank, and praise the LORD," and that day David "first appointed Asaph and his associates" to sing a psalm of thanks. His sons "prophesied under the king's supervision"; later generations sang "with the words of David and of Asaph the seer." Twelve psalms are headed with his name (Psalms 50 and 73–83).`,
+  notconfused:`Asaph the father of Joah, Hezekiah's recorder (2 Kings 18:18); the text does not say they are the same man.`,
+  refs:["1 Chronicles 6:39–43","1 Chronicles 15:17–19","1 Chronicles 16:4–7","1 Chronicles 16:37","1 Chronicles 25:1–2","2 Chronicles 29:30","Psalm 50","Psalms 73–83"]},
+
+ {id:"jeduthun", name:"Jeduthun", short:"Jeduthun", cat:"priest", w:6,
+  dates:"c. 10th c. BC",
+  desc:`With Heman, stationed before the tabernacle at Gibeon "to give thanks to the LORD, 'for his love endures forever.'" His six sons served "under the supervision of their father Jeduthun, who prophesied, using the harp." He is called "the king's seer." Psalms 39, 62 and 77 are marked "For Jeduthun."`,
+  refs:["1 Chronicles 16:41–42","1 Chronicles 25:1–3","2 Chronicles 5:12","2 Chronicles 35:15","Psalm 39","Psalm 62","Psalm 77"]},
+
+ {id:"ethan_m", name:"Ethan the Merarite", short:"Ethan (musician)", cat:"priest", w:4,
+  clash:"Ethan", clashtag:"The Merarite musician who sounded the cymbals when the ark came up.",
+  dates:"c. 10th c. BC",
+  desc:`The Merarite musician "at his left hand" — "Ethan son of Kishi" (also "son of Kushaiah") — who with Heman and Asaph sounded the bronze cymbals when the ark was brought up.`,
+  notconfused:`Ethan son of Zerah in Judah's genealogy (1 Chronicles 2:6), and Ethan the Ezrahite of Psalm 89, to whom Solomon's wisdom is compared (1 Kings 4:31); Scripture does not say whether any of these are the same man.`,
+  refs:["1 Chronicles 6:44–47","1 Chronicles 15:17–19"]},
+
+ {id:"jehoiada_b", name:"Jehoiada father of Benaiah", short:"Jehoiada (Benaiah's father)", cat:"priest", w:4,
+  clash:"Jehoiada", clashtag:"Leader of the family of Aaron who came to David at Hebron; father of Benaiah.",
+  dates:"c. 11th–10th c. BC",
+  desc:`"Jehoiada, leader of the family of Aaron, with 3,700 men," who came to David at Hebron. Benaiah, David's commander, is called "son of Jehoiada the priest"; the text does not say outright that this priest and the leader at Hebron are one man.`,
+  notconfused:`Jehoiada the priest who crowned Joash a century and a half later (2 Kings 11).`,
+  refs:["1 Chronicles 12:27","1 Chronicles 27:5"]},
+
+ {id:"ahimelek_a", name:"Ahimelek son of Abiathar", short:"Ahimelek (Abiathar's son)", cat:"priest", w:4,
+  clash:"Ahimelek", clashtag:"Priest under David alongside Zadok; 'a descendant of Ithamar.'",
+  dates:"c. 10th c. BC",
+  desc:`Listed with Zadok as priest under David — "Zadok son of Ahitub and Ahimelek son of Abiathar." He helps David divide the priests into divisions as "a descendant of Ithamar."`,
+  notconfused:`Ahimelek son of Ahitub, the priest of Nob and father of Abiathar, killed on Saul's orders (1 Samuel 22).`,
+  refs:["2 Samuel 8:17","1 Chronicles 18:16","1 Chronicles 24:3","1 Chronicles 24:6","1 Chronicles 24:31"]},
+
+ {id:"amariah_cp", name:"Amariah the chief priest", short:"Amariah", cat:"priest", w:4,
+  dates:"c. 9th c. BC",
+  desc:`Set by Jehoshaphat over the judges in Jerusalem "in any matter concerning the LORD."`,
+  refs:["2 Chronicles 19:11"]},
+
+ {id:"azariah_cp", name:"Azariah the chief priest (Uzziah's day)", short:"Azariah (priest, Uzziah)", cat:"priest", w:5,
+  clash:"Azariah", clashtag:"The chief priest who, with eighty priests, confronted King Uzziah in the temple.",
+  dates:"c. 8th c. BC",
+  desc:`With "eighty other courageous priests of the LORD" he follows Uzziah into the temple: "It is not right for you, Uzziah, to burn incense to the LORD." When leprosy breaks out on the king's forehead, "they hurried him out."`,
+  refs:["2 Chronicles 26:17–20"]},
+
+ {id:"azariah_h", name:"Azariah the chief priest (Hezekiah's day)", short:"Azariah (priest, Hezekiah)", cat:"priest", w:4,
+  clash:"Azariah", clashtag:"Chief priest 'from the family of Zadok' under Hezekiah.",
+  dates:"c. 8th–7th c. BC",
+  desc:`"Azariah the chief priest, from the family of Zadok," who tells Hezekiah that since the people began bringing their contributions "we have had enough to eat and plenty to spare." The text does not say whether he is the Azariah of Uzziah's day.`,
+  refs:["2 Chronicles 31:10–13"]},
+
+ {id:"jozadak", name:"Jozadak son of Seraiah", short:"Jozadak", cat:"priest", w:4,
+  dates:"c. 586 BC",
+  desc:`Last in the high-priestly line of 1 Chronicles 6 — "Seraiah the father of Jozadak. Jozadak was deported when the LORD sent Judah and Jerusalem into exile by the hand of Nebuchadnezzar." His son "Joshua son of Jozadak" was the priest who returned with Zerubbabel.`,
+  refs:["1 Chronicles 6:14–15","Ezra 3:2","Nehemiah 12:26"]},
+
+ // --- prophets and seers ---
+ {id:"iddo", name:"Iddo the seer", short:"Iddo", cat:"proph", w:5,
+  dates:"c. 10th c. BC",
+  desc:`A seer whose writings Chronicles cites as sources: "the visions of Iddo the seer concerning Jeroboam son of Nebat," his records "that deal with genealogies" for Rehoboam, and "the annotations of the prophet Iddo" on Abijah's reign.`,
+  notconfused:`The Iddo whose descendant was the prophet Zechariah (Ezra 5:1), and Iddo the leader of the Levites at Kasiphia (Ezra 8:17).`,
+  refs:["2 Chronicles 9:29","2 Chronicles 12:15","2 Chronicles 13:22"]},
+
+ {id:"azariah_o", name:"Azariah son of Oded", short:"Azariah (prophet)", cat:"proph", w:5,
+  clash:"Azariah", clashtag:"The prophet whose word moved Asa to purge idols and renew the covenant.",
+  dates:"c. 10th–9th c. BC",
+  desc:`"The Spirit of God came on Azariah son of Oded." He meets Asa after the victory over Zerah: "The LORD is with you when you are with him. If you seek him, he will be found by you… be strong and do not give up." Asa "took courage," removes the idols and leads Judah in a covenant to seek the LORD.`,
+  refs:["2 Chronicles 15:1–8"]},
+
+ {id:"hanani", name:"Hanani the seer", short:"Hanani", cat:"proph", w:5,
+  clash:"Hanani", clashtag:"The seer who rebuked King Asa and was imprisoned; father of the prophet Jehu.",
+  dates:"c. 9th c. BC",
+  desc:`Rebukes Asa for relying on Aram: "the eyes of the LORD range throughout the earth to strengthen those whose hearts are fully committed to him. You have done a foolish thing." Asa, enraged, puts him in prison. Father of the prophet Jehu.`,
+  notconfused:`Hanani, the brother of Nehemiah (Nehemiah 1:2).`,
+  refs:["2 Chronicles 16:7–10","2 Chronicles 19:2","1 Kings 16:1"]},
+
+ {id:"jahaziel", name:"Jahaziel the Levite", short:"Jahaziel", cat:"proph", w:5,
+  dates:"c. 9th c. BC",
+  desc:`"A Levite and descendant of Asaph," on whom "the Spirit of the LORD came" in the assembly as Moab, Ammon and Edom advanced: "Do not be afraid or discouraged because of this vast army. For the battle is not yours, but God's… stand firm and see the deliverance the LORD will give you."`,
+  refs:["2 Chronicles 20:14–17"]},
+
+ {id:"eliezer_d", name:"Eliezer son of Dodavahu", short:"Eliezer (prophet)", cat:"proph", w:4,
+  clash:"Eliezer", clashtag:"The prophet of Mareshah who foretold the wreck of Jehoshaphat's fleet.",
+  dates:"c. 9th c. BC",
+  desc:`"Eliezer son of Dodavahu of Mareshah prophesied against Jehoshaphat, saying, 'Because you have made an alliance with Ahaziah, the LORD will destroy what you have made.' The ships were wrecked."`,
+  refs:["2 Chronicles 20:35–37"]},
+
+ {id:"zechariah_j", name:"Zechariah son of Jehoiada", short:"Zechariah (Jehoiada's son)", cat:"proph", w:6,
+  clash:"Zechariah", clashtag:"Son of the priest Jehoiada, stoned in the temple court on King Joash's order.",
+  dates:"c. 9th–8th c. BC",
+  desc:`After Jehoiada's death, "the Spirit of God came on Zechariah son of Jehoiada the priest": "Because you have forsaken the LORD, he has forsaken you." By order of King Joash he is stoned "in the courtyard of the LORD's temple," saying as he dies, "May the LORD see this and call you to account."`,
+  notconfused:`Zechariah the post-exilic prophet, and Zechariah king of Israel.`,
+  refs:["2 Chronicles 24:20–22","2 Chronicles 24:25"]},
+
+ {id:"zechariah_u", name:"Zechariah, Uzziah's instructor", short:"Zechariah (Uzziah's teacher)", cat:"proph", w:4,
+  clash:"Zechariah", clashtag:"The man 'who instructed' King Uzziah 'in the fear of God.'",
+  dates:"c. 8th c. BC",
+  desc:`Uzziah "sought God during the days of Zechariah, who instructed him in the fear of God. As long as he sought the LORD, God gave him success."`,
+  refs:["2 Chronicles 26:5"]},
+
+ {id:"oded", name:"Oded the prophet", short:"Oded", cat:"proph", w:5,
+  dates:"c. 8th c. BC (Israel)",
+  desc:`"A prophet of the LORD named Oded" in Samaria, who meets the army returning with 200,000 captives from Judah in Ahaz's day: "aren't you also guilty of sins against the LORD your God? … Send back your fellow Israelites." Leaders of Ephraim agree; the captives are clothed, fed and returned to Jericho.`,
+  notconfused:`Oded the father of the prophet Azariah in Asa's day (2 Chronicles 15:1); the text does not connect them.`,
+  refs:["2 Chronicles 28:9–15"]},
+
+
+ // ================= EZRA · NEHEMIAH · ESTHER =================
+ {id:"sheshbazzar", name:"Sheshbazzar the prince of Judah", short:"Sheshbazzar", cat:"exile", w:6,
+  dates:"c. 538 BC",
+  desc:`"Sheshbazzar the prince of Judah," to whom Cyrus's treasurer counts out the 5,400 gold and silver temple articles that Nebuchadnezzar had taken; he brings them up from Babylon with the exiles. Ezra 5 says Cyrus "appointed" him governor and that he "laid the foundations of the house of God in Jerusalem." The text does not say how he relates to Zerubbabel, who is also credited with the foundation (Ezra 3).`,
+  refs:["Ezra 1:8–11","Ezra 5:14–16"]},
+
+ {id:"hanani_n", name:"Hanani brother of Nehemiah", short:"Hanani (Nehemiah's brother)", cat:"exile", w:4,
+  clash:"Hanani", clashtag:"Nehemiah's brother, who brought word of Jerusalem's broken walls and was later put in charge of the city.",
+  dates:"c. 445 BC",
+  desc:`"One of my brothers," who comes from Judah to Susa with news that "the wall of Jerusalem is broken down, and its gates have been burned with fire." After the wall is finished Nehemiah puts him in charge of Jerusalem with Hananiah the commander of the citadel.`,
+  notconfused:`Hanani the seer, imprisoned by King Asa (2 Chronicles 16).`,
+  refs:["Nehemiah 1:2–3","Nehemiah 7:2"]},
+
+ {id:"shekaniah_e", name:"Shekaniah son of Jehiel", short:"Shekaniah", cat:"exile", w:4,
+  dates:"c. 458 BC",
+  desc:`"One of the descendants of Elam," who answers Ezra's prayer of confession: "We have been unfaithful to our God by marrying foreign women… But in spite of this, there is still hope for Israel." He proposes a covenant to send the foreign wives away: "Rise up; this matter is in your hands. We will support you."`,
+  refs:["Ezra 10:2–4"]},
+
+ {id:"abihail_e", name:"Abihail father of Esther", short:"Abihail (Esther's father)", cat:"exile", w:3,
+  dates:"5th c. BC",
+  desc:`Esther's father and Mordecai's uncle — "the daughter of his uncle Abihail." Esther was raised by Mordecai "because she had neither father nor mother."`,
+  refs:["Esther 2:7","Esther 2:15","Esther 9:29"]},
+
+ {id:"joiakim", name:"Joiakim son of Joshua", short:"Joiakim", cat:"priest", w:4,
+  dates:"5th c. BC",
+  desc:`High priest after his father Joshua: "Joshua was the father of Joiakim, Joiakim the father of Eliashib." The heads of the priestly families "in the days of Joiakim" are listed in Nehemiah 12.`,
+  refs:["Nehemiah 12:10","Nehemiah 12:12–26"]},
+
+ {id:"eliashib", name:"Eliashib the high priest", short:"Eliashib", cat:"priest", w:6,
+  dates:"c. 445 BC",
+  desc:`Son of Joiakim. He and his fellow priests rebuild and dedicate the Sheep Gate. Later, as the priest "in charge of the storerooms," he gives Tobiah the Ammonite "a large room" in the temple courts while Nehemiah is away; Nehemiah throws Tobiah's goods out. One of his grandsons became son-in-law to Sanballat.`,
+  refs:["Nehemiah 3:1","Nehemiah 3:20–21","Nehemiah 12:10","Nehemiah 13:4–9","Nehemiah 13:28"]},
+
+ {id:"joiada_e", name:"Joiada son of Eliashib", short:"Joiada", cat:"priest", w:3,
+  dates:"5th c. BC",
+  desc:`Son of the high priest Eliashib and father of Jonathan. "One of the sons of Joiada son of Eliashib the high priest was son-in-law to Sanballat the Horonite," and Nehemiah drove him away.`,
+  refs:["Nehemiah 12:10–11","Nehemiah 13:28"]},
+
+ {id:"meremoth", name:"Meremoth son of Uriah", short:"Meremoth", cat:"priest", w:4,
+  dates:"c. 458 – 445 BC",
+  desc:`The priest into whose hands Ezra's company weighs out the silver, gold and sacred articles in the temple. As "Meremoth son of Uriah, the son of Hakkoz," he repairs two sections of the wall, one reaching to the house of Eliashib the high priest.`,
+  refs:["Ezra 8:33","Nehemiah 3:4","Nehemiah 3:21"]},
+
+ {id:"shemaiah_d", name:"Shemaiah son of Delaiah", short:"Shemaiah (hired prophet)", cat:"proph", w:4,
+  clash:"Shemaiah", clashtag:"A prophet hired by Tobiah and Sanballat to frighten Nehemiah into hiding in the temple.",
+  dates:"c. 445 BC",
+  desc:`Shut in at his home, he urges Nehemiah, "Let us meet in the house of God… because men are coming to kill you." Nehemiah answers, "Should a man like me run away?" and realizes "that God had not sent him, but that he had prophesied against me because Tobiah and Sanballat had hired him."`,
+  notconfused:`Shemaiah the man of God who stopped Rehoboam's war (1 Kings 12).`,
+  refs:["Nehemiah 6:10–13"]},
+
+ {id:"noadiah", name:"Noadiah the prophet", short:"Noadiah", cat:"proph", w:4,
+  dates:"c. 445 BC",
+  desc:`A prophet whom Nehemiah names among his intimidators: "remember also the prophet Noadiah and how she and the rest of the prophets have been trying to intimidate me."`,
+  notconfused:`Noadiah son of Binnui, a Levite in Ezra's day (Ezra 8:33).`,
+  refs:["Nehemiah 6:14"]},
+
+
+ // ----- Wisdom & Poetry (Job, Psalms, Proverbs, Ecclesiastes, Song of Songs) -----
+ {id:"job_wife", name:"Job's wife", short:"Job's wife", cat:"wis", w:5,
+  dates:"undated",
+  desc:`Unnamed. When Job sits among the ashes scraping his sores, she asks him, "Are you still maintaining your integrity? Curse God and die!" He answers, "You are talking like a foolish woman. Shall we accept good from God, and not trouble?" Later Job laments, "My breath is offensive to my wife."`,
+  refs:["Job 2:9–10","Job 19:17"]},
+
+ {id:"jemimah", name:"Jemimah daughter of Job", short:"Jemimah", cat:"wis", w:3,
+  dates:"undated",
+  desc:`The first of the three daughters born to Job after the LORD restored his fortunes. "Nowhere in all the land were there found women as beautiful as Job's daughters, and their father granted them an inheritance along with their brothers."`,
+  refs:["Job 42:13–15"]},
+
+ {id:"keziah", name:"Keziah daughter of Job", short:"Keziah", cat:"wis", w:3,
+  dates:"undated",
+  desc:`The second of Job's three daughters born after his restoration; with her sisters she was given an inheritance "along with their brothers."`,
+  refs:["Job 42:13–15"]},
+
+ {id:"kerenhappuch", name:"Keren-Happuch daughter of Job", short:"Keren-Happuch", cat:"wis", w:3,
+  dates:"undated",
+  desc:`The third of Job's three daughters born after his restoration; with her sisters she was given an inheritance "along with their brothers."`,
+  refs:["Job 42:13–15"]},
+
+ {id:"eliphaz_t", name:"Eliphaz the Temanite", short:"Eliphaz", cat:"wis", w:7,
+  dates:"undated",
+  desc:`The first of Job's three friends, who come "to sympathize with him and comfort him" and sit silent with him for seven days. He opens the debate — "Who, being innocent, has ever perished? … those who plow evil and those who sow trouble reap it" — and in his third speech accuses Job outright: "Is not your wickedness great? Are not your sins endless?" urging, "Submit to God and be at peace with him." At the end the LORD addresses him: "I am angry with you and your two friends, because you have not spoken the truth about me, as my servant Job has"; the three offer seven bulls and seven rams, and the LORD accepts Job's prayer for them.`,
+  notconfused:`Eliphaz the firstborn of Esau, whose son was named Teman (Genesis 36:10–11); the book of Job does not connect them.`,
+  refs:["Job 2:11–13","Job 4–5","Job 15","Job 22","Job 42:7–9"]},
+
+ {id:"bildad", name:"Bildad the Shuhite", short:"Bildad", cat:"wis", w:6,
+  dates:"undated",
+  desc:`The second of Job's three friends. "Does God pervert justice? Does the Almighty pervert what is right?" he asks, and tells Job, "When your children sinned against him, he gave them over to the penalty of their sin"; "Surely God does not reject one who is blameless." His third, short speech begins, "Dominion and awe belong to God." With the others he is rebuked by the LORD and accepted through Job's prayer.`,
+  notconfused:`Shuah, a son of Abraham by Keturah (Genesis 25:2); the book does not explain "Shuhite."`,
+  refs:["Job 2:11","Job 8","Job 18","Job 25","Job 42:9"]},
+
+ {id:"zophar", name:"Zophar the Naamathite", short:"Zophar", cat:"wis", w:6,
+  dates:"undated",
+  desc:`The third of Job's friends, who speaks twice. He tells Job, "Know this: God has even forgotten some of your sin," and promises restoration "if you devote your heart to him … if you put away the sin that is in your hand"; his second speech insists "that the mirth of the wicked is brief." With the others he is rebuked by the LORD and accepted through Job's prayer.`,
+  refs:["Job 2:11","Job 11","Job 20","Job 42:9"]},
+
+ {id:"elihu_b", name:"Elihu son of Barakel", short:"Elihu", cat:"wis", w:6,
+  aliases:"Elihu the Buzite",
+  dates:"undated",
+  desc:`"Elihu son of Barakel the Buzite, of the family of Ram," a younger man who had waited to speak "because they were older than he." Angry with Job "for justifying himself rather than God," and with the three friends "because they had found no way to refute Job, and yet had condemned him," he speaks at length: "God is greater than any mortal"; "God is mighty, but despises no one." He is not mentioned again after his speeches, when the LORD answers Job out of the storm.`,
+  notconfused:`The Elihu among Samuel's ancestors (1 Samuel 1:1). Buz was a brother of Uz among Nahor's sons (Genesis 22:21), and Ram is a name in Judah's line; the book does not explain "Buzite" or "the family of Ram."`,
+  refs:["Job 32–37"]},
+
+ {id:"heman_ez", name:"Heman the Ezrahite", short:"Heman the Ezrahite", cat:"wis", w:5,
+  clash:"Heman", clashtag:"The wise man of Psalm 88 and 1 Kings 4:31, whom Solomon surpassed in wisdom.",
+  dates:"before or in Solomon's day (undated)",
+  desc:`Psalm 88 — "A song. A psalm of the Sons of Korah… A maskil of Heman the Ezrahite" — is a lament that ends, "darkness is my closest friend." 1 Kings 4:31 says Solomon "was wiser than anyone else, including Ethan the Ezrahite — wiser than Heman, Kalkol and Darda, the sons of Mahol"; 1 Chronicles 2:6 lists Ethan, Heman, Kalkol and Darda among the sons of Zerah.`,
+  notconfused:`Heman the Levite musician, grandson of Samuel, whom David set over the temple music (1 Chronicles 6:33; 25:1); Scripture does not say whether they are the same man.`,
+  refs:["Psalm 88","1 Kings 4:31","1 Chronicles 2:6"]},
+
+ {id:"ethan_ez", name:"Ethan the Ezrahite", short:"Ethan the Ezrahite", cat:"wis", w:5,
+  clash:"Ethan", clashtag:"The wise man of Psalm 89 and 1 Kings 4:31, whom Solomon surpassed in wisdom.",
+  dates:"before or in Solomon's day (undated)",
+  desc:`Psalm 89 is "A maskil of Ethan the Ezrahite": "I will sing of the LORD's great love forever." It rehearses the covenant with David — "I will establish your line forever and make your throne firm through all generations" — and then laments, "You have renounced the covenant with your servant and have defiled his crown in the dust." 1 Kings 4:31 names "Ethan the Ezrahite" among the wise men whom Solomon surpassed.`,
+  notconfused:`Ethan the Merarite musician who sounded the cymbals with Heman and Asaph (1 Chronicles 15:17–19), and Ethan son of Zerah (1 Chronicles 2:6); Scripture does not say whether any of these are the same man.`,
+  refs:["Psalm 89","1 Kings 4:31"]},
+
+ {id:"agur", name:"Agur son of Jakeh", short:"Agur", cat:"wis", w:5,
+  dates:"undated",
+  desc:`"The sayings of Agur son of Jakeh — an inspired utterance. This man's utterance to Ithiel" (Proverbs 30). He calls himself "only a brute, not a man," asks, "Who has gone up to heaven and come down? … What is his name, and what is the name of his son?" and prays, "give me neither poverty nor riches, but give me only my daily bread." Nothing more is told of him, of Jakeh, or of Ithiel.`,
+  refs:["Proverbs 30"]},
+
+ {id:"lemuel", name:"King Lemuel", short:"Lemuel", cat:"wis", w:5,
+  dates:"undated",
+  desc:`"The sayings of King Lemuel — an inspired utterance his mother taught him" (Proverbs 31:1–9): "It is not for kings, Lemuel — it is not for kings to drink wine"; "Speak up for those who cannot speak for themselves, for the rights of all who are destitute." His kingdom is not named.`,
+  refs:["Proverbs 31:1–9"]},
+
+ {id:"lemuel_mother", name:"Lemuel's mother", short:"Lemuel's mother", cat:"wis", w:4,
+  dates:"undated",
+  desc:`Unnamed; she taught her son the "inspired utterance" of Proverbs 31:1–9: "Listen, my son! Listen, son of my womb! … Do not spend your strength on women, your vigor on those who ruin kings." The text does not say whether the poem of "a wife of noble character" that follows (31:10–31) is also hers.`,
+  refs:["Proverbs 31:1–9"]},
+
+ {id:"teacher_ecc", name:"The Teacher (Ecclesiastes)", short:"The Teacher", cat:"wis", w:8,
+  aliases:"son of David, king in Jerusalem",
+  dates:"undated",
+  desc:`"The words of the Teacher, son of David, king in Jerusalem": "Meaningless! Meaningless! … Everything is meaningless." As "king over Israel in Jerusalem" he tests wisdom, pleasure and great works — houses, vineyards, gardens, reservoirs, "silver and gold … and a harem as well" — becoming "greater by far than anyone in Jerusalem before me," yet finds it all "a chasing after the wind." Still, "a person can do nothing better than to eat and drink and find satisfaction in their own toil. This too, I see, is from the hand of God." He "set in order many proverbs," and the book concludes: "Fear God and keep his commandments, for this is the duty of all mankind."`,
+  notconfused:`The book never names him. He is traditionally identified with Solomon, David's son and king in Jerusalem, but the text itself only calls him "son of David."`,
+  refs:["Ecclesiastes 1–2","Ecclesiastes 12:8–14"]},
+
+ {id:"shulammite", name:"The Shulammite", short:"Shulammite", cat:"wis", w:6,
+  aliases:"the beloved (Song of Songs)",
+  dates:"undated",
+  desc:`The woman whose voice leads "Solomon's Song of Songs." "Dark am I, yet lovely, daughters of Jerusalem," she says; "my mother's sons were angry with me and made me take care of the vineyards." She and her beloved praise one another in a series of love poems; she charges the daughters of Jerusalem, "Do not arouse or awaken love until it so desires," and the friends call, "Come back, come back, O Shulammite." She asks, "Place me like a seal over your heart … for love is as strong as death," and "Many waters cannot quench love."`,
+  notconfused:`The Song never names her beloved. It mentions King Solomon's carriage and wedding day (3:6–11) and his vineyard (8:11–12), but whether Solomon is her beloved is disputed.`,
+  refs:["Song of Songs 1:1–7","Song of Songs 2:7","Song of Songs 6:13","Song of Songs 8:6–12"]},
+
+ {id:"cush_b", name:"Cush the Benjamite", short:"Cush", cat:"king", w:4,
+  dates:"c. 10th c. BC (David's day)",
+  desc:`Named only in the title of Psalm 7: "A shiggaion of David, which he sang to the LORD concerning Cush, a Benjamite." The psalm asks, "save and deliver me from all who pursue me"; nothing more is told of him.`,
+  notconfused:`Cush son of Ham (Genesis 10:6), and the land of Cush.`,
+  refs:["Psalm 7"]},
+
+
  {id:"nathan", name:"Nathan the prophet", short:"Nathan", cat:"proph", w:9,
   clash:"Nathan", clashtag:"The prophet who gave David the covenant promise and confronted him over Bathsheba.",
   dates:"c. 10th c. BC",
-  desc:`David's prophet. When David wishes to build a house for the ark, the LORD sends Nathan to promise instead that the LORD will build David a house: "Your house and your kingdom will endure forever before me." After David takes Bathsheba, Nathan tells him the parable of the rich man and the poor man's ewe lamb — "You are the man!" — and announces that "the sword will never depart from your house." He conveys the LORD's name for Solomon, Jedidiah.`,
+  desc:`David's prophet. When David wishes to build a house for the ark, the LORD sends Nathan to promise instead that the LORD will build David a house: "Your house and your kingdom will endure forever before me." After David takes Bathsheba, Nathan tells him the parable of the rich man and the poor man's ewe lamb — "You are the man!" — and announces that "the sword will never depart from your house." He conveys the LORD's name for Solomon, Jedidiah. Chronicles cites "the records of Nathan the prophet" for the reigns of David and Solomon. Psalm 51 is headed, "When the prophet Nathan came to him after David had committed adultery with Bathsheba."`,
   notconfused:`Nathan son of David, born in Jerusalem (2 Samuel 5:14).`,
-  refs:["2 Samuel 7","2 Samuel 12:1–25","1 Kings 1"]},
+  refs:["2 Samuel 7","2 Samuel 12:1–25","1 Kings 1","1 Chronicles 17","1 Chronicles 29:29","2 Chronicles 9:29","2 Chronicles 29:25","Psalm 51"]},
 
  {id:"elijah", name:"Elijah the Tishbite", short:"Elijah", cat:"proph", w:14, halo:1,
   aliases:"the Tishbite · from Tishbe in Gilead",
   dates:"c. 9th c. BC (days of Ahab and Ahaziah)",
-  desc:`"Elijah the Tishbite, from Tishbe in Gilead," tells Ahab there will be "neither dew nor rain in the next few years except at my word." Fed by ravens at the Kerith Ravine and by a widow at Zarephath, whose son he raises, he faces the prophets of Baal on Mount Carmel — "How long will you waver between two opinions?" — and the fire of the LORD falls: "The LORD—he is God!" Fleeing Jezebel to Horeb, he hears "a gentle whisper" and is sent to anoint Hazael, Jehu and Elisha. He condemns Ahab over Naboth's vineyard, foretells Ahaziah's death and calls down fire on two companies of fifty. At the Jordan he parts the water with his cloak, and "a chariot of fire and horses of fire" appear as he goes "up to heaven in a whirlwind." Malachi promises his return.`,
-  refs:["1 Kings 17–19","1 Kings 21:17–29","2 Kings 1–2","Malachi 4:5"]},
+  desc:`"Elijah the Tishbite, from Tishbe in Gilead," tells Ahab there will be "neither dew nor rain in the next few years except at my word." Fed by ravens at the Kerith Ravine and by a widow at Zarephath, whose son he raises, he faces the prophets of Baal on Mount Carmel — "How long will you waver between two opinions?" — and the fire of the LORD falls: "The LORD—he is God!" Fleeing Jezebel to Horeb, he hears "a gentle whisper" and is sent to anoint Hazael, Jehu and Elisha. He condemns Ahab over Naboth's vineyard, foretells Ahaziah's death and calls down fire on two companies of fifty. At the Jordan he parts the water with his cloak, and "a chariot of fire and horses of fire" appear as he goes "up to heaven in a whirlwind." Malachi promises his return. 2 Chronicles 21 records a letter from him to Jehoram of Judah, foretelling a lingering disease for murdering his brothers.`,
+  refs:["1 Kings 17–19","1 Kings 21:17–29","2 Kings 1–2","Malachi 4:5","2 Chronicles 21:12–15"]},
 
  {id:"elisha", name:"Elisha son of Shaphat", short:"Elisha", cat:"proph", w:12,
   aliases:"the man of God",
@@ -2981,8 +3307,8 @@ const OT_PEOPLE = [
  {id:"jeremiah", name:"Jeremiah", short:"Jeremiah", cat:"proph", w:12, halo:1,
   aliases:"the weeping prophet",
   dates:"prophesied c. 627 – 586 BC",
-  desc:`Called young and opposed all his life, he warns Judah of Babylon and lives to see Jerusalem fall. He promises a "new covenant" written on the heart; traditionally also author of Lamentations.`,
-  refs:["Jeremiah 1","Jeremiah 31","Lamentations 1"]},
+  desc:`Called young and opposed all his life, he warns Judah of Babylon and lives to see Jerusalem fall. He promises a "new covenant" written on the heart; traditionally also author of Lamentations. 2 Chronicles says he "composed laments for Josiah," that Zedekiah "did not humble himself before Jeremiah the prophet," and that the exile's seventy years fulfilled "the word of the LORD spoken by Jeremiah."`,
+  refs:["Jeremiah 1","Jeremiah 31","Lamentations 1","2 Chronicles 35:25","2 Chronicles 36:12","2 Chronicles 36:21–22"]},
 
  {id:"ezekiel", name:"Ezekiel", short:"Ezekiel", cat:"proph", w:11,
   dates:"prophesied c. 593 – 571 BC (in exile)",
@@ -3045,15 +3371,15 @@ const OT_PEOPLE = [
 
  {id:"haggai", name:"Haggai", short:"Haggai", cat:"proph", w:7,
   dates:"prophesied c. 520 BC (post-exile)",
-  desc:`A post-exilic prophet who rouses the returned exiles to stop neglecting the ruined Temple and rebuild it, with Zerubbabel and Jeshua leading the work.`,
-  refs:["Haggai 1–2","Ezra 5:1"]},
+  desc:`A post-exilic prophet who rouses the returned exiles to stop neglecting the ruined Temple and rebuild it, with Zerubbabel and Jeshua leading the work. Ezra records that he and Zechariah "prophesied to the Jews in Judah and Jerusalem," and the elders "continued to build and prosper under the preaching of Haggai."`,
+  refs:["Haggai 1–2","Ezra 5:1","Ezra 6:14"]},
 
  {id:"zechariah_p", name:"Zechariah the prophet", short:"Zechariah (Prophet)", cat:"proph", w:8,
   clash:"Zechariah", clashtag:"Post-exilic prophet of visions who, with Haggai, urged on the rebuilding of the Temple.",
   dates:"prophesied c. 520 – 518 BC (post-exile)",
-  desc:`A post-exilic prophet of night visions who, with Haggai, spurs the Temple's rebuilding and foretells a humble king coming "on a donkey" and a shepherd who is pierced.`,
+  desc:`A post-exilic prophet of night visions who, with Haggai, spurs the Temple's rebuilding and foretells a humble king coming "on a donkey" and a shepherd who is pierced. Ezra calls him "a descendant of Iddo."`,
   notconfused:`King Zechariah of Israel, and Zechariah the father of John the Baptist in the New Testament.`,
-  refs:["Zechariah 1","Zechariah 9:9","Ezra 5:1"]},
+  refs:["Zechariah 1","Zechariah 9:9","Ezra 5:1","Ezra 6:14","Nehemiah 12:16"]},
 
  {id:"malachi", name:"Malachi", short:"Malachi", cat:"proph", w:8,
   dates:"prophesied c. 430 BC (post-exile)",
@@ -3066,40 +3392,43 @@ const OT_PEOPLE = [
   refs:["2 Kings 22:14–20"]},
 
  // ---------------- EXILE & RETURN ----------------
- {id:"zerubbabel", name:"Zerubbabel", short:"Zerubbabel", cat:"exile", w:9,
-  dates:"c. 520 BC (post-exile)",
-  desc:`A prince of David's line who leads the first exiles home from Babylon and, with the high priest Jeshua, lays the foundation of the second Temple.`,
-  refs:["Ezra 3","Ezra 5","Haggai 2:23"]},
+ {id:"zerubbabel", name:"Zerubbabel son of Shealtiel", short:"Zerubbabel", cat:"exile", w:9,
+  dates:"c. 538 – 515 BC (post-exile)",
+  desc:`Listed first among those who returned from Babylon. With "Joshua son of Jozadak" he rebuilds the altar, keeps the Festival of Tabernacles, and in the second year begins the temple; at the laying of its foundation the people shout for joy while the old men weep. He refuses the help of "the enemies of Judah and Benjamin" — "You have no part with us" — and when work restarts under Darius, urged on by Haggai and Zechariah, the temple is finished. Ezra calls him "son of Shealtiel"; 1 Chronicles 3:19 lists him among "the sons of Pedaiah," Shealtiel's brother.`,
+  refs:["Ezra 2:2","Ezra 3","Ezra 4:1–3","Ezra 5:1–2","Nehemiah 12:1","1 Chronicles 3:19","Haggai 2:23"]},
 
- {id:"jeshua_hp", name:"Jeshua the high priest", short:"Jeshua (High Priest)", cat:"exile", w:7,
-  aliases:"Joshua the high priest",
+ {id:"jeshua_hp", name:"Joshua son of Jozadak", short:"Joshua (High Priest)", cat:"exile", w:7,
+  aliases:"Jeshua the high priest",
   clash:"Joshua", clashtag:"The high priest who, with Zerubbabel, rebuilt the altar and Temple after the return from exile.",
-  dates:"c. 520 BC (post-exile)",
-  desc:`The first high priest of the restored community, who returns with Zerubbabel and rebuilds the altar and Temple; the prophet Zechariah sees him cleansed and re-clothed in a vision.`,
+  dates:"c. 538 – 515 BC (post-exile)",
+  desc:`"Joshua son of Jozadak," the priest who returns with Zerubbabel; with his fellow priests he rebuilds the altar and, with his sons and the Levites, supervises the temple work, restarting it under Darius with the prophets' support. He is the father of Joiakim, the next high priest; some of his descendants had married foreign women in Ezra's day. The prophet Zechariah sees him cleansed and re-clothed in a vision.`,
   notconfused:`Joshua son of Nun, who conquered Canaan nearly a thousand years earlier.`,
-  refs:["Ezra 3","Zechariah 3","Haggai 1:1"]},
+  refs:["Ezra 2:2","Ezra 3:2–9","Ezra 5:2","Ezra 10:18","Nehemiah 12:1","Nehemiah 12:10","Zechariah 3","Haggai 1:1"]},
 
- {id:"ezra", name:"Ezra", short:"Ezra", cat:"exile", w:10,
-  aliases:"the scribe",
-  dates:"c. 458 BC (post-exile)",
-  desc:`A priest and scribe "skilled in the Law of Moses" who leads a later group home from Babylon and re-establishes the Torah at the heart of Jewish life.`,
-  refs:["Ezra 7","Nehemiah 8"]},
+ {id:"ezra", name:"Ezra the priest and teacher of the Law", short:"Ezra", cat:"exile", w:11,
+  aliases:"the scribe · teacher of the Law",
+  dates:"arrived c. 458 BC (7th year of Artaxerxes; date disputed)",
+  desc:`"Ezra son of Seraiah," whose line runs back through Hilkiah and Zadok to "Aaron the chief priest" — "a teacher well versed in the Law of Moses," who "had devoted himself to the study and observance of the Law of the LORD, and to teaching its decrees and laws in Israel." With a letter from Artaxerxes and gifts for the temple he leads a company from Babylon; ashamed to ask for soldiers, he proclaims a fast at the Ahava Canal, and "the hand of our God was on us." Told that many, priests included, have married foreign women, he tears his clothes and prays, "our guilt has reached to the heavens," and the people covenant to send the foreign wives away. In Nehemiah he reads the Book of the Law aloud from daybreak till noon, the Levites "giving the meaning," and leads the celebration of the Festival of Tabernacles and the dedication of the wall.`,
+  refs:["Ezra 7–10","Nehemiah 8","Nehemiah 12:26","Nehemiah 12:36"]},
 
- {id:"nehemiah", name:"Nehemiah", short:"Nehemiah", cat:"exile", w:10,
-  dates:"c. 445 BC (post-exile)",
-  desc:`The Persian king's cupbearer who returns to rebuild Jerusalem's ruined walls in fifty-two days against fierce opposition, and reforms the restored community with Ezra.`,
-  refs:["Nehemiah 1–2","Nehemiah 6","Nehemiah 8"]},
+ {id:"nehemiah", name:"Nehemiah son of Hakaliah", short:"Nehemiah", cat:"exile", w:11,
+  aliases:"cupbearer to the king · the governor",
+  dates:"governor c. 445 – 433 BC (20th to 32nd year of Artaxerxes)",
+  desc:`Cupbearer to Artaxerxes in Susa. Hearing that Jerusalem's wall is broken down, he weeps, fasts and prays; when the king asks why his face is sad, he prays "to the God of heaven" and asks to be sent to rebuild the city. Inspecting the walls by night, he rallies the people — "Let us start rebuilding" — and, against the mockery, plots and threats of Sanballat, Tobiah and Geshem, the builders work with a weapon in one hand: "Our God will fight for us!" The wall is completed "in fifty-two days." As governor he refuses the governor's food allowance, makes the nobles stop charging interest, and stands beside Ezra at the reading of the Law: "the joy of the LORD is your strength." Returning after a time away, he throws Tobiah out of the temple storeroom, restores the Levites' portions, enforces the Sabbath and confronts mixed marriages, praying, "Remember me with favor, my God."`,
+  refs:["Nehemiah 1–2","Nehemiah 4–6","Nehemiah 8:9–10","Nehemiah 12:31–43","Nehemiah 13"]},
 
- {id:"esther", name:"Esther", short:"Esther", cat:"exile", w:10,
+ {id:"esther", name:"Esther", short:"Esther", cat:"exile", w:11,
   aliases:"Hadassah",
-  dates:"c. 479 BC (Persia)",
-  desc:`A Jewish orphan who becomes queen of Persia and risks her life — "for such a time as this" — to expose Haman's plot and save her people. The feast of Purim celebrates the deliverance.`,
-  refs:["Esther 2","Esther 4","Esther 7–9"]},
+  dates:"made queen c. 479 BC (7th year of Xerxes)",
+  desc:`"Hadassah… also known as Esther," daughter of Abihail, raised by her cousin Mordecai "because she had neither father nor mother." Taken into the king's harem, she wins Hegai's favor and then the king's: Xerxes "set a royal crown on her head and made her queen instead of Vashti." Keeping her nationality secret at Mordecai's word, she reports his discovery of a plot against the king. When Haman's edict condemns the Jews, Mordecai tells her, "who knows but that you have come to your royal position for such a time as this?" She asks the Jews of Susa to fast and goes to the king unsummoned — "If I perish, I perish." At her second banquet she exposes "this vile Haman!" and pleads for her people; with Mordecai she writes to confirm the days of Purim.`,
+  refs:["Esther 2","Esther 4–5","Esther 7–9"]},
 
- {id:"mordecai", name:"Mordecai", short:"Mordecai", cat:"exile", w:8,
-  dates:"c. 479 BC (Persia)",
-  desc:`Esther's older cousin and guardian, whose refusal to bow to Haman sparks the crisis — and whose loyalty is finally honored above the schemer's.`,
-  refs:["Esther 2","Esther 6","Esther 10"]},
+ {id:"mordecai", name:"Mordecai son of Jair", short:"Mordecai", cat:"exile", w:9,
+  aliases:"Mordecai the Jew",
+  dates:"5th c. BC (Persia)",
+  desc:`"A Jew of the tribe of Benjamin, named Mordecai son of Jair, the son of Shimei, the son of Kish," of the family carried into exile with Jehoiachin. He raises his orphaned cousin Esther and, sitting at the king's gate, uncovers Bigthana and Teresh's plot. He will not kneel to Haman, which provokes the edict against the Jews; he urges Esther to act "for such a time as this." Honored by the sleepless king through Haman himself, he receives the king's signet ring, writes the counter-edict, establishes Purim, and becomes "second in rank to King Xerxes… because he worked for the good of his people."`,
+  notconfused:`The Mordecai named among those who returned with Zerubbabel (Ezra 2:2); his ancestor Kish is not Kish the father of King Saul.`,
+  refs:["Esther 2:5–7","Esther 2:19–23","Esther 3:2–6","Esther 4","Esther 6","Esther 8–10"]},
 
  // ---------------- FOREIGN NATIONS ----------------
  // Genesis
@@ -3120,7 +3449,7 @@ const OT_PEOPLE = [
  {id:"melchizedek", name:"Melchizedek", short:"Melchizedek", cat:"natn", w:8,
   aliases:"king of Salem · priest of God Most High",
   dates:"c. 2000 BC (traditional)",
-  desc:`King of Salem and "priest of God Most High," who brings out bread and wine to Abram after his victory over the four kings and blesses him: "Blessed be Abram by God Most High, Creator of heaven and earth." Abram gives him a tenth of everything.`,
+  desc:`King of Salem and "priest of God Most High," who brings out bread and wine to Abram after his victory over the four kings and blesses him: "Blessed be Abram by God Most High, Creator of heaven and earth." Abram gives him a tenth of everything. Psalm 110:4 declares, "You are a priest forever, in the order of Melchizedek."`,
   refs:["Genesis 14:18–20","Psalm 110:4","Hebrews 7"]},
 
  {id:"kedorlaomer", name:"Kedorlaomer", short:"Kedorlaomer", cat:"natn", w:6,
@@ -3219,17 +3548,17 @@ const OT_PEOPLE = [
   dates:"c. 15th or 13th c. BC (disputed; unnamed)",
   desc:`The king Moses and Aaron confront after the death of the earlier king: "Who is the LORD, that I should obey him and let Israel go?" He makes the Israelites gather their own straw for bricks, and through blood, frogs, gnats, flies, the plague on livestock, boils, hail, locusts and darkness his heart is hardened — by himself and by the LORD. Twice he says "I have sinned," then refuses again. After his own firstborn son dies he summons Moses and Aaron in the night: "Up! Leave my people … And also bless me." Then he changes his mind and pursues with six hundred chariots; the sea flows back over his army, and "not one of them survived." Exodus does not name him or say plainly whether he himself died; scholars who try to identify him propose Amenhotep II or Rameses II, depending on the Exodus date.`,
   notconfused:`The pharaoh of the oppression earlier in Exodus, who "died" during Moses' years in Midian (Exodus 2:23), and the pharaohs of Genesis — the one who took Sarai into his palace (Genesis 12) and the one who raised Joseph to power (Genesis 41).`,
-  refs:["Exodus 5","Exodus 7–12","Exodus 14"]},
+  refs:["Exodus 5","Exodus 7–12","Exodus 14","Psalm 136:15"]},
 
  {id:"sihon", name:"Sihon king of the Amorites", short:"Sihon", cat:"natn", w:7,
   dates:"c. 15th c. BC (traditional)",
   desc:`The Amorite king "who reigned in Heshbon," who had taken Moab's land as far as the Arnon. When Israel asks to pass along the King's Highway he refuses and marches out to fight at Jahaz; Israel puts him to the sword and takes his land from the Arnon to the Jabbok. Deuteronomy says "the LORD your God had made his spirit stubborn and his heart obstinate."`,
-  refs:["Numbers 21:21–31","Deuteronomy 2:24–37","Deuteronomy 29:7","Joshua 12:2–3","Joshua 13:21"]},
+  refs:["Numbers 21:21–31","Deuteronomy 2:24–37","Deuteronomy 29:7","Joshua 12:2–3","Joshua 13:21","Psalm 135:11","Psalm 136:19"]},
 
  {id:"og", name:"Og king of Bashan", short:"Og", cat:"natn", w:7,
   dates:"c. 15th c. BC (traditional)",
   desc:`King of Bashan, who marches out against Israel at Edrei and is struck down with his sons and his army; his sixty fortified cities in Argob are taken. "Og king of Bashan was the last of the Rephaites. His bed was decorated with iron and was more than nine cubits long and four cubits wide." His land goes to the half-tribe of Manasseh.`,
-  refs:["Numbers 21:33–35","Numbers 32:33","Deuteronomy 3:1–13","Joshua 12:4–5","Joshua 13:12"]},
+  refs:["Numbers 21:33–35","Numbers 32:33","Deuteronomy 3:1–13","Joshua 12:4–5","Joshua 13:12","Psalm 135:11","Psalm 136:20"]},
 
  {id:"zur_m", name:"Zur", short:"Zur", cat:"natn", w:5,
   dates:"c. 15th c. BC (traditional)",
@@ -3342,12 +3671,12 @@ const OT_PEOPLE = [
   dates:"c. 12th c. BC (traditional; disputed)",
   desc:`"Jabin king of Canaan, who reigned in Hazor," with nine hundred iron chariots under his commander Sisera, who "cruelly oppressed the Israelites for twenty years." After Sisera's defeat "the hand of the Israelites pressed harder and harder against Jabin king of Canaan until they destroyed him."`,
   notconfused:`Jabin king of Hazor, defeated by Joshua at the Waters of Merom (Joshua 11).`,
-  refs:["Judges 4:2–3","Judges 4:23–24"]},
+  refs:["Judges 4:2–3","Judges 4:23–24","Psalm 83:9"]},
 
  {id:"sisera", name:"Sisera", short:"Sisera", cat:"natn", w:7,
   dates:"c. 12th c. BC (traditional; disputed)",
-  desc:`"The commander of Jabin's army," based in Harosheth Haggoyim. Routed by Barak at the Kishon, he flees on foot to the tent of Jael, who kills him in his sleep with a tent peg. "From the heavens the stars fought … against Sisera."`,
-  refs:["Judges 4","Judges 5:20–30"]},
+  desc:`"The commander of Jabin's army," based in Harosheth Haggoyim. Routed by Barak at the Kishon, he flees on foot to the tent of Jael, who kills him in his sleep with a tent peg. "From the heavens the stars fought … against Sisera." Psalm 83 prays, "Do to them as you did to Midian, as you did to Sisera and Jabin at the river Kishon."`,
+  refs:["Judges 4","Judges 5:20–30","Psalm 83:9–10"]},
 
  {id:"sisera_mother", name:"Sisera's mother", short:"Sisera's mother", cat:"natn", w:4,
   dates:"c. 12th c. BC (traditional; disputed)",
@@ -3357,22 +3686,22 @@ const OT_PEOPLE = [
  {id:"oreb", name:"Oreb", short:"Oreb", cat:"natn", w:4,
   dates:"c. 12th c. BC (traditional; disputed)",
   desc:`A Midianite leader captured by the men of Ephraim and killed "at the rock of Oreb"; his head was brought to Gideon.`,
-  refs:["Judges 7:24–25","Judges 8:3"]},
+  refs:["Judges 7:24–25","Judges 8:3","Psalm 83:11"]},
 
  {id:"zeeb", name:"Zeeb", short:"Zeeb", cat:"natn", w:4,
   dates:"c. 12th c. BC (traditional; disputed)",
   desc:`A Midianite leader captured by the men of Ephraim and killed "at the winepress of Zeeb"; his head was brought to Gideon.`,
-  refs:["Judges 7:24–25","Judges 8:3"]},
+  refs:["Judges 7:24–25","Judges 8:3","Psalm 83:11"]},
 
  {id:"zebah", name:"Zebah", short:"Zebah", cat:"natn", w:5,
   dates:"c. 12th c. BC (traditional; disputed)",
   desc:`One of "the two kings of Midian," pursued across the Jordan and captured by Gideon. Because they had killed Gideon's brothers at Tabor, Gideon kills them himself.`,
-  refs:["Judges 8:4–21"]},
+  refs:["Judges 8:4–21","Psalm 83:11"]},
 
  {id:"zalmunna", name:"Zalmunna", short:"Zalmunna", cat:"natn", w:5,
   dates:"c. 12th c. BC (traditional; disputed)",
   desc:`With Zebah, one of the two kings of Midian captured by Gideon; when Jether is afraid, they say, "Come, do it yourself. 'As is the man, so is his strength.'"`,
-  refs:["Judges 8:4–21"]},
+  refs:["Judges 8:4–21","Psalm 83:11"]},
 
  // 1 Samuel
  {id:"nahash", name:"Nahash the Ammonite", short:"Nahash", cat:"natn", w:6,
@@ -3383,23 +3712,24 @@ const OT_PEOPLE = [
  {id:"agag", name:"Agag king of the Amalekites", short:"Agag", cat:"natn", w:6,
   dates:"c. 11th c. BC (traditional)",
   desc:`King of the Amalekites whom Saul spares against the LORD's command. Brought in chains, he thinks, "Surely the bitterness of death is past," but Samuel says, "As your sword has made women childless, so will your mother be childless among women," and puts him to death at Gilgal.`,
+  notconfused:`Haman is called "the Agagite" in Esther; the text does not explain the term.`,
   refs:["1 Samuel 15:8–33"]},
 
  {id:"achish", name:"Achish son of Maok", short:"Achish", cat:"natn", w:7,
   aliases:"king of Gath",
   dates:"c. 11th c. BC (traditional)",
-  desc:`King of Gath. David first flees to him and feigns madness — "Am I so short of madmen?" Later Achish takes in David and his six hundred men, gives him Ziklag, and trusts him — "you have been as pleasing in my eyes as an angel of God" — until the Philistine commanders refuse to let David fight with them at Gilboa.`,
-  refs:["1 Samuel 21:10–15","1 Samuel 27","1 Samuel 28:1–2","1 Samuel 29"]},
+  desc:`King of Gath. David first flees to him and feigns madness — "Am I so short of madmen?" Later Achish takes in David and his six hundred men, gives him Ziklag, and trusts him — "you have been as pleasing in my eyes as an angel of God" — until the Philistine commanders refuse to let David fight with them at Gilboa. Psalm 34's title says David "pretended to be insane before Abimelek, who drove him away"; 1 Samuel 21 names the king of Gath as Achish, and the text does not explain the difference.`,
+  refs:["1 Samuel 21:10–15","1 Samuel 27","1 Samuel 28:1–2","1 Samuel 29","Psalm 34"]},
 
  {id:"doeg", name:"Doeg the Edomite", short:"Doeg", cat:"natn", w:6,
   dates:"c. 11th c. BC (traditional)",
-  desc:`"Saul's chief shepherd," who sees David at Nob and reports Ahimelek to Saul. When Saul's guards refuse to strike the priests, Doeg kills eighty-five of them and puts the town of Nob to the sword.`,
-  refs:["1 Samuel 21:7","1 Samuel 22:9–19"]},
+  desc:`"Saul's chief shepherd," who sees David at Nob and reports Ahimelek to Saul. When Saul's guards refuse to strike the priests, Doeg kills eighty-five of them and puts the town of Nob to the sword. Psalm 52 is headed, "When Doeg the Edomite had gone to Saul and told him: 'David has gone to the house of Ahimelek.'"`,
+  refs:["1 Samuel 21:7","1 Samuel 22:9–19","Psalm 52"]},
 
  {id:"goliath", name:"Goliath of Gath", short:"Goliath", cat:"natn", w:8,
   dates:"c. 11th c. BC (traditional)",
-  desc:`"A champion named Goliath, who was from Gath," whose "height was six cubits and a span," armed in bronze with an iron-pointed spear. For forty days he defies the ranks of Israel; David, coming "in the name of the LORD Almighty," fells him with a sling and a stone and cuts off his head with his own sword. His sword is later kept at Nob and given to David.`,
-  refs:["1 Samuel 17","1 Samuel 21:9","1 Samuel 22:10"]},
+  desc:`"A champion named Goliath, who was from Gath," whose "height was six cubits and a span," armed in bronze with an iron-pointed spear. For forty days he defies the ranks of Israel; David, coming "in the name of the LORD Almighty," fells him with a sling and a stone and cuts off his head with his own sword. His sword is later kept at Nob and given to David. 1 Chronicles 20:5 names his brother, Lahmi, killed by Elhanan son of Jair (compare 2 Samuel 21:19).`,
+  refs:["1 Samuel 17","1 Samuel 21:9","1 Samuel 22:10","1 Chronicles 20:5"]},
 
  // 2 Samuel
  {id:"amalekite_msg", name:"The Amalekite messenger", short:"Amalekite messenger", cat:"natn", w:5,
@@ -3419,8 +3749,8 @@ const OT_PEOPLE = [
 
  {id:"hiram", name:"Hiram king of Tyre", short:"Hiram", cat:"natn", w:7,
   dates:"c. 10th c. BC (traditional)",
-  desc:`King of Tyre, who "sent envoys to David, along with cedar logs and carpenters and stonemasons, and they built a palace for David."`,
-  refs:["2 Samuel 5:11"]},
+  desc:`King of Tyre, who "sent envoys to David, along with cedar logs and carpenters and stonemasons, and they built a palace for David." He sends cedar and craftsmen to Solomon for the temple in return for wheat, barley, wine and oil — "Because the LORD loves his people, he has made you their king" — sends Huram-Abi, and supplies sailors for Solomon's ships to Ophir.`,
+  refs:["2 Samuel 5:11","1 Kings 5","1 Chronicles 14:1","2 Chronicles 2","2 Chronicles 8:18","2 Chronicles 9:10"]},
 
  {id:"hadadezer", name:"Hadadezer son of Rehob", short:"Hadadezer", cat:"natn", w:6,
   aliases:"king of Zobah",
@@ -3434,10 +3764,11 @@ const OT_PEOPLE = [
   refs:["2 Samuel 8:9–10"]},
 
  {id:"joram_t", name:"Joram son of Tou", short:"Joram (Tou's son)", cat:"natn", w:4,
+  aliases:"Hadoram (1 Chronicles 18:10)",
   clash:"Joram", clashtag:"Son of Tou king of Hamath, sent to congratulate David.",
   dates:"c. 10th c. BC (traditional)",
-  desc:`Sent by his father Tou king of Hamath to greet David after his victory over Hadadezer, bringing gifts that David dedicated to the LORD.`,
-  refs:["2 Samuel 8:10"]},
+  desc:`Sent by his father Tou king of Hamath to greet David after his victory over Hadadezer, bringing gifts that David dedicated to the LORD. 1 Chronicles 18:10 calls him Hadoram.`,
+  refs:["2 Samuel 8:10","1 Chronicles 18:10"]},
 
  {id:"hanun", name:"Hanun son of Nahash", short:"Hanun", cat:"natn", w:5,
   dates:"c. 10th c. BC (traditional)",
@@ -3458,8 +3789,8 @@ const OT_PEOPLE = [
 
  {id:"araunah", name:"Araunah the Jebusite", short:"Araunah", cat:"natn", w:5,
   dates:"c. 10th c. BC (traditional)",
-  desc:`Owner of the threshing floor where the angel of the LORD stops the plague. He offers it free, but David insists on paying — "I will not sacrifice to the LORD my God burnt offerings that cost me nothing" — and builds an altar there.`,
-  refs:["2 Samuel 24:16–25"]},
+  desc:`Owner of the threshing floor where the angel of the LORD stops the plague. He offers it free, but David insists on paying — "I will not sacrifice to the LORD my God burnt offerings that cost me nothing" — and builds an altar there. 1 Chronicles 21:25 says David paid "six hundred shekels of gold for the site" (2 Samuel 24:24: fifty shekels of silver for the threshing floor and oxen). The LORD answered "with fire from heaven," David declared, "The house of the LORD God is to be here," and Solomon built the temple on that site.`,
+  refs:["2 Samuel 24:16–25","1 Chronicles 21:15–22:1","2 Chronicles 3:1"]},
 
  // 1 Kings
  {id:"pharaoh_sol", name:"Pharaoh in Solomon's day", short:"Pharaoh (Solomon)", cat:"natn", w:5,
@@ -3474,10 +3805,11 @@ const OT_PEOPLE = [
   refs:["1 Kings 10:1–13"]},
 
  {id:"huram", name:"Huram of Tyre", short:"Huram", cat:"natn", w:5,
+  aliases:"Huram-Abi",
   dates:"c. 10th c. BC",
-  desc:`A bronze craftsman "whose mother was a widow from the tribe of Naphtali and whose father was from Tyre," brought by Solomon to cast the temple's bronze pillars Jakin and Boaz, the Sea on twelve bulls, the stands and basins.`,
+  desc:`A bronze craftsman "whose mother was a widow from the tribe of Naphtali and whose father was from Tyre," brought by Solomon to cast the temple's bronze pillars Jakin and Boaz, the Sea on twelve bulls, the stands and basins. 2 Chronicles calls him Huram-Abi, sent by Hiram, "whose mother was from Dan and whose father was from Tyre" (1 Kings names her tribe as Naphtali).`,
   notconfused:`Hiram king of Tyre, who supplied Solomon's cedar (1 Kings 5).`,
-  refs:["1 Kings 7:13–47"]},
+  refs:["1 Kings 7:13–47","2 Chronicles 2:13–14","2 Chronicles 4:11–16"]},
 
  {id:"hadad_e", name:"Hadad the Edomite", short:"Hadad", cat:"natn", w:5,
   dates:"c. 10th c. BC",
@@ -3544,16 +3876,12 @@ const OT_PEOPLE = [
   desc:`King of Aram sent with Pekah of Israel against Judah in Jotham's day. Together they besiege Ahaz in Jerusalem but "could not overpower him"; Rezin recovers Elath for Aram. At Ahaz's request Tiglath-Pileser captures Damascus, deports its people to Kir "and put Rezin to death."`,
   refs:["2 Kings 15:37","2 Kings 16:5–9"]},
 
- {id:"pul", name:"Pul king of Assyria", short:"Pul", cat:"natn", w:5,
-  dates:"c. 8th c. BC (Assyria)",
-  desc:`An Assyrian king who invades Israel in Menahem's reign and withdraws after receiving a thousand talents of silver. 2 Kings names Pul and Tiglath-Pileser separately; many historians identify them as the same king, Pul being his name in Babylonian records.`,
-  refs:["2 Kings 15:19–20"]},
-
  {id:"tiglath", name:"Tiglath-Pileser king of Assyria", short:"Tiglath-Pileser", cat:"natn", w:7,
+  aliases:"Pul",
   dates:"reigned 745 – 727 BC (Assyria)",
-  desc:`In Pekah's reign he takes Ijon, Abel Beth Maakah, Kedesh, Hazor, Gilead and Galilee, "including all the land of Naphtali," and deports the people to Assyria. Paid by Ahaz with temple treasure, he captures Damascus and kills Rezin; Ahaz meets him there and copies an altar he sees.`,
-  notconfused:`Possibly the same king as Pul (2 Kings 15:19); see that entry.`,
-  refs:["2 Kings 15:29","2 Kings 16:7–10"]},
+  desc:`In Pekah's reign he takes Ijon, Abel Beth Maakah, Kedesh, Hazor, Gilead and Galilee, "including all the land of Naphtali," and deports the people to Assyria. Paid by Ahaz with temple treasure, he captures Damascus and kills Rezin; Ahaz meets him there and copies an altar he sees. 1 Chronicles 5:26 identifies the two: "Pul king of Assyria (that is, Tiglath-Pileser king of Assyria)." As Pul he invaded Israel in Menahem's reign and took a thousand talents of silver; he also exiled Reuben, Gad and the half-tribe of Manasseh to Halah, Habor, Hara and the river of Gozan.`,
+  notconfused:`Shalmaneser, the next Assyrian king, who took Samaria (2 Kings 17).`,
+  refs:["2 Kings 15:29","2 Kings 16:7–10","2 Kings 15:19–20","1 Chronicles 5:6","1 Chronicles 5:26","2 Chronicles 28:20–21"]},
 
  {id:"shalmaneser", name:"Shalmaneser king of Assyria", short:"Shalmaneser", cat:"natn", w:6,
   dates:"reigned 727 – 722 BC (Assyria)",
@@ -3588,8 +3916,8 @@ const OT_PEOPLE = [
 
  {id:"esarhaddon", name:"Esarhaddon king of Assyria", short:"Esarhaddon", cat:"natn", w:4,
   dates:"reigned 681 – 669 BC (Assyria)",
-  desc:`Son of Sennacherib, who "succeeded him as king" after his brothers murdered their father.`,
-  refs:["2 Kings 19:37"]},
+  desc:`Son of Sennacherib, who "succeeded him as king" after his brothers murdered their father. Ezra 4:2 has the opponents of the rebuilding say he "brought us here."`,
+  refs:["2 Kings 19:37","Ezra 4:2"]},
 
  {id:"merodach", name:"Marduk-Baladan son of Baladan", short:"Marduk-Baladan", cat:"natn", w:5,
   dates:"c. late 8th c. BC (Babylon)",
@@ -3599,8 +3927,8 @@ const OT_PEOPLE = [
  {id:"necho", name:"Pharaoh Necho king of Egypt", short:"Pharaoh Necho", cat:"natn", w:6,
   clash:"Pharaoh", clashtag:"Pharaoh Necho, who killed Josiah at Megiddo and made Jehoiakim king.",
   dates:"c. 609 BC (Egypt)",
-  desc:`Going up to the Euphrates "to help the king of Assyria," he kills King Josiah at Megiddo. He puts Jehoahaz in chains at Riblah and takes him to Egypt, levies silver and gold on Judah, and makes Eliakim son of Josiah king, renaming him Jehoiakim. Afterward "the king of Egypt did not march out from his own country again," for Babylon had taken his territory.`,
-  refs:["2 Kings 23:29–35","2 Kings 24:7"]},
+  desc:`Going up to the Euphrates "to help the king of Assyria," he kills King Josiah at Megiddo. He puts Jehoahaz in chains at Riblah and takes him to Egypt, levies silver and gold on Judah, and makes Eliakim son of Josiah king, renaming him Jehoiakim. Afterward "the king of Egypt did not march out from his own country again," for Babylon had taken his territory. 2 Chronicles has him marching to Carchemish and warning Josiah, "God has told me to hurry; so stop opposing God."`,
+  refs:["2 Kings 23:29–35","2 Kings 24:7","2 Chronicles 35:20–22","2 Chronicles 36:3–4"]},
 
  {id:"nebuzaradan", name:"Nebuzaradan commander of the guard", short:"Nebuzaradan", cat:"natn", w:6,
   dates:"c. 586 BC (Babylon)",
@@ -3611,6 +3939,117 @@ const OT_PEOPLE = [
   dates:"reigned c. 562 – 560 BC (Babylon)",
   desc:`In the year he becomes king — the thirty-seventh year of Jehoiachin's exile — he releases Jehoiachin from prison, "spoke kindly to him," gives him a seat of honor above the other captive kings and a regular allowance for life.`,
   refs:["2 Kings 25:27–30"]},
+
+
+ // 1–2 Chronicles
+ {id:"zerah_c", name:"Zerah the Cushite", short:"Zerah (Cushite)", cat:"natn", w:6,
+  clash:"Zerah", clashtag:"The Cushite whose great army Asa routed after prayer.",
+  dates:"c. 10th–9th c. BC",
+  desc:`Marches against Asa "with an army of thousands upon thousands and three hundred chariots." Asa prays, "Help us, LORD our God, for we rely on you," and "the LORD struck down the Cushites before Asa and Judah"; they are pursued as far as Gerar.`,
+  notconfused:`Zerah son of Judah and Tamar (Genesis 38:30).`,
+  refs:["2 Chronicles 14:9–15","2 Chronicles 16:8"]},
+
+
+ // Ezra · Nehemiah · Esther
+ {id:"darius_p", name:"Darius king of Persia", short:"Darius (Persia)", cat:"natn", w:7,
+  clash:"Darius", clashtag:"The Persian king under whom the second temple was finished (Ezra 4–6).",
+  dates:"reigned 522 – 486 BC (Persia; historical record)",
+  desc:`Work on the temple stops "until the second year of the reign of Darius king of Persia." When Tattenai writes to ask who authorized the rebuilding, Darius has the archives searched; Cyrus's decree is found at Ecbatana, and Darius orders the costs paid "out of the royal treasury" and warns, "Do not interfere with the work on this temple of God." "The temple was completed… in the sixth year of the reign of King Darius." Nehemiah 12:22 also mentions "Darius the Persian"; the text does not say whether he is the same king.`,
+  notconfused:`"Darius the Mede" of Daniel 5–6, who cast Daniel into the lions' den.`,
+  refs:["Ezra 4:5","Ezra 4:24","Ezra 5–6","Nehemiah 12:22","Haggai 1:1","Zechariah 1:1"]},
+
+ {id:"mithredath", name:"Mithredath the treasurer", short:"Mithredath", cat:"natn", w:3,
+  dates:"c. 538 BC (Persia)",
+  desc:`Cyrus's treasurer, who brings out the temple articles Nebuchadnezzar had taken "and counted them out to Sheshbazzar the prince of Judah."`,
+  notconfused:`The Mithredath who joined in writing to Artaxerxes against Jerusalem (Ezra 4:7).`,
+  refs:["Ezra 1:8"]},
+
+ {id:"rehum_c", name:"Rehum the commanding officer", short:"Rehum", cat:"natn", w:4,
+  dates:"5th c. BC (Persian province)",
+  desc:`With Shimshai the secretary he writes to Artaxerxes that Jerusalem is "that rebellious and wicked city," and that if its walls are restored "no more taxes, tribute or duty will be paid." When the king's reply comes, they go "to the Jews in Jerusalem and compelled them by force to stop."`,
+  refs:["Ezra 4:8–23"]},
+
+ {id:"shimshai", name:"Shimshai the secretary", short:"Shimshai", cat:"natn", w:4,
+  dates:"5th c. BC (Persian province)",
+  desc:`Co-author with Rehum of the letter to Artaxerxes against Jerusalem's rebuilding, and one of those who stopped the work by force.`,
+  refs:["Ezra 4:8–23"]},
+
+ {id:"tattenai", name:"Tattenai governor of Trans-Euphrates", short:"Tattenai", cat:"natn", w:5,
+  dates:"c. 520 BC (Persia)",
+  desc:`Governor of the province west of the Euphrates, who asks the builders, "Who authorized you to rebuild this temple?" and writes to Darius. "The eye of their God was watching over the elders," and they are not stopped; when Darius confirms Cyrus's decree, Tattenai carries it out "with diligence."`,
+  refs:["Ezra 5:3–17","Ezra 6:6–13"]},
+
+ {id:"shetharbozenai", name:"Shethar-Bozenai", short:"Shethar-Bozenai", cat:"natn", w:3,
+  dates:"c. 520 BC (Persia)",
+  desc:`An associate of Tattenai who questioned the temple builders and joined in the report to Darius.`,
+  refs:["Ezra 5:3–6","Ezra 6:6","Ezra 6:13"]},
+
+ {id:"ashurbanipal", name:"Ashurbanipal", short:"Ashurbanipal", cat:"natn", w:4,
+  dates:"reigned c. 668 – 627 BC (Assyria; historical record)",
+  desc:`Named in the opponents' letter as "the great and honorable Ashurbanipal," who "deported and settled" peoples "in the city of Samaria and elsewhere in Trans-Euphrates." The opponents of Ezra 4:2 likewise say Esarhaddon king of Assyria "brought us here."`,
+  refs:["Ezra 4:2","Ezra 4:10"]},
+
+ {id:"sanballat", name:"Sanballat the Horonite", short:"Sanballat", cat:"natn", w:7,
+  dates:"c. 445 BC",
+  desc:`Nehemiah's chief opponent. He mocks the builders before "the army of Samaria" — "What are those feeble Jews doing?" — plots an attack, repeatedly invites Nehemiah to meet "on the plain of Ono" to harm him, sends an open letter accusing him of planning to be king, and with Tobiah hires Shemaiah to frighten him. A grandson of Eliashib the high priest became his son-in-law. Extra-biblical papyri from Elephantine name a Sanballat as governor of Samaria.`,
+  refs:["Nehemiah 2:10","Nehemiah 2:19","Nehemiah 4:1–8","Nehemiah 6:1–14","Nehemiah 13:28"]},
+
+ {id:"tobiah", name:"Tobiah the Ammonite official", short:"Tobiah", cat:"natn", w:7,
+  dates:"c. 445 BC",
+  desc:`With Sanballat he opposes the wall — "even a fox climbing up on it would break down their wall of stones!" — and sends letters to intimidate Nehemiah. Many nobles of Judah are "under oath to him," since he is son-in-law to Shekaniah son of Arah. While Nehemiah is away, Eliashib gives him a room in the temple courts; Nehemiah throws out "all Tobiah's household goods."`,
+  refs:["Nehemiah 2:10","Nehemiah 4:3","Nehemiah 6:1–19","Nehemiah 13:4–9"]},
+
+ {id:"geshem", name:"Geshem the Arab", short:"Geshem", cat:"natn", w:5,
+  dates:"c. 445 BC",
+  desc:`With Sanballat and Tobiah he mocks the rebuilding — "Are you rebelling against the king?" — and joins the scheme to lure Nehemiah to Ono. Sanballat's letter claims, "Geshem says it is true" that the Jews are plotting revolt.`,
+  refs:["Nehemiah 2:19","Nehemiah 6:1–6"]},
+
+ {id:"vashti", name:"Queen Vashti", short:"Vashti", cat:"natn", w:6,
+  dates:"c. 483 BC (Persia)",
+  desc:`Xerxes' queen, who gives a banquet for the women of the palace. Summoned on the seventh day of the king's feast "in order to display her beauty to the people and nobles," she refuses to come. On Memukan's advice a decree is issued "that Vashti is never again to enter the presence of King Xerxes," and her royal position is given to another — Esther.`,
+  refs:["Esther 1:9–22","Esther 2:1–4","Esther 2:17"]},
+
+ {id:"memukan", name:"Memukan", short:"Memukan", cat:"natn", w:4,
+  dates:"c. 483 BC (Persia)",
+  desc:`One of "the seven nobles of Persia and Media who had special access to the king." He advises that Vashti be deposed, so that "all the women will respect their husbands."`,
+  refs:["Esther 1:14–21"]},
+
+ {id:"hegai", name:"Hegai the king's eunuch", short:"Hegai", cat:"natn", w:4,
+  dates:"5th c. BC (Persia)",
+  desc:`The eunuch "in charge of the women" of the harem. Esther "pleased him and won his favor"; he gives her beauty treatments, seven attendants and the best place in the harem, and when her turn comes she asks only for what Hegai suggests.`,
+  refs:["Esther 2:3","Esther 2:8–9","Esther 2:15"]},
+
+ {id:"bigthana", name:"Bigthana", short:"Bigthana", cat:"natn", w:3,
+  dates:"5th c. BC (Persia)",
+  desc:`One of two officers "who guarded the doorway" and conspired to assassinate Xerxes. Mordecai exposes the plot and both are impaled; the record of it, read to the sleepless king, leads to Mordecai's honor.`,
+  refs:["Esther 2:21–23","Esther 6:2"]},
+
+ {id:"teresh", name:"Teresh", short:"Teresh", cat:"natn", w:3,
+  dates:"5th c. BC (Persia)",
+  desc:`Bigthana's fellow conspirator against King Xerxes, impaled when Mordecai's report proved true.`,
+  refs:["Esther 2:21–23","Esther 6:2"]},
+
+ {id:"haman", name:"Haman son of Hammedatha", short:"Haman", cat:"natn", w:8,
+  aliases:"the Agagite · \"the enemy of the Jews\"",
+  dates:"c. 474 BC (Persia)",
+  desc:`Raised by Xerxes "higher than that of all the other nobles." When Mordecai will not kneel to him, he sets out "to destroy all Mordecai's people, the Jews," casts the pur to choose the day, and offers the king ten thousand talents of silver. Invited to Esther's banquets, he builds a pole fifty cubits high for Mordecai — only to be made to lead Mordecai through the streets in royal honor. Exposed by Esther as "this vile Haman!", he is impaled on his own pole, and his ten sons are later killed. His wife was Zeresh.`,
+  notconfused:`"Agagite" is not explained in the text; Agag was the Amalekite king spared by Saul (1 Samuel 15).`,
+  refs:["Esther 3","Esther 5:9–14","Esther 6–7","Esther 9:7–14","Esther 9:24–25"]},
+
+ {id:"zeresh", name:"Zeresh wife of Haman", short:"Zeresh", cat:"natn", w:4,
+  dates:"c. 474 BC (Persia)",
+  desc:`With Haman's friends she advises him to set up a pole fifty cubits high for Mordecai. When Mordecai is honored instead, she warns: "Since Mordecai, before whom your downfall has started, is of Jewish origin, you cannot stand against him — you will surely come to ruin!"`,
+  refs:["Esther 5:10–14","Esther 6:13"]},
+
+ {id:"hathak", name:"Hathak", short:"Hathak", cat:"natn", w:3,
+  dates:"5th c. BC (Persia)",
+  desc:`One of the king's eunuchs "assigned to attend" Esther, who carries messages between her and Mordecai — including the copy of Haman's edict and Mordecai's charge to plead with the king.`,
+  refs:["Esther 4:5–10"]},
+
+ {id:"harbona", name:"Harbona", short:"Harbona", cat:"natn", w:3,
+  dates:"5th c. BC (Persia)",
+  desc:`One of the seven eunuchs who served Xerxes. At Esther's second banquet he points out the pole "reaching to a height of fifty cubits" that Haman had set up for Mordecai, and the king says, "Impale him on it!"`,
+  refs:["Esther 1:10","Esther 7:9"]},
 
 
  {id:"sennacherib", name:"Sennacherib king of Assyria", short:"Sennacherib", cat:"natn", w:8,
@@ -3630,24 +4069,26 @@ const OT_PEOPLE = [
 
  {id:"cyrus", name:"Cyrus the Great", short:"Cyrus", cat:"natn", w:10,
   dates:"reigned 559 – 530 BC (Persia)",
-  desc:`The Persian conqueror of Babylon whose decree in 538 BC frees the exiles to return home and rebuild the Temple. Isaiah names him God's "anointed" and "shepherd" long in advance.`,
-  refs:["2 Chronicles 36:22–23","Ezra 1","Isaiah 45:1"]},
+  desc:`The Persian conqueror of Babylon whose decree in 538 BC frees the exiles to return home and rebuild the Temple. Isaiah names him God's "anointed" and "shepherd" long in advance. 2 Chronicles closes with his proclamation: "Any of his people among you may go up." Ezra 1 repeats the decree, and Cyrus returns the temple articles to Sheshbazzar; the decree is later found in the archives at Ecbatana.`,
+  refs:["2 Chronicles 36:22–23","Ezra 1","Isaiah 45:1","Ezra 1:7–11","Ezra 5:13–15","Ezra 6:3–5"]},
 
- {id:"darius", name:"Darius", short:"Darius", cat:"natn", w:7,
-  dates:"c. 6th–5th c. BC (Persia)",
-  desc:`The Persian king who reluctantly casts Daniel into the lions' den and rejoices at his rescue; a Darius also renews the decree to finish the Temple.`,
-  refs:["Daniel 6","Ezra 6"]},
+ {id:"darius", name:"Darius the Mede", short:"Darius the Mede", cat:"natn", w:7,
+  clash:"Darius", clashtag:"'Darius the Mede' of Daniel, who cast Daniel into the lions' den.",
+  dates:"6th c. BC (identity debated)",
+  desc:`The king in Daniel who reluctantly casts Daniel into the lions' den and rejoices at his rescue. His identity in secular records is debated.`,
+  notconfused:`Darius king of Persia, under whom the second temple was finished (Ezra 4–6).`,
+  refs:["Daniel 5:31","Daniel 6"]},
 
- {id:"xerxes", name:"Xerxes", short:"Xerxes", cat:"natn", w:8,
+ {id:"xerxes", name:"Xerxes king of Persia", short:"Xerxes", cat:"natn", w:8,
   aliases:"Ahasuerus",
-  dates:"reigned 486 – 465 BC (Persia)",
-  desc:`The Persian king of the book of Esther, who deposes Queen Vashti, takes Esther as queen, and is maneuvered into overturning Haman's plot against the Jews.`,
-  refs:["Esther 1–2","Esther 8"]},
+  dates:"reigned 486 – 465 BC (Persia; historical record)",
+  desc:`"The Xerxes who ruled over 127 provinces stretching from India to Cush," reigning from Susa. At a great banquet he orders Queen Vashti to display her beauty; when she refuses he deposes her and later makes Esther queen. He raises Haman, hands him his signet ring to destroy the Jews, then — after a sleepless night and Esther's plea — has Haman impaled, gives his ring to Mordecai and lets the Jews defend themselves. Ezra 4:6 records an accusation against Judah "at the beginning of the reign of Xerxes."`,
+  refs:["Ezra 4:6","Esther 1–3","Esther 5–8","Esther 10"]},
 
- {id:"artaxerxes", name:"Artaxerxes", short:"Artaxerxes", cat:"natn", w:7,
-  dates:"reigned 465 – 424 BC (Persia)",
-  desc:`The Persian king who authorizes Ezra to teach the Law and, later, sends his cupbearer Nehemiah to rebuild Jerusalem's walls.`,
-  refs:["Ezra 7","Nehemiah 2"]},
+ {id:"artaxerxes", name:"Artaxerxes king of Persia", short:"Artaxerxes", cat:"natn", w:7,
+  dates:"reigned 465 – 424 BC (Persia; historical record)",
+  desc:`On the letter of Rehum and Shimshai he orders work on Jerusalem stopped. In his seventh year he sends Ezra with a decree — "Artaxerxes, king of kings, To Ezra the priest, teacher of the Law of the God of heaven" — and silver and gold for the temple. In his twentieth year he notices his cupbearer Nehemiah's sad face and, "with the queen sitting beside him," sends him to rebuild the city with letters and an escort; Nehemiah returns to him in his thirty-second year. The text does not say whether the Artaxerxes of Ezra 4 is the same king.`,
+  refs:["Ezra 4:7–23","Ezra 6:14","Ezra 7","Nehemiah 2:1–9","Nehemiah 5:14","Nehemiah 13:6"]},
 ];
 
 const OT_LINKS = [
@@ -4380,7 +4821,7 @@ const OT_LINKS = [
  // Israel's last kings
  lk("shallum_k","zechariah_k","conf","assassinated","ending Jehu's dynasty"),
  lk("menahem","shallum_k","conf","assassinated",""),
- lk("pul","menahem","rule","took tribute from","a thousand talents of silver"),
+ lk("tiglath","menahem","rule","took tribute from","as Pul — a thousand talents of silver"),
  lk("menahem","pekahiah","fam","father of",""),
  lk("pekah","pekahiah","conf","assassinated",""),
  lk("hoshea_k","pekah","conf","assassinated",""),
@@ -4440,6 +4881,122 @@ const OT_LINKS = [
  lk("ishmael_n","gedaliah","conf","assassinated","at Mizpah"),
  lk("johanan","gedaliah","min","came to him at Mizpah",""),
  lk("awel_marduk","jehoiachin","rule","released from prison","a place at the king's table"),
+
+ // ================= 1–2 CHRONICLES =================
+ // genealogies
+ lk("caleb_h","bezalel","fam","great-grandfather of","through Hur and Uri (1 Chr 2:19–20)"),
+ lk("elishama","joshua_ot","fam","grandfather of","through Nun (1 Chr 7:26–27)"),
+ lk("jesse","zeruiah","fam","father of","1 Chr 2:16"),
+ lk("jesse","abigail_s","fam","father of","1 Chr 2:16"),
+ lk("abigail_s","amasa","fam","mother of",""),
+ lk("jehoiachin","shealtiel","fam","father of",""),
+ lk("jehoiachin","pedaiah_j","fam","father of",""),
+ lk("pedaiah_j","zerubbabel","fam","father of","1 Chr 3:19; elsewhere 'son of Shealtiel'"),
+ lk("josiah","zedekiah","fam","father of","1 Chr 3:15"),
+ lk("phinehas","zadok","fam","ancestor of","1 Chr 6:4–8"),
+ lk("seraiah","jozadak","fam","father of","1 Chr 6:14"),
+ lk("nebuchadnezzar","jozadak","rule","deported",""),
+ // David's Levites and priests
+ lk("joel_s","heman","fam","father of","Heman, grandson of Samuel"),
+ lk("david","heman","min","set over the music",""),
+ lk("david","asaph","min","appointed chief musician","before the ark"),
+ lk("david","jeduthun","min","appointed to give thanks","at Gibeon"),
+ lk("asaph","heman","min","served at his right hand",""),
+ lk("ethan_m","heman","min","served at his left hand",""),
+ lk("heman","jeduthun","min","sounded trumpets and cymbals with",""),
+ lk("jahaziel","asaph","fam","descendant of",""),
+ lk("jehoiada_b","benaiah","fam","father of","1 Chr 27:5"),
+ lk("jehoiada_b","david","min","came to make him king","at Hebron, with 3,700 men"),
+ lk("abiathar","ahimelek_a","fam","father of",""),
+ lk("zadok","ahimelek_a","min","fellow priest under David",""),
+ // the divided kingdom in Chronicles
+ lk("iddo","jeroboam1","spec","wrote visions concerning",""),
+ lk("iddo","abijah_k","spec","recorded his reign",""),
+ lk("abijah_k","jeroboam1","conf","defeated","at Mount Zemaraim"),
+ lk("zerah_c","asa","conf","attacked","routed at Mareshah"),
+ lk("azariah_o","asa","spec","urged to seek the LORD",""),
+ lk("hanani","asa","conf","rebuked","and was imprisoned"),
+ lk("hanani","jehu_h","fam","father of",""),
+ lk("jehu_h","jehoshaphat_j","conf","rebuked","for helping Ahab"),
+ lk("jahaziel","jehoshaphat_j","spec","prophesied victory to","\"the battle is not yours\""),
+ lk("eliezer_d","jehoshaphat_j","conf","prophesied against","his fleet with Ahaziah"),
+ lk("jehoshaphat_j","amariah_cp","min","set over the judges",""),
+ lk("elijah","jehoram_judah","conf","wrote a letter of judgment to",""),
+ lk("jehosheba","jehoiada","fam","married",""),
+ lk("jehoiada","zechariah_j","fam","father of",""),
+ lk("joash_judah","zechariah_j","conf","had him stoned","in the temple court"),
+ lk("zechariah_u","uzziah","disc","instructed",""),
+ lk("azariah_cp","uzziah","conf","confronted","over the incense"),
+ lk("oded","ahaz","min","freed captives from Judah","in Ahaz's day"),
+ lk("azariah_h","hezekiah","min","chief priest for",""),
+ lk("jeremiah","cyrus","spec","his word fulfilled by","2 Chr 36:22"),
+
+ // ================= EZRA · NEHEMIAH · ESTHER =================
+ lk("cyrus","sheshbazzar","rule","appointed governor","and returned the temple articles"),
+ lk("mithredath","sheshbazzar","min","counted out the articles to",""),
+ lk("sheshbazzar","zerubbabel","min","foundation of the temple credited to both","Ezra 3; Ezra 5:16"),
+ lk("shealtiel","zerubbabel","fam","father of","Ezra 3:2"),
+ lk("jozadak","jeshua_hp","fam","father of",""),
+ lk("esarhaddon","zerubbabel","conf","his settlers opposed","\"Esarhaddon… brought us here\""),
+ lk("rehum_c","artaxerxes","conf","wrote against Jerusalem to",""),
+ lk("shimshai","rehum_c","min","co-wrote with",""),
+ lk("ashurbanipal","rehum_c","rule","settled his people in Samaria","Ezra 4:10"),
+ lk("tattenai","darius_p","min","wrote to","asking who authorized the temple"),
+ lk("shetharbozenai","tattenai","min","associate of",""),
+ lk("darius_p","zerubbabel","rule","confirmed Cyrus's decree","and the temple was finished"),
+ lk("haggai","darius_p","min","prophesied in his reign",""),
+ lk("zechariah_p","darius_p","min","prophesied in his reign",""),
+ lk("ezra","seraiah","fam","descendant of","'Ezra son of Seraiah' (Ezra 7:1) — possibly a later descendant"),
+ lk("shekaniah_e","ezra","min","urged to act","\"there is still hope for Israel\""),
+ lk("meremoth","ezra","min","received the temple silver from",""),
+ lk("hanani_n","nehemiah","fam","brother of",""),
+ lk("sanballat","nehemiah","conf","opposed",""),
+ lk("tobiah","nehemiah","conf","opposed",""),
+ lk("geshem","nehemiah","conf","opposed",""),
+ lk("sanballat","tobiah","min","allied with",""),
+ lk("shemaiah_d","nehemiah","conf","tried to frighten","hired by Tobiah and Sanballat"),
+ lk("noadiah","nehemiah","conf","tried to intimidate",""),
+ lk("jeshua_hp","joiakim","fam","father of",""),
+ lk("joiakim","eliashib","fam","father of",""),
+ lk("eliashib","joiada_e","fam","father of",""),
+ lk("eliashib","tobiah","min","gave a temple room to","Nehemiah threw him out"),
+ lk("joiada_e","sanballat","fam","son became son-in-law to","Nehemiah 13:28"),
+ lk("eliashib","nehemiah","min","rebuilt the Sheep Gate with",""),
+ lk("abihail_e","esther","fam","father of",""),
+ lk("xerxes","vashti","fam","deposed","his queen"),
+ lk("memukan","vashti","conf","advised deposing",""),
+ lk("hegai","esther","min","favored","in the harem"),
+ lk("bigthana","xerxes","conf","plotted to kill",""),
+ lk("teresh","xerxes","conf","plotted to kill",""),
+ lk("mordecai","bigthana","conf","exposed",""),
+ lk("xerxes","haman","rule","raised to highest honor",""),
+ lk("haman","mordecai","conf","plotted to destroy","and all the Jews"),
+ lk("esther","haman","conf","exposed","\"this vile Haman!\""),
+ lk("zeresh","haman","fam","wife of",""),
+ lk("hathak","esther","min","carried messages for",""),
+ lk("harbona","haman","conf","pointed the king to his pole",""),
+
+ // ================= JOB · PSALMS · PROVERBS · ECCLESIASTES · SONG OF SONGS =================
+ lk("job_wife","job","fam","married","\"Curse God and die!\""),
+ lk("job","jemimah","fam","father of","born after his restoration"),
+ lk("job","keziah","fam","father of","born after his restoration"),
+ lk("job","kerenhappuch","fam","father of","born after his restoration"),
+ lk("eliphaz_t","job","min","friend of","came to comfort him; rebuked by the LORD"),
+ lk("bildad","job","min","friend of","came to comfort him; rebuked by the LORD"),
+ lk("zophar","job","min","friend of","came to comfort him; rebuked by the LORD"),
+ lk("eliphaz_t","bildad","min","fellow comforter",""),
+ lk("eliphaz_t","zophar","min","fellow comforter",""),
+ lk("elihu_b","job","conf","angry with","\"for justifying himself rather than God\""),
+ lk("elihu_b","eliphaz_t","conf","angry with","the three friends had condemned Job without refuting him"),
+ lk("solomon","heman_ez","min","wiser than","1 Kings 4:31"),
+ lk("solomon","ethan_ez","min","wiser than","1 Kings 4:31"),
+ lk("ethan_ez","david","min","sang of the covenant with","Psalm 89"),
+ lk("lemuel_mother","lemuel","fam","mother of","taught him Proverbs 31:1–9"),
+ lk("teacher_ecc","david","fam","\"son of David\"","Ecclesiastes 1:1"),
+ lk("teacher_ecc","solomon","spec","identified with","traditional — the book does not name him"),
+ lk("shulammite","solomon","min","in Solomon's Song of Songs","whether he is her beloved is disputed"),
+ lk("hezekiah","solomon","min","his men compiled proverbs of","Proverbs 25:1"),
+ lk("cush_b","david","conf","subject of David's psalm","Psalm 7"),
 
  // ----- divided monarchy -----
  lk("solomon","rehoboam","fam","father of",""),
@@ -4503,12 +5060,11 @@ const OT_LINKS = [
  lk("xerxes","mordecai","rule","honored",""),
 
  // ----- Persian royal succession -----
- lk("cyrus","darius","spec","succeeded by",""),
- lk("darius","xerxes","fam","father of",""),
- lk("xerxes","artaxerxes","fam","father of",""),
+ lk("cyrus","darius_p","spec","later Persian king","Ezra 4:5; Cambyses reigned between them (historical record)"),
+ lk("darius_p","xerxes","fam","father of","historical record, not stated in Scripture"),
+ lk("xerxes","artaxerxes","fam","father of","historical record, not stated in Scripture"),
 
  // ----- connective ties -----
- lk("job","solomon","min","the Wisdom writings","Job, Proverbs, Ecclesiastes"),
  lk("hezekiah","manasseh_k","fam","father of",""),
 ];
 
@@ -4527,6 +5083,8 @@ const OT_EVENTS = [
  {y:-586,  label:"Fall of Jerusalem · Temple destroyed", note:"Babylon"},
  {y:-538,  label:"Cyrus' decree · exiles return", note:"Persia"},
  {y:-516,  label:"Second Temple completed"},
+ {y:-474,  label:"Haman's plot · Purim", note:"12th year of Xerxes"},
+ {y:-458,  label:"Ezra arrives in Jerusalem", note:"7th year of Artaxerxes; date disputed"},
  {y:-445,  label:"Nehemiah rebuilds the walls"},
  {y:-430,  label:"Malachi · the prophets fall silent"},
 ];
@@ -4568,6 +5126,7 @@ const OT_LIVES = [
  {id:"zedekiah",      s:-597,  e:-586,  tenure:true, lab:"reigned"},
  {id:"cyrus",         s:-559,  e:-530,  tenure:true, lab:"reigned"},
  {id:"zerubbabel",    s:-538,  e:-515,  tenure:true, lab:"active", uS:true, uE:true},
+ {id:"darius_p",      s:-522,  e:-486,  tenure:true, lab:"reigned"},
  {id:"xerxes",        s:-486,  e:-465,  tenure:true, lab:"reigned"},
  {id:"esther",        s:-479,  e:-465,  tenure:true, lab:"queen", uS:true, uE:true},
  {id:"ezra",          s:-458,  e:-440,  tenure:true, lab:"active", uS:true, uE:true},
@@ -4581,10 +5140,22 @@ const OT_META = {
   subtitle:"From Adam and the patriarchs through Moses, the judges, the kings, and the prophets to the exile and return — and who is who among the many kings and prophets who share a name.",
   graphLabel:"Relationship network of Old Testament figures",
   hub:null,
-  centroids:{ prim:[.07,.22], line:[.04,.62], patri:[.17,.42], kin:[.12,.84], tribe:[.27,.70], exod:[.35,.34], priest:[.39,.60], lead:[.24,.12], judg:[.50,.70], king:[.59,.34], proph:[.73,.64], exile:[.88,.36], natn:[.52,.92] },
+  // groups shown on first load; the rest are switched on from the Groups chips
+  defaultCats:["prim","patri","exod","priest","judg","king","proph","exile","wis"],
+  centroids:{ prim:[.07,.22], line:[.04,.62], patri:[.17,.42], kin:[.12,.84], tribe:[.27,.70], exod:[.35,.34], priest:[.39,.60], lead:[.24,.12], judg:[.50,.70], king:[.59,.34], proph:[.73,.64], exile:[.88,.36], wis:[.74,.12], natn:[.52,.92] },
   legend:[["--tie-fam","Family & bloodline"],["--tie-disc","Mentor & successor"],["--tie-min","Alliance & service"],["--tie-conf","Conflict & war"],["--tie-spec","Anointing & calling","dash"],["--tie-rule","Foreign power"],["--muted","Possible / disputed","dot"]],
-  clashNames:["Pharaoh","Enoch","Lamech","Nahor","Shelah","Manasseh","Deborah","Eliezer","Noah","Milkah","Eliab","Eliasaph","Elizaphan","Zimri","Abimelek","Jabin","Micah","Jonathan","Gilead","Joram","Joash","Ahaziah","Jeroboam","Zechariah","Joshua","Phinehas","Eleazar","Gad","Abinadab","Ahinoam","Ahimelek","Paltiel","Nathan","Tamar","Mephibosheth","Makir","Shammah","Talmai","Ahijah","Abijah","Naamah","Maakah","Nadab","Jehu","Obadiah","Zedekiah","Jehoshaphat","Ben-Hadad","Ishmael","Jotham","Uriah","Zephaniah","Eliakim","Jehoahaz","Shallum"],
+  clashNames:["Pharaoh","Enoch","Lamech","Nahor","Shelah","Manasseh","Deborah","Eliezer","Noah","Milkah","Eliab","Eliasaph","Elizaphan","Zimri","Abimelek","Jabin","Micah","Jonathan","Gilead","Joram","Joash","Ahaziah","Jeroboam","Zechariah","Joshua","Phinehas","Eleazar","Gad","Abinadab","Ahinoam","Ahimelek","Paltiel","Nathan","Tamar","Mephibosheth","Makir","Shammah","Talmai","Ahijah","Abijah","Naamah","Maakah","Nadab","Jehu","Obadiah","Zedekiah","Jehoshaphat","Ben-Hadad","Ishmael","Jotham","Uriah","Zephaniah","Eliakim","Jehoahaz","Shallum","Azariah","Jehoiada","Caleb","Abigail","Zerah","Darius","Hanani","Shemaiah","Heman","Ethan"],
   clashSub:{
+    Heman:"David's Levite musician, and the Ezrahite wise man of Psalm 88 — Scripture does not say whether they are one man.",
+    Ethan:"The Merarite musician, and the Ezrahite wise man of Psalm 89 — Scripture does not say whether they are one man.",
+    Darius:"'Darius the Mede' of Daniel, and Darius king of Persia, under whom the second temple was finished.",
+    Hanani:"The seer imprisoned by Asa, and Nehemiah's brother who brought news of Jerusalem's walls.",
+    Shemaiah:"The man of God who stopped Rehoboam's war, and the prophet hired to frighten Nehemiah.",
+    Azariah:"King Uzziah (also called Azariah), the prophet son of Oded in Asa's day, and two chief priests — under Uzziah and under Hezekiah.",
+    Jehoiada:"The priest who crowned the boy-king Joash, and the earlier priest who was father of David's commander Benaiah.",
+    Caleb:"Caleb son of Jephunneh, the faithful spy, and Caleb son of Hezron in Judah's genealogy — both with a daughter named Aksah.",
+    Abigail:"Nabal's widow who became David's wife, and David's own sister, mother of Amasa.",
+    Zerah:"Judah's son by Tamar, and the Cushite commander defeated by Asa.",
     Ishmael:"Abraham's son by Hagar, and the man of royal blood who assassinated Gedaliah after Jerusalem fell.",
     Jotham:"Gideon's son who told the parable of the trees, and a king of Judah, son of Uzziah.",
     Uriah:"David's Hittite soldier, Bathsheba's husband, and the priest who built Ahaz's Damascus altar.",
@@ -4613,10 +5184,10 @@ const OT_META = {
     Gad:"Jacob's son, ancestor of a tribe, and the prophet who advised David.",
     Abinadab:"The keeper of the ark at Kiriath Jearim, Jesse's second son, and a son of Saul killed at Gilboa.",
     Ahinoam:"Saul's wife, and David's wife from Jezreel.",
-    Ahimelek:"The priest at Nob killed on Saul's orders, and a Hittite who was with David.",
+    Ahimelek:"The priest at Nob killed on Saul's orders, a Hittite who was with David, and Abiathar's son, priest with Zadok.",
     Paltiel:"A tribal leader in Numbers, and the man to whom Saul gave Michal.",
     Pharaoh:"A royal title: unnamed kings of Egypt in the days of Abram, Joseph, the oppression, the Exodus and Solomon — and Pharaoh Necho, who killed Josiah.",
-    Eliezer:"Abram's would-be heir from Damascus, and Moses' second son.",
+    Eliezer:"Abram's would-be heir from Damascus, Moses' second son, and the prophet who foretold Jehoshaphat's shipwreck.",
     Noah:"The builder of the ark, and one of the five daughters of Zelophehad.",
     Milkah:"The wife of Abraham's brother Nahor, and one of the five daughters of Zelophehad.",
     Eliab:"The leader of Zebulun at the census, the Reubenite father of Dathan and Abiram, and Jesse's firstborn.",
@@ -4638,7 +5209,7 @@ const OT_META = {
     Joash:"Gideon's father in the days of the judges, and a king of Judah and a king of Israel a generation apart.",
     Ahaziah:"A king of Israel and a king of Judah, from the intertwined royal houses.",
     Jeroboam:"Two northern kings: the one who split the kingdom, and the one who enlarged it.",
-    Zechariah:"A post-exilic prophet and a short-lived king of Israel share the name.",
+    Zechariah:"A post-exilic prophet, a short-lived king of Israel, the priest's son stoned in Joash's temple, and Uzziah's teacher.",
     Joshua:"Moses' successor who took the land, and the high priest who rebuilt the Temple."
   },
   tlTitle:"A rough chronology, c. 2000 – 430 BC",
@@ -4724,7 +5295,7 @@ function ticked(){
 }
 
 function build(){
-  selectedId=null; clashActive=null; activeCats=new Set(Object.keys(CAT));
+  selectedId=null; clashActive=null; activeCats=defaultCats(); lensShown=new Set();
   byId = Object.fromEntries(PEOPLE.map(p=>[p.id,p]));
   rawLinks = LINKS.map(l=>({...l}));
   neighbors = {}; PEOPLE.forEach(p=>neighbors[p.id]=new Set());
@@ -4794,6 +5365,7 @@ function build(){
 
   buildFilters();
   buildClashChips();
+  applyVisibility();
 
   sim.alpha(1).restart();
   if(prefersReduced){ for(let i=0;i<220;i++) sim.tick(); sim.stop(); ticked(); fitView(0); }
@@ -4802,7 +5374,8 @@ function build(){
 
 function fitView(dur){
   const pad=70;
-  const xs=nodes.map(n=>n.x), ys=nodes.map(n=>n.y);
+  const fit=nodes.filter(n=>shown(n.id));
+  const xs=(fit.length?fit:nodes).map(n=>n.x), ys=(fit.length?fit:nodes).map(n=>n.y);
   const minX=Math.min(...xs), maxX=Math.max(...xs), minY=Math.min(...ys), maxY=Math.max(...ys);
   const bw=maxX-minX, bh=maxY-minY;
   const k=Math.min(2.6, 0.92*Math.min(W/(bw+pad*2), H/(bh+pad*2)));
@@ -4811,9 +5384,22 @@ function fitView(dur){
 }
 
 /* ---------- focus / highlight ---------- */
-let selectedId=null, activeCats=new Set(), clashActive=null;
+let selectedId=null, activeCats=new Set(), clashActive=null, lensShown=new Set();
 
-function inFilter(id){ return activeCats.has(byId[id].cat); }
+const defaultCats = () => new Set((META.defaultCats||Object.keys(CAT)).filter(k=>CAT[k]));
+// a person is drawn if their group is switched on, or a name lens is showing them
+function shown(id){ return activeCats.has(byId[id].cat) || lensShown.has(id); }
+const inFilter = shown;
+
+// switched-off groups are removed from view entirely (not just faded)
+function applyVisibility(){
+  if(!nodeSel) return;
+  nodeSel.style("display",d=>shown(d.id)?null:"none");
+  labelSel.style("display",d=>shown(d.id)?null:"none");
+  linkSel.style("display",d=>shown(d.source.id)&&shown(d.target.id)?null:"none");
+  const cnt=document.getElementById("groupCount");
+  if(cnt) cnt.textContent=`${nodes.filter(n=>shown(n.id)).length} of ${nodes.length} people`;
+}
 
 function focusNode(id, hover){
   // returns visual emphasis on a node's neighborhood
@@ -4847,6 +5433,7 @@ function focusNode(id, hover){
 }
 
 function applyFilter(){
+  applyVisibility();
   focusNode(selectedId, false);
 }
 
@@ -4866,7 +5453,7 @@ function moveTip(e){
 function hideTip(){ tooltip.style("opacity",0); }
 function roleLine(d){
   const map={family:"Family & kin",twelve:"One of the Twelve",follow:"Follower of Jesus",church:"Early church",rulers:"Ruler / authority",rome:"Roman Empire",
-    prim:"Creation & Flood",line:"Genealogies",patri:"Patriarchs & Matriarchs",tribe:"House of Jacob",kin:"Wider family & kin",exod:"Exodus & Wilderness",priest:"Priest / Levite",lead:"Tribal leader",judg:"Conquest & Judges",king:"King of Israel/Judah",proph:"Prophet",exile:"Exile & Return",natn:"Foreign nation"};
+    prim:"Creation & Flood",line:"Genealogies",patri:"Patriarchs & Matriarchs",tribe:"House of Jacob",kin:"Wider family & kin",exod:"Exodus & Wilderness",priest:"Priest / Levite",lead:"Tribal leader",judg:"Conquest & Judges",king:"King of Israel/Judah",proph:"Prophet",exile:"Exile & Return",wis:"Wisdom & Poetry",natn:"Foreign nation"};
   return d.aliases ? d.aliases : (map[d.cat]||"");
 }
 
@@ -5026,6 +5613,9 @@ const POSTER_BY_BOOK = {};
 POSTERS.forEach(row=>row.books.forEach(b=>POSTER_BY_BOOK[b]=row));
 
 function selectPerson(id){
+  // reaching someone in a switched-off group (via a connection, search or the
+  // timeline) switches that group on so they can be seen on the map
+  if(!shown(id)) setCat(byId[id].cat, true);
   selectedId=id;
   focusNode(id,false);
   const d=byId[id];
@@ -5084,44 +5674,123 @@ function centerOn(id){
 /* ---------- category filter chips ---------- */
 const catWrap=document.getElementById("catFilters");
 function buildFilters(){
-  catWrap.innerHTML='<span class="ctl-label">Groups</span>';
-  Object.entries(CAT).forEach(([key,val])=>{
-    const b=document.createElement("button");
-    b.className="chip"; b.setAttribute("aria-pressed","true");
-    b.style.setProperty("--c",val.color);
-    b.innerHTML=`<span class="dot"></span>${val.label}`;
+  catWrap.innerHTML='<span class="ctl-label">Groups</span>'+
+    '<span class="chip-set" role="group" aria-label="Select groups">'+
+    '<button type="button" class="chip mini" data-set="main" title="Only the main groups (the starting view)">Main</button>'+
+    '<button type="button" class="chip mini" data-set="all">All</button>'+
+    '<button type="button" class="chip mini" data-set="none">None</button></span>';
+  catWrap.querySelectorAll("[data-set]").forEach(b=>{
     b.onclick=()=>{
-      const on=b.getAttribute("aria-pressed")==="true";
-      b.setAttribute("aria-pressed", (!on).toString());
-      if(on) activeCats.delete(key); else activeCats.add(key);
+      const s=b.dataset.set;
+      activeCats = s==="main" ? defaultCats() : new Set(s==="all"?Object.keys(CAT):[]);
+      syncCatChips();
       applyFilter();
     };
+  });
+  Object.entries(CAT).forEach(([key,val])=>{
+    const b=document.createElement("button");
+    b.className="chip"; b.dataset.cat=key;
+    b.style.setProperty("--c",val.color);
+    b.innerHTML=`<span class="dot"></span>${val.label}`;
+    b.onclick=()=>{ setCat(key, !activeCats.has(key)); };
     catWrap.appendChild(b);
   });
+  const cnt=document.createElement("span");
+  cnt.className="group-count"; cnt.id="groupCount"; cnt.setAttribute("aria-live","polite");
+  catWrap.appendChild(cnt);
+  syncCatChips();
+}
+function syncCatChips(){
+  catWrap.querySelectorAll(".chip[data-cat]").forEach(c=>c.setAttribute("aria-pressed",activeCats.has(c.dataset.cat).toString()));
+}
+function setCat(key,on){
+  if(on) activeCats.add(key); else activeCats.delete(key);
+  syncCatChips();
+  applyFilter();
 }
 
-/* ---------- name-clash lens ---------- */
+/* ---------- name-clash lens ----------
+   One compact picker instead of a chip per name: a trigger button opens a
+   searchable, alphabetical popover listing each shared name and how many
+   people carry it. */
 const clashWrap=document.getElementById("clashFilters");
+let lensPop=null, lensTrigger=null, lensSearch=null, lensList=null;
 function buildClashChips(){
-  clashWrap.innerHTML='<span class="ctl-label">Name lens</span>';
-  (META.clashNames||[]).forEach(nm=>{
-    const b=document.createElement("button");
-    b.className="chip clash"; b.setAttribute("aria-pressed","false");
-    b.textContent=nm;
-    b.onclick=()=>toggleClash(nm,b);
-    clashWrap.appendChild(b);
+  clashWrap.innerHTML='<span class="ctl-label">Name lens</span>'+
+    '<span class="lens-pick">'+
+    '<button type="button" class="chip lens-trigger" id="lensTrigger" aria-haspopup="dialog" aria-expanded="false"></button>'+
+    '<button type="button" class="chip mini lens-clear" id="lensClear" aria-label="Clear name lens" hidden>×</button>'+
+    '<div class="lens-pop" id="lensPop" role="dialog" aria-label="Choose a shared name" hidden>'+
+      '<input type="search" class="lens-search" id="lensSearch" placeholder="Filter names…" autocomplete="off" spellcheck="false">'+
+      '<div class="lens-list" id="lensList"></div>'+
+      '<div class="lens-foot" id="lensFoot"></div>'+
+    '</div></span>';
+  lensPop=document.getElementById("lensPop");
+  lensTrigger=document.getElementById("lensTrigger");
+  lensSearch=document.getElementById("lensSearch");
+  lensList=document.getElementById("lensList");
+  const counts={};
+  PEOPLE.forEach(p=>{ if(p.clash) counts[p.clash]=(counts[p.clash]||0)+1; });
+  const names=[...(META.clashNames||[])].sort((a,b)=>a.localeCompare(b));
+  lensList.innerHTML=names.map(nm=>
+    `<button type="button" class="chip clash" aria-pressed="false" data-name="${nm}">`+
+    `${nm}<span class="lens-n">${counts[nm]||0}</span></button>`).join("");
+  lensList.querySelectorAll(".chip.clash").forEach(b=>{
+    b.onclick=()=>{ toggleClash(b.dataset.name); closeLensPop(); };
   });
+  document.getElementById("lensFoot").textContent=
+    `${names.length} names shared by more than one person`;
+  lensSearch.oninput=()=>{
+    const q=lensSearch.value.trim().toLowerCase();
+    lensList.querySelectorAll(".chip.clash").forEach(b=>{
+      b.hidden = q && !b.dataset.name.toLowerCase().includes(q);
+    });
+  };
+  lensSearch.onkeydown=e=>{
+    if(e.key==="Enter"){ const first=lensList.querySelector(".chip.clash:not([hidden])"); if(first) first.click(); }
+    if(e.key==="Escape"){ closeLensPop(); lensTrigger.focus(); }
+  };
+  lensTrigger.onclick=()=> lensPop.hidden ? openLensPop() : closeLensPop();
+  document.getElementById("lensClear").onclick=()=>clearClash();
+  updateLensTrigger();
 }
+function openLensPop(){
+  lensPop.hidden=false; lensTrigger.setAttribute("aria-expanded","true");
+  lensSearch.value=""; lensSearch.oninput();
+  lensSearch.focus();
+}
+function closeLensPop(){
+  if(!lensPop) return;
+  lensPop.hidden=true; lensTrigger.setAttribute("aria-expanded","false");
+}
+function updateLensTrigger(){
+  if(!lensTrigger) return;
+  const n=(META.clashNames||[]).length;
+  lensTrigger.innerHTML = clashActive
+    ? `“${clashActive}”<span class="lens-caret">▾</span>`
+    : `Choose a name <span class="lens-n">${n}</span><span class="lens-caret">▾</span>`;
+  lensTrigger.setAttribute("aria-pressed", clashActive ? "true":"false");
+  lensTrigger.classList.toggle("clash", !!clashActive);
+  document.getElementById("lensClear").hidden = !clashActive;
+}
+document.addEventListener("click",e=>{
+  if(lensPop && !lensPop.hidden && !e.target.closest(".lens-pick")) closeLensPop();
+});
 const clashPanel=document.getElementById("clashPanel");
 document.getElementById("clashClose").onclick=()=>clearClash();
 
-function toggleClash(nm,btn){
+function toggleClash(nm){
   const already = clashActive===nm;
   document.querySelectorAll(".chip.clash").forEach(c=>c.setAttribute("aria-pressed","false"));
   if(already){ clearClash(); return; }
-  clashActive=nm; btn.setAttribute("aria-pressed","true");
+  clashActive=nm;
+  const btn=lensList && lensList.querySelector(`.chip.clash[data-name="${CSS.escape(nm)}"]`);
+  if(btn) btn.setAttribute("aria-pressed","true");
+  updateLensTrigger();
   const members=PEOPLE.filter(p=>p.clash===nm);
   const ids=new Set(members.map(m=>m.id));
+  // show every bearer of the name, even those in switched-off groups
+  lensShown=ids; applyVisibility();
   // dim all but members
   nodeSel.select(".node-dot").attr("opacity",d=> ids.has(d.id)?1:.08);
   nodeSel.selectAll(".halo").attr("opacity",d=> ids.has(d.id)? .6 : .04);
@@ -5154,7 +5823,9 @@ function toggleClash(nm,btn){
 }
 function clearClash(){
   clashActive=null;
+  lensShown=new Set(); applyVisibility();
   document.querySelectorAll(".chip.clash").forEach(c=>c.setAttribute("aria-pressed","false"));
+  updateLensTrigger();
   nodeSel.selectAll(".clash-ring").remove();
   clashPanel.classList.remove("show");
   if(window.matchMedia("(min-width:761px)").matches) document.getElementById("legend").style.display="";
@@ -5351,7 +6022,7 @@ window.addEventListener("resize",()=>{
 });
 
 // keyboard: Escape closes
-document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ if(posterModal.classList.contains("show")) closePosterModal(); else if(clashActive) clearClash(); else if(filterDrawer.classList.contains("open")) closeFilterDrawer(); else closePanel(); } });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ if(posterModal.classList.contains("show")) closePosterModal(); else if(lensPop && !lensPop.hidden) closeLensPop(); else if(clashActive) clearClash(); else if(filterDrawer.classList.contains("open")) closeFilterDrawer(); else closePanel(); } });
 
 /* ---------- mobile filter drawer ---------- */
 const filtersToggle=document.getElementById("filtersToggle");

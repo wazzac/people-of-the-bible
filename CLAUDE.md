@@ -37,7 +37,7 @@ Still no framework, no runtime dependencies — just three plain files, plus a m
    - `NT_LINKS` / `OT_LINKS` — array of relationship edges via the `lk()` helper.
    - `NT_EVENTS` / `OT_EVENTS` — timeline milestone markers.
    - `NT_LIVES` / `OT_LIVES` — lifespan bars for the timeline view.
-   - `NT_META` / `OT_META` — UI metadata: titles, force-layout centroids per category, "name clash" groupings, timeline domain/ticks.
+   - `NT_META` / `OT_META` — UI metadata: titles, force-layout centroids per category, `defaultCats` (the groups switched on at page load — the rest are hidden until chosen from the Groups chips or the All button), "name clash" groupings, timeline domain/ticks.
    - `DATASETS` — registry mapping `nt`/`ot` to the above five pieces; `TESTAMENT` selects the active one.
    - D3 force simulation, rendering, search, filters, timeline drawing, pan/zoom, tooltip and detail-panel logic.
    - `POSTERS` / `POSTER_BY_BOOK` — BibleProject book-overview poster lookup table, defined near `BOOK_CODES`/`bibleUrl()` since both share the same book-name parsing (`refBookName()`). Testament-agnostic (one flat table, not `NT_`/`OT_` split) since book names are already globally unique.
@@ -86,7 +86,7 @@ There is no separate data file — the dataset **is** JavaScript source inside `
 3. Add `notconfused` whenever a reasonable reader could mix this person up with another entry — this is a core feature of the project (disambiguating the many Johns, Marys, Jameses, Simons, kings, etc.), not an afterthought.
 4. Every `LINKS` entry needs both endpoints already present in `PEOPLE`. Every `LIVES` entry needs its `id` present in `PEOPLE`.
 5. Keep the tone consistent with existing entries: measured, encyclopedic, NIV-sourced, explicit about tradition vs. Scripture vs. secular history.
-6. Categories have a fixed color and a centroid position in `META.centroids` (as `[x, y]` fractions of the stage). Don't add a new category without also adding its CSS color variable, a `CAT` entry, a centroid, and a legend row.
+6. Categories have a fixed color and a centroid position in `META.centroids` (as `[x, y]` fractions of the stage). Don't add a new category without also adding its CSS color variable, a `CAT` entry, a centroid, and a legend row — and decide whether it belongs in `META.defaultCats` (primary groups only).
 7. Run the QA validator (see below) after any data edit, before committing.
 
 ## Verification
