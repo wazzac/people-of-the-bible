@@ -92,6 +92,7 @@
   .viewtoggle button[aria-pressed="true"]{background:var(--gold);color:#20160a;font-weight:500}
   .viewtoggle button:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
   .testtoggle button[aria-pressed="true"]{background:var(--vellum);color:#20160a}
+  .layouttoggle button[aria-pressed="true"]{background:var(--edge);color:var(--vellum)}
 
   /* ---------- Controls ---------- */
   .controls{

@@ -5986,6 +5986,7 @@ function build(){
   rawLinks = LINKS.map(l=>({...l}));
   neighbors = {}; PEOPLE.forEach(p=>neighbors[p.id]=new Set());
   rawLinks.forEach(l=>{ neighbors[l.source].add(l.target); neighbors[l.target].add(l.source); });
+  W=stage.clientWidth; H=stage.clientHeight;
   CENT = centroids();
 
   nodes = PEOPLE.map(p=>({...p}));
@@ -6049,25 +6050,143 @@ function build(){
   syncPins();
   sim.on("tick", ticked);
 
+  timeCache=null;
+  layoutMode=loadLayoutMode(); syncLayoutButtons();
+
   buildFilters();
   buildClashChips();
   applyVisibility();
 
-  sim.alpha(1).restart();
-  if(prefersReduced){ for(let i=0;i<220;i++) sim.tick(); sim.stop(); ticked(); fitView(0); }
-  else setTimeout(()=>fitView(600), 900);
+  setLayoutForces();
+  runLayout(1);
 }
 
 function fitView(dur){
+  W=stage.clientWidth; H=stage.clientHeight;
   const pad=70;
   const fit=nodes.filter(n=>shown(n.id));
-  const xs=(fit.length?fit:nodes).map(n=>n.x), ys=(fit.length?fit:nodes).map(n=>n.y);
+  // in the structured layout, frame where people are heading rather than where they are mid-move
+  const at=n=>(layoutMode==="structured" && !n.pinned && structTargets[n.id]) ? structTargets[n.id] : [n.x,n.y];
+  const xs=(fit.length?fit:nodes).map(n=>at(n)[0]), ys=(fit.length?fit:nodes).map(n=>at(n)[1]);
   const minX=Math.min(...xs), maxX=Math.max(...xs), minY=Math.min(...ys), maxY=Math.max(...ys);
   const bw=maxX-minX, bh=maxY-minY;
-  const k=Math.min(2.6, 0.92*Math.min(W/(bw+pad*2), H/(bh+pad*2)));
-  const tx=W/2-k*(minX+bw/2), ty=H/2-k*(minY+bh/2);
+  let k=Math.min(2.6, 0.92*Math.min(W/(bw+pad*2), H/(bh+pad*2)));
+  let tx=W/2-k*(minX+bw/2), ty=H/2-k*(minY+bh/2);
+  // structured: fit the height and start at the left (the earliest figures); pan right to read on
+  if(layoutMode==="structured"){
+    const kh=Math.min(1.2, Math.max(zoom.scaleExtent()[0], 0.94*H/(bh+pad*2)));
+    if(bw*kh > W-pad*2){ k=kh; tx=pad-k*minX; ty=H/2-k*(minY+bh/2); }
+  }
   svg.transition().duration(dur).call(zoom.transform, d3.zoomIdentity.translate(tx,ty).scale(k));
 }
+
+/* ---------- layout modes: "default" (clustered force layout) / "structured" (time-ordered grid) ---------- */
+let LAYOUT_KEY = "bible-people-map:nt:layout:v1";
+let layoutMode = "default", structTargets = {};
+function loadLayoutMode(){ try{ return localStorage.getItem(LAYOUT_KEY)==="structured"?"structured":"default"; }catch(e){ return "default"; } }
+function saveLayoutMode(){ try{ localStorage.setItem(LAYOUT_KEY, layoutMode); }catch(e){/* session only */} }
+
+// rough year for each person: LIVES bars first, then the `dates` text, then inferred from family / other ties
+let timeCache = null;
+function parseYears(s){
+  if(!s) return [];
+  // drop ages, durations and verse references ("lived 175 years", "died at 123", "Genesis 25:7") — not years
+  s=s.replace(/\d+\s*:\s*\d+(?:\s*[–-]\s*\d+)?/g," ")
+     .replace(/\b\d+(?:\s*\+\s*\d+)?\s*(?:years?|months?|days?)\b/gi," ")
+     .replace(/\b(?:at|aged|age)\s+\d+/gi," ");
+  const out=[], bc=/\bBC\b/.test(s), ad=/\bAD\b/.test(s);
+  const cent=/(\d{1,2})(?:st|nd|rd|th)(?:\s*[–-]\s*(\d{1,2})(?:st|nd|rd|th))?\s*c(?:entury|\.)\s*(BC|AD)?/g;
+  let m, rest=s;
+  while((m=cent.exec(s))){
+    const era=m[3]||(ad&&!bc?"AD":"BC"), sg=era==="BC"?-1:1;
+    [m[1],m[2]].filter(Boolean).forEach(c=>out.push(sg*(c*100-50)));
+  }
+  rest=s.replace(cent," ");
+  for(const x of rest.matchAll(/AD\s*(\d{1,4})/g)) out.push(+x[1]);
+  rest=rest.replace(/AD\s*\d{1,4}/g," ");
+  for(const x of rest.matchAll(/(\d{1,4})\s*BC/g)) out.push(-x[1]);
+  rest=rest.replace(/\d{1,4}\s*BC/g," ");
+  if(bc!==ad) for(const x of rest.matchAll(/\b(\d{3,4})\b/g)) out.push(bc?-x[1]:+x[1]);
+  return out;
+}
+function estimateTimes(){
+  if(timeCache) return timeCache;
+  const t={};
+  TL_LIVES.forEach(l=>{ if(byId[l.id]) t[l.id]=(l.s+l.e)/2; });
+  PEOPLE.forEach(p=>{ if(t[p.id]==null){ const ys=parseYears(p.dates); if(ys.length) t[p.id]=d3.mean(ys); } });
+  // family ties carry direction: a parent comes about a generation before the child
+  const GEN=25, step={"father of":1,"mother of":1,"legal father of":1,"adopted":1,"grandfather of":2,"great-grandfather of":3,"ancestor of":3,"forefather of":3,"descendant of":-3,"granddaughter of":-2};
+  const settle=(estimate)=>{ for(let pass=0;pass<60;pass++){ const add={};
+      PEOPLE.forEach(p=>{ if(t[p.id]==null){ const e=estimate(p.id); if(e.length) add[p.id]=d3.mean(e); } });
+      const ks=Object.keys(add); if(!ks.length) break; ks.forEach(k=>t[k]=add[k]); } };
+  settle(id=>{ const e=[]; rawLinks.forEach(l=>{ const g=step[l.type]; if(l.kind!=="fam") return;
+      const d=(g||0)*GEN;
+      if(l.target===id && t[l.source]!=null) e.push(t[l.source]+d);
+      if(l.source===id && t[l.target]!=null) e.push(t[l.target]-d); }); return e; });
+  settle(id=>[...neighbors[id]].filter(o=>t[o]!=null).map(o=>t[o]));
+  const catMean={};
+  Object.keys(CAT).forEach(c=>{ const v=PEOPLE.filter(p=>p.cat===c&&t[p.id]!=null).map(p=>t[p.id]); if(v.length) catMean[c]=d3.mean(v); });
+  const all=Object.values(t), fallback=all.length?d3.median(all):0;
+  PEOPLE.forEach(p=>{ if(t[p.id]==null) t[p.id]=catMean[p.cat]??fallback; });
+  return timeCache=t;
+}
+
+// reads like a page: earliest at top-left, each column filling top→bottom, then on to the next column right
+function structuredTargets(){
+  const t=estimateTimes(), catOrder=Object.keys(CAT);
+  const vis=nodes.filter(n=>shown(n.id));
+  if(!vis.length) return {};
+  // the central figure (META.hub — Jesus in the NT) leads the reading order
+  vis.sort((a,b)=>((b.id===META.hub)-(a.id===META.hub)) || (t[a.id]-t[b.id]) || (catOrder.indexOf(a.cat)-catOrder.indexOf(b.cat)) || (b.w-a.w));
+  // each column is about one screen tall, so the map reads as a wide, pannable timeline
+  const colW=170, rowH=d=>2*d.w+26, maxH=Math.max(360, H-120);
+  const cols=[[]]; let used=0;
+  vis.forEach(n=>{ const h=rowH(n); if(used+h>maxH && cols[cols.length-1].length){ cols.push([]); used=0; } cols[cols.length-1].push(n); used+=h; });
+  const pos={};
+  cols.forEach((c,i)=>{ let y=0; c.forEach(n=>{ const h=rowH(n); pos[n.id]=[i*colW, y+h/2]; y+=h; }); });
+  return pos;
+}
+
+function setLayoutForces(){
+  if(!sim) return;
+  if(layoutMode==="structured"){
+    const T=structTargets=structuredTargets();
+    structuredSig=Object.keys(T).sort().join(",");
+    sim.force("link").strength(0);
+    sim.force("charge").strength(0);
+    sim.force("collide").radius(d=>T[d.id]?d.w+4:0).strength(.3);
+    sim.force("x",d3.forceX(d=>T[d.id]?T[d.id][0]:d.x).strength(d=>T[d.id]?.6:0));
+    sim.force("y",d3.forceY(d=>T[d.id]?T[d.id][1]:d.y).strength(d=>T[d.id]?.6:0));
+    sim.force("center",null);
+  }else{
+    sim.force("link").strength(l=>l.kind==="fam"?0.55:0.28);
+    sim.force("charge").strength(d=>-70 - d.w*10);
+    sim.force("collide").radius(d=>d.w+13).strength(.9);
+    sim.force("x",d3.forceX(tX).strength(d=>d.id===META.hub?.16:.08));
+    sim.force("y",d3.forceY(tY).strength(d=>d.id===META.hub?.16:.08));
+    sim.force("center",d3.forceCenter(W/2,H/2).strength(.02));
+  }
+}
+function runLayout(alpha){
+  if(prefersReduced){ for(let i=0;i<240;i++) sim.tick(); sim.stop(); ticked(); fitView(0); }
+  else { sim.alpha(alpha).restart(); setTimeout(()=>fitView(600), 900); }
+}
+// buttons: both clear every pinned position, then lay out afresh; later drags pin as usual
+function resetLayout(mode){
+  layoutMode=mode; saveLayoutMode(); syncLayoutButtons();
+  nodes.forEach(n=>{ n.pinned=false; n.fx=null; n.fy=null; });
+  syncPins(); savePins();
+  // default re-seeds positions exactly as a fresh page load does, so it lands on the same view
+  if(mode==="default"){ nodes.forEach(n=>{ delete n.x; delete n.y; n.vx=0; n.vy=0; }); sim.nodes(nodes); }
+  setLayoutForces();
+  runLayout(1);
+}
+function syncLayoutButtons(){
+  document.getElementById("layoutDefault").setAttribute("aria-pressed",(layoutMode==="default").toString());
+  document.getElementById("layoutStructured").setAttribute("aria-pressed",(layoutMode==="structured").toString());
+}
+document.getElementById("layoutDefault").onclick=()=>resetLayout("default");
+document.getElementById("layoutStructured").onclick=()=>resetLayout("structured");
 
 /* ---------- focus / highlight ---------- */
 let selectedId=null, activeCats=new Set(), clashActive=null, lensShown=new Set();
@@ -6085,7 +6204,13 @@ function applyVisibility(){
   linkSel.style("display",d=>shown(d.source.id)&&shown(d.target.id)?null:"none");
   const cnt=document.getElementById("groupCount");
   if(cnt) cnt.textContent=`${nodes.filter(n=>shown(n.id)).length} of ${nodes.length} people`;
+  // the structured grid is built from whoever is visible, so re-flow it when that changes
+  if(layoutMode==="structured" && sim && sim.force("link")){
+    const sig=nodes.filter(n=>shown(n.id)).map(n=>n.id).sort().join(",");
+    if(sig!==structuredSig){ setLayoutForces(); runLayout(.8); }
+  }
 }
+let structuredSig="";
 
 function focusNode(id, hover){
   // returns visual emphasis on a node's neighborhood
@@ -6685,6 +6810,7 @@ function setView(v){
   document.getElementById("graph").style.display=net?"block":"none";
   document.getElementById("legend").style.display=(net&&!clashActive&&window.matchMedia("(min-width:761px)").matches)?"":"none";
   document.getElementById("hint").style.display=net?"":"none";
+  document.getElementById("layoutToggle").style.display=net?"":"none";
   tlWrap.classList.toggle("show",!net);
   if(!net){ if(!tlBuilt) buildTimeline(); closePanel(); clearClash(); }
 }
@@ -6697,10 +6823,8 @@ window.addEventListener("resize",()=>{
   clearTimeout(rT);
   rT=setTimeout(()=>{
     W=stage.clientWidth; H=stage.clientHeight; CENT=centroids();
-    if(sim){
-      sim.force("x",d3.forceX(tX).strength(d=>d.id===META.hub?.16:.08));
-      sim.force("y",d3.forceY(tY).strength(d=>d.id===META.hub?.16:.08));
-      sim.force("center",d3.forceCenter(W/2,H/2).strength(.02));
+    if(sim && layoutMode==="default"){
+      setLayoutForces();
       sim.alpha(.35).restart();
     }
     tlBuilt=false; if(tlWrap.classList.contains("show")) buildTimeline();
@@ -6732,6 +6856,8 @@ function loadTestament(key){
   const ds=DATASETS[key];
   CAT=ds.CAT; PEOPLE=ds.PEOPLE; LINKS=ds.LINKS; TL_EVENTS=ds.EVENTS; TL_LIVES=ds.LIVES; META=ds.META;
   PIN_KEY="bible-people-map:"+key+":pins:v1";
+  LAYOUT_KEY="bible-people-map:"+key+":layout:v1";
+  structuredSig="";
   // reset UI state
   clashActive=null; clashPanel.classList.remove("show");
   panel.classList.remove("open");
