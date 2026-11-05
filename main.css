@@ -16,6 +16,11 @@
     --rulers:#C05F66;   /* rulers & adversaries*/
     --conflict:#C05F66;
     --rome:#8B98AC;     /* Roman Empire        */
+    --christ:#F7D774;   /* Jesus Christ        */
+    --met:#DD8A62;      /* Gospel encounters   */
+    --ot:#A9BC6A;       /* from the Old Testament */
+    --angel:#DDEFF7;    /* angels (both testaments) */
+    --devil:#0A0A0C;    /* the devil — near-black, outlined by its ring */
     /* Old Testament category hues */
     --prim:#CDBB5E;     /* Creation & Flood      */
     --line:#8F8A80;     /* Genealogies           */
@@ -39,6 +44,7 @@
     --tie-conf:#F2545B; /* conflict — red                   */
     --tie-spec:#F5E04A; /* calling & succession — yellow (dashed) */
     --tie-rule:#B48CF5; /* ruling / foreign power — violet  */
+    --tie-dev:#9E9AA6;  /* the devil's dealings — ash grey (dash-dot) */
     --special:#E6B84C;
     --neutral:rgba(235,227,209,.22);
     --shadow:0 18px 50px -18px rgba(0,0,0,.7);
@@ -164,6 +170,8 @@
     text-anchor:middle;font-size:11px;
   }
   .halo{fill:none;stroke:var(--gold);opacity:.55}
+  .angel-ring{fill:none;stroke:var(--angel);stroke-width:1.3;stroke-dasharray:2 3;opacity:.9;pointer-events:none}
+  .devil-ring{fill:none;stroke:var(--tie-dev);stroke-width:1.4;stroke-dasharray:9 3 2 3;opacity:.95;pointer-events:none}
 
   .footer-info{
     position:absolute;left:16px;bottom:14px;display:flex;flex-direction:column;gap:2px;
@@ -192,6 +200,7 @@
   .legend .swatch{width:22px;height:0;border-top:3px solid var(--c);border-radius:2px;flex:none}
   .legend .swatch.dash{border-top-style:dashed}
   .legend .swatch.dot{border-top-style:dotted}
+  .legend .swatch.dashdot{border-top:none;height:3px;background:repeating-linear-gradient(90deg,var(--c) 0 9px,transparent 9px 12px,var(--c) 12px 14px,transparent 14px 17px)}
 
   /* ---------- Tooltip ---------- */
   .tooltip{

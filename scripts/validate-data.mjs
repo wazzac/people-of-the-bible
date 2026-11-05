@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 /**
- * Referential-integrity check for the Bible dataset embedded in main.js.
+ * Referential-integrity check for the Bible dataset.
  *
- * The dataset is plain JS (NT_CAT, NT_PEOPLE, NT_LINKS, NT_EVENTS, NT_LIVES, NT_META
- * and the OT_ equivalents) living at the top of main.js — there's no separate data
- * file to validate against a schema library, so this extracts that block of source
- * and evaluates it in an isolated VM context, then checks the resulting arrays.
+ * The dataset is plain JS: NT_CAT, NT_PEOPLE, NT_LINKS, NT_EVENTS, NT_LIVES, NT_META
+ * in data-nt.js (which also defines the shared LG / UNSURE_RE / lk() link vocabulary)
+ * and the OT_ equivalents in data-ot.js. There is no separate data file to validate
+ * against a schema library, so this evaluates both files, in the same order
+ * index.html loads them, in an isolated VM context and checks the resulting arrays.
  *
  * Usage: node scripts/validate-data.mjs
  * Exits non-zero (and prints each problem) if anything is inconsistent.
@@ -16,39 +17,25 @@ import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const mainJsPath = path.join(__dirname, "..", "main.js");
-const js = fs.readFileSync(mainJsPath, "utf8");
-
-const startMarker = "const NT_CAT = {";
-const endMarker = "let TESTAMENT=";
-const start = js.indexOf(startMarker);
-const end = js.indexOf(endMarker, start);
-
-if (start === -1 || end === -1) {
-  console.error(
-    "Could not locate the data block in main.js (looked for markers " +
-      JSON.stringify(startMarker) + " ... " + JSON.stringify(endMarker) + "). " +
-      "If the data section was restructured, update these markers in validate-data.mjs."
-  );
-  process.exit(2);
-}
+const DATA_FILES = ["data-nt.js", "data-ot.js"]; // load order matters: data-ot.js uses lk() from data-nt.js
 
 // vm contexts only expose top-level var/function declarations as properties
 // of the sandbox object -- const/let bindings stay purely lexical and would
 // otherwise be invisible to the code below, so normalize to var first.
-const code = js
-  .slice(start, end)
-  .replace(/\bconst\s/g, "var ")
-  .replace(/\blet\s/g, "var ");
 const sandbox = {};
 vm.createContext(sandbox);
-
-try {
-  vm.runInContext(code, sandbox, { filename: "main.js (data block)" });
-} catch (err) {
-  console.error("Failed to evaluate the data block extracted from main.js:");
-  console.error(err.message);
-  process.exit(2);
+for (const file of DATA_FILES) {
+  const code = fs
+    .readFileSync(path.join(__dirname, "..", file), "utf8")
+    .replace(/\bconst\s/g, "var ")
+    .replace(/\blet\s/g, "var ");
+  try {
+    vm.runInContext(code, sandbox, { filename: file });
+  } catch (err) {
+    console.error(`Failed to evaluate ${file}:`);
+    console.error(err.message);
+    process.exit(2);
+  }
 }
 
 const datasets = {
@@ -91,6 +78,7 @@ for (const [key, ds] of Object.entries(datasets)) {
   for (const l of ds.LINKS) {
     if (!ids.has(l.source)) errors.push(`[${key}] link references unknown source id "${l.source}"`);
     if (!ids.has(l.target)) errors.push(`[${key}] link references unknown target id "${l.target}"`);
+    if (!sandbox.LG || !sandbox.LG[l.kind]) errors.push(`[${key}] link ${l.source} -> ${l.target} has unknown kind "${l.kind}" (see LG in data-nt.js)`);
   }
 
   for (const life of ds.LIVES) {
