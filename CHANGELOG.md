@@ -6,10 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project intends to follow [Semantic Versioning](https://semver.org/)
 once tagged releases begin.
 
-## [Unreleased]
+## [1.2.0-beta] - 2026-11-05
 
-**The New Testament rebuilt from the Gospels, Acts and Revelation, with Jesus
-at the centre, and a new Angels group in both testaments.**
+**The New Testament rebuilt from the Gospels, Acts, Paul's letters and
+Revelation, with Jesus at the centre, and new Angels and The devil groups in
+both testaments.**
 
 ### Added
 - **New Testament rebuilt from the full text.** Matthew, Mark, Luke, John,
@@ -47,7 +48,25 @@ at the centre, and a new Angels group in both testaments.**
 - **Revelation people**: John (Revelation), linked to John son of Zebedee only
   as a traditional identification; Antipas; "Jezebel" at Thyatira; Balaam and
   Balak (Revelation 2:14).
-- **More New Testament name lenses**, now 24, including Joseph, Herod, Philip,
+- **Paul's thirteen letters (Romans – Philemon)** read in full in the NIV and
+  mapped. People grew from 330 to 399, and relationships from 449 to 540.
+  - About 65 new people, mostly from the greetings and closings. They include
+    Epaphras, Epaphroditus, Demas, Onesiphorus, Tertius (who wrote out
+    Romans), and everyone greeted in Romans 16. The Old Testament figures Paul
+    writes about (Sarah, Hagar, Rebekah, Esau, Eve) are added too, along with
+    Jannes and Jambres, who are named only in 2 Timothy 3:8.
+  - Paul's own account is added: tribe of Benjamin, Arabia, the basket at
+    Damascus, the thorn in the flesh, and opposing Cephas at Antioch. Timothy,
+    Titus, Philemon, Onesimus, Peter, James and others gain what the letters
+    say of them. Jesus' entry quotes Philippians 2:6–8 and Colossians 1:15;
+    2:9.
+  - Where the letters don't say a person is the same as someone in Acts or the
+    Gospels, they are kept apart and joined by a dotted "the same man?" tie:
+    Sosthenes, Rufus, and the two Alexanders of 1 and 2 Timothy. Where a name
+    may cover more than one person, such as Gaius or Erastus, the entry says
+    the text doesn't settle it.
+  - New name lenses: Sosthenes, Rufus, Lucius and Jason.
+- **More New Testament name lenses**, now 28, including Joseph, Herod, Philip,
   Lazarus, Ananias and Saul.
 - **New Testament timeline rebuilt** on Scripture's own anchors (Luke 3:1, 23;
   Gallio's proconsulship; Acts 24:27; 28:30). Estimated dates are marked with an
