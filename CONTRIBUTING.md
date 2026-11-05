@@ -18,7 +18,7 @@ with a guess.
 
 A small amount of information can't come straight from the text. It is allowed
 only in the categories below, and it **must be marked where it appears, with the
-reason for it**. See [`CLAUDE.md`](./CLAUDE.md) → *Source of truth* for the full
+reason for it**. See [`AGENTS.md`](./AGENTS.md) → *Source of truth* for the full
 rules.
 
 - **Ties the text implies but doesn't state.** Leave them out, or add them with a
@@ -61,14 +61,14 @@ copyright (see [`LICENSE`](./LICENSE)), not by this project's MIT license.
 
 If you're adding a new relationship-kind category, a new UI feature, or
 anything that changes the project's architecture (see the **Non-goals**
-section of `CLAUDE.md`), please open an issue to discuss first — some things
+section of `AGENTS.md`), please open an issue to discuss first — some things
 (build step, framework choice, translation) are deliberately fixed.
 
 ## Project structure
 
 This is a static site — no framework, no bundler. The only build step is a
 minify pass used for deployment. See the **Architecture** section of
-[`CLAUDE.md`](./CLAUDE.md) for the full breakdown:
+[`AGENTS.md`](./AGENTS.md) for the full breakdown:
 
 - `index.html` — markup only.
 - `main.css` — all styles.
@@ -83,7 +83,7 @@ minify pass used for deployment. See the **Architecture** section of
 
 ## Adding or editing a person, relationship, event, or lifespan
 
-Follow the data schema and conventions in [`CLAUDE.md`](./CLAUDE.md). If
+Follow the data schema and conventions in [`AGENTS.md`](./AGENTS.md). If
 you're using Claude Code, the repo includes two skills that walk through this
 step by step:
 
@@ -98,7 +98,7 @@ The short version:
    history or tradition, label it as such.
 2. Use the NIV's exact wording for any quote, and keep `refs` to the chapters
    or verses you actually read.
-3. Follow the existing object shape in `data-nt.js` / `data-ot.js` (see `CLAUDE.md` → *Data
+3. Follow the existing object shape in `data-nt.js` / `data-ot.js` (see `AGENTS.md` → *Data
    schema*) — `id`, `name`, `short`, `cat`, `w`, `dates`, `desc`, `refs`, and
    `notconfused`/`clash`/`clashtag` wherever a name is shared with an
    existing entry. Main characters get a large `w` (about 12–16) and

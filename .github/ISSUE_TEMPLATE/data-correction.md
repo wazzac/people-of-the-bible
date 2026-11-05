@@ -15,6 +15,6 @@ labels: data
 
 ## Source
 
-<!-- Per CLAUDE.md: NIV via bible.com for scripture, general historical consensus for extra-biblical
+<!-- Per AGENTS.md: NIV via bible.com for scripture, general historical consensus for extra-biblical
 history (cite it, e.g. Josephus), or explicitly-labelled church tradition. If you're not sure which
 category this falls into, say so and we'll figure it out together. -->

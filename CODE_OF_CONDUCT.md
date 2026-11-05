@@ -13,7 +13,7 @@ This project maps figures and relationships from the Bible for study and
 reference. Contributors and maintainers come from a range of traditions and
 backgrounds, and discussion of scripture, history, and tradition should stay
 respectful and focused on sourcing and accuracy — not doctrine, denomination,
-or belief. See [`CLAUDE.md`](./CLAUDE.md) for how this project distinguishes
+or belief. See [`AGENTS.md`](./AGENTS.md) for how this project distinguishes
 Scripture, historical consensus, and church tradition; that same
 distinction — sourced, not argued — is the standard for conduct here too.
 
@@ -44,7 +44,7 @@ Examples of unacceptable behavior:
   address, without their explicit permission
 - Using this project to promote a specific denomination or belief as the only
   legitimate reading of the text, rather than sourcing claims per
-  `CLAUDE.md`
+  `AGENTS.md`
 - Other conduct which could reasonably be considered inappropriate in a
   professional setting
 

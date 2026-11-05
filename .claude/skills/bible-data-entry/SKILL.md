@@ -11,7 +11,7 @@ This project's entire dataset lives in two plain JS files:
 
 `main.js` holds only the app code; don't put data there.
 
-There is no database and no separate data file. Read `CLAUDE.md` at the repo root first for the full schema and the *Source of truth* rules. This skill is the step-by-step workflow for using them.
+There is no database and no separate data file. Read `AGENTS.md` at the repo root first for the full schema and the *Source of truth* rules. This skill is the step-by-step workflow for using them.
 
 ## The rule
 
@@ -22,7 +22,7 @@ There is no database and no separate data file. Read `CLAUDE.md` at the repo roo
 - Where the text is silent or ambiguous, say so in the entry instead of filling the gap. For example:
   - Genesis 24's servant is never named;
   - Hosea 1 does not say that Lo-Ruhamah and Lo-Ammi were Hosea's children.
-- Anything not stated in the text is allowed only as one of the labelled exceptions in `CLAUDE.md`, and must be marked where it appears with its reason:
+- Anything not stated in the text is allowed only as one of the labelled exceptions in `AGENTS.md`, and must be marked where it appears with its reason:
   - an uncertain tie;
   - an estimated date;
   - extra-biblical history;
@@ -76,7 +76,7 @@ Write any helper scripts to the session scratchpad, not the repo, and don't leav
 
 ## Adding the person
 
-Append an object to the appropriate `PEOPLE` array (see `CLAUDE.md` for full field docs):
+Append an object to the appropriate `PEOPLE` array (see `AGENTS.md` for full field docs):
 
 ```js
 {id:"newid", name:"Full Name", short:"Short Name", cat:"king", w:5,
@@ -144,7 +144,7 @@ Both testaments have an `angels` group and a `devil` group (`ring:"angel"` / `ri
   - Only add a bar if the person's dates are worth showing (rulers, prophets, central figures).
 - **Calendar years:**
   - Work from Scripture's own figures (ages, reign lengths, anchors such as 1 Kings 6:1 and Exodus 12:40).
-  - Place them with the standard chronologies named in `CLAUDE.md`: early-date reckoning for the patriarchs and the Exodus, Thiele for the kings, and Bible Hub's timeline.
+  - Place them with the standard chronologies named in `AGENTS.md`: early-date reckoning for the patriarchs and the Exodus, Thiele for the kings, and Bible Hub's timeline.
   - Keep a person's `dates` text consistent with their bar.
 
 ## After editing

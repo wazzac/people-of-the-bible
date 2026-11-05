@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project intends to follow [Semantic Versioning](https://semver.org/)
 once tagged releases begin.
 
+## [1.2.1-beta] - 2026-11-05
+
+**`AGENTS.md` added as the shared AI agent guide.**
+
+### Changed
+- **`AGENTS.md` is now the main instruction file for AI coding agents**, so
+  Codex, Cursor, Copilot and others get the same project guide as Claude. It
+  holds everything that was in `CLAUDE.md`, plus the maintainer's working rules:
+  - committing only when asked, with "main: …" titles;
+  - releases tagged by the maintainer;
+  - the rules for angels, the devil and identity links;
+  - the book-by-book mapping workflow.
+
+  `CLAUDE.md` now imports `AGENTS.md` and keeps only Claude Code specifics:
+  skills, browser permissions and memory. README, CONTRIBUTING, the code of
+  conduct, the GitHub templates and the data-entry skill now point to
+  `AGENTS.md`. The repository link now uses the repo's new name,
+  `wazzac/people-of-the-bible`.
+
 ## [1.2.0-beta] - 2026-11-05
 
 **The New Testament rebuilt from the Gospels, Acts, Paul's letters and

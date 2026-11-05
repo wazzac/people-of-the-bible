@@ -4,7 +4,7 @@
 
 ## Sourcing (required for data changes)
 
-<!-- Per CONTRIBUTING.md / CLAUDE.md, every fact needs a source. Check what applies: -->
+<!-- Per CONTRIBUTING.md / AGENTS.md, every fact needs a source. Check what applies: -->
 
 - [ ] Scripture references verified against the **NIV** on bible.com — nothing made up; quotes are the NIV's exact wording
 - [ ] Anything not stated in the text (estimated dates, "possibly"/"disputed" ties) is marked, with the reason
@@ -16,4 +16,4 @@
 
 - [ ] `node scripts/validate-data.mjs` passes locally
 - [ ] Checked the site locally in a browser (`index.html`, no build step needed)
-- [ ] Follows the schema and conventions in `CLAUDE.md`
+- [ ] Follows the schema and conventions in `AGENTS.md`

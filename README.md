@@ -60,7 +60,7 @@ anything to view or edit the site locally.
 | What | Source |
 |---|---|
 | People, relationships, descriptions, quotations and verse references | **The Bible, NIV**, read on [Bible.com](https://www.bible.com) (YouVersion). Quotations are the NIV's wording. |
-| Book-overview poster images | [BibleProject](https://bibleproject.com). Hotlinked from BibleProject's own servers under their Posters permission: non-commercial digital display, no modification, and the permission can be withdrawn. Every displayed poster carries a "Poster © BibleProject" credit. See [`CLAUDE.md`](./CLAUDE.md) for the terms and how to remove the feature. |
+| Book-overview poster images | [BibleProject](https://bibleproject.com). Hotlinked from BibleProject's own servers under their Posters permission: non-commercial digital display, no modification, and the permission can be withdrawn. Every displayed poster carries a "Poster © BibleProject" credit. See [`AGENTS.md`](./AGENTS.md) for the terms and how to remove the feature. |
 | Orientation only | [BibleProject](https://bibleproject.com) may be used to check how a book or figure is commonly understood. It is never the source of a fact, date or quotation on the map. |
 | Placing events on a BC/AD calendar | Scripture's own figures where it gives them (ages, years of reigns, "in the 480th year…"). These are anchored by standard scholarly chronologies: the early-date reckoning for the patriarchs and the Exodus, Thiele's reckoning for the kings, and [Bible Hub's timeline](https://biblehub.com/timeline/). Persian, Babylonian and Assyrian reign dates follow the historical record. All of these are marked as estimates where they are uncertain (see below). |
 
@@ -157,8 +157,10 @@ branch.
 ## Contributing
 
 - [`CONTRIBUTING.md`](./CONTRIBUTING.md) explains how to propose changes.
-- [`CLAUDE.md`](./CLAUDE.md) covers the data schema, the sourcing rules and the
-  conventions for adding or editing people and relationships.
+- [`AGENTS.md`](./AGENTS.md) covers the data schema, the sourcing rules and the
+  conventions for adding or editing people and relationships. It is written for
+  AI coding agents but reads fine for people too; [`CLAUDE.md`](./CLAUDE.md)
+  adds only what is specific to Claude Code.
 
 The same rule applies to every contribution: take it from the NIV text, and
 label anything that isn't.
