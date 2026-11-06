@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project intends to follow [Semantic Versioning](https://semver.org/)
 once tagged releases begin.
 
+## [1.3.1-beta] - 2026-11-06
+
+**Name lens moved up beside Posters.**
+
+### Changed
+- **Name lens** now sits on the first row of the controls bar, after Posters
+  and a "|" separator, instead of on a row of its own under the Groups. The
+  Groups take the row below, which frees a little vertical space for the map.
+  On small screens the Filters drawer now lists Name lens before Groups.
+
 ## [1.3.0-beta] - 2026-11-06
 
 **README badges, and `LICENSE` split so GitHub detects it as MIT.**

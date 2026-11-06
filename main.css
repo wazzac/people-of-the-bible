@@ -151,6 +151,7 @@
   }
   .filters-toggle[aria-expanded="true"]{color:var(--vellum);border-color:var(--gold-dim);background:color-mix(in srgb, var(--gold) 14%, var(--panel))}
   .filter-drawer{display:contents}
+  #catFilters{flex-basis:100%} /* Groups take their own row, under search · posters | name lens */
   .posters-btn{
     display:inline-flex;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
     align-items:center;gap:6px;background:var(--panel);color:var(--muted);border:1px solid var(--edge);
