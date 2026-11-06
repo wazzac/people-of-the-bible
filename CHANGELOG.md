@@ -6,6 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project intends to follow [Semantic Versioning](https://semver.org/)
 once tagged releases begin.
 
+## [1.3.0-beta] - 2026-11-06
+
+**README badges, and `LICENSE` split so GitHub detects it as MIT.**
+
+### Added
+- **README badges**: version, CI status, live-site status, D3.js, no
+  framework, Cloudflare Pages, NIV, licence, issues and Buy me a coffee, plus
+  a "Made with ☕" sign-off.
+
+### Changed
+- **`LICENSE` is now the plain MIT text**, so GitHub detects the licence as
+  MIT. The content, sources and third-party notices (NIV copyright,
+  BibleProject posters, D3.js and Google Fonts) moved unchanged to the new
+  `NOTICE.md`, and README, CONTRIBUTING and AGENTS point to it.
+- **Footer credit** now reads "built by Warren Coetzee as an open-source
+  project", with the last words linking to https://github.com/wazzac. The
+  footer no longer has a fixed width cap. It stays on one line on wide
+  screens, and wraps only when the screen is too narrow to fit it beside the
+  legend.
+
 ## [1.2.2-beta] - 2026-11-06
 
 **The site is now public and open to search engines.**

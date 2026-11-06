@@ -48,7 +48,7 @@ unsourced or unmarked claims, or that quote a translation other than the NIV,
 will be asked to revise before merge.
 
 Keep NIV quotations to short phrases. They are covered by Biblica's NIV
-copyright (see [`LICENSE`](./LICENSE)), not by this project's MIT license.
+copyright (see [`NOTICE.md`](./NOTICE.md)), not by this project's MIT license.
 
 ## What you can contribute
 

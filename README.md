@@ -1,3 +1,16 @@
+<p align="center">
+    <a href="https://github.com/wazzac/people-of-the-bible/tags"><img alt="Version" src="https://img.shields.io/github/v/tag/wazzac/people-of-the-bible?label=version&sort=semver&include_prereleases"></a>
+    <a href="https://github.com/wazzac/people-of-the-bible/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/wazzac/people-of-the-bible/ci.yml?branch=main&label=CI"></a>
+    <a href="https://bible-people.wazzac.dev"><img alt="Live site" src="https://img.shields.io/website?url=https%3A%2F%2Fbible-people.wazzac.dev&label=live%20site"></a>
+    <img alt="D3.js" src="https://img.shields.io/badge/D3.js-7.8.5-orange?logo=d3dotjs">
+    <img alt="Vanilla JS" src="https://img.shields.io/badge/JavaScript-no%20framework-yellow?logo=javascript">
+    <img alt="Cloudflare Pages" src="https://img.shields.io/badge/hosted%20on-Cloudflare%20Pages-F38020?logo=cloudflarepages&logoColor=white">
+    <img alt="Scripture: NIV" src="https://img.shields.io/badge/Scripture-NIV-8a6d3b">
+    <a href="https://github.com/wazzac/people-of-the-bible/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/wazzac/people-of-the-bible"></a>
+    <a href="https://github.com/wazzac/people-of-the-bible/issues"><img alt="Issues" src="https://img.shields.io/github/issues/wazzac/people-of-the-bible"></a>
+    <a href="https://coff.ee/wazzac"><img alt="Buy me a coffee" src="https://img.shields.io/badge/Buy%20me%20a%20coffee-☕-yellow?style=flat&logo=buy-me-a-coffee"></a>
+</p>
+
 # People of the Bible — a relationship map
 
 A single-page, interactive map of the people of the Bible and how they connect to
@@ -180,3 +193,10 @@ label anything that isn't.
   MIT License.
 - **D3.js** (ISC License) and **Google Fonts** (SIL Open Font License) are
   loaded from their CDNs under their own licences.
+
+The full content, sources and third-party notices are in
+[`NOTICE.md`](./NOTICE.md).
+
+---
+
+<p align="center">Made with ☕ by <a href="https://wazzac.dev">Warren Coetzee</a></p>

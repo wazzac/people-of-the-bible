@@ -175,7 +175,8 @@
 
   .footer-info{
     position:absolute;left:16px;bottom:14px;display:flex;flex-direction:column;gap:2px;
-    pointer-events:none;max-width:min(640px,72vw);
+    pointer-events:none;
+    max-width:calc(100% - 270px); /* clear the legend; only wraps once the screen is too narrow for one line */
   }
   .hint{
     font-family:var(--mono);font-size:10.5px;
@@ -367,6 +368,7 @@
     aside{width:100%;top:auto;bottom:0;height:74vh;border-left:0;border-top:1px solid var(--edge);transform:translateY(102%)}
     aside.open{transform:translateY(0)}
     .legend{display:none}
+    .footer-info{max-width:calc(100% - 32px)}
   }
   @media (prefers-reduced-motion:reduce){
     *{transition:none!important;animation:none!important}
