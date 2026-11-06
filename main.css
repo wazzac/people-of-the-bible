@@ -190,6 +190,7 @@
   .credits a:hover{color:var(--gold);text-decoration-color:var(--gold)}
   .credits a.give{opacity:.7;text-decoration-style:dotted}
   .credits a.give:hover{opacity:1}
+  .credits .nowrap{white-space:nowrap}
 
   .legend{
     position:absolute;right:14px;bottom:14px;background:rgba(19,24,34,.86);border:1px solid var(--edge);

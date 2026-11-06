@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project intends to follow [Semantic Versioning](https://semver.org/)
 once tagged releases begin.
 
+## [1.2.2-beta] - 2026-11-06
+
+**The site is now public and open to search engines.**
+
+### Added
+- **Search engine support**, ready for Google Search Console and Bing
+  Webmaster Tools:
+  - the `noindex` robots tags are replaced with `index, follow`;
+  - a meta description, canonical URL, Open Graph/Twitter tags and a
+    schema.org `WebApplication` block;
+  - `robots.txt` and `sitemap.xml`, which the build now copies into `dist/`;
+  - a short `<noscript>` description for crawlers that don't run JavaScript.
+- **Developer credit.** The credits line under the hint now ends with
+  "built by Warren Coetzee", linking to https://wazzac.dev.
+
 ## [1.2.1-beta] - 2026-11-05
 
 **`AGENTS.md` added as the shared AI agent guide.**

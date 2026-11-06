@@ -40,7 +40,11 @@ Both testaments have an **Angels** group (`ring:"angel"`) and a **The devil** gr
 
 ## Attribution
 
-The site credits both sources in the UI itself. A small line under the interaction hint (bottom-left of the graph, `.credits` in `index.html`) reads "Data drawn from Scripture and tradition · sources: Bible.com (give) · BibleProject.com (give)". It links to https://www.bible.com and https://bibleproject.com, and each "(give)" links to that organisation's giving page. Keep this in place; if the on-page wording changes, update it here too.
+The site credits both sources in the UI itself. A small line under the interaction hint (bottom-left of the graph, `.credits` in `index.html`) reads "Data drawn from Scripture and tradition · sources: Bible.com (give) · BibleProject.com (give)". It links to https://www.bible.com and https://bibleproject.com, and each "(give)" links to that organisation's giving page. It ends with "· built by Warren Coetzee", linking to the maintainer's site, https://wazzac.dev. Keep this in place; if the on-page wording changes, update it here too.
+
+## Search engines
+
+The site is public and open to crawlers. `index.html` carries the search metadata (`robots` index/follow, `description`, canonical URL `https://bible-people.wazzac.dev/`, Open Graph/Twitter tags and a schema.org `WebApplication` JSON-LD block); `robots.txt` and `sitemap.xml` sit at the repo root and `scripts/build.mjs` copies them into `dist/`. Keep the description and JSON-LD factual — they describe the map, not claims about Scripture. Update the sitemap's `<lastmod>` when a release changes the content.
 
 NIV quotations fall under Biblica's NIV copyright. `README.md` and `LICENSE` carry Biblica's standard notice. Biblica's terms allow up to 500 verses to be quoted without separate permission, provided the notice is shown, so keep quotations short phrases rather than whole passages.
 

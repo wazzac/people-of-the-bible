@@ -40,8 +40,9 @@ for (const name of SCRIPTS) {
 }
 writeFileSync(`${dist}/index.html`, html, "utf8");
 
-if (existsSync(`${root}/favicon.svg`)) {
-  cpSync(`${root}/favicon.svg`, `${dist}/favicon.svg`);
+// static files copied as-is (robots.txt and sitemap.xml are for search engines)
+for (const file of ["favicon.svg", "robots.txt", "sitemap.xml"]) {
+  if (existsSync(`${root}/${file}`)) cpSync(`${root}/${file}`, `${dist}/${file}`);
 }
 
 console.log("Built to dist/");

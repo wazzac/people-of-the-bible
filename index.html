@@ -3,9 +3,37 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
-<meta name="googlebot" content="noindex, nofollow" />
-<title>People of the Bible — a relationship map</title>
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<title>People of the Bible - a relationship map</title>
+<meta name="description" content="An interactive map of the people of the Bible and how they connect: family, disciples, rivals, rulers, prophets and the early church, drawn from the NIV text, with a timeline of who lived when." />
+<meta name="author" content="Warren Coetzee" />
+<link rel="canonical" href="https://bible-people.wazzac.dev/" />
+<meta name="theme-color" content="#0F131C" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="People of the Bible" />
+<meta property="og:title" content="People of the Bible - a relationship map" />
+<meta property="og:description" content="An interactive map of the people of the Old and New Testaments and how they connect, drawn from the NIV text." />
+<meta property="og:url" content="https://bible-people.wazzac.dev/" />
+<meta property="og:locale" content="en" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="People of the Bible - a relationship map" />
+<meta name="twitter:description" content="An interactive map of the people of the Old and New Testaments and how they connect, drawn from the NIV text." />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "People of the Bible",
+  "alternateName": "People of the Bible - a relationship map",
+  "url": "https://bible-people.wazzac.dev/",
+  "description": "An interactive map of the people of the Bible and how they connect, drawn from the NIV text, with a timeline of who lived when.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "Warren Coetzee", "url": "https://wazzac.dev" }
+}
+</script>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +47,7 @@
     <div class="brand">
       <span class="kicker" id="appKicker">A relational map</span>
       <h1 id="appTitle">People of the New Testament</h1>
-      <p class="subtitle" id="appSubtitle">Family, the Twelve, followers, and the church that carried the ministry on — and who is who among the many Johns, Jameses, and Marys.</p>
+      <p class="subtitle" id="appSubtitle">Family, the Twelve, followers, and the church that carried the ministry on - and who is who among the many Johns, Jameses, and Marys.</p>
     </div>
     <div class="toggles">
       <div class="viewtoggle testtoggle" role="group" aria-label="Choose testament">
@@ -84,6 +112,7 @@
       </div>
       <div class="credits" id="credits">
         Data drawn from Scripture and tradition · sources: <a href="https://www.bible.com" target="_blank" rel="noopener noreferrer">Bible.com</a> <a href="https://www.youversion.com/giving" target="_blank" rel="noopener noreferrer" class="give">(give)</a> · <a href="https://bibleproject.com" target="_blank" rel="noopener noreferrer">BibleProject.com</a> <a href="https://bibleproject.com/give/" target="_blank" rel="noopener noreferrer" class="give">(give)</a>
+        · <span class="nowrap">built by <a href="https://wazzac.dev" target="_blank" rel="noopener">Warren Coetzee</a></span>
       </div>
     </div>
 
@@ -107,6 +136,10 @@
   </div>
 </div>
 
+<noscript>
+  <p style="padding:16px;color:#9AA1B2">People of the Bible is an interactive relationship map of the people of the Old and New Testaments, drawn from the NIV text. It needs JavaScript to draw the map.</p>
+</noscript>
+
 <div class="tooltip" id="tooltip" role="status"></div>
 
 <div class="postermodal" id="posterModal" role="dialog" aria-modal="true" aria-label="Book poster">
@@ -120,7 +153,7 @@
       <button class="poster-back" id="posterBack" type="button">‹ All posters</button>
       <a class="poster-fullscreen" id="posterFullscreen" href="#" target="_blank" rel="noopener noreferrer">View full size ↗</a>
       <img id="posterImg" alt="">
-      <p class="poster-attrib">Poster © <a href="https://bibleproject.com" target="_blank" rel="noopener noreferrer">BibleProject</a> — used under BibleProject's non-commercial display permission.</p>
+      <p class="poster-attrib">Poster © <a href="https://bibleproject.com" target="_blank" rel="noopener noreferrer">BibleProject</a> - used under BibleProject's non-commercial display permission.</p>
     </div>
   </div>
 </div>

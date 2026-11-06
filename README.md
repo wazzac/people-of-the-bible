@@ -67,6 +67,8 @@ anything to view or edit the site locally.
 Bible.com and BibleProject are also credited on the site itself, in the small
 line under the on-screen hint.
 
+Built by [Warren Coetzee](https://wazzac.dev).
+
 ## How anything beyond the text is marked
 
 The default is the plain biblical text. Where the map goes beyond it, it says
