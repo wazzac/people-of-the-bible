@@ -6,6 +6,91 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project intends to follow [Semantic Versioning](https://semver.org/)
 once tagged releases begin.
 
+## [1.4.0-beta] - 2026-11-07
+
+**Hebrews to Jude mapped: the New Testament is complete. God is now on the map as Father, Son and Holy Spirit.**
+
+### Added
+- **God: Father, Son and Holy Spirit.** Large circles, the same size as
+  Jesus, with the gold halo.
+  - **New Testament:** **God the Father** and **The Holy Spirit** stand beside
+    Jesus, who stays the hub at the centre. The group is renamed "Father, Son &
+    Holy Spirit".
+  - **Old Testament:** **God (the LORD)** is the hub, at the centre, with
+    **The Spirit of God** beside him in a new "God & the Spirit of God" group.
+    Jesus is not added to the Old Testament.
+  - A new tie, **God's dealings** (ivory), is drawn only where the NIV says
+    God spoke to, appeared to, called or sent someone, or the Spirit came on,
+    filled or spoke through them. There are 31 such ties in the New Testament
+    and 70 in the Old, each with its verse.
+  - In some scenes the text moves between "the angel of the LORD" and the LORD
+    himself without explaining how (Genesis 16; Exodus 3). A dotted link marks
+    this.
+  - The entries say the word "Trinity" is not in the Bible, and label the
+    creeds of Nicaea and Constantinople as historical record. Two short
+    BibleProject podcast quotes are included, named and marked as teaching,
+    not Scripture.
+  - In the Structured layout the Trinity circles come first.
+- **1 and 2 Peter, 1–3 John and Jude**, read chapter by chapter in the NIV
+  on Bible.com, with every verse checked present. People grew from 409 to 414,
+  and relationships from 550 to 559.
+  - **The elder (2 and 3 John)**: a new circle, because the letters call their
+    writer only "the elder". A dotted "the same man?" link joins him to John
+    son of Zebedee. The NIV introductions say he also wrote 1 John and was very
+    likely the apostle John; the entry says the letters themselves do not.
+  - **Gaius (3 John)**, **Diotrephes** and **Demetrius (3 John)**, each linked
+    to the elder. Gaius joins the **Gaius** lens, with a note that 3 John does
+    not connect him to the three Gaiuses of Acts and Paul's letters. A new
+    **Demetrius** lens sets him beside the silversmith of Ephesus.
+  - **Korah** (Jude 11), linked to Moses and Aaron, whom he rose up against
+    (Numbers 16).
+  - New links: Peter and Silas (1 Peter 5:12); Satan and Cain, who "belonged
+    to the evil one" (1 John 3:12); and a dotted link from Jude to James,
+    because Jude 1 does not say which James is his brother.
+- **Existing entries extended**: Peter (writer of both letters, eyewitness
+  "on the sacred mountain"), Jesus, Paul ("our dear brother", 2 Peter 3:15),
+  Sarah, Noah, Lot, Balaam, Cain, Enoch, Adam, Moses, Satan, Michael and
+  Judas the brother of Jesus (the NIV introduction takes him to be the writer
+  of Jude). Michael's entry adds the NIV footnote that Jude 9 alludes to the
+  Jewish Testament of Moses.
+- **Hebrews and James**, read chapter by chapter in the NIV on Bible.com, with
+  every verse checked present (Hebrews 303, James 108). People grew from 399
+  to 409, and relationships from 540 to 550.
+  - New circles, all in "From the Old Testament": Melchizedek (linked to
+    Abraham, whom he blessed, and to Jesus, "a high priest forever, in the
+    order of Melchizedek"); Cain (Abel's brother, who killed him); the patriarch
+    Levi, who "paid the tenth through Abraham"; Joshua son of Nun; Rahab of
+    Jericho; Job; and Gideon, Barak, Samson and Jephthah.
+  - Gideon, Barak, Samson, Jephthah and Job have no lines. Hebrews 11:32 and
+    James 5:11 name them but tie them to no one on the map, so none are drawn.
+  - **Rahab of Jericho** (Hebrews 11:31; James 2:25) is kept apart from the
+    Rahab in Matthew's genealogy, joined by a dotted "the same woman?" link,
+    because Matthew 1:5 does not say they are the same.
+  - New name-lens entries: **Rahab** and **Joshua**. The patriarch Levi joins
+    the **Levi** lens.
+- **Existing entries extended** with what the two letters say: Jesus (the Son
+  and high priest of Hebrews), Abraham, Sarah, Isaac, Jacob, Esau, Joseph,
+  Moses, Aaron, Abel, Enoch, Noah, David, Samuel, Elijah, Judah, Timothy, James
+  the Lord's brother and Satan (Hebrews 2:14; James 4:7).
+  - Sarah's entry gives the NIV footnote on Hebrews 11:11, in which the faith
+    may be Abraham's.
+  - Timothy's entry says that Hebrews names neither its writer nor anything
+    more about "our brother Timothy" (13:23).
+  - James's entry says the letter does not say which James wrote it; the NIV
+    introduction, like church tradition, takes him to be the Lord's brother.
+
+### Changed
+- **README status** now says both testaments have been built book by book
+  from the NIV. It still described the New Testament as an earlier set of 71
+  people.
+- **Sourcing rules** (AGENTS.md, README, CONTRIBUTING): a Bible teaching such
+  as BibleProject's may now be quoted, word for word, named and marked as
+  teaching. It is still never the source of a fact, date or Scripture quote.
+
+### Fixed
+- **Hover tooltip** now appears just above the pointer. Before, it floated far
+  above the circle, by the height of the header and filter bar.
+
 ## [1.3.1-beta] - 2026-11-06
 
 **Name lens moved up beside Posters.**

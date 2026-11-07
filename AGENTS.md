@@ -4,7 +4,7 @@ Instructions for any AI coding agent (Claude Code, Codex, Cursor, Copilot, …) 
 
 ## What this project is
 
-"People of the Bible" — a single-page relationship map of biblical figures, rendered as an interactive D3.js force graph with a secondary timeline view. Two datasets: Old Testament and New Testament, toggled in the UI. In the New Testament, Jesus is the hub: the largest circle and the centre of the map.
+"People of the Bible" — a single-page relationship map of biblical figures, rendered as an interactive D3.js force graph with a secondary timeline view. Two datasets: Old Testament and New Testament, toggled in the UI. In the New Testament, Jesus is the hub, at the centre of the map, with God the Father and the Holy Spirit beside him in circles of the same size. In the Old Testament, God (the LORD) is the hub, with the Spirit of God beside him.
 
 Live site: https://bible-people.wazzac.dev (Cloudflare Pages)
 Repo: https://github.com/wazzac/people-of-the-bible
@@ -24,7 +24,7 @@ Repo: https://github.com/wazzac/people-of-the-bible
 - **Extra-biblical history** (Roman emperors, governors, Persian/Babylonian/Assyrian reign dates, Josephus-derived events such as James the Just's martyrdom, the fall of Jerusalem in AD 70): general historical consensus, cited inline (e.g. "recorded by Josephus", "historical record").
 - **Church tradition beyond the biblical text** (Joachim and Anne as Mary's parents, Luke/Mark's authorship, Peter and Paul's martyrdoms in Rome, John's exile date per Irenaeus): explicitly labelled "traditional" in the data (`dates`, `desc`, or `notconfused`). Never present tradition as if it were Scripture.
   - Many older OT `dates` strings also use "(traditional)" to mean a conventional date estimate; new entries should use "(estimate)" for that.
-- **Thematic orientation**: [BibleProject](https://bibleproject.com) may be used to sanity-check how a figure or book is commonly understood. It is never the source of a fact, date or quote on the map.
+- **Thematic orientation and Bible teaching**: [BibleProject](https://bibleproject.com) may be used to sanity-check how a figure or book is commonly understood. It is never the source of a fact, date or Scripture quote on the map. Where an entry draws on a Bible teaching (e.g. BibleProject's podcast on the Trinity), quote the teaching's exact words, keep the quote short, say it is teaching and not Scripture, and name the source (programme, episode title, year), as in the entries for God the Father and the Holy Spirit.
 - **Book-overview poster images** (the "Posters" feature — a header gallery button plus per-person "Poster: ..." buttons in the detail panel): BibleProject's downloadable book/testament-overview posters, **hotlinked directly from BibleProject's own CDN** (`d1bsmz3sdihplr.cloudfront.net`) — never downloaded, self-hosted, resized, recompressed, cropped, or reformatted, only CSS display-scaled. This is a separate sourced-content type from the thematic-framing bullet above: that one governs prose framing in `desc`/etc.; this one governs the `POSTERS`/`POSTER_BY_BOOK` table and `#posterModal` UI. Per BibleProject's Terms of Use (bibleproject.com/terms/), Posters have their own permission grant ("download, reproduce and display... digitally... unless and until we withdraw this permission") separate from their stricter Video/Audio rules — non-commercial use only, no modification of the image files, and the permission is **revocable at any time**. The feature is intentionally isolated to one data table (`POSTERS`/`POSTER_BY_BOOK` in `main.js`, defined right after `BOOK_CODES`/`bibleUrl()`) and one component (`#posterModal` in `index.html`, its CSS block in `main.css`) so it can be removed in a small diff if BibleProject ever withdraws permission. There is currently no poster for Hebrews in BibleProject's catalog — this is a known gap, not a bug.
 
 If a new fact, date, or reference is added and its source doesn't fall into one of the above, ask the maintainer rather than guessing. `README.md` ("How anything beyond the text is marked") and `NOTICE.md` (content and third-party notices) state these same rules publicly; keep the three in step.
@@ -36,7 +36,14 @@ Both testaments have an **Angels** group (`ring:"angel"`) and a **The devil** gr
 - A named angel gets its own circle (Gabriel, Michael, Abaddon/Apollyon). Angels named only outside the 66 books (e.g. Raphael, from Tobit) are not added.
 - Unnamed angels are grouped by what Scripture calls them: "Angel of the Lord (unnamed)" in the NT; "The angel of the LORD" and "Angels of God (unnamed)" in the OT. An unnamed angel the text singles out by role (e.g. Revelation's angel with the little scroll) may get its own circle. Each grouped circle states that the text doesn't say whether these are the same angel.
 - Satan's ties use the link kind `dev` and appear only where Scripture shows him dealing with a person. A tie the text only implies (e.g. the serpent and Eve) is drawn dotted with the reason in the note.
-- God the Father and the Holy Spirit have no circles; they are described in Jesus' entry. Don't add them without asking — the maintainer will decide once the New Testament is complete.
+### God: Father, Son and Holy Spirit
+
+The maintainer's rules (decided once the New Testament was complete):
+- God is shown as the Trinity: Father, Son and Holy Spirit, one God, with large, prominent circles (`w:30`, `halo:2`), equal in size to Jesus.
+- **New Testament:** "God the Father" (`father`) and "The Holy Spirit" (`spirit`) sit beside Jesus in the `christ` group, labelled "Father, Son & Holy Spirit". Jesus stays the hub, at the centre. `NT_META.lead` puts the three first in the Structured layout.
+- **Old Testament:** Jesus is not added. "God (the LORD)" (`god`, the OT hub) and "The Spirit of God" (`spiritgod`) form the `god` group.
+- Their ties use the link kind `god` ("God's dealings", ivory, solid). Draw one only where the text says God spoke to, appeared to, called, sent or dealt directly with the person, or the Spirit came on, filled or spoke through them, quoting the NIV verse. God is at work far more widely than this; the entries say so rather than linking everyone.
+- The word "Trinity" is not in the Bible. Entries say so, and label the creeds of Nicaea (AD 325) and Constantinople (AD 381) as historical record.
 
 ## Attribution
 
@@ -68,7 +75,8 @@ The data in each `data-*.js` file, in this order:
    - `NT_META` / `OT_META` — UI metadata:
      - titles and the tie `legend`;
      - force-layout centroids per category;
-     - `hub`, the central figure (Jesus in the NT), who leads the Structured layout;
+     - `hub`, the central figure (Jesus in the NT, God in the OT);
+     - `lead`, the ids that lead the Structured layout, in order (Father, Son and Holy Spirit in the NT; God and the Spirit of God in the OT);
      - `defaultCats`, the groups switched on at page load (the rest are hidden until chosen from the Groups chips or the Main/All/None buttons);
      - "name clash" groupings (`clashNames`/`clashSub`);
      - timeline settings: `tlTitle`, `tlCaption`, `tlDomain`, `tlTicks`, `tlMinWidth`, `tlPack` (bars share rows, events in lanes) and the OT-only `tlStops`. With a multi-point `tlDomain`, `tlStops` draws each stretch at its own scale, and each scale change is marked on the chart.
@@ -114,7 +122,8 @@ The dataset **is** JavaScript source in `data-nt.js` and `data-ot.js` — edit t
   - `conf` — conflict or betrayal;
   - `spec` — calling, prophecy, succession or anointing; renders dashed;
   - `rule` — ruling authority;
-  - `dev` — "The devil's dealings"; renders dash-dot; Satan's ties only, each quoting the NIV verse.
+  - `dev` — "The devil's dealings"; renders dash-dot; Satan's ties only, each quoting the NIV verse;
+  - `god` — "God's dealings"; solid ivory; ties of God the Father, the Holy Spirit (NT), God and the Spirit of God (OT) only, each quoting the NIV verse.
 
   It controls the link's color from the `--tie-*` palette. The validator rejects any other kind.
 - `type` — short relationship label, e.g. `"married"`, `"father of"`, `"betrayed"`. Use only what the text states.
@@ -148,7 +157,7 @@ Two step-by-step workflows live as plain Markdown under `.claude/skills/`. Despi
 
 ### Mapping a whole book
 
-The dataset is built one Bible book (or group of books) at a time. The Old Testament is complete; the New Testament has the Gospels, Acts, Paul's letters and Revelation, with Hebrews to Jude still to do. For each book:
+The dataset is built one Bible book (or group of books) at a time. Both testaments are complete: the Old Testament from Genesis to Malachi, and the New Testament from Matthew to Revelation. Use the same steps to revisit a book or add what an earlier pass missed. For each book:
 1. Fetch the NIV introduction (`{BOOK}.INTRO1`) and every chapter from bible.com, and check every verse is present against the NIV's verse counts. Verses the NIV omits (and notes in a footnote, e.g. Romans 16:24) are expected gaps.
 2. Read the text, sweep it for every personal name, and read each name's passages in full — not just the verse with the name in it.
 3. Add new people and links; extend existing entries with what the new book says (append to `desc`, add `refs`), rather than duplicating them.

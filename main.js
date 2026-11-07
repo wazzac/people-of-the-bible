@@ -237,8 +237,9 @@ function structuredTargets(){
   const t=estimateTimes(), catOrder=Object.keys(CAT);
   const vis=nodes.filter(n=>shown(n.id));
   if(!vis.length) return {};
-  // the central figure (META.hub — Jesus in the NT) leads the reading order
-  vis.sort((a,b)=>((b.id===META.hub)-(a.id===META.hub)) || (t[a.id]-t[b.id]) || (catOrder.indexOf(a.cat)-catOrder.indexOf(b.cat)) || (b.w-a.w));
+  // META.lead (Father, Son & Spirit in the NT; God & his Spirit in the OT) leads the reading order
+  const lead=META.lead||[META.hub], rank=d=>{ const i=lead.indexOf(d.id); return i<0?lead.length:i; };
+  vis.sort((a,b)=>(rank(a)-rank(b)) || (t[a.id]-t[b.id]) || (catOrder.indexOf(a.cat)-catOrder.indexOf(b.cat)) || (b.w-a.w));
   // each column is about one screen tall, so the map reads as a wide, pannable timeline
   const colW=170, rowH=d=>2*d.w+26, maxH=Math.max(360, H-120);
   const cols=[[]]; let used=0;
@@ -359,7 +360,8 @@ function showTip(e,d){
   tooltip.style("opacity",1); moveTip(e);
 }
 function moveTip(e){
-  const r=stage.getBoundingClientRect();
+  // measure from the tooltip's own containing block, not the stage, so it sits just above the pointer
+  const r=(tooltip.node().offsetParent||document.body).getBoundingClientRect();
   tooltip.style("left",(e.clientX-r.left)+"px").style("top",(e.clientY-r.top-14)+"px");
 }
 function hideTip(){ tooltip.style("opacity",0); }

@@ -40,7 +40,8 @@ rules.
   traditional martyrdoms. It is never presented as Scripture.
 - **[BibleProject](https://bibleproject.com)** may be used to sanity-check how a
   figure or book is commonly understood. It is never the source of a fact, date
-  or quote.
+  or Scripture quote. Where an entry draws on a Bible teaching, quote the
+  teaching word for word, name it, and mark it as teaching, not Scripture.
 
 If a fact, date or reference doesn't clearly fall into one of the above,
 **open an issue and ask** rather than guessing or inferring. PRs that introduce

@@ -8,7 +8,7 @@
     <img alt="Scripture: NIV" src="https://img.shields.io/badge/Scripture-NIV-8a6d3b">
     <a href="https://github.com/wazzac/people-of-the-bible/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/wazzac/people-of-the-bible"></a>
     <a href="https://github.com/wazzac/people-of-the-bible/issues"><img alt="Issues" src="https://img.shields.io/github/issues/wazzac/people-of-the-bible"></a>
-    <a href="https://coff.ee/wazzac"><img alt="Buy me a coffee" src="https://img.shields.io/badge/Buy%20me%20a%20coffee-☕-yellow?style=flat&logo=buy-me-a-coffee"></a>
+    <a href="https://buymeacoffee.com/wazzac"><img alt="Buy me a coffee" src="https://img.shields.io/badge/Buy%20me%20a%20coffee-☕-yellow?style=flat&logo=buy-me-a-coffee"></a>
 </p>
 
 # People of the Bible — a relationship map
@@ -32,10 +32,12 @@ A small amount of information does not come straight from the biblical text.
 Every piece of it is labelled where it appears, with the reason it is there.
 See [How anything beyond the text is marked](#how-anything-beyond-the-text-is-marked).
 
-**Status:** the Old Testament dataset has been built book by book, from
-Genesis to Malachi, by reading every chapter in the NIV. The New Testament
-dataset is an earlier, smaller set (71 people). It has not yet been through the
-same chapter-by-chapter review.
+**Status:** both testaments have been built book by book, by reading every
+chapter in the NIV: the Old Testament from Genesis to Malachi, and the New
+Testament from Matthew to Revelation, with Jesus at the centre. God is shown
+as Father, Son and Holy Spirit: in the New Testament the Father and the Holy
+Spirit stand beside Jesus, and in the Old Testament God (the LORD) and the
+Spirit of God are at the centre of the map.
 
 ## What's inside
 
@@ -74,7 +76,7 @@ anything to view or edit the site locally.
 |---|---|
 | People, relationships, descriptions, quotations and verse references | **The Bible, NIV**, read on [Bible.com](https://www.bible.com) (YouVersion). Quotations are the NIV's wording. |
 | Book-overview poster images | [BibleProject](https://bibleproject.com). Hotlinked from BibleProject's own servers under their Posters permission: non-commercial digital display, no modification, and the permission can be withdrawn. Every displayed poster carries a "Poster © BibleProject" credit. See [`AGENTS.md`](./AGENTS.md) for the terms and how to remove the feature. |
-| Orientation only | [BibleProject](https://bibleproject.com) may be used to check how a book or figure is commonly understood. It is never the source of a fact, date or quotation on the map. |
+| Orientation and teaching | [BibleProject](https://bibleproject.com) may be used to check how a book or figure is commonly understood. It is never the source of a fact, date or Scripture quotation on the map. Where an entry draws on a Bible teaching, such as BibleProject's podcast on the Trinity, the teaching is quoted word for word, named, and marked as teaching rather than Scripture. |
 | Placing events on a BC/AD calendar | Scripture's own figures where it gives them (ages, years of reigns, "in the 480th year…"). These are anchored by standard scholarly chronologies: the early-date reckoning for the patriarchs and the Exodus, Thiele's reckoning for the kings, and [Bible Hub's timeline](https://biblehub.com/timeline/). Persian, Babylonian and Assyrian reign dates follow the historical record. All of these are marked as estimates where they are uncertain (see below). |
 
 Bible.com and BibleProject are also credited on the site itself, in the small

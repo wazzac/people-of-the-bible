@@ -1,9 +1,9 @@
 /* =========================================================================
    DATA — People of the New Testament  (data-nt.js)
    Mapped from the NIV text on bible.com, book by book. Matthew, Mark, Luke,
-   John, Acts, Paul's thirteen letters (Romans – Philemon) and Revelation are
-   done; Hebrews to Jude are next, and people named only there keep shorter
-   entries until those books are mapped. Anything not stated in the
+   John, Acts, Paul's thirteen letters, Hebrews to Jude and Revelation: the
+   whole New Testament. God the Father and the Holy Spirit stand beside Jesus
+   in the "Father, Son & Holy Spirit" group. Anything not stated in the
    text is labelled where it appears: tradition ("traditional"), extra-biblical
    history ("historical record"), and estimated dates (* / "estimate").
 
@@ -13,7 +13,7 @@
    lk() — so it must load before data-ot.js.
    ========================================================================= */
 const NT_CAT = {
-  christ:  {label:"Jesus Christ",          color:"var(--christ)"},
+  christ:  {label:"Father, Son & Holy Spirit", color:"var(--christ)"},
   family:  {label:"Family & kin",          color:"var(--fam)"},
   twelve:  {label:"The Twelve",            color:"var(--twelve)"},
   follow:  {label:"Followers & friends",   color:"var(--follow)"},
@@ -28,13 +28,27 @@ const NT_CAT = {
 };
 
 const NT_PEOPLE = [
- // ---------------- JESUS CHRIST ----------------
+ // ---------------- FATHER, SON & HOLY SPIRIT ----------------
  {id:"jesus", name:"Jesus of Nazareth", short:"Jesus", cat:"christ", w:30, halo:2,
   aliases:"Jesus Christ · the Messiah · the Son of God · the Son of Man · Immanuel · the Word · the Lamb of God",
   dates:"born c. 6–4 BC* (estimate: before the death of King Herod, Matthew 2:1, 19) · began his ministry \"about thirty years old\" (Luke 3:23) · crucified, raised and taken up to heaven c. AD 30 or 33* (disputed)",
-  desc:`The centre of the whole account. John's Gospel opens: "In the beginning was the Word, and the Word was with God, and the Word was God… The Word became flesh and made his dwelling among us" (John 1:1, 14). Mary was "found to be pregnant through the Holy Spirit" (Matthew 1:18); he was born in Bethlehem, raised in Nazareth, baptized by John, and proclaimed the kingdom of God with teaching, healings and signs. Peter confessed him "the Messiah, the Son of the living God" (Matthew 16:16), and Thomas, "My Lord and my God!" (John 20:28). He was crucified under Pontius Pilate, buried, and raised on the third day; he appeared to his followers over forty days and was taken up into heaven (Acts 1:3, 9). He sent them to baptize "in the name of the Father and of the Son and of the Holy Spirit" (Matthew 28:19). Paul writes that Christ Jesus, "being in very nature God," "made himself nothing by taking the very nature of a servant" and "humbled himself by becoming obedient to death—even death on a cross!" (Philippians 2:6–8); "The Son is the image of the invisible God, the firstborn over all creation" (Colossians 1:15), and "in Christ all the fullness of the Deity lives in bodily form" (2:9). Revelation closes with his words: "I, Jesus, have sent my angel to give you this testimony for the churches. I am the Root and the Offspring of David, and the bright Morning Star," and "Yes, I am coming soon" (Revelation 22:16, 20).`,
+  desc:`The centre of the whole account. John's Gospel opens: "In the beginning was the Word, and the Word was with God, and the Word was God… The Word became flesh and made his dwelling among us" (John 1:1, 14). Mary was "found to be pregnant through the Holy Spirit" (Matthew 1:18); he was born in Bethlehem, raised in Nazareth, baptized by John, and proclaimed the kingdom of God with teaching, healings and signs. Peter confessed him "the Messiah, the Son of the living God" (Matthew 16:16), and Thomas, "My Lord and my God!" (John 20:28). He was crucified under Pontius Pilate, buried, and raised on the third day; he appeared to his followers over forty days and was taken up into heaven (Acts 1:3, 9). He sent them to baptize "in the name of the Father and of the Son and of the Holy Spirit" (Matthew 28:19). Paul writes that Christ Jesus, "being in very nature God," "made himself nothing by taking the very nature of a servant" and "humbled himself by becoming obedient to death—even death on a cross!" (Philippians 2:6–8); "The Son is the image of the invisible God, the firstborn over all creation" (Colossians 1:15), and "in Christ all the fullness of the Deity lives in bodily form" (2:9). Revelation closes with his words: "I, Jesus, have sent my angel to give you this testimony for the churches. I am the Root and the Offspring of David, and the bright Morning Star," and "Yes, I am coming soon" (Revelation 22:16, 20). Hebrews calls him the Son "through whom also he made the universe," "the radiance of God's glory and the exact representation of his being" (Hebrews 1:2–3); a high priest "who has been tempted in every way, just as we are—yet he did not sin" (4:15), "a high priest forever, in the order of Melchizedek" (6:20); and "Jesus Christ is the same yesterday and today and forever" (13:8). James writes as "a servant of God and of the Lord Jesus Christ" (James 1:1). Peter: "He committed no sin, and no deceit was found in his mouth," and "He himself bore our sins" in his body on the cross (1 Peter 2:22, 24); he recalls the voice from heaven, "This is my Son, whom I love; with him I am well pleased" (2 Peter 1:17). 1 John opens with what "we have seen with our eyes… and our hands have touched" concerning "the Word of life" (1 John 1:1), and says "the Father has sent his Son to be the Savior of the world" (4:14). God the Father and the Holy Spirit have their own circles beside him.`,
   notconfused:`Barabbas, the prisoner released instead of him, whom Matthew calls "Jesus Barabbas" (Matthew 27:16–17; an NIV footnote says many manuscripts do not have "Jesus"); and Bar-Jesus (Elymas), the sorcerer on Cyprus (Acts 13:6).`,
-  refs:["Matthew 1–28","Mark 1–16","Luke 1–24","John 1–21","Acts 1:1–11","Acts 7:55–56","Acts 9:3–6","Revelation 1:1–18","Revelation 22:12–21","Philippians 2:5–11","Colossians 1:15–20","Colossians 2:9","1 Corinthians 15:3–8"]},
+  refs:["Matthew 1–28","Mark 1–16","Luke 1–24","John 1–21","Acts 1:1–11","Acts 7:55–56","Acts 9:3–6","Revelation 1:1–18","Revelation 22:12–21","Philippians 2:5–11","Colossians 1:15–20","Colossians 2:9","1 Corinthians 15:3–8","Hebrews 1:1–4","Hebrews 4:14–5:10","Hebrews 7–10","Hebrews 13:8","James 1:1","1 Peter 2:21–25","2 Peter 1:16–18","1 John 1:1–3","1 John 4:9–14"]},
+
+ {id:"father", name:"God the Father", short:"The Father", cat:"christ", w:30, halo:2,
+  aliases:"God · the Father · Abba · the Most High · the Lord God Almighty · him who sits on the throne",
+  dates:"eternal: Jesus prays for the glory he had with the Father \"before the world began\" (John 17:5)",
+  desc:`"There is but one God, the Father, from whom all things came and for whom we live" (1 Corinthians 8:6). At Jesus' baptism "a voice from heaven said, 'This is my Son, whom I love; with him I am well pleased'" (Matthew 3:17); on the mountain where Jesus was transfigured the voice spoke again to Peter, James and John, adding "Listen to him!" (17:5), as Peter later recalls (2 Peter 1:17). Jesus called God his Father and said, "I and the Father are one" (John 10:30); he prayed, "glorify me in your presence with the glory I had with you before the world began" (17:5), and promised the Holy Spirit, "whom the Father will send in my name" (14:26). "No one has ever seen God, but the one and only Son, who is himself God and is in closest relationship with the Father, has made him known" (John 1:18). God sent the angel Gabriel (Luke 1:19, 26) and sent John the Baptist (John 1:6), and was pleased "to reveal his Son" in Paul (Galatians 1:15–16). By the Spirit believers cry, "Abba, Father" (Romans 8:15; Galatians 4:6). Stephen "saw the glory of God, and Jesus standing at the right hand of God" (Acts 7:55), and John, "in the Spirit," saw "a throne in heaven with someone sitting on it" (Revelation 4:2). Jesus sent his followers to baptize "in the name of the Father and of the Son and of the Holy Spirit" (Matthew 28:19), and Paul blesses with "the grace of the Lord Jesus Christ, and the love of God, and the fellowship of the Holy Spirit" (2 Corinthians 13:14). The word "Trinity" is not in the Bible: it is the church's name for the one God as Father, Son and Holy Spirit, set out in the creeds of the councils of Nicaea (AD 325) and Constantinople (AD 381) (historical record). BibleProject's teaching, quoted as teaching and not as Scripture, puts it this way: "the eternal state of God is as Father loving the Son through the Spirit" (BibleProject podcast, "The Trinity & God's Identity", 2018). In the Old Testament he is "the LORD" (see the Old Testament map). The lines drawn here mark where the text shows the Father speaking to, sending or appearing to a person.`,
+  notconfused:`Jesus the Son and the Holy Spirit, who have their own circles: the text speaks of the three distinctly, as at Jesus' baptism (Matthew 3:16–17), and yet of one God (1 Corinthians 8:6).`,
+  refs:["Matthew 3:16–17","Matthew 17:1–5","Matthew 28:19","John 1:18","John 10:30","John 14:16–26","John 17:1–26","Acts 7:55–56","Romans 8:15","1 Corinthians 8:6","2 Corinthians 13:14","Galatians 1:1","Galatians 1:15–16","Galatians 4:6","2 Peter 1:17","Revelation 4"]},
+
+ {id:"spirit", name:"The Holy Spirit", short:"Holy Spirit", cat:"christ", w:30, halo:2,
+  aliases:"the Spirit · the Spirit of God · the Spirit of the Lord · the Spirit of truth · the Advocate · the Spirit of Christ · the Spirit of Jesus",
+  dates:"eternal: in the Old Testament \"the Spirit of God was hovering over the waters\" at creation (Genesis 1:2)",
+  desc:`Mary "was found to be pregnant through the Holy Spirit" (Matthew 1:18); the angel told her, "The Holy Spirit will come on you, and the power of the Most High will overshadow you" (Luke 1:35). John the Baptist was to be "filled with the Holy Spirit even before he is born" (1:15), and Elizabeth, Zechariah and Simeon were filled with or moved by the Spirit (1:41, 67; 2:25–27). At Jesus' baptism "the Holy Spirit descended on him in bodily form like a dove" (Luke 3:22); "full of the Holy Spirit," he "was led by the Spirit into the wilderness" (4:1), and in Nazareth he read, "The Spirit of the Lord is on me" (4:18). Jesus promised "another advocate… the Spirit of truth" (John 14:16–17), "whom the Father will send in my name" (14:26), and breathed on his disciples: "Receive the Holy Spirit" (20:22). At Pentecost "all of them were filled with the Holy Spirit" (Acts 2:4). In Acts the Spirit fills Peter, Stephen, Barnabas and Paul; tells Philip, "Go to that chariot" (8:29); says at Antioch, "Set apart for me Barnabas and Saul" (13:2); comes on Cornelius' household (10:44); speaks through Agabus (11:28; 21:11); and keeps Paul and his companions from preaching in Asia (16:6). Peter told Ananias he had "lied to the Holy Spirit," and "not… just to human beings but to God" (5:3–4). David spoke "by the Holy Spirit" (Mark 12:36), and the Spirit spoke "through Isaiah the prophet" (Acts 28:25). Paul calls him "the Spirit of God" and "the Spirit of Christ" (Romans 8:9) and writes, "do not grieve the Holy Spirit of God" (Ephesians 4:30). John was "in the Spirit" on the Lord's Day (Revelation 1:10); Revelation 1:4 greets from "the seven spirits before his throne," which an NIV footnote renders "the sevenfold Spirit." In the Old Testament he is "the Spirit of God" (see the Old Testament map). BibleProject's teaching, quoted as teaching and not as Scripture, says of Paul's passages on God, Jesus and the Spirit: "These passages were fundamental to the Christian doctrine of the Trinity" (BibleProject podcast, "Jesus and God's Spirit", 2018).`,
+  notconfused:`God the Father and Jesus the Son, who have their own circles. Revelation's "seven spirits before his throne" (Revelation 1:4) are, by the NIV footnote, "the sevenfold Spirit," not seven angels.`,
+  refs:["Matthew 1:18–20","Matthew 3:16","Luke 1:15–17","Luke 1:35","Luke 1:41","Luke 1:67","Luke 2:25–27","Luke 3:22","Luke 4:1–21","John 1:32–33","John 14:16–26","John 15:26","John 20:22","Acts 2:1–33","Acts 5:3–9","Acts 8:29–39","Acts 10:44–47","Acts 13:2–4","Acts 16:6–7","Romans 8:9–16","Ephesians 4:30","Revelation 1:4","Revelation 1:10"]},
 
  // ---------------- FAMILY & KIN ----------------
  {id:"mary", name:"Mary, mother of Jesus", short:"Mary (mother)", cat:"family", w:14, halo:1,
@@ -87,7 +101,7 @@ const NT_PEOPLE = [
   aliases:"James, the Lord's brother · James the Just (traditional name)",
   clash:"James", clashtag:"A brother of Jesus; Paul names him 'the Lord's brother' and a 'pillar' in Jerusalem. Not one of the Twelve.",
   dates:"1st century AD · put to death c. AD 62* (recorded by Josephus; not in Scripture)",
-  desc:`Named first among Jesus' brothers by the people of Nazareth: "James, Joseph, Simon and Judas" (Matthew 13:55; Mark 6:3). John says that "even his own brothers did not believe in him" (John 7:5), but after the ascension Jesus' brothers were praying with the apostles (Acts 1:14). Paul names "James, the Lord's brother" (Galatians 1:19) and lists "James, Cephas and John" as "those esteemed as pillars" (Galatians 2:9). Acts names a James who leads in Jerusalem: Peter sends word to him (12:17), he gives judgment at the council (15:13–21), and Paul reports to him (21:18). Acts itself does not say which James this is; Galatians is the basis for identifying him with the Lord's brother. Paul writes that the risen Christ "appeared to James" (1 Corinthians 15:7) without saying which James, and that at Antioch "certain men came from James" (Galatians 2:12). "The Lord's brothers" took believing wives along with them (1 Corinthians 9:5).`,
+  desc:`Named first among Jesus' brothers by the people of Nazareth: "James, Joseph, Simon and Judas" (Matthew 13:55; Mark 6:3). John says that "even his own brothers did not believe in him" (John 7:5), but after the ascension Jesus' brothers were praying with the apostles (Acts 1:14). Paul names "James, the Lord's brother" (Galatians 1:19) and lists "James, Cephas and John" as "those esteemed as pillars" (Galatians 2:9). Acts names a James who leads in Jerusalem: Peter sends word to him (12:17), he gives judgment at the council (15:13–21), and Paul reports to him (21:18). Acts itself does not say which James this is; Galatians is the basis for identifying him with the Lord's brother. Paul writes that the risen Christ "appeared to James" (1 Corinthians 15:7) without saying which James, and that at Antioch "certain men came from James" (Galatians 2:12). "The Lord's brothers" took believing wives along with them (1 Corinthians 9:5). The letter of James opens, "James, a servant of God and of the Lord Jesus Christ, To the twelve tribes scattered among the nations" (James 1:1). The letter does not say which James wrote it; the NIV's introduction to the book, like church tradition, takes him to be the Lord's brother.`,
   notconfused:`James son of Zebedee (put to death by Herod, Acts 12:2), James son of Alphaeus, and James the younger.`,
   refs:["Matthew 13:55","Mark 6:3","John 7:3–5","Acts 1:14","Acts 12:17","Acts 15:13–21","Acts 21:18","Galatians 1:19","Galatians 2:9","James 1:1","1 Corinthians 9:5","1 Corinthians 15:7","Galatians 2:12"]},
 
@@ -95,9 +109,9 @@ const NT_PEOPLE = [
   aliases:"Jude",
   clash:"Judas", clashtag:"A brother of Jesus, named at Nazareth (Matthew 13:55).",
   dates:"1st century AD",
-  desc:`One of the four brothers of Jesus named at Nazareth: "James, Joseph, Simon and Judas" (Matthew 13:55; Mark 6:3). The short letter of Jude opens "Jude, a servant of Jesus Christ and a brother of James" (Jude 1); it is often identified with this Judas, but the letter does not say so.`,
+  desc:`One of the four brothers of Jesus named at Nazareth: "James, Joseph, Simon and Judas" (Matthew 13:55; Mark 6:3). The short letter of Jude opens "Jude, a servant of Jesus Christ and a brother of James" (Jude 1); it is often identified with this Judas, but the letter does not say so. The NIV's introduction to Jude takes him to be this brother of Jesus. The letter recalls the archangel Michael "disputing with the devil about the body of Moses" (9), quotes Enoch (14–15), and warns of "the way of Cain," "Balaam's error" and "Korah's rebellion" (11).`,
   notconfused:`Judas Iscariot; Judas son of James (Thaddaeus) among the Twelve; Judas called Barsabbas; Judas the Galilean; and Judas of Straight Street.`,
-  refs:["Matthew 13:55","Mark 6:3","Jude 1"]},
+  refs:["Matthew 13:55","Mark 6:3","Jude 1","Jude 1–25"]},
 
  {id:"joses", name:"Joseph (Joses), brother of Jesus", short:"Joseph (brother)", cat:"family", w:5,
   clash:"Joseph", clashtag:"A brother of Jesus; Mark's Greek has Joses, 'a variant of Joseph'.",
@@ -165,9 +179,9 @@ const NT_PEOPLE = [
   aliases:"Simon · Cephas · Simon son of John · Simon son of Jonah",
   clash:"Simon", clashtag:"Fisherman, brother of Andrew; named Cephas/Peter by Jesus; first in every list of the Twelve.",
   dates:"1st century AD · his death is foretold but not recorded in Scripture (John 21:18–19); by tradition put to death in Rome c. AD 64–67*",
-  desc:`A fisherman, Andrew's brother, from Bethsaida (John 1:44), with a home in Capernaum where Jesus healed his mother-in-law (Mark 1:29–31). Jesus told him, "You will be called Cephas" (which, when translated, is Peter) (John 1:42); an NIV footnote says both mean "rock". He walked on the water and confessed, "You are the Messiah, the Son of the living God"; Jesus answered, "you are Peter, and on this rock I will build my church" (Matthew 16:16, 18). With James and John he saw the Transfiguration and was taken into Gethsemane. He disowned Jesus three times and wept bitterly; the risen Lord asked him three times, "do you love me?" and told him, "Feed my sheep" (John 21:15–17). In Acts he preaches at Pentecost, heals the lame man at the temple gate, stands before the Sanhedrin, raises Tabitha, baptizes Cornelius's household, and is freed from Herod's prison by an angel; he last appears at the council in Jerusalem (Acts 15:7–11). Paul calls him Cephas (NIV footnote: "That is, Peter"). Christ "appeared to Cephas, and then to the Twelve" (1 Corinthians 15:5). Paul stayed with him fifteen days in Jerusalem (Galatians 1:18), and he was one of "those esteemed as pillars" (2:9); he took "a believing wife along" (1 Corinthians 9:5). At Antioch, when "certain men came from James," he drew back from eating with Gentiles, and Paul "opposed him to his face" (Galatians 2:11–14).`,
+  desc:`A fisherman, Andrew's brother, from Bethsaida (John 1:44), with a home in Capernaum where Jesus healed his mother-in-law (Mark 1:29–31). Jesus told him, "You will be called Cephas" (which, when translated, is Peter) (John 1:42); an NIV footnote says both mean "rock". He walked on the water and confessed, "You are the Messiah, the Son of the living God"; Jesus answered, "you are Peter, and on this rock I will build my church" (Matthew 16:16, 18). With James and John he saw the Transfiguration and was taken into Gethsemane. He disowned Jesus three times and wept bitterly; the risen Lord asked him three times, "do you love me?" and told him, "Feed my sheep" (John 21:15–17). In Acts he preaches at Pentecost, heals the lame man at the temple gate, stands before the Sanhedrin, raises Tabitha, baptizes Cornelius's household, and is freed from Herod's prison by an angel; he last appears at the council in Jerusalem (Acts 15:7–11). Paul calls him Cephas (NIV footnote: "That is, Peter"). Christ "appeared to Cephas, and then to the Twelve" (1 Corinthians 15:5). Paul stayed with him fifteen days in Jerusalem (Galatians 1:18), and he was one of "those esteemed as pillars" (2:9); he took "a believing wife along" (1 Corinthians 9:5). At Antioch, when "certain men came from James," he drew back from eating with Gentiles, and Paul "opposed him to his face" (Galatians 2:11–14). Two letters bear his name: "Peter, an apostle of Jesus Christ" (1 Peter 1:1) and "Simon Peter, a servant and apostle of Jesus Christ" (2 Peter 1:1). He writes as "a fellow elder and a witness of Christ's sufferings" (1 Peter 5:1), "with the help of Silas," with greetings from "my son Mark" (5:12–13). In 2 Peter he recalls the voice from heaven they heard "when we were with him on the sacred mountain" (1:17–18); he says of "the tent of this body" that "I will soon put it aside, as our Lord Jesus Christ has made clear to me" (1:13–14); and he calls Paul "our dear brother," whose letters "contain some things that are hard to understand" (3:15–16).`,
   notconfused:`Simon the Zealot, Simon the brother of Jesus, Simon of Cyrene, Simon the sorcerer, Simon the tanner, Simon the Leper, Simon the Pharisee, Simon Iscariot and Simeon called Niger. James quotes him as "Simon" (Acts 15:14).`,
-  refs:["Matthew 4:18–20","Matthew 14:28–31","Matthew 16:13–23","Matthew 26:69–75","Mark 1:29–31","Luke 5:1–11","Luke 22:31–34","John 1:40–42","John 21:15–19","Acts 1–5","Acts 9:32–12:19","Acts 15:7–11","1 Corinthians 1:12","1 Corinthians 9:5","1 Corinthians 15:5","Galatians 1:18","Galatians 2:7–14"]},
+  refs:["Matthew 4:18–20","Matthew 14:28–31","Matthew 16:13–23","Matthew 26:69–75","Mark 1:29–31","Luke 5:1–11","Luke 22:31–34","John 1:40–42","John 21:15–19","Acts 1–5","Acts 9:32–12:19","Acts 15:7–11","1 Corinthians 1:12","1 Corinthians 9:5","1 Corinthians 15:5","Galatians 1:18","Galatians 2:7–14","1 Peter 1:1","1 Peter 5:1–14","2 Peter 1:1–18","2 Peter 3:15–16"]},
 
  {id:"andrew", name:"Andrew", short:"Andrew", cat:"twelve", w:10,
   dates:"1st century AD",
@@ -548,9 +562,9 @@ const NT_PEOPLE = [
   aliases:"Saul · Saul of Tarsus",
   clash:"Saul", clashtag:"Saul of Tarsus, the persecutor who became the apostle to the Gentiles; 'Saul, who was also called Paul' (Acts 13:9).",
   dates:"born in Tarsus, date not given · \"a young man\" at Stephen's death (Acts 7:58) · called on the Damascus road c. AD 33–35* · in Rome under guard c. AD 60–62* (Acts 28:30) · by tradition put to death in Rome c. AD 64–67*",
-  desc:`"A Jew, born in Tarsus of Cilicia," brought up in Jerusalem, who "studied under Gamaliel" (Acts 22:3); a Pharisee, "descended from Pharisees" (23:6), and a Roman citizen by birth (22:28). As "a young man named Saul" he watched Stephen's stoning and approved of it, then began to destroy the church (7:58–8:3). On the road to Damascus a light flashed around him and a voice said, "Saul, Saul, why do you persecute me?… I am Jesus, whom you are persecuting" (9:4–5); the Lord called him "my chosen instrument to proclaim my name to the Gentiles and their kings and to the people of Israel" (9:15). From Cyprus on he is "Saul, who was also called Paul" (13:9). Acts follows his journeys through Cyprus, Galatia, Macedonia, Achaia and Asia; his arrest in Jerusalem; his hearings before Felix, Festus and King Agrippa; his appeal to Caesar; the shipwreck on Malta; and two years in Rome, where he "proclaimed the kingdom of God and taught about the Lord Jesus Christ—with all boldness and without hindrance!" (28:31). Acts does not record his death. In his letters he calls himself "of the people of Israel, of the tribe of Benjamin, a Hebrew of Hebrews; in regard to the law, a Pharisee" (Philippians 3:5; Romans 11:1), and writes, "I persecuted the church of God" (1 Corinthians 15:9) and "I was once a blasphemer and a persecutor and a violent man" (1 Timothy 1:13). Of the risen Christ: "last of all he appeared to me also, as to one abnormally born" (1 Corinthians 15:8). After his calling he "went into Arabia" and returned to Damascus, and three years later went up to Jerusalem "to get acquainted with Cephas" (Galatians 1:17–18). In Damascus, when King Aretas's governor tried to arrest him, "I was lowered in a basket from a window in the wall" (2 Corinthians 11:32–33). "Five times I received from the Jews the forty lashes minus one. Three times I was beaten with rods, once I was pelted with stones, three times I was shipwrecked" (11:24–25). He was given "a thorn in my flesh, a messenger of Satan," and the Lord told him, "My grace is sufficient for you, for my power is made perfect in weakness" (12:7–9). Near the end he wrote, "I have fought the good fight, I have finished the race, I have kept the faith" (2 Timothy 4:7). Thirteen letters, Romans to Philemon, open with his name.`,
+  desc:`"A Jew, born in Tarsus of Cilicia," brought up in Jerusalem, who "studied under Gamaliel" (Acts 22:3); a Pharisee, "descended from Pharisees" (23:6), and a Roman citizen by birth (22:28). As "a young man named Saul" he watched Stephen's stoning and approved of it, then began to destroy the church (7:58–8:3). On the road to Damascus a light flashed around him and a voice said, "Saul, Saul, why do you persecute me?… I am Jesus, whom you are persecuting" (9:4–5); the Lord called him "my chosen instrument to proclaim my name to the Gentiles and their kings and to the people of Israel" (9:15). From Cyprus on he is "Saul, who was also called Paul" (13:9). Acts follows his journeys through Cyprus, Galatia, Macedonia, Achaia and Asia; his arrest in Jerusalem; his hearings before Felix, Festus and King Agrippa; his appeal to Caesar; the shipwreck on Malta; and two years in Rome, where he "proclaimed the kingdom of God and taught about the Lord Jesus Christ—with all boldness and without hindrance!" (28:31). Acts does not record his death. In his letters he calls himself "of the people of Israel, of the tribe of Benjamin, a Hebrew of Hebrews; in regard to the law, a Pharisee" (Philippians 3:5; Romans 11:1), and writes, "I persecuted the church of God" (1 Corinthians 15:9) and "I was once a blasphemer and a persecutor and a violent man" (1 Timothy 1:13). Of the risen Christ: "last of all he appeared to me also, as to one abnormally born" (1 Corinthians 15:8). After his calling he "went into Arabia" and returned to Damascus, and three years later went up to Jerusalem "to get acquainted with Cephas" (Galatians 1:17–18). In Damascus, when King Aretas's governor tried to arrest him, "I was lowered in a basket from a window in the wall" (2 Corinthians 11:32–33). "Five times I received from the Jews the forty lashes minus one. Three times I was beaten with rods, once I was pelted with stones, three times I was shipwrecked" (11:24–25). He was given "a thorn in my flesh, a messenger of Satan," and the Lord told him, "My grace is sufficient for you, for my power is made perfect in weakness" (12:7–9). Near the end he wrote, "I have fought the good fight, I have finished the race, I have kept the faith" (2 Timothy 4:7). Thirteen letters, Romans to Philemon, open with his name. Peter writes of "our dear brother Paul," who "wrote you with the wisdom that God gave him"; "His letters contain some things that are hard to understand, which ignorant and unstable people distort" (2 Peter 3:15–16).`,
   notconfused:`King Saul son of Kish, whom Paul names in his sermon at Pisidian Antioch (Acts 13:21). Paul was not one of the Twelve; he calls himself "the least of the apostles" (1 Corinthians 15:9).`,
-  refs:["Acts 7:58–8:3","Acts 9:1–30","Acts 11:25–30","Acts 13–28","Galatians 1:18–19","1 Corinthians 15:8–9","Romans 1:1","Romans 11:1","Romans 16","2 Corinthians 11:21–12:10","Galatians 1:11–2:14","Philippians 3:4–8","1 Timothy 1:12–16","2 Timothy 4:6–22"]},
+  refs:["Acts 7:58–8:3","Acts 9:1–30","Acts 11:25–30","Acts 13–28","Galatians 1:18–19","1 Corinthians 15:8–9","Romans 1:1","Romans 11:1","Romans 16","2 Corinthians 11:21–12:10","Galatians 1:11–2:14","Philippians 3:4–8","1 Timothy 1:12–16","2 Timothy 4:6–22","2 Peter 3:15–16"]},
 
  {id:"barnabas", name:"Barnabas", short:"Barnabas", cat:"church", w:12,
   aliases:"Joseph · 'son of encouragement'",
@@ -728,8 +742,8 @@ const NT_PEOPLE = [
 
  {id:"timothy", name:"Timothy", short:"Timothy", cat:"church", w:12,
   dates:"1st century AD",
-  desc:`"A disciple named Timothy" at Lystra, "whose mother was Jewish and a believer but whose father was a Greek"; the believers at Lystra and Iconium spoke well of him, and Paul circumcised him and took him along (Acts 16:1–3). He worked with Paul at Berea, Corinth and in Macedonia and went with him toward Jerusalem (17:14–15; 18:5; 19:22; 20:4). Paul calls him "my true son in the faith" (1 Timothy 1:2) and writes, "I have no one else like him" (Philippians 2:20); he names Timothy's grandmother Lois and mother Eunice (2 Timothy 1:5). Paul names him as co-sender of 2 Corinthians, Philippians, Colossians, 1 and 2 Thessalonians and Philemon. He sent him to Corinth — "my son whom I love, who is faithful in the Lord" (1 Corinthians 4:17) — and to Thessalonica "to strengthen and encourage you" (1 Thessalonians 3:2, 6). Left at Ephesus (1 Timothy 1:3), he was told, "Don't let anyone look down on you because you are young" (4:12), and to "use a little wine because of your stomach and your frequent illnesses" (5:23). His gift came "through prophecy when the body of elders laid their hands on you" (4:14) and "through the laying on of my hands" (2 Timothy 1:6); "from infancy you have known the Holy Scriptures" (3:15). Paul's last letter asks him, "Do your best to come to me quickly" (4:9).`,
-  refs:["Acts 16:1–3","Acts 17:14–15","Acts 18:5","Acts 19:22","Acts 20:4","Philippians 2:19–22","1 Timothy 1:2","2 Timothy 1:2–5","1 Corinthians 4:17","1 Corinthians 16:10–11","1 Thessalonians 3:1–6","1 Timothy 1:3","1 Timothy 4:12–14","2 Timothy 1:6","2 Timothy 3:10–15","2 Timothy 4:9–21"]},
+  desc:`"A disciple named Timothy" at Lystra, "whose mother was Jewish and a believer but whose father was a Greek"; the believers at Lystra and Iconium spoke well of him, and Paul circumcised him and took him along (Acts 16:1–3). He worked with Paul at Berea, Corinth and in Macedonia and went with him toward Jerusalem (17:14–15; 18:5; 19:22; 20:4). Paul calls him "my true son in the faith" (1 Timothy 1:2) and writes, "I have no one else like him" (Philippians 2:20); he names Timothy's grandmother Lois and mother Eunice (2 Timothy 1:5). Paul names him as co-sender of 2 Corinthians, Philippians, Colossians, 1 and 2 Thessalonians and Philemon. He sent him to Corinth — "my son whom I love, who is faithful in the Lord" (1 Corinthians 4:17) — and to Thessalonica "to strengthen and encourage you" (1 Thessalonians 3:2, 6). Left at Ephesus (1 Timothy 1:3), he was told, "Don't let anyone look down on you because you are young" (4:12), and to "use a little wine because of your stomach and your frequent illnesses" (5:23). His gift came "through prophecy when the body of elders laid their hands on you" (4:14) and "through the laying on of my hands" (2 Timothy 1:6); "from infancy you have known the Holy Scriptures" (3:15). Paul's last letter asks him, "Do your best to come to me quickly" (4:9). Hebrews closes, "I want you to know that our brother Timothy has been released. If he arrives soon, I will come with him to see you" (13:23). Hebrews does not name its writer, and says nothing more about Timothy.`,
+  refs:["Acts 16:1–3","Acts 17:14–15","Acts 18:5","Acts 19:22","Acts 20:4","Philippians 2:19–22","1 Timothy 1:2","2 Timothy 1:2–5","1 Corinthians 4:17","1 Corinthians 16:10–11","1 Thessalonians 3:1–6","1 Timothy 1:3","1 Timothy 4:12–14","2 Timothy 1:6","2 Timothy 3:10–15","2 Timothy 4:9–21","Hebrews 13:23"]},
 
  {id:"eunice", name:"Eunice", short:"Eunice", cat:"church", w:4,
   dates:"1st century AD",
@@ -1044,8 +1058,10 @@ const NT_PEOPLE = [
   refs:["Acts 19:14"]},
 
  {id:"demetrius", name:"Demetrius the silversmith", short:"Demetrius", cat:"rulers", w:5,
+  clash:"Demetrius", clashtag:"Silversmith who started the riot at Ephesus (Acts 19:24).",
   dates:"1st century AD",
   desc:`"A silversmith named Demetrius, who made silver shrines of Artemis," at Ephesus. He told the craftsmen that Paul "says that gods made by human hands are no gods at all," and that their trade and the temple of Artemis were in danger; the city filled with the cry "Great is Artemis of the Ephesians!" (Acts 19:24–34).`,
+  notconfused:`Demetrius of 3 John 12, who is "well spoken of by everyone".`,
   refs:["Acts 19:23–41"]},
 
  {id:"alexanderephesus", name:"Alexander of Ephesus", short:"Alexander (Ephesus)", cat:"rulers", w:3,
@@ -1158,41 +1174,41 @@ const NT_PEOPLE = [
  // ---------------- FROM THE OLD TESTAMENT ----------------
  {id:"moses", name:"Moses", short:"Moses", cat:"ot", w:10,
   dates:"see the Old Testament map",
-  desc:`In the Gospels he appeared with Elijah, "talking with Jesus," at the Transfiguration (Matthew 17:3), and they "spoke about his departure, which he was about to bring to fulfillment at Jerusalem" (Luke 9:31). "For the law was given through Moses; grace and truth came through Jesus Christ" (John 1:17). Jesus said, "If you believed Moses, you would believe me, for he wrote about me" (John 5:46). Stephen retold his life (Acts 7:20–44). In Revelation the victorious "sang the song of God's servant Moses and of the Lamb" (Revelation 15:3). His own story is on the Old Testament map. Paul writes that "death reigned from the time of Adam to the time of Moses" (Romans 5:14), and that "Jannes and Jambres opposed Moses" (2 Timothy 3:8).`,
-  refs:["Matthew 17:1–8","Mark 9:2–8","Luke 9:28–36","John 1:17","John 5:45–47","Acts 3:22","Acts 7:20–44","Revelation 15:3","Romans 5:14","Romans 9:15","2 Timothy 3:8"]},
+  desc:`In the Gospels he appeared with Elijah, "talking with Jesus," at the Transfiguration (Matthew 17:3), and they "spoke about his departure, which he was about to bring to fulfillment at Jerusalem" (Luke 9:31). "For the law was given through Moses; grace and truth came through Jesus Christ" (John 1:17). Jesus said, "If you believed Moses, you would believe me, for he wrote about me" (John 5:46). Stephen retold his life (Acts 7:20–44). In Revelation the victorious "sang the song of God's servant Moses and of the Lamb" (Revelation 15:3). His own story is on the Old Testament map. Paul writes that "death reigned from the time of Adam to the time of Moses" (Romans 5:14), and that "Jannes and Jambres opposed Moses" (2 Timothy 3:8). Hebrews: "Moses was faithful as a servant in all God's house," but Jesus "has been found worthy of greater honor than Moses" (3:3, 5). "By faith Moses' parents hid him for three months after he was born" (11:23); he "refused to be known as the son of Pharaoh's daughter" and "regarded disgrace for the sake of Christ as of greater value than the treasures of Egypt" (11:24–26). At the mountain he said, "I am trembling with fear" (12:21). Jude says the archangel Michael was "disputing with the devil about the body of Moses" (Jude 9), and warns of "Korah's rebellion" against him (Jude 11; Numbers 16).`,
+  refs:["Matthew 17:1–8","Mark 9:2–8","Luke 9:28–36","John 1:17","John 5:45–47","Acts 3:22","Acts 7:20–44","Revelation 15:3","Romans 5:14","Romans 9:15","2 Timothy 3:8","Hebrews 3:1–6","Hebrews 9:19–21","Hebrews 11:23–29","Hebrews 12:21","Jude 9","Jude 11"]},
 
  {id:"elijah", name:"Elijah", short:"Elijah", cat:"ot", w:10,
   dates:"see the Old Testament map",
-  desc:`He appeared with Moses at the Transfiguration (Mark 9:4). John the Baptist was to go before the Lord "in the spirit and power of Elijah" (Luke 1:17); asked whether he was Elijah, John said, "I am not" (John 1:21), but Jesus said, "he is the Elijah who was to come" and "Elijah has already come" (Matthew 11:14; 17:12–13). Some took Jesus for Elijah (Matthew 16:14), and at the cross some thought Jesus was calling him (27:47). Jesus recalled that Elijah was sent "to a widow in Zarephath in the region of Sidon" (Luke 4:26). Paul recalls how Elijah "appealed to God against Israel" and God's answer, "I have reserved for myself seven thousand who have not bowed the knee to Baal" (Romans 11:2–4).`,
-  refs:["Matthew 11:14","Matthew 16:14","Matthew 17:1–13","Matthew 27:47–49","Luke 1:17","Luke 4:25–26","John 1:21–25","Romans 11:2–4"]},
+  desc:`He appeared with Moses at the Transfiguration (Mark 9:4). John the Baptist was to go before the Lord "in the spirit and power of Elijah" (Luke 1:17); asked whether he was Elijah, John said, "I am not" (John 1:21), but Jesus said, "he is the Elijah who was to come" and "Elijah has already come" (Matthew 11:14; 17:12–13). Some took Jesus for Elijah (Matthew 16:14), and at the cross some thought Jesus was calling him (27:47). Jesus recalled that Elijah was sent "to a widow in Zarephath in the region of Sidon" (Luke 4:26). Paul recalls how Elijah "appealed to God against Israel" and God's answer, "I have reserved for myself seven thousand who have not bowed the knee to Baal" (Romans 11:2–4). James: "Elijah was a human being, even as we are. He prayed earnestly that it would not rain, and it did not rain on the land for three and a half years. Again he prayed, and the heavens gave rain" (James 5:17–18).`,
+  refs:["Matthew 11:14","Matthew 16:14","Matthew 17:1–13","Matthew 27:47–49","Luke 1:17","Luke 4:25–26","John 1:21–25","Romans 11:2–4","James 5:17–18"]},
 
  {id:"abraham", name:"Abraham", short:"Abraham", cat:"ot", w:9,
   dates:"see the Old Testament map",
-  desc:`Matthew opens with "the genealogy of Jesus the Messiah the son of David, the son of Abraham" (Matthew 1:1). John the Baptist warned, "do not think you can say to yourselves, 'We have Abraham as our father'" (3:9). In Jesus' story the beggar Lazarus is carried "to Abraham's side" (Luke 16:22); Zacchaeus "too, is a son of Abraham" (19:9); and Jesus said, "before Abraham was born, I am!" (John 8:58). Stephen began, "The God of glory appeared to our father Abraham" (Acts 7:2). Paul: "Abraham believed God, and it was credited to him as righteousness" (Romans 4:3; Galatians 3:6); "those who have faith are children of Abraham" (Galatians 3:7); "Abraham had two sons, one by the slave woman and the other by the free woman" (4:22).`,
-  refs:["Matthew 1:1–2","Matthew 3:9","Luke 3:34","Luke 16:19–31","Luke 19:9","John 8:31–59","Acts 7:2–8","Romans 4","Galatians 3:6–18","Galatians 4:21–31"]},
+  desc:`Matthew opens with "the genealogy of Jesus the Messiah the son of David, the son of Abraham" (Matthew 1:1). John the Baptist warned, "do not think you can say to yourselves, 'We have Abraham as our father'" (3:9). In Jesus' story the beggar Lazarus is carried "to Abraham's side" (Luke 16:22); Zacchaeus "too, is a son of Abraham" (19:9); and Jesus said, "before Abraham was born, I am!" (John 8:58). Stephen began, "The God of glory appeared to our father Abraham" (Acts 7:2). Paul: "Abraham believed God, and it was credited to him as righteousness" (Romans 4:3; Galatians 3:6); "those who have faith are children of Abraham" (Galatians 3:7); "Abraham had two sons, one by the slave woman and the other by the free woman" (4:22). Hebrews: "after waiting patiently, Abraham received what was promised" (6:15); Melchizedek "blessed him, and Abraham gave him a tenth of everything" (7:1–2); "By faith Abraham, when called to go to a place he would later receive as his inheritance, obeyed and went, even though he did not know where he was going" (11:8), and "By faith Abraham, when God tested him, offered Isaac as a sacrifice" (11:17). James asks, "Was not our father Abraham considered righteous for what he did when he offered his son Isaac on the altar?" and adds, "he was called God's friend" (James 2:21, 23).`,
+  refs:["Matthew 1:1–2","Matthew 3:9","Luke 3:34","Luke 16:19–31","Luke 19:9","John 8:31–59","Acts 7:2–8","Romans 4","Galatians 3:6–18","Galatians 4:21–31","Hebrews 6:13–15","Hebrews 7:1–10","Hebrews 11:8–19","James 2:21–23"]},
 
  {id:"isaac", name:"Isaac", short:"Isaac", cat:"ot", w:5,
   dates:"see the Old Testament map",
-  desc:`In both genealogies of Jesus (Matthew 1:2; Luke 3:34). God is "the God of Abraham, the God of Isaac, and the God of Jacob" (Matthew 22:32); people will "take their places at the feast with Abraham, Isaac and Jacob" (8:11). Paul: "It is through Isaac that your offspring will be reckoned" (Romans 9:7); "you, brothers and sisters, like Isaac, are children of promise" (Galatians 4:28).`,
-  refs:["Matthew 1:2","Matthew 8:11","Matthew 22:32","Luke 3:34","Acts 7:8","Romans 9:7–10","Galatians 4:28"]},
+  desc:`In both genealogies of Jesus (Matthew 1:2; Luke 3:34). God is "the God of Abraham, the God of Isaac, and the God of Jacob" (Matthew 22:32); people will "take their places at the feast with Abraham, Isaac and Jacob" (8:11). Paul: "It is through Isaac that your offspring will be reckoned" (Romans 9:7); "you, brothers and sisters, like Isaac, are children of promise" (Galatians 4:28). Hebrews: Abraham "offered Isaac as a sacrifice," and "in a manner of speaking he did receive Isaac back from death" (11:17–19); "By faith Isaac blessed Jacob and Esau in regard to their future" (11:20). James: Abraham "offered his son Isaac on the altar" (James 2:21).`,
+  refs:["Matthew 1:2","Matthew 8:11","Matthew 22:32","Luke 3:34","Acts 7:8","Romans 9:7–10","Galatians 4:28","Hebrews 11:9–20","James 2:21"]},
 
  {id:"jacob", name:"Jacob (the patriarch)", short:"Jacob", cat:"ot", w:6,
   clash:"Jacob", clashtag:"The patriarch, son of Isaac; 'Jacob's well' at Sychar (John 4).",
   dates:"see the Old Testament map",
-  desc:`In both genealogies of Jesus (Matthew 1:2; Luke 3:34). Jesus met the Samaritan woman at "Jacob's well," near "the plot of ground Jacob had given to his son Joseph"; she asked, "Are you greater than our father Jacob?" (John 4:5–12). Gabriel told Mary her son would "reign over Jacob's descendants forever" (Luke 1:33). Paul quotes, "Jacob I loved, but Esau I hated" (Romans 9:13).`,
+  desc:`In both genealogies of Jesus (Matthew 1:2; Luke 3:34). Jesus met the Samaritan woman at "Jacob's well," near "the plot of ground Jacob had given to his son Joseph"; she asked, "Are you greater than our father Jacob?" (John 4:5–12). Gabriel told Mary her son would "reign over Jacob's descendants forever" (Luke 1:33). Paul quotes, "Jacob I loved, but Esau I hated" (Romans 9:13). "By faith Jacob, when he was dying, blessed each of Joseph's sons, and worshiped as he leaned on the top of his staff" (Hebrews 11:21).`,
   notconfused:`Jacob the father of Joseph, Mary's husband, in Matthew's genealogy (Matthew 1:16).`,
-  refs:["Matthew 1:2","Luke 1:33","Luke 3:34","John 4:5–12","Acts 7:8–15","Romans 9:10–13"]},
+  refs:["Matthew 1:2","Luke 1:33","Luke 3:34","John 4:5–12","Acts 7:8–15","Romans 9:10–13","Hebrews 11:9–21"]},
 
  {id:"josephpatri", name:"Joseph (son of Jacob)", short:"Joseph (patriarch)", cat:"ot", w:5,
   clash:"Joseph", clashtag:"The patriarch, son of Jacob, sold into Egypt (Acts 7:9).",
   dates:"see the Old Testament map",
-  desc:`Named as the son to whom Jacob gave the plot of ground at Sychar (John 4:5). Stephen told how the patriarchs, jealous of Joseph, sold him into Egypt, and "God was with him"; Pharaoh "made him ruler over Egypt," and he sent for "his father Jacob and his whole family, seventy-five in all" (Acts 7:9–14).`,
-  refs:["John 4:5","Acts 7:9–16"]},
+  desc:`Named as the son to whom Jacob gave the plot of ground at Sychar (John 4:5). Stephen told how the patriarchs, jealous of Joseph, sold him into Egypt, and "God was with him"; Pharaoh "made him ruler over Egypt," and he sent for "his father Jacob and his whole family, seventy-five in all" (Acts 7:9–14). "By faith Joseph, when his end was near, spoke about the exodus of the Israelites from Egypt and gave instructions concerning the burial of his bones" (Hebrews 11:22).`,
+  refs:["John 4:5","Acts 7:9–16","Hebrews 11:21–22"]},
 
  {id:"davidk", name:"David", short:"David", cat:"ot", w:10,
   dates:"see the Old Testament map",
-  desc:`Jesus is "the son of David" (Matthew 1:1), and crowds and the blind called him "Son of David" (Matthew 21:9; Mark 10:47). Gabriel said God would give Jesus "the throne of his father David" (Luke 1:32). Jesus recalled David eating the consecrated bread "in the days of Abiathar the high priest" (Mark 2:26) and asked how David could call the Messiah "Lord" (Mark 12:35–37). Peter said "the patriarch David died and was buried" and that he foresaw the resurrection of the Messiah (Acts 2:29–31); Paul quoted God: "I have found David son of Jesse, a man after my own heart" (13:22). In Revelation Jesus is "the Lion of the tribe of Judah, the Root of David" (Revelation 5:5) and says, "I am the Root and the Offspring of David" (22:16). Paul writes that God's Son "as to his earthly life was a descendant of David" (Romans 1:3).`,
-  refs:["Matthew 1:1–17","Mark 2:25–26","Mark 12:35–37","Luke 1:32","Luke 3:31","Acts 2:25–35","Acts 13:22–36","Revelation 5:5","Revelation 22:16","Romans 1:3","Romans 4:6–8"]},
+  desc:`Jesus is "the son of David" (Matthew 1:1), and crowds and the blind called him "Son of David" (Matthew 21:9; Mark 10:47). Gabriel said God would give Jesus "the throne of his father David" (Luke 1:32). Jesus recalled David eating the consecrated bread "in the days of Abiathar the high priest" (Mark 2:26) and asked how David could call the Messiah "Lord" (Mark 12:35–37). Peter said "the patriarch David died and was buried" and that he foresaw the resurrection of the Messiah (Acts 2:29–31); Paul quoted God: "I have found David son of Jesse, a man after my own heart" (13:22). In Revelation Jesus is "the Lion of the tribe of Judah, the Root of David" (Revelation 5:5) and says, "I am the Root and the Offspring of David" (22:16). Paul writes that God's Son "as to his earthly life was a descendant of David" (Romans 1:3). Hebrews says God "spoke through David" the words "Today, if you hear his voice, do not harden your hearts" (4:7), and names him among the faithful (11:32).`,
+  refs:["Matthew 1:1–17","Mark 2:25–26","Mark 12:35–37","Luke 1:32","Luke 3:31","Acts 2:25–35","Acts 13:22–36","Revelation 5:5","Revelation 22:16","Romans 1:3","Romans 4:6–8","Hebrews 4:7","Hebrews 11:32"]},
 
  {id:"solomon", name:"Solomon", short:"Solomon", cat:"ot", w:6,
   dates:"see the Old Testament map",
@@ -1201,13 +1217,13 @@ const NT_PEOPLE = [
 
  {id:"noah", name:"Noah", short:"Noah", cat:"ot", w:5,
   dates:"see the Old Testament map",
-  desc:`In Luke's genealogy of Jesus (Luke 3:36). "As it was in the days of Noah, so it will be at the coming of the Son of Man… up to the day Noah entered the ark" (Matthew 24:37–38; Luke 17:26–27).`,
-  refs:["Luke 3:36","Matthew 24:37–39","Luke 17:26–27"]},
+  desc:`In Luke's genealogy of Jesus (Luke 3:36). "As it was in the days of Noah, so it will be at the coming of the Son of Man… up to the day Noah entered the ark" (Matthew 24:37–38; Luke 17:26–27). "By faith Noah, when warned about things not yet seen, in holy fear built an ark to save his family" (Hebrews 11:7). God "waited patiently in the days of Noah while the ark was being built. In it only a few people, eight in all, were saved through water" (1 Peter 3:20); God "protected Noah, a preacher of righteousness, and seven others" (2 Peter 2:5).`,
+  refs:["Luke 3:36","Matthew 24:37–39","Luke 17:26–27","Hebrews 11:7","1 Peter 3:20","2 Peter 2:5"]},
 
  {id:"adam", name:"Adam", short:"Adam", cat:"ot", w:5,
   dates:"see the Old Testament map",
-  desc:`Luke's genealogy of Jesus ends "the son of Seth, the son of Adam, the son of God" (Luke 3:38). Paul: "sin entered the world through one man" (Romans 5:12), and Adam "is a pattern of the one to come" (5:14); "as in Adam all die, so in Christ all will be made alive" (1 Corinthians 15:22); "Adam was formed first, then Eve" (1 Timothy 2:13).`,
-  refs:["Luke 3:38","Romans 5:12–19","1 Corinthians 15:21–22, 45","1 Timothy 2:13–14"]},
+  desc:`Luke's genealogy of Jesus ends "the son of Seth, the son of Adam, the son of God" (Luke 3:38). Paul: "sin entered the world through one man" (Romans 5:12), and Adam "is a pattern of the one to come" (5:14); "as in Adam all die, so in Christ all will be made alive" (1 Corinthians 15:22); "Adam was formed first, then Eve" (1 Timothy 2:13). Jude calls Enoch "the seventh from Adam" (Jude 14).`,
+  refs:["Luke 3:38","Romans 5:12–19","1 Corinthians 15:21–22, 45","1 Timothy 2:13–14","Jude 14"]},
 
  {id:"isaiah", name:"Isaiah", short:"Isaiah", cat:"ot", w:7,
   dates:"see the Old Testament map",
@@ -1237,8 +1253,8 @@ const NT_PEOPLE = [
 
  {id:"samuel", name:"Samuel", short:"Samuel", cat:"ot", w:4,
   dates:"see the Old Testament map",
-  desc:`Peter said, "beginning with Samuel, all the prophets who have spoken have foretold these days" (Acts 3:24); Paul said God "gave them judges until the time of Samuel the prophet" (13:20).`,
-  refs:["Acts 3:24","Acts 13:20"]},
+  desc:`Peter said, "beginning with Samuel, all the prophets who have spoken have foretold these days" (Acts 3:24); Paul said God "gave them judges until the time of Samuel the prophet" (13:20). Hebrews names him among the faithful: "David and Samuel and the prophets" (11:32).`,
+  refs:["Acts 3:24","Acts 13:20","Hebrews 11:32"]},
 
  {id:"saulking", name:"Saul son of Kish", short:"King Saul", cat:"ot", w:4,
   clash:"Saul", clashtag:"Israel's first king, named in Paul's sermon (Acts 13:21).",
@@ -1269,8 +1285,8 @@ const NT_PEOPLE = [
 
  {id:"lot", name:"Lot", short:"Lot", cat:"ot", w:4,
   dates:"see the Old Testament map",
-  desc:`"It was the same in the days of Lot… But the day Lot left Sodom, fire and sulfur rained down from heaven and destroyed them all" (Luke 17:28–29).`,
-  refs:["Luke 17:28–32"]},
+  desc:`"It was the same in the days of Lot… But the day Lot left Sodom, fire and sulfur rained down from heaven and destroyed them all" (Luke 17:28–29). Peter: God "rescued Lot, a righteous man, who was distressed by the depraved conduct of the lawless" (2 Peter 2:7).`,
+  refs:["Luke 17:28–32","2 Peter 2:6–9"]},
 
  {id:"lotswife", name:"Lot's wife", short:"Lot's wife", cat:"ot", w:3,
   dates:"see the Old Testament map",
@@ -1279,8 +1295,8 @@ const NT_PEOPLE = [
 
  {id:"abel", name:"Abel", short:"Abel", cat:"ot", w:4,
   dates:"see the Old Testament map",
-  desc:`Jesus spoke of "all the righteous blood that has been shed on earth, from the blood of righteous Abel to the blood of Zechariah son of Berekiah" (Matthew 23:35; Luke 11:51).`,
-  refs:["Matthew 23:35","Luke 11:51"]},
+  desc:`Jesus spoke of "all the righteous blood that has been shed on earth, from the blood of righteous Abel to the blood of Zechariah son of Berekiah" (Matthew 23:35; Luke 11:51). "By faith Abel brought God a better offering than Cain did… And by faith Abel still speaks, even though he is dead" (Hebrews 11:4), and Jesus' "sprinkled blood" "speaks a better word than the blood of Abel" (12:24). In Genesis he was Adam and Eve's son, killed by his brother Cain (Genesis 4:2–8).`,
+  refs:["Matthew 23:35","Luke 11:51","Hebrews 11:4","Hebrews 12:24","Genesis 4:1–8"]},
 
  {id:"zechariahb", name:"Zechariah son of Berekiah", short:"Zechariah (son of Berekiah)", cat:"ot", w:4,
   clash:"Zechariah", clashtag:"Murdered 'between the temple and the altar' (Matthew 23:35).",
@@ -1296,8 +1312,8 @@ const NT_PEOPLE = [
 
  {id:"aaron", name:"Aaron", short:"Aaron", cat:"ot", w:4,
   dates:"see the Old Testament map",
-  desc:`Elizabeth "was also a descendant of Aaron" (Luke 1:5). Stephen recalled that the people told Aaron, "Make us gods who will go before us" (Acts 7:40).`,
-  refs:["Luke 1:5","Acts 7:40"]},
+  desc:`Elizabeth "was also a descendant of Aaron" (Luke 1:5). Stephen recalled that the people told Aaron, "Make us gods who will go before us" (Acts 7:40). Hebrews: a high priest receives the honor "when called by God, just as Aaron was. In the same way, Christ did not take on himself the glory of becoming a high priest" (5:4–5); Jesus is a priest "in the order of Melchizedek, not in the order of Aaron" (7:11). The ark held "Aaron's staff that had budded" (9:4).`,
+  refs:["Luke 1:5","Acts 7:40","Hebrews 5:4–5","Hebrews 7:11","Hebrews 9:4"]},
 
  {id:"abiathar", name:"Abiathar", short:"Abiathar", cat:"ot", w:3,
   dates:"see the Old Testament map",
@@ -1315,8 +1331,10 @@ const NT_PEOPLE = [
   desc:`Twin brother of Perez in Matthew's genealogy: "Judah the father of Perez and Zerah, whose mother was Tamar" (1:3).`,
   refs:["Matthew 1:3"]},
  {id:"rahab", name:"Rahab", short:"Rahab", cat:"line", w:4,
+  clash:"Rahab", clashtag:"Mother of Boaz in Matthew's genealogy (1:5).",
   dates:"see the Old Testament map",
   desc:`Named in Matthew's genealogy: "Salmon the father of Boaz, whose mother was Rahab" (1:5). Matthew does not say whether she is the Rahab of Jericho (Joshua 2); see the Old Testament map.`,
+  notconfused:`Rahab of Jericho, who hid the spies (Hebrews 11:31; James 2:25). Matthew does not say that she is the same woman.`,
   refs:["Matthew 1:5"]},
  {id:"ruth", name:"Ruth", short:"Ruth", cat:"line", w:4,
   dates:"see the Old Testament map",
@@ -1329,8 +1347,8 @@ const NT_PEOPLE = [
  {id:"judah", name:"Judah", short:"Judah", cat:"line", w:4,
   clash:"Judah", clashtag:"In both genealogies of Jesus (Matthew 1:2), son of Jacob.",
   dates:"see the Old Testament map",
-  desc:`In Matthew's genealogy of Jesus (1:2), son of Jacob and father of Perez. In Luke's genealogy (3:33), "the son of Jacob"; father of Perez. The patriarch Judah, son of Jacob: "Jacob the father of Judah and his brothers" (Matthew 1:2). Matthew adds that Perez and Zerah's mother was Tamar (1:3). See the Old Testament map.`,
-  refs:["Matthew 1:2","Luke 3:33"]},
+  desc:`In Matthew's genealogy of Jesus (1:2), son of Jacob and father of Perez. In Luke's genealogy (3:33), "the son of Jacob"; father of Perez. The patriarch Judah, son of Jacob: "Jacob the father of Judah and his brothers" (Matthew 1:2). Matthew adds that Perez and Zerah's mother was Tamar (1:3). See the Old Testament map. Hebrews: "it is clear that our Lord descended from Judah, and in regard to that tribe Moses said nothing about priests" (7:14).`,
+  refs:["Matthew 1:2","Luke 3:33","Hebrews 7:14"]},
  {id:"perez", name:"Perez", short:"Perez", cat:"line", w:3,
   dates:"see the Old Testament map",
   desc:`In Matthew's genealogy of Jesus (1:3), son of Judah and father of Hezron. In Luke's genealogy (3:33), "the son of Judah"; father of Hezron. Matthew: "Judah the father of Perez and Zerah, whose mother was Tamar" (1:3). See the Old Testament map.`,
@@ -1584,9 +1602,10 @@ const NT_PEOPLE = [
   notconfused:`Er son of Judah (Genesis 38).`,
   refs:["Luke 3:28"]},
  {id:"joshual", name:"Joshua", short:"Joshua", cat:"line", w:3,
+  clash:"Joshua", clashtag:"In Luke's genealogy (3:29), son of Eliezer.",
   dates:"not given",
   desc:`In Luke's genealogy (3:29), "the son of Eliezer"; father of Er. Nothing else is said of him in the New Testament.`,
-  notconfused:`Joshua son of Nun (Acts 7:45).`,
+  notconfused:`Joshua son of Nun, Moses' successor (Acts 7:45; Hebrews 4:8).`,
   refs:["Luke 3:29"]},
  {id:"eliezerl", name:"Eliezer", short:"Eliezer", cat:"line", w:3,
   dates:"not given",
@@ -1702,8 +1721,8 @@ const NT_PEOPLE = [
   refs:["Luke 3:37"]},
  {id:"enoch", name:"Enoch", short:"Enoch", cat:"line", w:3,
   dates:"see the Old Testament map",
-  desc:`In Luke's genealogy (3:37), "the son of Jared"; father of Methuselah. See the Old Testament map.`,
-  refs:["Luke 3:37"]},
+  desc:`In Luke's genealogy (3:37), "the son of Jared"; father of Methuselah. See the Old Testament map. "By faith Enoch was taken from this life, so that he did not experience death… For before he was taken, he was commended as one who pleased God" (Hebrews 11:5, quoting Genesis 5:24). Jude: "Enoch, the seventh from Adam, prophesied about them: 'See, the Lord is coming with thousands upon thousands of his holy ones to judge everyone'" (Jude 14–15).`,
+  refs:["Luke 3:37","Hebrews 11:5","Jude 14–15"]},
  {id:"jared", name:"Jared", short:"Jared", cat:"line", w:3,
   dates:"see the Old Testament map",
   desc:`In Luke's genealogy (3:37), "the son of Mahalalel"; father of Enoch. See the Old Testament map.`,
@@ -1995,8 +2014,8 @@ const NT_PEOPLE = [
 
  // Old Testament figures Paul writes about
  {id:"sarah", name:"Sarah", short:"Sarah", cat:"ot", w:5, dates:"see the Old Testament map",
-  desc:`Abraham's wife. Paul quotes the promise, "At the appointed time I will return, and Sarah will have a son" (Romans 9:9), and writes that Abraham "faced the fact that his body was as good as dead… and that Sarah's womb was also dead" (4:19). In Galatians she is "the free woman" whose son "was born as the result of a divine promise" (Galatians 4:22–23). See the Old Testament map.`,
-  refs:["Romans 4:19","Romans 9:9","Galatians 4:21–31"]},
+  desc:`Abraham's wife. Paul quotes the promise, "At the appointed time I will return, and Sarah will have a son" (Romans 9:9), and writes that Abraham "faced the fact that his body was as good as dead… and that Sarah's womb was also dead" (4:19). In Galatians she is "the free woman" whose son "was born as the result of a divine promise" (Galatians 4:22–23). See the Old Testament map. "And by faith even Sarah, who was past childbearing age, was enabled to bear children because she considered him faithful who had made the promise" (Hebrews 11:11); an NIV footnote gives another reading, in which the faith is Abraham's. Peter: "like Sarah, who obeyed Abraham and called him her lord. You are her daughters if you do what is right and do not give way to fear" (1 Peter 3:6).`,
+  refs:["Romans 4:19","Romans 9:9","Galatians 4:21–31","Hebrews 11:11","1 Peter 3:5–6"]},
  {id:"hagar", name:"Hagar", short:"Hagar", cat:"ot", w:4, dates:"see the Old Testament map",
   desc:`"Abraham had two sons, one by the slave woman and the other by the free woman." Paul writes, "These things are being taken figuratively": "Hagar stands for Mount Sinai in Arabia and corresponds to the present city of Jerusalem, because she is in slavery with her children" (Galatians 4:22–25). See the Old Testament map.`,
   refs:["Galatians 4:21–31"]},
@@ -2004,8 +2023,8 @@ const NT_PEOPLE = [
   desc:`"Rebekah's children were conceived at the same time by our father Isaac. Yet, before the twins were born or had done anything good or bad… she was told, 'The older will serve the younger'" (Romans 9:10–12). See the Old Testament map.`,
   refs:["Romans 9:10–13"]},
  {id:"esau", name:"Esau", short:"Esau", cat:"ot", w:4, dates:"see the Old Testament map",
-  desc:`Jacob's twin. Paul quotes, "Jacob I loved, but Esau I hated" (Romans 9:13), to show God's purpose in election "not by works but by him who calls" (9:11–12). See the Old Testament map.`,
-  refs:["Romans 9:10–13"]},
+  desc:`Jacob's twin. Paul quotes, "Jacob I loved, but Esau I hated" (Romans 9:13), to show God's purpose in election "not by works but by him who calls" (9:11–12). See the Old Testament map. Isaac blessed "Jacob and Esau in regard to their future" (Hebrews 11:20). Hebrews warns against being "godless like Esau, who for a single meal sold his inheritance rights as the oldest son"; later "he sought the blessing with tears," but "he could not change what he had done" (12:16–17).`,
+  refs:["Romans 9:10–13","Hebrews 11:20","Hebrews 12:16–17"]},
  {id:"eve", name:"Eve", short:"Eve", cat:"ot", w:5, dates:"see the Old Testament map",
   desc:`"I am afraid that just as Eve was deceived by the serpent's cunning, your minds may somehow be led astray" (2 Corinthians 11:3). "For Adam was formed first, then Eve. And Adam was not the one deceived; it was the woman who was deceived and became a sinner" (1 Timothy 2:13–14). See the Old Testament map.`,
   refs:["2 Corinthians 11:3","1 Timothy 2:13–14"]},
@@ -2015,6 +2034,80 @@ const NT_PEOPLE = [
  {id:"jambres", name:"Jambres", short:"Jambres", cat:"ot", w:3, dates:"time of Moses",
   desc:`Named with Jannes as having "opposed Moses" (2 Timothy 3:8). Named only here; Exodus does not name the men who opposed Moses.`,
   refs:["2 Timothy 3:8–9"]},
+
+ // ---------------- GENERAL LETTERS (Hebrews – Jude) ----------------
+ {id:"melchizedek", name:"Melchizedek", short:"Melchizedek", cat:"ot", w:7,
+  dates:"time of Abraham; see the Old Testament map",
+  desc:`"This Melchizedek was king of Salem and priest of God Most High. He met Abraham returning from the defeat of the kings and blessed him, and Abraham gave him a tenth of everything" (Hebrews 7:1–2; Genesis 14:18–20). Hebrews says his name means "king of righteousness" and "king of Salem" means "king of peace"; "Without father or mother, without genealogy, without beginning of days or end of life, resembling the Son of God, he remains a priest forever" (7:2–3). Jesus is "a high priest forever, in the order of Melchizedek" (6:20; 5:6, 10). See the Old Testament map.`,
+  refs:["Hebrews 5:6–10","Hebrews 6:20","Hebrews 7:1–17","Genesis 14:17–20"]},
+ {id:"cain", name:"Cain", short:"Cain", cat:"ot", w:4,
+  dates:"see the Old Testament map",
+  desc:`"By faith Abel brought God a better offering than Cain did" (Hebrews 11:4). In Genesis, Cain was the firstborn of Adam and Eve; God did not look with favor on his offering, and "Cain attacked his brother Abel and killed him" (Genesis 4:1–8). See the Old Testament map. John: "Do not be like Cain, who belonged to the evil one and murdered his brother. And why did he murder him? Because his own actions were evil and his brother's were righteous" (1 John 3:12). Jude warns of those who "have taken the way of Cain" (Jude 11).`,
+  refs:["Hebrews 11:4","Genesis 4:1–16","1 John 3:12","Jude 11"]},
+ {id:"gideon", name:"Gideon", short:"Gideon", cat:"ot", w:4,
+  dates:"see the Old Testament map",
+  desc:`Named in Hebrews among those "who through faith conquered kingdoms, administered justice, and gained what was promised": "I do not have time to tell about Gideon, Barak, Samson and Jephthah, about David and Samuel and the prophets" (Hebrews 11:32–33). Hebrews says nothing more about him; his story is in Judges 6–8. See the Old Testament map.`,
+  refs:["Hebrews 11:32–34","Judges 6–8"]},
+ {id:"barak", name:"Barak", short:"Barak", cat:"ot", w:3,
+  dates:"see the Old Testament map",
+  desc:`Named in Hebrews among those "who through faith conquered kingdoms" (Hebrews 11:32–33), with Gideon, Samson and Jephthah. Hebrews says nothing more about him; his story is in Judges 4–5. See the Old Testament map.`,
+  refs:["Hebrews 11:32–34","Judges 4–5"]},
+ {id:"samson", name:"Samson", short:"Samson", cat:"ot", w:4,
+  dates:"see the Old Testament map",
+  desc:`Named in Hebrews among those "who through faith conquered kingdoms" (Hebrews 11:32–33), with Gideon, Barak and Jephthah. Hebrews says nothing more about him; his story is in Judges 13–16. See the Old Testament map.`,
+  refs:["Hebrews 11:32–34","Judges 13–16"]},
+ {id:"jephthah", name:"Jephthah", short:"Jephthah", cat:"ot", w:3,
+  dates:"see the Old Testament map",
+  desc:`Named in Hebrews among those "who through faith conquered kingdoms" (Hebrews 11:32–33), with Gideon, Barak and Samson. Hebrews says nothing more about him; his story is in Judges 11–12. See the Old Testament map.`,
+  refs:["Hebrews 11:32–34","Judges 11–12"]},
+ {id:"levipatri", name:"Levi (son of Jacob)", short:"Levi (patriarch)", cat:"ot", w:4,
+  clash:"Levi", clashtag:"The patriarch, son of Jacob and Leah; father of the priestly tribe (Hebrews 7:5–10).",
+  dates:"see the Old Testament map",
+  desc:`Jacob's son by Leah (Genesis 29:34). The priests were "the descendants of Levi" (Hebrews 7:5). Hebrews argues that Melchizedek was greater than the Levitical priests: "One might even say that Levi, who collects the tenth, paid the tenth through Abraham, because when Melchizedek met Abraham, Levi was still in the body of his ancestor" (7:9–10). See the Old Testament map.`,
+  notconfused:`Levi (Matthew) the tax collector, and the two Levis in Luke's genealogy (3:24, 29).`,
+  refs:["Hebrews 7:5–11","Genesis 29:34"]},
+ {id:"joshuanun", name:"Joshua son of Nun", short:"Joshua (son of Nun)", cat:"ot", w:5,
+  clash:"Joshua", clashtag:"Moses' successor, who led Israel into the land (Acts 7:45; Hebrews 4:8).",
+  dates:"see the Old Testament map",
+  desc:`Moses laid his hands on him, and "the Israelites listened to him" (Deuteronomy 34:9). Stephen said the tabernacle came into the land with "our ancestors under Joshua" (Acts 7:45). Hebrews: "For if Joshua had given them rest, God would not have spoken later about another day" (4:8). He sent the two spies to Jericho, and "Joshua spared Rahab the prostitute, with her family" (Joshua 2:1; 6:25). See the Old Testament map.`,
+  notconfused:`Joshua son of Eliezer in Luke's genealogy (3:29).`,
+  refs:["Acts 7:45","Hebrews 4:8","Deuteronomy 34:9","Joshua 2:1","Joshua 6:22–25"]},
+ {id:"rahabjericho", name:"Rahab of Jericho", short:"Rahab (Jericho)", cat:"ot", w:5,
+  clash:"Rahab", clashtag:"The prostitute of Jericho who hid the spies (Hebrews 11:31; James 2:25).",
+  dates:"see the Old Testament map",
+  desc:`"By faith the prostitute Rahab, because she welcomed the spies, was not killed with those who were disobedient" (Hebrews 11:31; an NIV footnote gives "unbelieving" for "disobedient"). James asks, "was not even Rahab the prostitute considered righteous for what she did when she gave lodging to the spies and sent them off in a different direction?" (James 2:25). In Joshua she hid the two spies Joshua sent, and "Joshua spared Rahab the prostitute, with her family" (Joshua 2; 6:25). See the Old Testament map.`,
+  notconfused:`Rahab in Matthew's genealogy, mother of Boaz (Matthew 1:5). Matthew does not say that she is the Rahab of Jericho.`,
+  refs:["Hebrews 11:31","James 2:25","Joshua 2","Joshua 6:22–25"]},
+ {id:"job", name:"Job", short:"Job", cat:"ot", w:5,
+  dates:"see the Old Testament map",
+  desc:`"You have heard of Job's perseverance and have seen what the Lord finally brought about. The Lord is full of compassion and mercy" (James 5:11). The New Testament says nothing more about him; his story is the book of Job. See the Old Testament map.`,
+  refs:["James 5:11"]},
+
+ {id:"korahnt", name:"Korah", short:"Korah", cat:"ot", w:4,
+  dates:"time of Moses; see the Old Testament map",
+  desc:`Jude warns of those who "have been destroyed in Korah's rebellion" (Jude 11). In Numbers, "Korah son of Izhar, the son of Kohath, the son of Levi," with others, "rose up against Moses" and Aaron, and the earth "swallowed them and their households" (Numbers 16:1–3, 31–33). See the Old Testament map.`,
+  refs:["Jude 11","Numbers 16"]},
+ {id:"elder", name:"The elder (2 and 3 John)", short:"The elder", cat:"church", w:7,
+  dates:"1st century AD",
+  desc:`The writer of 2 and 3 John calls himself only "the elder" (2 John 1; 3 John 1). He wrote "To the lady chosen by God and to her children" (2 John 1), which the NIV's introduction takes to mean a church and its members, warning that "many deceivers, who do not acknowledge Jesus Christ as coming in the flesh, have gone out into the world" (7); and "To my dear friend Gaius, whom I love in the truth" (3 John 1): "I have no greater joy than to hear that my children are walking in the truth" (3 John 4). The NIV's introductions say he also wrote 1 John, which does not name its writer, and that he was very likely the apostle John. The letters themselves do not say so.`,
+  notconfused:`John son of Zebedee, and John who wrote down Revelation. 2 and 3 John do not give the elder's name.`,
+  refs:["2 John 1–13","3 John 1–15"]},
+ {id:"gaius3jn", name:"Gaius (3 John)", short:"Gaius (3 John)", cat:"church", w:4,
+  clash:"Gaius", clashtag:"'My dear friend Gaius', to whom the elder wrote 3 John.",
+  dates:"1st century AD",
+  desc:`"To my dear friend Gaius, whom I love in the truth" (3 John 1). Believers "testified about your faithfulness to the truth"; the elder writes, "you are faithful in what you are doing for the brothers and sisters, even though they are strangers to you," and asks him to "send them on their way in a manner that honors God" (3 John 3–6).`,
+  notconfused:`Gaius of Macedonia (Acts 19:29), Gaius of Derbe (Acts 20:4) and Gaius of Corinth, Paul's host (Romans 16:23). 3 John does not connect him with any of them.`,
+  refs:["3 John 1–8"]},
+ {id:"diotrephes", name:"Diotrephes", short:"Diotrephes", cat:"church", w:4,
+  dates:"1st century AD",
+  desc:`"I wrote to the church, but Diotrephes, who loves to be first, will not welcome us." The elder says he is "spreading malicious nonsense about us," "refuses to welcome other believers," and "stops those who want to do so and puts them out of the church" (3 John 9–10).`,
+  refs:["3 John 9–10"]},
+ {id:"demetrius3jn", name:"Demetrius (3 John)", short:"Demetrius (3 John)", cat:"church", w:3,
+  clash:"Demetrius", clashtag:"'Well spoken of by everyone' (3 John 12).",
+  dates:"1st century AD",
+  desc:`"Demetrius is well spoken of by everyone—and even by the truth itself. We also speak well of him, and you know that our testimony is true" (3 John 12). Nothing more is said of him.`,
+  notconfused:`Demetrius the silversmith of Ephesus, who stirred up the riot against Paul (Acts 19:24).`,
+  refs:["3 John 12"]},
 
  // ---------------- REVELATION ----------------
  {id:"johnpatmos", name:"John, servant of Jesus (Revelation)", short:"John (Revelation)", cat:"church", w:10,
@@ -2039,8 +2132,8 @@ const NT_PEOPLE = [
 
  {id:"balaamnt", name:"Balaam", short:"Balaam", cat:"ot", w:4,
   dates:"see the Old Testament map",
-  desc:`The message to Pergamum warns of "some among you who hold to the teaching of Balaam, who taught Balak to entice the Israelites to sin so that they ate food sacrificed to idols and committed sexual immorality" (Revelation 2:14). His story, with the angel of the LORD in the road, is on the Old Testament map (Numbers 22–24).`,
-  refs:["Revelation 2:14"]},
+  desc:`The message to Pergamum warns of "some among you who hold to the teaching of Balaam, who taught Balak to entice the Israelites to sin so that they ate food sacrificed to idols and committed sexual immorality" (Revelation 2:14). His story, with the angel of the LORD in the road, is on the Old Testament map (Numbers 22–24). False teachers "follow the way of Balaam son of Bezer, who loved the wages of wickedness. But he was rebuked for his wrongdoing by a donkey—an animal without speech—who spoke with a human voice" (2 Peter 2:15–16; an NIV footnote gives the Greek "Bosor" for Bezer). Jude warns of those who "have rushed for profit into Balaam's error" (Jude 11).`,
+  refs:["Revelation 2:14","2 Peter 2:15–16","Jude 11"]},
 
  {id:"balaknt", name:"Balak", short:"Balak", cat:"ot", w:3,
   dates:"see the Old Testament map",
@@ -2058,7 +2151,7 @@ const NT_PEOPLE = [
  {id:"michael", name:"Michael the archangel", short:"Michael", cat:"angels", w:10,
   aliases:"the archangel Michael",
   dates:"—",
-  desc:`"Then war broke out in heaven. Michael and his angels fought against the dragon, and the dragon and his angels fought back. But he was not strong enough, and they lost their place in heaven" (Revelation 12:7–8). Jude calls him "the archangel Michael" who, "when he was disputing with the devil about the body of Moses, did not himself dare to condemn him for slander but said, 'The Lord rebuke you!'" (Jude 9). In Daniel he is "one of the chief princes" and "the great prince who protects your people" (Daniel 10:13; 12:1; Old Testament map).`,
+  desc:`"Then war broke out in heaven. Michael and his angels fought against the dragon, and the dragon and his angels fought back. But he was not strong enough, and they lost their place in heaven" (Revelation 12:7–8). Jude calls him "the archangel Michael" who, "when he was disputing with the devil about the body of Moses, did not himself dare to condemn him for slander but said, 'The Lord rebuke you!'" (Jude 9). In Daniel he is "one of the chief princes" and "the great prince who protects your people" (Daniel 10:13; 12:1; Old Testament map). An NIV footnote on Jude 9 says "Jude is alluding to the Jewish Testament of Moses," a writing of about the first century AD.`,
   notconfused:`Gabriel, the angel sent to Zechariah and Mary (Luke 1).`,
   refs:["Revelation 12:7–9","Jude 9","Daniel 10:13, 21","Daniel 12:1"]},
 
@@ -2092,19 +2185,51 @@ const NT_PEOPLE = [
  {id:"satan", name:"Satan, the devil", short:"Satan", cat:"devil", w:11,
   aliases:"the devil · the tempter · the dragon · that ancient serpent · the accuser",
   dates:"—",
-  desc:`The adversary of God and his people. He tempted Jesus in the wilderness for forty days; Jesus answered, "Away from me, Satan! For it is written: 'Worship the Lord your God, and serve him only'" (Matthew 4:10; Luke 4:1–13). "Satan entered Judas, called Iscariot" (Luke 22:3; John 13:27); Jesus told Peter, "Satan has asked to sift all of you as wheat. But I have prayed for you, Simon" (Luke 22:31–32); Peter asked Ananias, "how is it that Satan has so filled your heart…?" (Acts 5:3). Jesus spoke of "the eternal fire prepared for the devil and his angels" (Matthew 25:41). In Revelation "the great dragon was hurled down—that ancient serpent called the devil, or Satan… and his angels with him" (12:9); an angel binds him "for a thousand years" (20:2), and at last he "was thrown into the lake of burning sulfur" (20:10). Scripture speaks of "his angels" and of war in heaven with Michael (Revelation 12:7–9); the Gospels, Acts and Revelation do not call him an angel in so many words. Paul writes, "Satan himself masquerades as an angel of light" (2 Corinthians 11:14); he was given "a thorn in my flesh, a messenger of Satan, to torment me" (12:7); "Satan blocked our way" (1 Thessalonians 2:18); and "The God of peace will soon crush Satan under your feet" (Romans 16:20).`,
+  desc:`The adversary of God and his people. He tempted Jesus in the wilderness for forty days; Jesus answered, "Away from me, Satan! For it is written: 'Worship the Lord your God, and serve him only'" (Matthew 4:10; Luke 4:1–13). "Satan entered Judas, called Iscariot" (Luke 22:3; John 13:27); Jesus told Peter, "Satan has asked to sift all of you as wheat. But I have prayed for you, Simon" (Luke 22:31–32); Peter asked Ananias, "how is it that Satan has so filled your heart…?" (Acts 5:3). Jesus spoke of "the eternal fire prepared for the devil and his angels" (Matthew 25:41). In Revelation "the great dragon was hurled down—that ancient serpent called the devil, or Satan… and his angels with him" (12:9); an angel binds him "for a thousand years" (20:2), and at last he "was thrown into the lake of burning sulfur" (20:10). Scripture speaks of "his angels" and of war in heaven with Michael (Revelation 12:7–9); the Gospels, Acts and Revelation do not call him an angel in so many words. Paul writes, "Satan himself masquerades as an angel of light" (2 Corinthians 11:14); he was given "a thorn in my flesh, a messenger of Satan, to torment me" (12:7); "Satan blocked our way" (1 Thessalonians 2:18); and "The God of peace will soon crush Satan under your feet" (Romans 16:20). Hebrews: Jesus shared our humanity "so that by his death he might break the power of him who holds the power of death—that is, the devil" (2:14). James: "Resist the devil, and he will flee from you" (4:7). Peter: "Your enemy the devil prowls around like a roaring lion looking for someone to devour. Resist him" (1 Peter 5:8–9). John: "the devil has been sinning from the beginning. The reason the Son of God appeared was to destroy the devil's work" (1 John 3:8); Cain "belonged to the evil one" (3:12); and "the whole world is under the control of the evil one" (5:19).`,
   notconfused:`Peter, whom Jesus rebuked with "Get behind me, Satan!" (Matthew 16:23); and Beelzebul, the name Jesus' opponents used for "the prince of demons" (Matthew 12:24–26).`,
-  refs:["Matthew 4:1–11","Mark 1:12–13","Luke 4:1–13","Luke 10:18","Luke 13:16","Luke 22:3, 31","John 8:44","John 13:2, 27","Acts 5:3","Jude 9","Revelation 2:9–13","Revelation 12:3–17","Revelation 20:1–10","Romans 16:20","2 Corinthians 11:14","2 Corinthians 12:7","1 Thessalonians 2:18","Ephesians 6:11"]},
+  refs:["Matthew 4:1–11","Mark 1:12–13","Luke 4:1–13","Luke 10:18","Luke 13:16","Luke 22:3, 31","John 8:44","John 13:2, 27","Acts 5:3","Jude 9","Revelation 2:9–13","Revelation 12:3–17","Revelation 20:1–10","Romans 16:20","2 Corinthians 11:14","2 Corinthians 12:7","1 Thessalonians 2:18","Ephesians 6:11","Hebrews 2:14","James 4:7","1 Peter 5:8–9","1 John 3:8–12","1 John 5:18–19"]},
 ];
 
 /* ---------- LINKS ---------- */
 const LG = { // link kind -> color group + css var
-  fam:"var(--tie-fam)", disc:"var(--tie-disc)", min:"var(--tie-min)", conf:"var(--tie-conf)", spec:"var(--tie-spec)", rule:"var(--tie-rule)", dev:"var(--tie-dev)"
+  fam:"var(--tie-fam)", disc:"var(--tie-disc)", min:"var(--tie-min)", conf:"var(--tie-conf)", spec:"var(--tie-spec)", rule:"var(--tie-rule)", dev:"var(--tie-dev)", god:"var(--tie-god)"
 };
 // a note matching this marks the tie as possible / disputed / traditional (drawn dotted)
 const UNSURE_RE = /possibl|disput|traditio/i;
 function lk(source,target,kind,type,note){ return {source,target,kind,type,note}; }
 const NT_LINKS = [
+ // ---- Father, Son & Holy Spirit ----
+ lk("father","jesus","god","\"This is my Son, whom I love\"; \"I and the Father are one\"","Matthew 3:17; 17:5; John 10:30; 17:5"),
+ lk("spirit","jesus","god","descended on him like a dove; led him into the wilderness","Matthew 3:16; Luke 3:22; 4:1, 18; Acts 10:38"),
+ lk("father","spirit","god","the Spirit \"whom the Father will send\"","John 14:26; 15:26; Acts 2:33; Galatians 4:6"),
+ lk("father","peter","god","the voice from the cloud at the transfiguration","Matthew 17:1–5; 2 Peter 1:17–18"),
+ lk("father","jameszeb","god","the voice from the cloud at the transfiguration","Matthew 17:1–5"),
+ lk("father","johnapostle","god","the voice from the cloud at the transfiguration","Matthew 17:1–5"),
+ lk("father","johnbaptist","god","\"a man sent from God\"; \"the word of God came to John\"","John 1:6; Luke 3:2"),
+ lk("father","gabriel","god","\"God sent the angel Gabriel\"","Luke 1:19, 26"),
+ lk("father","paul","god","\"was pleased to reveal his Son in me\"","Galatians 1:1, 15–16"),
+ lk("father","stephen","god","\"saw the glory of God\"","Acts 7:55–56"),
+ lk("father","johnpatmos","god","saw \"a throne in heaven with someone sitting on it\"","Revelation 4:2; 5:7"),
+ lk("spirit","mary","god","\"The Holy Spirit will come on you\"","Luke 1:35; Matthew 1:18"),
+ lk("spirit","johnbaptist","god","\"filled with the Holy Spirit even before he is born\"; saw the Spirit come down on Jesus","Luke 1:15; John 1:32–33"),
+ lk("spirit","elizabeth","god","\"filled with the Holy Spirit\"","Luke 1:41"),
+ lk("spirit","zechariah","god","\"filled with the Holy Spirit and prophesied\"","Luke 1:67"),
+ lk("spirit","simeon","god","\"the Holy Spirit was on him\"; \"Moved by the Spirit\"","Luke 2:25–27"),
+ lk("spirit","peter","god","\"filled with the Holy Spirit\"","Acts 2:4; 4:8"),
+ lk("spirit","stephen","god","\"full of faith and of the Holy Spirit\"","Acts 6:5; 7:55"),
+ lk("spirit","philipevang","god","\"The Spirit told Philip\"; took him away","Acts 8:29, 39"),
+ lk("spirit","paul","god","\"filled with the Holy Spirit\"; sent out by the Spirit","Acts 9:17; 13:2–4, 9; 16:6–7"),
+ lk("spirit","barnabas","god","\"full of the Holy Spirit\"; \"Set apart for me Barnabas and Saul\"","Acts 11:24; 13:2–4"),
+ lk("spirit","cornelius","god","\"the Holy Spirit came on all who heard\"","Acts 10:44–47"),
+ lk("spirit","agabus","god","predicted \"through the Spirit\"","Acts 11:28; 21:11"),
+ lk("spirit","ananias","god","\"lied to the Holy Spirit\"","Acts 5:3–4"),
+ lk("spirit","sapphira","god","\"test the Spirit of the Lord\"","Acts 5:9"),
+ lk("spirit","silas","god","\"kept by the Holy Spirit\" from preaching in Asia","Acts 16:6–7; Luke names only \"Paul and his companions\" — Silas and Timothy by Acts 15:40; 16:3"),
+ lk("spirit","timothy","god","\"kept by the Holy Spirit\" from preaching in Asia","Acts 16:6–7; Luke names only \"Paul and his companions\" — Silas and Timothy by Acts 15:40; 16:3"),
+ lk("spirit","davidk","god","spoke \"by the Holy Spirit\"","Mark 12:36; Acts 4:25"),
+ lk("spirit","isaiah","god","\"spoke… through Isaiah the prophet\"","Acts 28:25"),
+ lk("spirit","joel","god","foretold \"I will pour out my Spirit\"","Acts 2:16–18"),
+ lk("spirit","johnpatmos","god","\"I was in the Spirit\"","Revelation 1:10; 4:2"),
  // ---- Jesus' family ----
  lk("mary","jesus","fam","mother of","Matthew 1:16–25; Luke 2:7"),
  lk("mary","joseph","fam","married","Matthew 1:24; Luke 2:5"),
@@ -2405,7 +2530,7 @@ const NT_LINKS = [
  lk("paul","phoebe","min","commended her","Romans 16:1–2"),
 
  // ---- the Old Testament figures named here ----
- lk("moses","jesus","spec","appeared with him at the Transfiguration","Matthew 17:3; Luke 9:30–31"),
+ lk("moses","jesus","spec","appeared with him at the Transfiguration","Matthew 17:3; Luke 9:30–31; Jesus \"worthy of greater honor than Moses\", Hebrews 3:3"),
  lk("elijah","jesus","spec","appeared with him at the Transfiguration","Matthew 17:3; Mark 9:4"),
  lk("moses","elijah","min","appeared together","Matthew 17:3"),
  lk("elijah","johnbaptist","spec","'he is the Elijah who was to come'","Matthew 11:14; 17:12–13; John said 'I am not', John 1:21"),
@@ -2417,7 +2542,7 @@ const NT_LINKS = [
  lk("isaiah","ethiopian","min","the official was reading Isaiah","Acts 8:28–35"),
  lk("jonah","jesus","spec","'the sign of the prophet Jonah'","Matthew 12:39–41"),
  lk("queensouth","solomon","min","came to hear his wisdom","Matthew 12:42"),
- lk("abel","jesus","spec","'the blood of righteous Abel'","Matthew 23:35"),
+ lk("abel","jesus","spec","'the blood of righteous Abel'","Matthew 23:35; Jesus' blood \"speaks a better word than the blood of Abel\", Hebrews 12:24"),
  lk("zechariahb","jesus","spec","'Zechariah son of Berekiah, whom you murdered'","Matthew 23:35"),
  lk("daniel","jesus","spec","cited by Jesus","Matthew 24:15"),
  lk("jeremiah","jesus","spec","some said Jesus was Jeremiah","Matthew 16:14"),
@@ -2428,7 +2553,7 @@ const NT_LINKS = [
  lk("lot","lotswife","fam","married","'Remember Lot's wife!', Luke 17:32"),
  lk("lot","jesus","spec","'the days of Lot'","Luke 17:28–29"),
  lk("noah","jesus","spec","'the days of Noah'","Matthew 24:37"),
- lk("josephpatri","jacob","fam","son of","John 4:5; Acts 7:14"),
+ lk("josephpatri","jacob","fam","son of","John 4:5; Acts 7:14; Jacob blessed Joseph's sons, Hebrews 11:21"),
  lk("rachel","jeremiah","spec","'Rachel weeping' (quoted from Jeremiah)","Matthew 2:17–18"),
  lk("aaron","elizabeth","fam","ancestor of","'a descendant of Aaron', Luke 1:5"),
  lk("moses","aaron","min","Israel asked Aaron for gods while Moses was away","Acts 7:40"),
@@ -2438,8 +2563,8 @@ const NT_LINKS = [
  lk("davidk","jesus","fam","'Son of David'","Matthew 1:1; Mark 10:47"),
 
  // ---- genealogy of Jesus ----
- lk("abraham","isaac","fam","father of","Matthew 1:2; Luke 3:34"),
- lk("isaac","jacob","fam","father of","Matthew 1:2; Luke 3:34"),
+ lk("abraham","isaac","fam","father of","Matthew 1:2; Luke 3:34; offered him, Hebrews 11:17–19; James 2:21"),
+ lk("isaac","jacob","fam","father of","Matthew 1:2; Luke 3:34; blessed him, Hebrews 11:20"),
  lk("jacob","judah","fam","father of","Matthew 1:2; Luke 3:34"),
  lk("judah","perez","fam","father of","Matthew 1:3; Luke 3:33"),
  lk("perez","hezron","fam","father of","Matthew 1:3; Luke 3:33"),
@@ -2548,7 +2673,7 @@ const NT_LINKS = [
  lk("uriahswife","davidk","fam","wife of","Matthew 1:6"),
 
  // ---- Paul's letters (Romans – Philemon) ----
- lk("paul","peter","min","stayed with him fifteen days; \"the right hand of fellowship\"","Galatians 1:18; 2:9"),
+ lk("paul","peter","min","stayed with him fifteen days; \"the right hand of fellowship\"","Galatians 1:18; 2:9; \"our dear brother Paul\", 2 Peter 3:15"),
  lk("paul","peter","conf","\"I opposed him to his face\"","Antioch — Galatians 2:11–14"),
  lk("johnapostle","paul","min","\"gave me and Barnabas the right hand of fellowship\"","Galatians 2:9"),
  lk("jesus","jamesjust","spec","\"Then he appeared to James\"","possibly this James — 1 Corinthians 15:7 does not say which James"),
@@ -2632,7 +2757,7 @@ const NT_LINKS = [
  lk("paul","nereus","min","greeted","Romans 16:15"),
  lk("paul","olympas","min","greeted","Romans 16:15"),
  // Old Testament figures in the letters
- lk("abraham","sarah","fam","married","Romans 4:19; 9:9"),
+ lk("abraham","sarah","fam","married","Romans 4:19; 9:9; she \"called him her lord\", 1 Peter 3:6"),
  lk("abraham","hagar","fam","a son by \"the slave woman\"","Galatians 4:22–25"),
  lk("isaac","rebekah","fam","married","\"Rebekah's children were conceived… by our father Isaac\" — Romans 9:10"),
  lk("rebekah","jacob","fam","mother of","Romans 9:10–13"),
@@ -2641,6 +2766,26 @@ const NT_LINKS = [
  lk("adam","eve","fam","\"Adam was formed first, then Eve\"","1 Timothy 2:13"),
  lk("jannes","moses","conf","\"opposed Moses\"","2 Timothy 3:8"),
  lk("jambres","moses","conf","\"opposed Moses\"","2 Timothy 3:8"),
+ // ---- General letters (Hebrews – Jude) ----
+ lk("melchizedek","abraham","spec","blessed him; received a tenth","Hebrews 7:1–2; Genesis 14:18–20"),
+ lk("melchizedek","jesus","spec","\"a high priest forever, in the order of Melchizedek\"","Hebrews 5:6–10; 6:20; 7:15–17"),
+ lk("cain","abel","fam","brothers","Genesis 4:1–2"),
+ lk("cain","abel","conf","killed his brother; Abel's offering was the better","Genesis 4:8; Hebrews 11:4; 1 John 3:12"),
+ lk("isaac","esau","fam","father of; blessed him","Romans 9:10; Hebrews 11:20"),
+ lk("levipatri","jacob","fam","son of","Genesis 29:34"),
+ lk("levipatri","abraham","fam","descendant; \"still in the body of his ancestor\"","Hebrews 7:9–10"),
+ lk("moses","joshuanun","spec","laid his hands on him","Deuteronomy 34:9"),
+ lk("joshuanun","rahabjericho","min","spared her and her family","Joshua 6:22–25; she hid the spies he sent, Joshua 2:1"),
+ lk("rahabjericho","rahab","disc","the same woman?","possibly; Matthew 1:5 does not say that Boaz's mother is the Rahab of Jericho"),
+ lk("peter","silas","min","\"with the help of Silas\"","1 Peter 5:12"),
+ lk("jude","jamesjust","fam","\"a brother of James\"","possibly — Jude 1 does not say which James; Matthew 13:55 names James and Judas among Jesus' brothers"),
+ lk("korahnt","moses","conf","\"rose up against Moses\"","Numbers 16:1–3; Jude 11"),
+ lk("korahnt","aaron","conf","opposed him with Moses","Numbers 16:3"),
+ lk("satan","cain","dev","\"belonged to the evil one\"","1 John 3:12; John speaks of \"the devil\" and \"the evil one\" by turns in 3:8–12"),
+ lk("elder","johnapostle","disc","the same man?","traditional identification; 2 and 3 John call him only \"the elder\""),
+ lk("elder","gaius3jn","min","\"my dear friend Gaius\"","3 John 1–8"),
+ lk("elder","diotrephes","conf","\"will not welcome us\"","3 John 9–10"),
+ lk("elder","demetrius3jn","min","\"We also speak well of him\"","3 John 12"),
  // ---- Revelation ----
  lk("jesus","johnpatmos","spec","\"Write on a scroll what you see\"","Revelation 1:11, 17–19"),
  lk("johnpatmos","johnapostle","disc","the same man?","traditional identification; Revelation calls him only \"his servant John\" (1:1)"),
@@ -2663,7 +2808,7 @@ const NT_LINKS = [
  lk("angeljohn","johnpatmos","spec","showed him the visions","Revelation 17:1; 21:9–22:9"),
  lk("angelscroll","johnpatmos","spec","\"Take it and eat it\"","Revelation 10:8–11"),
  lk("michael","satan","dev","war in heaven; disputed with the devil","Revelation 12:7–9; Jude 9"),
- lk("satan","jesus","dev","tempted him","Matthew 4:1–11; Mark 1:13; Luke 4:1–13"),
+ lk("satan","jesus","dev","tempted him; by his death Jesus broke the devil's power","Matthew 4:1–11; Mark 1:13; Luke 4:1–13; Hebrews 2:14; \"to destroy the devil's work\", 1 John 3:8"),
  lk("satan","judasisc","dev","\"Satan entered Judas\"","Luke 22:3; John 13:2, 27"),
  lk("satan","peter","dev","\"Satan has asked to sift all of you\"","Luke 22:31–32"),
  lk("satan","ananias","dev","\"Satan has so filled your heart\"","Acts 5:3"),
@@ -2732,11 +2877,13 @@ const NT_META = {
   subtitle:"Jesus at the centre: his family, the Twelve, those he met and healed, the church of Acts and Paul's letters, and the angels of the Gospels, Acts and Revelation — and who is who among the many Johns, Jameses, Marys, Simons and Herods.",
   graphLabel:"Relationship network of New Testament figures",
   hub:"jesus",
+  // the three lead the Structured layout, in this order
+  lead:["father","jesus","spirit"],
   // groups shown on first load; the rest are switched on from the Groups chips
   defaultCats:["christ","family","twelve","follow","met","church","rulers","angels","devil"],
   centroids:{ christ:[.47,.47], family:[.27,.30], twelve:[.55,.20], follow:[.33,.72], met:[.14,.55], church:[.80,.42], rulers:[.60,.84], rome:[.88,.80], ot:[.10,.16], line:[.05,.84], angels:[.82,.15], devil:[.68,.10] },
-  legend:[["--tie-fam","Bloodline & marriage"],["--tie-disc","Discipleship"],["--tie-min","Ministry & fellowship"],["--tie-conf","Conflict & betrayal"],["--tie-spec","Calling, prophecy & succession","dash"],["--tie-rule","Ruling authority"],["--tie-dev","The devil's dealings","dashdot"],["--muted","Possible / traditional","dot"]],
-  clashNames:["John","James","Mary","Simon","Judas","Joseph","Herod","Philip","Zechariah","Lazarus","Ananias","Alexander","Gaius","Simeon","Saul","Titus","Justus","Jacob","Judah","Levi","Eliakim","Matthat","Mattathias","Melki","Sosthenes","Rufus","Lucius","Jason"],
+  legend:[["--tie-fam","Bloodline & marriage"],["--tie-disc","Discipleship"],["--tie-min","Ministry & fellowship"],["--tie-conf","Conflict & betrayal"],["--tie-spec","Calling, prophecy & succession","dash"],["--tie-rule","Ruling authority"],["--tie-god","God's dealings (Father & Spirit)"],["--tie-dev","The devil's dealings","dashdot"],["--muted","Possible / traditional","dot"]],
+  clashNames:["John","James","Mary","Simon","Judas","Joseph","Herod","Philip","Zechariah","Lazarus","Ananias","Alexander","Gaius","Simeon","Saul","Titus","Justus","Jacob","Judah","Levi","Eliakim","Matthat","Mattathias","Melki","Sosthenes","Rufus","Lucius","Jason","Rahab","Joshua","Demetrius"],
   clashSub:{
     John:"The Baptist, the son of Zebedee, John Mark, John of Revelation, a priest's kinsman — and Peter's father.",
     James:"Two of the Twelve, the Lord's brother, and 'James the younger'.",
@@ -2750,14 +2897,14 @@ const NT_META = {
     Lazarus:"Martha's brother, raised from the dead — and the beggar in Jesus' story.",
     Ananias:"A liar struck down, a disciple in Damascus, and a high priest.",
     Alexander:"A son of Simon of Cyrene, a priest's kinsman, a Jew in the Ephesus riot, and two opponents of Paul in 1 and 2 Timothy.",
-    Gaius:"Paul's companions from Macedonia and from Derbe, and Paul's host whom he baptized at Corinth.",
+    Gaius:"Paul's companions from Macedonia and from Derbe, Paul's host whom he baptized at Corinth, and the elder's friend in 3 John.",
     Simeon:"The old man in the temple, a teacher at Antioch, and a name in Luke's genealogy.",
     Saul:"Israel's first king, and Saul of Tarsus who became Paul.",
     Titus:"Paul's Greek co-worker and the emperor who took Jerusalem.",
     Justus:"Joseph Barsabbas, also called Justus, Titius Justus of Corinth, and 'Jesus, who is called Justus' (Colossians 4:11).",
     Jacob:"The patriarch, and the father of Mary's husband Joseph in Matthew's genealogy.",
     Judah:"The patriarch, and a later Judah in Luke's genealogy.",
-    Levi:"Matthew the tax collector (Levi son of Alphaeus) and two Levis in Luke's genealogy.",
+    Levi:"Matthew the tax collector (Levi son of Alphaeus), the patriarch Levi in Hebrews, and two Levis in Luke's genealogy.",
     Eliakim:"One Eliakim in each genealogy.",
     Matthat:"Two men named Matthat in Luke's genealogy.",
     Mattathias:"Two men named Mattathias in Luke's genealogy.",
@@ -2765,7 +2912,10 @@ const NT_META = {
     Sosthenes:"A synagogue leader at Corinth, and 'our brother Sosthenes' who co-sent 1 Corinthians — possibly the same man.",
     Rufus:"A son of Simon of Cyrene, and Rufus greeted in Rome — possibly the same man.",
     Lucius:"Lucius of Cyrene at Antioch, and Lucius who sent greetings to Rome.",
-    Jason:"Jason of Thessalonica, and Jason who sent greetings to Rome."
+    Jason:"Jason of Thessalonica, and Jason who sent greetings to Rome.",
+    Rahab:"Rahab of Jericho, who hid the spies, and Rahab in Matthew's genealogy — possibly the same woman.",
+    Joshua:"Joshua son of Nun, Moses' successor, and Joshua in Luke's genealogy.",
+    Demetrius:"The silversmith who started the riot at Ephesus, and Demetrius commended in 3 John."
   },
   tlTitle:"A rough chronology, c. 12 BC – AD 100",
   tlCaption:"Scripture gives anchors but no BC/AD years: 'during the time of King Herod' (Matthew 2:1), 'the fifteenth year of the reign of Tiberius Caesar' (Luke 3:1), 'about thirty years old' (Luke 3:23), Gallio's proconsulship (Acts 18:12). Rulers' years are historical record. * marks an estimate (hover for the reason); the crucifixion (AD 30 or 33) is disputed. Dashed ends mark an unknown start or end. Deaths after Acts (Peter, Paul) are tradition, not Scripture.",

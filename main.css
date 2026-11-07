@@ -16,7 +16,7 @@
     --rulers:#C05F66;   /* rulers & adversaries*/
     --conflict:#C05F66;
     --rome:#8B98AC;     /* Roman Empire        */
-    --christ:#F7D774;   /* Jesus Christ        */
+    --christ:#F7D774;   /* Father, Son & Holy Spirit (OT: God & the Spirit of God) */
     --met:#DD8A62;      /* Gospel encounters   */
     --ot:#A9BC6A;       /* from the Old Testament */
     --angel:#DDEFF7;    /* angels (both testaments) */
@@ -45,6 +45,7 @@
     --tie-spec:#F5E04A; /* calling & succession — yellow (dashed) */
     --tie-rule:#B48CF5; /* ruling / foreign power — violet  */
     --tie-dev:#9E9AA6;  /* the devil's dealings — ash grey (dash-dot) */
+    --tie-god:#FFF3D1;  /* God's dealings — ivory          */
     --special:#E6B84C;
     --neutral:rgba(235,227,209,.22);
     --shadow:0 18px 50px -18px rgba(0,0,0,.7);

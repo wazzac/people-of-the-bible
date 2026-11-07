@@ -120,6 +120,7 @@ lk("source_id", "target_id", "kind", "relationship label", "note"),
   - `spec`: calling, succession or anointing; renders dashed;
   - `rule`: ruling authority;
   - `dev`: the devil's dealings with a person; renders dash-dot. Use it only for Satan's ties.
+  - `god`: God's dealings with a person; solid ivory. Use it only for the ties of God the Father and the Holy Spirit (NT) or God and the Spirit of God (OT), where the text says God spoke to, called or sent the person, or the Spirit came on them (see AGENTS.md, "God: Father, Son and Holy Spirit").
 - Both endpoints must already exist in that testament's `PEOPLE` array, so add the person first.
 - The label says only what the text states. Write "named", not "father of", when the text doesn't say whose child it is.
 - The note usually carries the verse reference. If the tie is implied but not stated, include "possibly", "disputed" or "traditional" in the note, with the reason, e.g. "possibly King Hezekiah; the text does not say". That wording matches `UNSURE_RE` and draws the link dotted. If there is no textual basis at all, leave the link out.

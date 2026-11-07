@@ -4,6 +4,7 @@
    order. Uses lk(), LG and UNSURE_RE from data-nt.js, which loads first.
    ========================================================================= */
 const OT_CAT = {
+  god:   {label:"God & the Spirit of God", color:"var(--christ)"},
   prim:  {label:"Creation & Flood",      color:"var(--prim)"},
   line:  {label:"Genealogies",           color:"var(--line)"},
   patri: {label:"Patriarchs & Matriarchs", color:"var(--patri)"},
@@ -23,6 +24,23 @@ const OT_CAT = {
 };
 
 const OT_PEOPLE = [
+ // ================= GOD =================
+ // God and his Spirit run through every book. Lines mark only where the text
+ // says God spoke to, appeared to, called or dealt directly with a person.
+ {id:"god", name:"God (the LORD)", short:"God", cat:"god", w:30, halo:2,
+  aliases:"the LORD · the LORD God · God Almighty · I am who I am · the LORD Almighty · the Sovereign LORD · the Ancient of Days · our Father",
+  dates:"eternal: \"In the beginning God created the heavens and the earth\" (Genesis 1:1)",
+  desc:`"In the beginning God created the heavens and the earth" (Genesis 1:1). He said, "Let us make mankind in our image, in our likeness" (1:26); Enoch and Noah "walked faithfully with God" (5:24; 6:9); he called Abram (12:1), appeared to him as "God Almighty" (17:1), and named himself to Moses at the burning bush: "I am who I am" (Exodus 3:14; an NIV footnote gives "Or I will be what I will be"). Passing in front of Moses he proclaimed, "The LORD, the LORD, the compassionate and gracious God, slow to anger, abounding in love and faithfulness" (34:6), and "would speak to Moses face to face, as one speaks to a friend" (33:11). Israel's confession is "Hear, O Israel: The LORD our God, the LORD is one" (Deuteronomy 6:4). He spoke through the prophets, to whom "the word of the LORD came" (e.g. Jeremiah 1:4; Jonah 1:1); Isaiah "saw the Lord, high and exalted, seated on a throne" (Isaiah 6:1) and calls him "our Father" (63:16); Daniel saw "the Ancient of Days" take his seat (Daniel 7:9). The Old Testament also speaks of "the Spirit of God" (Genesis 1:2), who has his own circle. In some scenes the text moves between "the angel of the LORD" and the LORD himself without explaining how (Genesis 16:7–13; Exodus 3:2–6). The New Testament makes God known as Father, Son and Holy Spirit: "In the beginning was the Word, and the Word was with God, and the Word was God" (John 1:1), and Jesus sent his followers to baptize "in the name of the Father and of the Son and of the Holy Spirit" (Matthew 28:19). The church calls this the Trinity, a word the Bible does not use (see God the Father on the New Testament map). The lines drawn here mark where the text says God spoke to, appeared to, called or dealt directly with a person; he is at work far more widely than any map can show.`,
+  notconfused:`The angel of the LORD and the angels of God, who have their own circles; and "the Spirit of God," who has his own circle beside him.`,
+  refs:["Genesis 1:1–2:3","Genesis 12:1–3","Genesis 17:1","Exodus 3:1–15","Exodus 33:11","Exodus 34:6–7","Deuteronomy 6:4","Isaiah 6:1–8","Isaiah 63:16","Jeremiah 1:4–5","Daniel 7:9–14","John 1:1–3","Matthew 28:19"]},
+
+ {id:"spiritgod", name:"The Spirit of God", short:"Spirit of God", cat:"god", w:30, halo:2,
+  aliases:"the Spirit of the LORD · the Spirit of the Sovereign LORD · his Holy Spirit · my Spirit",
+  dates:"eternal: \"the Spirit of God was hovering over the waters\" (Genesis 1:2)",
+  desc:`At creation "the Spirit of God was hovering over the waters" (Genesis 1:2). God "filled" Bezalel "with the Spirit of God, with wisdom, with understanding, with knowledge and with all kinds of skills" (Exodus 31:3). He took "some of the power of the Spirit" that was on Moses and put it on the seventy elders, and "the Spirit also rested on" Eldad and Medad (Numbers 11:17, 25–26); "the Spirit of God came on" Balaam (24:2). "The Spirit of the LORD came on" Othniel, Gideon and Jephthah, and "came powerfully upon" Samson, Saul and David (Judges 3:10; 6:34; 11:29; 14:6; 1 Samuel 10:10; 16:13); then "the Spirit of the LORD had departed from Saul" (16:14). David said, "The Spirit of the LORD spoke through me" (2 Samuel 23:2), and prayed, "Do not cast me from your presence or take your Holy Spirit from me" (Psalm 51:11); "Where can I go from your Spirit?" (139:7). The Spirit came on Azariah son of Oded, on Jahaziel and on Zechariah son of Jehoiada (2 Chronicles 15:1; 20:14; 24:20), on Ezekiel (Ezekiel 2:2; 11:5), and Micah was "filled with power, with the Spirit of the LORD" (Micah 3:8). Obadiah and the company of prophets feared the Spirit of the LORD might carry Elijah away (1 Kings 18:12; 2 Kings 2:16); the text does not say he did. Isaiah says Israel "grieved his Holy Spirit" (Isaiah 63:10), and the speaker of Isaiah 61:1 says, "The Spirit of the Sovereign LORD is on me"—words Jesus read in Nazareth, saying, "Today this scripture is fulfilled in your hearing" (Luke 4:18–21). Through Joel God promised, "I will pour out my Spirit on all people" (Joel 2:28), and to Zerubbabel, "Not by might nor by power, but by my Spirit" (Zechariah 4:6). The New Testament calls him the Holy Spirit (see the New Testament map).`,
+  notconfused:`God (the LORD), who has his own circle; and the "evil spirit from the LORD" that tormented Saul (1 Samuel 16:14), which the text distinguishes from the Spirit of the LORD. The "spirit of leadership" in Joshua (Numbers 27:18) and the "spirit of wisdom" (Deuteronomy 34:9) are lower-case in the NIV and are not linked here.`,
+  refs:["Genesis 1:2","Exodus 31:1–5","Numbers 11:16–29","Numbers 24:2","Judges 3:10","Judges 6:34","Judges 11:29","Judges 13:25","Judges 14:6","Judges 15:14","1 Samuel 10:10","1 Samuel 16:13–14","2 Samuel 23:2","Psalm 51:11","Psalm 139:7","2 Chronicles 15:1","2 Chronicles 20:14","2 Chronicles 24:20","Ezekiel 2:2","Ezekiel 11:5","Micah 3:8","Isaiah 61:1","Isaiah 63:10","Joel 2:28–29","Zechariah 4:6"]},
+
  // ================= GENESIS =================
  // Sourced chapter-by-chapter from the NIV on bible.com (Genesis 1–50).
  // Lifespans in `dates` are the figures Genesis itself gives; absolute BC dates
@@ -4002,6 +4020,77 @@ const OT_PEOPLE = [
 ];
 
 const OT_LINKS = [
+ // ================= GOD =================
+ lk("god","spiritgod","god","\"the Spirit of God\"; \"his Holy Spirit\"","Genesis 1:1–2; Isaiah 63:10"),
+ lk("god","angel_lord","god","the angel of the LORD and the LORD in the same scene","possibly the LORD himself — Genesis 16:7–13 and Exodus 3:2–6 move between the two without explaining how"),
+ lk("god","adam","god","commanded him; \"Where are you?\"","Genesis 2:16–17; 3:9"),
+ lk("god","eve","god","\"What is this you have done?\"","Genesis 3:13"),
+ lk("god","cain","god","\"Where is your brother Abel?\"","Genesis 4:6–15"),
+ lk("god","enoch","god","\"walked faithfully with God\"; \"God took him away\"","Genesis 5:24"),
+ lk("god","noah","god","\"walked faithfully with God\"; told him to build the ark","Genesis 6:9–22"),
+ lk("god","abraham","god","called him; \"I am God Almighty\"","Genesis 12:1; 15; 17:1"),
+ lk("god","sarah","god","\"Yes, you did laugh\"","Genesis 18:13–15"),
+ lk("god","hagar","god","\"the LORD who spoke to her\": \"You are the God who sees me\"","Genesis 16:13"),
+ lk("god","isaac","god","\"The LORD appeared to Isaac\"","Genesis 26:2–5, 24"),
+ lk("god","jacob","god","appeared to him at Bethel; renamed him Israel","Genesis 28:13; 35:9–11"),
+ lk("god","abimelek","god","\"God came to Abimelek in a dream\"","Genesis 20:3–7"),
+ lk("god","laban","god","\"God came to Laban the Aramean in a dream\"","Genesis 31:24"),
+ lk("god","moses","god","called him from the bush; spoke \"face to face\"","Exodus 3:4–14; 33:11"),
+ lk("god","aaron","god","\"The LORD said to Aaron\"","Exodus 4:27; Numbers 12:4–5"),
+ lk("god","miriam","god","summoned her to the tent of meeting","Numbers 12:4–10"),
+ lk("god","pharaoh_ex","god","\"the LORD hardened Pharaoh's heart\"","Exodus 9:12"),
+ lk("god","balaam","god","\"God came to Balaam\"","Numbers 22:9–12"),
+ lk("god","joshua_ot","god","\"the LORD said to Joshua\"","Joshua 1:1–9"),
+ lk("god","gideon","god","\"Am I not sending you?\"","Judges 6:14"),
+ lk("god","samuel","god","\"Samuel! Samuel!\"","1 Samuel 3:10"),
+ lk("god","david","god","\"The LORD answered him\"","1 Samuel 23:2–4"),
+ lk("god","nathan","god","\"the word of the LORD came to\" him","2 Samuel 7:4"),
+ lk("god","gad_p","god","\"the word of the LORD came to\" him","2 Samuel 24:11"),
+ lk("god","solomon","god","appeared to him twice","1 Kings 3:5; 9:2"),
+ lk("god","shemaiah","god","\"this word of God came to Shemaiah\"","1 Kings 12:22"),
+ lk("god","ahijah_sh","god","\"the LORD had told Ahijah\"","1 Kings 14:5"),
+ lk("god","jehu_h","god","\"the word of the LORD came to\" him","1 Kings 16:1"),
+ lk("god","elijah","god","\"the word of the LORD came to\" him; the gentle whisper at Horeb","1 Kings 17:2; 19:9–18"),
+ lk("god","micaiah","god","\"I saw the LORD sitting on his throne\"","1 Kings 22:19"),
+ lk("god","jehu","god","\"The LORD said to Jehu\"","2 Kings 10:30"),
+ lk("god","job","god","\"spoke to Job out of the storm\"","Job 38:1"),
+ lk("god","satan_ot","god","\"Have you considered my servant Job?\"; \"The LORD rebuke you, Satan!\"","Job 1:6–12; 2:1–6; Zechariah 3:2"),
+ lk("god","isaiah","god","\"I saw the Lord\"; \"Whom shall I send?\"","Isaiah 6:1–8"),
+ lk("god","cyrus","god","\"his anointed\"; \"moved the heart of Cyrus\"","Isaiah 45:1; Ezra 1:1"),
+ lk("god","jeremiah","god","\"the word of the LORD came to\" him; \"Before I formed you in the womb I knew you\"","Jeremiah 1:4–5"),
+ lk("god","ezekiel","god","\"the word of the LORD came to\" him","Ezekiel 1:3"),
+ lk("god","daniel","god","saw \"the Ancient of Days\" in a vision","Daniel 7:9–14"),
+ lk("god","nebuchadnezzar","god","\"a voice came from heaven\"","Daniel 4:31–32"),
+ lk("god","hosea","god","\"the LORD said to him\"","Hosea 1:1–2"),
+ lk("god","joel","god","\"The word of the LORD that came to Joel\"","Joel 1:1"),
+ lk("god","amos","god","\"What do you see, Amos?\"","Amos 7:8"),
+ lk("god","obadiah","god","\"The vision of Obadiah\"","Obadiah 1"),
+ lk("god","jonah","god","\"the word of the LORD came to\" him","Jonah 1:1"),
+ lk("god","micah","god","\"The word of the LORD that came to Micah\"","Micah 1:1"),
+ lk("god","nahum","god","\"The book of the vision of Nahum\"","Nahum 1:1, 12"),
+ lk("god","habakkuk","god","\"Then the LORD replied\"","Habakkuk 1:5; 2:2"),
+ lk("god","zephaniah","god","\"The word of the LORD that came to Zephaniah\"","Zephaniah 1:1"),
+ lk("god","haggai","god","\"the word of the LORD came through the prophet Haggai\"","Haggai 1:1"),
+ lk("god","zechariah_p","god","\"the word of the LORD came to\" him","Zechariah 1:1"),
+ lk("god","malachi","god","\"The word of the LORD to Israel through Malachi\"","Malachi 1:1"),
+ lk("spiritgod","bezalel","god","\"filled him with the Spirit of God\"","Exodus 31:3"),
+ lk("spiritgod","moses","god","\"the Spirit that was on him\"","Numbers 11:17, 25"),
+ lk("spiritgod","eldad","god","\"the Spirit also rested on them\"","Numbers 11:26"),
+ lk("spiritgod","medad","god","\"the Spirit also rested on them\"","Numbers 11:26"),
+ lk("spiritgod","balaam","god","\"the Spirit of God came on him\"","Numbers 24:2"),
+ lk("spiritgod","othniel","god","\"The Spirit of the LORD came on him\"","Judges 3:10"),
+ lk("spiritgod","gideon","god","\"the Spirit of the LORD came on Gideon\"","Judges 6:34"),
+ lk("spiritgod","jephthah","god","\"the Spirit of the LORD came on Jephthah\"","Judges 11:29"),
+ lk("spiritgod","samson","god","\"came powerfully upon him\"","Judges 13:25; 14:6, 19; 15:14"),
+ lk("spiritgod","saul","god","\"came powerfully upon him\"; later \"departed from Saul\"","1 Samuel 10:10; 16:14"),
+ lk("spiritgod","david","god","\"came powerfully upon David\"; \"spoke through me\"","1 Samuel 16:13; 2 Samuel 23:2; Psalm 51:11"),
+ lk("spiritgod","azariah_o","god","\"The Spirit of God came on Azariah\"","2 Chronicles 15:1"),
+ lk("spiritgod","jahaziel","god","\"the Spirit of the LORD came on Jahaziel\"","2 Chronicles 20:14"),
+ lk("spiritgod","zechariah_j","god","\"the Spirit of God came on Zechariah\"","2 Chronicles 24:20"),
+ lk("spiritgod","ezekiel","god","\"the Spirit came into me\"","Ezekiel 2:2; 3:12–14; 11:5"),
+ lk("spiritgod","micah","god","\"filled with power, with the Spirit of the LORD\"","Micah 3:8"),
+ lk("spiritgod","joel","god","foretold \"I will pour out my Spirit\"","Joel 2:28–29"),
+ lk("spiritgod","zerubbabel","god","\"Not by might nor by power, but by my Spirit\"","Zechariah 4:6"),
  // ================= GENESIS =================
  // ----- creation & the first family (Genesis 2–4) -----
  lk("adam","eve","fam","husband of",""),
@@ -5321,11 +5410,13 @@ const OT_META = {
   title:"People of the Old Testament",
   subtitle:"From Adam and the patriarchs through Moses, the judges, the kings, and the prophets to the exile and return — and who is who among the many kings and prophets who share a name.",
   graphLabel:"Relationship network of Old Testament figures",
-  hub:null,
+  hub:"god",
+  // God and his Spirit lead the Structured layout
+  lead:["god","spiritgod"],
   // groups shown on first load; the rest are switched on from the Groups chips
-  defaultCats:["prim","patri","exod","priest","judg","king","proph","exile","wis","angels","devil"],
-  centroids:{ prim:[.07,.22], line:[.04,.62], patri:[.17,.42], kin:[.12,.84], tribe:[.27,.70], exod:[.35,.34], priest:[.39,.60], lead:[.24,.12], judg:[.50,.70], king:[.59,.34], proph:[.73,.64], exile:[.88,.36], wis:[.74,.12], natn:[.52,.92], angels:[.48,.12], devil:[.62,.06] },
-  legend:[["--tie-fam","Family & bloodline"],["--tie-disc","Mentor & successor"],["--tie-min","Alliance & service"],["--tie-conf","Conflict & war"],["--tie-spec","Anointing & calling","dash"],["--tie-rule","Foreign power"],["--tie-dev","The devil's dealings","dashdot"],["--muted","Possible / disputed","dot"]],
+  defaultCats:["god","prim","patri","exod","priest","judg","king","proph","exile","wis","angels","devil"],
+  centroids:{ god:[.50,.47], prim:[.07,.22], line:[.04,.62], patri:[.17,.42], kin:[.12,.84], tribe:[.27,.70], exod:[.35,.34], priest:[.39,.60], lead:[.24,.12], judg:[.50,.70], king:[.59,.34], proph:[.73,.64], exile:[.88,.36], wis:[.74,.12], natn:[.52,.92], angels:[.48,.12], devil:[.62,.06] },
+  legend:[["--tie-fam","Family & bloodline"],["--tie-disc","Mentor & successor"],["--tie-min","Alliance & service"],["--tie-conf","Conflict & war"],["--tie-spec","Anointing & calling","dash"],["--tie-rule","Foreign power"],["--tie-god","God's dealings"],["--tie-dev","The devil's dealings","dashdot"],["--muted","Possible / disputed","dot"]],
   clashNames:["Pharaoh","Enoch","Lamech","Nahor","Shelah","Manasseh","Deborah","Eliezer","Noah","Milkah","Eliab","Eliasaph","Elizaphan","Zimri","Abimelek","Jabin","Micah","Jonathan","Gilead","Joram","Joash","Ahaziah","Jeroboam","Zechariah","Joshua","Phinehas","Eleazar","Gad","Abinadab","Ahinoam","Ahimelek","Paltiel","Nathan","Tamar","Mephibosheth","Makir","Shammah","Talmai","Ahijah","Abijah","Naamah","Maakah","Nadab","Jehu","Obadiah","Zedekiah","Jehoshaphat","Ben-Hadad","Ishmael","Jotham","Uriah","Zephaniah","Eliakim","Jehoahaz","Shallum","Azariah","Jehoiada","Caleb","Abigail","Zerah","Darius","Hanani","Shemaiah","Heman","Ethan","Hananiah","Mishael","Jaazaniah","Pashhur","Gedaliah","Seraiah","Gemariah","Elishama","Micaiah","Hilkiah","Ahab","Amaziah","Joel","Amariah","Iddo","Josiah","Sharezer"],
   clashSub:{
     Amariah:"Jehoshaphat's chief priest, and the prophet Zephaniah's great-grandfather.",
