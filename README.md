@@ -63,6 +63,9 @@ Spirit of God are at the centre of the map.
 - **Book posters.** The *Posters* button opens BibleProject's book-overview
   posters for the active testament. Each person's detail panel also links to
   the posters for the books they appear in.
+- **Share.** The *Share* button sends the map to a friend on X, Facebook or
+  LinkedIn, or copies the link. Nothing from those sites loads until you
+  choose one.
 
 It's a static site: plain HTML, CSS and JavaScript (`index.html`, `main.css`,
 the data files `data-nt.js` and `data-ot.js`, and `main.js` for the app

@@ -6,6 +6,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project intends to follow [Semantic Versioning](https://semver.org/)
 once tagged releases begin.
 
+## [1.4.1-beta] - 2026-11-17
+
+**A Share button, and a search-engine check-up.**
+
+### Added
+- **Share** button beside Posters. It opens a small window with X, Facebook,
+  LinkedIn and Copy link, and always shares https://bible-people.wazzac.dev/.
+  The networks' own share pages open in a new tab, and nothing from them loads
+  before that. On small screens the button shows only its icon.
+- **Preview picture** (`og-image.png`, 1200×630) for links shared on social
+  media and in chat apps, with large-image Twitter/X cards.
+- **`404.html`**, so unknown addresses return a real "not found" instead of
+  the map with a 200 status, which search engines count as a duplicate page.
+- **`apple-touch-icon.png`**, a PNG icon for phones and for search engines
+  that don't use SVG icons.
+
+### Changed
+- **Search metadata:**
+  - The page title now reads "People of the Bible: an interactive map of Bible
+    characters".
+  - The meta description is shortened to 154 characters, so search results
+    show it in full.
+  - `og:locale` is now a valid `en_GB`.
+  - The JSON-LD gains an image and keywords.
+- **The page's built-in subtitle and no-JavaScript text** now describe both
+  testaments. Search engines read these before the map draws.
+- **D3 and the three scripts now load with `defer`**, so the page is no longer
+  held up while D3 downloads. They still run in the same order.
+
 ## [1.4.0-beta] - 2026-11-07
 
 **Hebrews to Jude mapped: the New Testament is complete. God is now on the map as Father, Son and Holy Spirit.**

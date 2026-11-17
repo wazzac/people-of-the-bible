@@ -792,6 +792,36 @@ function closePosterModal(){
   posterImg.removeAttribute("src");
 }
 
+/* ---------- share ----------
+   Links to each network's own share page, opened in a new tab. Nothing is
+   loaded from those networks until someone chooses one. Always shares the
+   canonical address, not wherever the page happens to be served from. */
+const shareModal=document.getElementById("shareModal");
+const SHARE_URL=(document.querySelector('link[rel="canonical"]')||{}).href||location.href;
+const SHARE_TEXT="People of the Bible: an interactive map of who's who in Scripture, from Genesis to Revelation";
+const enc=encodeURIComponent;
+document.getElementById("shareX").href=`https://x.com/intent/post?text=${enc(SHARE_TEXT)}&url=${enc(SHARE_URL)}`;
+document.getElementById("shareFacebook").href=`https://www.facebook.com/sharer/sharer.php?u=${enc(SHARE_URL)}`;
+document.getElementById("shareLinkedIn").href=`https://www.linkedin.com/sharing/share-offsite/?url=${enc(SHARE_URL)}`;
+const shareUrlBox=document.getElementById("shareUrl");
+shareUrlBox.value=SHARE_URL;
+shareUrlBox.onfocus=()=>shareUrlBox.select();
+const shareCopy=document.getElementById("shareCopy"), shareCopyLabel=document.getElementById("shareCopyLabel");
+shareCopy.onclick=async()=>{
+  let ok=false;
+  // the clipboard API can sit waiting on a permission prompt, so give it a second, then fall back
+  try{ ok=await Promise.race([navigator.clipboard.writeText(SHARE_URL).then(()=>true), new Promise(r=>setTimeout(()=>r(false),1000))]); }catch(_){ }
+  if(!ok){ shareUrlBox.focus(); shareUrlBox.select(); try{ ok=document.execCommand("copy"); }catch(_){ } }
+  shareCopyLabel.textContent=ok?"Link copied":"Press Ctrl+C to copy";
+  shareCopy.classList.toggle("copied",ok);
+  setTimeout(()=>{ shareCopyLabel.textContent="Copy link"; shareCopy.classList.remove("copied"); },2200);
+};
+const shareBtn=document.getElementById("shareBtn");
+shareBtn.onclick=()=>{ shareModal.classList.add("show"); document.getElementById("shareX").focus(); };
+function closeShareModal(){ shareModal.classList.remove("show"); shareBtn.focus(); }
+document.getElementById("shareClose").onclick=closeShareModal;
+shareModal.addEventListener("click",e=>{ if(e.target===shareModal) closeShareModal(); });
+
 /* ---------- search ---------- */
 const search=document.getElementById("searchBox");
 search.addEventListener("input",()=>{
@@ -986,7 +1016,7 @@ window.addEventListener("resize",()=>{
 });
 
 // keyboard: Escape closes
-document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ if(posterModal.classList.contains("show")) closePosterModal(); else if(lensPop && !lensPop.hidden) closeLensPop(); else if(clashActive) clearClash(); else if(filterDrawer.classList.contains("open")) closeFilterDrawer(); else closePanel(); } });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ if(shareModal.classList.contains("show")) closeShareModal(); else if(posterModal.classList.contains("show")) closePosterModal(); else if(lensPop && !lensPop.hidden) closeLensPop(); else if(clashActive) clearClash(); else if(filterDrawer.classList.contains("open")) closeFilterDrawer(); else closePanel(); } });
 
 /* ---------- mobile filter drawer ---------- */
 const filtersToggle=document.getElementById("filtersToggle");

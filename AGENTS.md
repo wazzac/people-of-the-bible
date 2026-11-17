@@ -51,7 +51,11 @@ The site credits both sources in the UI itself. A small line under the interacti
 
 ## Search engines
 
-The site is public and open to crawlers. `index.html` carries the search metadata (`robots` index/follow, `description`, canonical URL `https://bible-people.wazzac.dev/`, Open Graph/Twitter tags and a schema.org `WebApplication` JSON-LD block); `robots.txt` and `sitemap.xml` sit at the repo root and `scripts/build.mjs` copies them into `dist/`. Keep the description and JSON-LD factual — they describe the map, not claims about Scripture. Update the sitemap's `<lastmod>` when a release changes the content.
+The site is public and open to crawlers. `index.html` carries the search metadata (`robots` index/follow, `description`, canonical URL `https://bible-people.wazzac.dev/`, Open Graph/Twitter tags with a 1200×630 preview picture, and a schema.org `WebApplication` JSON-LD block). These static files sit at the repo root, and `scripts/build.mjs` copies them into `dist/`:
+- `robots.txt` and `sitemap.xml`;
+- `og-image.png`, the picture shown when the link is shared;
+- `apple-touch-icon.png`, the PNG icon;
+- `404.html`. Cloudflare Pages serves it with a real 404 status, so unknown addresses are not indexed as copies of the map. Keep the description and JSON-LD factual — they describe the map, not claims about Scripture. Update the sitemap's `<lastmod>` when a release changes the content.
 
 NIV quotations fall under Biblica's NIV copyright. `README.md` and `NOTICE.md` carry Biblica's standard notice (`LICENSE` is the plain MIT text only, so GitHub detects it as MIT — keep it that way). Biblica's terms allow up to 500 verses to be quoted without separate permission, provided the notice is shown, so keep quotations short phrases rather than whole passages.
 
@@ -60,7 +64,7 @@ Poster images require their **own** per-display attribution beyond that footer l
 ## Architecture
 
 No framework, no runtime dependencies — just plain files, plus a minify-only build step for deployment:
-- `index.html` — markup only: header (testament, Network/Timeline and Default/Structured layout toggles), controls bar, SVG stage, detail panel, timeline SVG, poster modal. Links `main.css` and loads three plain `<script>` tags **in this order**: `data-nt.js`, `data-ot.js`, `main.js`. They share top-level `const`s through the normal global scope — no modules, no bundler. D3.js (cdnjs) and three Google Fonts (Cinzel, EB Garamond, JetBrains Mono) are pulled from CDN via `<script>`/`<link>` tags.
+- `index.html` — markup only: header (testament, Network/Timeline and Default/Structured layout toggles), controls bar, SVG stage, detail panel, timeline SVG, poster modal, share modal (X, Facebook, LinkedIn and Copy link; always shares the canonical URL). Links `main.css` and loads three plain `<script defer>` tags **in this order**: `data-nt.js`, `data-ot.js`, `main.js`, after D3, which is also deferred. They share top-level `const`s through the normal global scope — no modules, no bundler. D3.js (cdnjs) and three Google Fonts (Cinzel, EB Garamond, JetBrains Mono) are pulled from CDN via `<script>`/`<link>` tags.
 - `main.css` — all CSS, using custom properties in `:root` for the color palette: one CSS var per group (e.g. `--fam`, `--twelve`, `--patri`), plus a separate `--tie-*` palette for the kinds of tie (link colors are deliberately distinct from group colors).
 - `data-nt.js` — the New Testament data, plus the link vocabulary both testaments use: `LG` (tie kinds → `--tie-*` colors), `UNSURE_RE` (the possible/disputed/traditional marker) and the `lk()` helper. That is why it must load before `data-ot.js`.
 - `data-ot.js` — the Old Testament data (same shape, `OT_` prefix).

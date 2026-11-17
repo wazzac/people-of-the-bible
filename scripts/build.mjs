@@ -40,8 +40,9 @@ for (const name of SCRIPTS) {
 }
 writeFileSync(`${dist}/index.html`, html, "utf8");
 
-// static files copied as-is (robots.txt and sitemap.xml are for search engines)
-for (const file of ["favicon.svg", "robots.txt", "sitemap.xml"]) {
+// static files copied as-is (robots.txt, sitemap.xml and 404.html are for search
+// engines; og-image.png is the preview picture when the link is shared)
+for (const file of ["favicon.svg", "apple-touch-icon.png", "og-image.png", "404.html", "robots.txt", "sitemap.xml"]) {
   if (existsSync(`${root}/${file}`)) cpSync(`${root}/${file}`, `${dist}/${file}`);
 }
 
